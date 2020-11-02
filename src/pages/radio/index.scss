@@ -1,0 +1,21 @@
+@import '../../components/style/vars.scss';
+
+.demo-radio {
+    background: $white;
+
+    &-group {
+        padding: 0 16px 0 20px;
+
+        .#{$base-prefix}radio {
+            margin-bottom: 8px;
+        }
+    }
+
+    img {
+        height: 20px;
+    }
+
+    .#{$base-prefix}doc-demo-block__title {
+        margin-top: -8px;
+    }
+}

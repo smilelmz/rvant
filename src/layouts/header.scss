@@ -1,0 +1,58 @@
+.doc_header {
+    width: 100%;
+    background-color: #001938;
+    -webkit-user-select: none;
+    user-select: none;
+    height: 60px;
+    padding: 0 30px;
+    line-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .doc_logo {
+
+        img,
+        span {
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        img {
+            width: 26px;
+            margin-right: 10px;
+        }
+
+        span {
+            color: #fff;
+            font-size: 22px;
+        }
+    }
+
+    .doc_nav_right {
+        flex: 1;
+        font-size: 0;
+        text-align: right;
+
+        li {
+            position: relative;
+            display: inline-block;
+            vertical-align: middle;
+
+            &.nav_item {
+                margin-left: 20px;
+            }
+
+            img {
+                display: block;
+                width: 26px;
+                height: 26px;
+                transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+                &:hover {
+                    transform: scale(1.2);
+                }
+            }
+        }
+    }
+}

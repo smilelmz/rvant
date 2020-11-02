@@ -1,0 +1,13 @@
+@import '../../components/style/vars.scss';
+
+.demo-sticky {
+    height: 200vh;
+
+    .demo-block {
+        padding: 0;
+    }
+
+    .#{$base-prefix}button {
+        margin-left: 16px;
+    }
+}

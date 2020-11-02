@@ -1,0 +1,139 @@
+@import './vars.scss';
+
+@keyframes #{$base-prefix}slide-up-enter {
+  from {
+    transform: translate3d(0, 100%, 0);
+  }
+}
+
+@keyframes #{$base-prefix}slide-up-leave {
+  to {
+    transform: translate3d(0, 100%, 0);
+  }
+}
+
+@keyframes #{$base-prefix}slide-down-enter {
+  from {
+    transform: translate3d(0, -100%, 0);
+  }
+}
+
+@keyframes #{$base-prefix}slide-down-leave {
+  to {
+    transform: translate3d(0, -100%, 0);
+  }
+}
+
+@keyframes #{$base-prefix}slide-left-enter {
+  from {
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+
+@keyframes #{$base-prefix}slide-left-leave {
+  to {
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+
+@keyframes #{$base-prefix}slide-right-enter {
+  from {
+    transform: translate3d(100%, 0, 0);
+  }
+}
+
+@keyframes #{$base-prefix}slide-right-leave {
+  to {
+    transform: translate3d(100%, 0, 0);
+  }
+}
+
+@keyframes #{$base-prefix}fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes #{$base-prefix}fade-out {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes #{$base-prefix}rotate {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.#{$base-prefix}fade {
+  &-enter-active {
+    animation: $animation-duration-base #{$base-prefix}fade-in both
+      $animation-timing-function-enter;
+  }
+
+  &-exit-active {
+    animation: $animation-duration-base #{$base-prefix}fade-out both
+      $animation-timing-function-leave;
+  }
+}
+
+.#{$base-prefix}slide-up {
+  &-enter-active {
+    animation: #{$base-prefix}slide-up-enter $animation-duration-base both
+      $animation-timing-function-enter;
+  }
+
+  &-exit-active {
+    animation: #{$base-prefix}slide-up-leave $animation-duration-base both
+      $animation-timing-function-leave;
+  }
+}
+
+.#{$base-prefix}slide-down {
+  &-enter-active {
+    animation: #{$base-prefix}slide-down-enter $animation-duration-base both
+      $animation-timing-function-enter;
+  }
+
+  &-exit-active {
+    animation: #{$base-prefix}slide-down-leave $animation-duration-base both
+      $animation-timing-function-leave;
+  }
+}
+
+.#{$base-prefix}slide-left {
+  &-enter-active {
+    animation: #{$base-prefix}slide-left-enter $animation-duration-base both
+      $animation-timing-function-enter;
+  }
+
+  &-exit-active {
+    animation: #{$base-prefix}slide-left-leave $animation-duration-base both
+      $animation-timing-function-leave;
+  }
+}
+
+.#{$base-prefix}slide-right {
+  &-enter-active {
+    animation: #{$base-prefix}slide-right-enter $animation-duration-base both
+      $animation-timing-function-enter;
+  }
+
+  &-exit-active {
+    animation: #{$base-prefix}slide-right-leave $animation-duration-base both
+      $animation-timing-function-leave;
+  }
+}

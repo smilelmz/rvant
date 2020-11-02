@@ -1,0 +1,28 @@
+@import '../../components/style/vars.scss';
+
+.demo-button {
+
+    .demo-block {
+        padding: 0 $padding-md;
+    
+        &__title {
+            padding-left: 0;
+        }
+    }
+
+    .#{$base-prefix}__title {
+        padding-left: 0;
+    }
+
+    .demo-button-row {
+        margin-bottom: 12px;
+    }
+
+    .#{$base-prefix}button {
+        margin-right: 16px;
+    }
+
+    .#{$base-prefix}button--large {
+        margin-bottom: 16px;
+    }
+}

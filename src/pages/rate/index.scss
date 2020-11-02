@@ -1,0 +1,10 @@
+@import '../../components/style/vars.scss';
+
+.demo-rate {
+    padding-bottom: 20px;
+    background-color: #fff;
+
+    .#{$base-prefix}rate {
+        margin-left: $padding-md;
+    }
+}

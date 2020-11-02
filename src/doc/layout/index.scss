@@ -1,0 +1,31 @@
+@import '../../components/style/vars.scss';
+
+.demo-nav {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 56px;
+    background-color: #fff;
+
+    &__back {
+        position: absolute;
+        top: 16px;
+        left: 16px;
+        width: 24px;
+        height: 24px;
+        cursor: pointer;
+    }
+}
+
+.demo-nav .demo-nav__title {
+    font-weight: 500;
+    font-size: 17px;
+    text-transform: capitalize;
+}
+
+.doc-demo-section {
+    box-sizing: border-box;
+    min-height: calc(100vh - 56px);
+    padding-bottom: 20px;
+}

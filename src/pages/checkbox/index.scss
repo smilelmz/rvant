@@ -1,0 +1,31 @@
+@import '../../components/style/vars.scss';
+
+.demo-checkbox {
+    background: $white;
+
+    .#{$base-prefix}checkbox {
+        margin: 0 0 8px 20px;
+    }
+
+    .#{$base-prefix}cell {
+        .#{$base-prefix}checkbox {
+            margin: 0;
+        }
+    }
+
+    img {
+        height: 20px;
+    }
+
+    &-buttons {
+        margin-top: $padding-md;
+
+        .#{$base-prefix}button {
+            margin-left: $padding-md;
+        }
+    }
+
+    .#{$base-prefix}doc-demo-block__title {
+        margin-top: -8px;
+    }
+}

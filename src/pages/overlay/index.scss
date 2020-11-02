@@ -1,0 +1,16 @@
+@import '../../components/style/vars.scss';
+
+.demo-overlay {
+    .wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+    }
+
+    .block {
+        width: 120px;
+        height: 120px;
+        background-color: $white;
+    }
+}

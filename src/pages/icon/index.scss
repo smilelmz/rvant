@@ -1,0 +1,22 @@
+@import '../../components/style/vars.scss';
+
+.demo-layout {
+    background: #fff;
+
+    .#{$base-prefix}col:nth-child(odd) {
+        background-color: #39a9ed;
+    }
+
+    .#{$base-prefix}col:nth-child(even) {
+        background-color: #66c6f2;
+    }
+
+    .#{$base-prefix}col {
+        margin-bottom: 10px;
+        color: #fff;
+        font-size: 13px;
+        line-height: 30px;
+        text-align: center;
+        background-clip: content-box;
+    }
+}

@@ -1,0 +1,19 @@
+@import '../../components/style/vars.scss';
+
+.demo-loading {
+    background: #fff;
+
+
+    .#{$base-prefix}__title {
+        padding-left: 0;
+    }
+
+    .#{$base-prefix}loading {
+        display: inline-block;
+        margin: 5px 0 5px 20px;
+
+        &--vertical {
+            display: inline-flex;
+        }
+    }
+}

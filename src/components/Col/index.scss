@@ -1,0 +1,22 @@
+@import '../style/vars.scss';
+
+.#{$base-prefix}col {
+    float: left;
+    box-sizing: border-box;
+    min-height: 1px;
+}
+
+$i: 1;
+$n: 24;
+
+@while $i <=$n {
+    .#{$base-prefix}col--#{$i} {
+        width: $i * 100% / 24;
+    }
+
+    .#{$base-prefix}col--offset-#{$i} {
+        margin-left: $i * 100% / 24;
+    }
+
+    $i: $i+1;
+}

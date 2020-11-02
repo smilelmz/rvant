@@ -1,0 +1,11 @@
+@import '../../components/style/vars.scss';
+
+.demo-popup {
+    .demo-block {
+        padding: 0;
+
+        &__title {
+            padding: 32px 16px 16px;
+        }
+    }
+}
