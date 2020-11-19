@@ -7,12 +7,10 @@ interface IProps {
 
 const Content = ({ children }: IProps) => {
   return (
-    <div className='doc_content'>
-      <div className='doc_content__inner'>
+    <div className='doc_content doc_row doc_content--simulator'>
         <section>{children}</section>
-      </div>
     </div>
   )
 }
 
-export default Content
+export default React.memo(Content)

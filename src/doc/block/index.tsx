@@ -19,4 +19,4 @@ const DemoBlock = ({ title, children, card = false }: IProps) => {
   )
 }
 
-export default DemoBlock
+export default React.memo(DemoBlock)

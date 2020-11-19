@@ -1,10 +1,13 @@
 .doc_content {
-    position: absolute;
-    top: 60px;
-    bottom: 0;
-    left: 220px;
-    right: 0;
+    width: 100%;
+    box-sizing: border-box;
+    padding-left: 220px;
     overflow: hidden;
+    padding-top: 60px;
+
+    &--simulator{
+        padding-right: 390px;
+    }
 
     &__inner {
         width: 100%;
@@ -302,3 +305,4 @@
         margin-bottom: 20px;
     }
 }
+

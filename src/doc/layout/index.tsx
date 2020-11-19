@@ -41,4 +41,4 @@ const MobileLayout = ({ title = '', children, className }: IProps) => {
   )
 }
 
-export default MobileLayout
+export default React.memo(MobileLayout)

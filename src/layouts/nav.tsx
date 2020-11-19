@@ -43,4 +43,4 @@ const Nav = ({ menus = [], pathname = '' }: IProps) => {
   )
 }
 
-export default Nav
+export default React.memo(Nav)

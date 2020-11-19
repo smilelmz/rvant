@@ -3,17 +3,20 @@
     "children": [{
         "name": "介绍",
         "url": "/",
-        "m_url": ""
+        "m_url": "",
+        "simulator": true
       },
       {
         "name": "快速上手",
         "url": "",
-        "m_url": ""
+        "m_url": "",
+        "simulator": true
       },
       {
         "name": "更新日志",
         "url": "",
-        "m_url": ""
+        "m_url": "",
+        "simulator": true
       }
     ]
   },
@@ -22,35 +25,43 @@
     "children": [{
       "name": "Button 按钮",
       "url": "/button",
-      "m_url": "/button/demo"
+      "m_url": "/button/demo",
+      "simulator": true
     }, {
       "name": "Cell 单元格",
       "url": "/cell",
-      "m_url": "/cell/demo"
+      "m_url": "/cell/demo",
+      "simulator": true
     }, {
       "name": "Icon 图标",
       "url": "/icon",
-      "m_url": "/icon/demo"
+      "m_url": "/icon/demo",
+      "simulator": true
     }, {
       "name": "Image 图片",
       "url": "/image",
-      "m_url": "/image/demo"
+      "m_url": "/image/demo",
+      "simulator": true
     }, {
       "name": "Layout 布局",
       "url": "/layout",
-      "m_url": "/layout/demo"
+      "m_url": "/layout/demo",
+      "simulator": true
     }, {
       "name": "Popup 弹出层",
       "url": "/popup",
-      "m_url": "/popup/demo"
+      "m_url": "/popup/demo",
+      "simulator": true
     }, {
       "name": "Style 内置样式",
       "url": "/style",
-      "m_url": "/style/demo"
+      "m_url": "/style/demo",
+      "simulator": true
     }, {
       "name": "Toast 轻提示",
       "url": "/toast",
-      "m_url": "/toast/demo"
+      "m_url": "/toast/demo",
+      "simulator": true
     }]
   },
   {
@@ -58,63 +69,78 @@
     "children": [{
       "name": "Calendar 日历",
       "url": "",
-      "m_url": ""
+      "m_url": "",
+      "simulator": true
     }, {
       "name": "Checkbox 复选框",
       "url": "/checkbox",
-      "m_url": "/checkbox/demo"
+      "m_url": "/checkbox/demo",
+      "simulator": true
     }, {
       "name": "DatetimePicker 时间选择",
       "url": "",
-      "m_url": ""
+      "m_url": "",
+      "simulator": true
     }, {
       "name": "Field 输入框",
       "url": "",
-      "m_url": ""
+      "m_url": "",
+      "simulator": true
     }, {
       "name": "Form 表单",
       "url": "",
-      "m_url": ""
+      "m_url": "",
+      "simulator": true
     }, {
       "name": "NumberKeyboard 数字键盘",
       "url": "",
-      "m_url": ""
+      "m_url": "",
+      "simulator": true
     }, {
       "name": "PasswordInput 密码输入框",
       "url": "",
-      "m_url": ""
+      "m_url": "",
+      "simulator": true
     }, {
       "name": "Picker 选择器",
       "url": "",
-      "m_url": ""
+      "m_url": "",
+      "simulator": true
     }, {
       "name": "Radio 单选框",
       "url": "/radio",
-      "m_url": "/radio/demo"
+      "m_url": "/radio/demo",
+      "simulator": true
     }, {
       "name": "Rate 评分",
       "url": "/rate",
-      "m_url": "/rate/demo"
+      "m_url": "/rate/demo",
+      "simulator": true
     }, {
       "name": "Search 搜索",
       "url": "",
-      "m_url": ""
+      "m_url": "",
+      "simulator": true
     }, {
       "name": "Slider 滑块",
       "url": "",
-      "m_url": ""
+      "m_url": "",
+      "simulator": true
     }, {
       "name": "Stepper 步进器",
       "url": "",
-      "m_url": ""
+      "m_url": "",
+      "simulator": true
     }, {
       "name": "Switch 开关",
       "url": "",
-      "m_url": ""
+      "m_url": "",
+      "simulator": true
     }, {
       "name": "Uploader 文件上传",
       "url": "",
-      "m_url": ""
+      "m_url": "",
+      "simulator": true
     }]
   },
   {
@@ -122,39 +148,48 @@
     "children": [{
       "name": "ActionSheet 动作面板",
       "url": "",
-      "m_url": ""
+      "m_url": "",
+      "simulator": true
     }, {
       "name": "Dialog 弹出框",
       "url": "",
-      "m_url": ""
+      "m_url": "",
+      "simulator": true
     }, {
       "name": "DropdownMenu 下拉菜单",
       "url": "",
-      "m_url": ""
+      "m_url": "",
+      "simulator": true
     }, {
       "name": "Loading 加载",
       "url": "/loading",
-      "m_url": "/loading/demo"
+      "m_url": "/loading/demo",
+      "simulator": true
     }, {
       "name": "Notify 消息通知",
       "url": "",
-      "m_url": ""
+      "m_url": "",
+      "simulator": true
     }, {
       "name": "Overlay 遮罩层",
       "url": "/overlay",
-      "m_url": "/overlay/demo"
+      "m_url": "/overlay/demo",
+      "simulator": true
     }, {
       "name": "PullRefresh 下拉刷新",
       "url": "",
-      "m_url": ""
+      "m_url": "",
+      "simulator": true
     }, {
       "name": "ShareSheet 分享面板",
       "url": "",
-      "m_url": ""
+      "m_url": "",
+      "simulator": true
     }, {
       "name": "SwipeCell 滑动单元格",
       "url": "",
-      "m_url": ""
+      "m_url": "",
+      "simulator": true
     }]
   },
   {
@@ -162,63 +197,78 @@
     "children": [{
       "name": "Circle 环形进度条",
       "url": "",
-      "m_url": ""
+      "m_url": "",
+      "simulator": true
     }, {
       "name": "Collapse 折叠面板",
       "url": "",
-      "m_url": ""
+      "m_url": "",
+      "simulator": true
     }, {
       "name": "CountDown 倒计时",
       "url": "",
-      "m_url": ""
+      "m_url": "",
+      "simulator": true
     }, {
       "name": "Divider 分割线",
       "url": "",
-      "m_url": ""
+      "m_url": "",
+      "simulator": true
     }, {
       "name": "Empty 空状态",
       "url": "",
-      "m_url": ""
+      "m_url": "",
+      "simulator": true
     }, {
       "name": "ImagePreview 图片预览",
       "url": "",
-      "m_url": ""
+      "m_url": "",
+      "simulator": true
     }, {
       "name": "Lazyload 懒加载",
       "url": "",
-      "m_url": ""
+      "m_url": "",
+      "simulator": true
     }, {
       "name": "List 列表",
       "url": "",
-      "m_url": ""
+      "m_url": "",
+      "simulator": true
     }, {
       "name": "NoticeBar 通知栏",
       "url": "",
-      "m_url": ""
+      "m_url": "",
+      "simulator": true
     }, {
       "name": "Progress 进度条",
       "url": "",
-      "m_url": ""
+      "m_url": "",
+      "simulator": true
     }, {
       "name": "Skeleton 骨架屏",
       "url": "",
-      "m_url": ""
+      "m_url": "",
+      "simulator": true
     }, {
       "name": "Steps 步骤条",
       "url": "",
-      "m_url": ""
+      "m_url": "",
+      "simulator": true
     }, {
       "name": "Sticky 粘性布局",
       "url": "/sticky",
-      "m_url": "/sticky/demo"
+      "m_url": "/sticky/demo",
+      "simulator": true
     }, {
       "name": "Swipe 轮播",
       "url": "",
-      "m_url": ""
+      "m_url": "",
+      "simulator": true
     }, {
       "name": "Tag 标签",
       "url": "",
-      "m_url": ""
+      "m_url": "",
+      "simulator": true
     }]
   },
   {
@@ -226,35 +276,43 @@
     "children": [{
       "name": "Grid 宫格",
       "url": "",
-      "m_url": ""
+      "m_url": "",
+      "simulator": true
     }, {
       "name": "IndexBar 索引栏",
       "url": "",
-      "m_url": ""
+      "m_url": "",
+      "simulator": true
     }, {
       "name": "NavBar 导航栏",
       "url": "",
-      "m_url": ""
+      "m_url": "",
+      "simulator": true
     }, {
       "name": "Pagination 分页",
       "url": "",
-      "m_url": ""
+      "m_url": "",
+      "simulator": true
     }, {
       "name": "Sidebar 侧边导航",
       "url": "",
-      "m_url": ""
+      "m_url": "",
+      "simulator": true
     }, {
       "name": "Tab 标签页",
       "url": "",
-      "m_url": ""
+      "m_url": "",
+      "simulator": true
     }, {
       "name": "Tabbar 标签栏",
       "url": "",
-      "m_url": ""
+      "m_url": "",
+      "simulator": true
     }, {
       "name": "TreeSelect 分类选择",
       "url": "",
-      "m_url": ""
+      "m_url": "",
+      "simulator": true
     }]
   },
   {
@@ -262,39 +320,48 @@
     "children": [{
       "name": "AddressEdit 地址编辑",
       "url": "",
-      "m_url": ""
+      "m_url": "",
+      "simulator": true
     }, {
       "name": "AddressList 地址列表",
       "url": "",
-      "m_url": ""
+      "m_url": "",
+      "simulator": true
     }, {
       "name": "Area 省市区选择",
       "url": "",
-      "m_url": ""
+      "m_url": "",
+      "simulator": true
     }, {
       "name": "Card 商品卡片",
       "url": "",
-      "m_url": ""
+      "m_url": "",
+      "simulator": true
     }, {
       "name": "Contact 联系人",
       "url": "",
-      "m_url": ""
+      "m_url": "",
+      "simulator": true
     }, {
       "name": "Coupon 优惠券",
       "url": "",
-      "m_url": ""
+      "m_url": "",
+      "simulator": true
     }, {
       "name": "GoodsAction 商品导航",
       "url": "",
-      "m_url": ""
+      "m_url": "",
+      "simulator": true
     }, {
       "name": "SubmitBar 提交订单栏",
       "url": "",
-      "m_url": ""
+      "m_url": "",
+      "simulator": true
     }, {
       "name": "Sku 商品规格",
       "url": "",
-      "m_url": ""
+      "m_url": "",
+      "simulator": true
     }]
   }
 ]

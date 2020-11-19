@@ -3,12 +3,20 @@
     background-color: #001938;
     -webkit-user-select: none;
     user-select: none;
+    position: fixed;
     height: 60px;
-    padding: 0 30px;
-    line-height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+
+    .doc_row {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 60px;
+        padding: 0 30px;
+        line-height: 60px;
+    }
 
     .doc_logo {
 

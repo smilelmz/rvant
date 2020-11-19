@@ -27,4 +27,4 @@ const Simulator = ({ url = '' }: IProps) => {
   )
 }
 
-export default Simulator
+export default React.memo(Simulator)

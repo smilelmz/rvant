@@ -24,4 +24,4 @@ const DocPanel = ({ html = '', title = '' }: IProps) => {
   )
 }
 
-export default DocPanel
+export default React.memo(DocPanel)

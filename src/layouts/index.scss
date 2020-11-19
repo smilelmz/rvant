@@ -6,6 +6,10 @@ body {
     // -moz-user-select: none;
     // -ms-user-select: none;
     // user-select: none;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
 }
 
 .mobile_body {
@@ -16,4 +20,11 @@ body {
     position: relative;
     width: 100%;
     height: 100%;
+}
+
+@media (min-width: 1680px) {
+    .doc_row {
+        width: 1680px;
+        margin: 0 auto;
+    }
 }
