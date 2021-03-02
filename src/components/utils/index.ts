@@ -31,6 +31,20 @@ export function get(object: any, path: string): any {
   return result
 }
 
+export function pick<T, U extends keyof T>(
+  obj: T,
+  keys: ReadonlyArray<U>,
+  ignoreUndefined?: boolean
+) {
+  return keys.reduce((ret, key) => {
+    if (!ignoreUndefined || obj[key] !== undefined) {
+      // eslint-disable-next-line no-param-reassign
+      ret[key] = obj[key]
+    }
+    return ret
+  }, {} as Pick<T, U>)
+}
+
 export function delay(ms: number = 100) {
   return new Promise((r) => {
     setTimeout(r, ms)

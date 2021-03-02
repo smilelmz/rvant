@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import { isDef, inBrowser } from '..'
 import { isNumeric } from '../validate/number'
 
@@ -8,6 +9,16 @@ export function addUnit(value?: string | number): string | undefined {
 
   value = String(value)
   return isNumeric(value) ? `${value}px` : value
+}
+
+export function getSizeStyle(originSize?: string | number) {
+  if (isDef(originSize)) {
+    const size = addUnit(originSize)
+    return {
+      width: size,
+      height: size
+    }
+  }
 }
 
 // cache
@@ -34,6 +45,11 @@ function convertVw(value: string) {
   return (+value * window.innerWidth) / 100
 }
 
+function convertVh(value: string) {
+  value = value.replace(/vh/g, '')
+  return (+value * window.innerHeight) / 100
+}
+
 export function unitToPx(value: string | number): number {
   if (typeof value === 'number') {
     return value
@@ -43,9 +59,11 @@ export function unitToPx(value: string | number): number {
     if (value.indexOf('rem') !== -1) {
       return convertRem(value)
     }
-
     if (value.indexOf('vw') !== -1) {
       return convertVw(value)
+    }
+    if (value.indexOf('vh') !== -1) {
+      return convertVh(value)
     }
   }
 

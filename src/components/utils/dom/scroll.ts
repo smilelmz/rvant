@@ -1,42 +1,10 @@
-type ScrollElement = HTMLElement | Window
+/* eslint-disable no-param-reassign */
+import { isIOS as checkIsIOS } from '../validate/system'
+
+export type ScrollElement = Element | Window
 
 function isWindow(val: unknown): val is Window {
   return val === window
-}
-
-// get nearest scroll element
-// http://w3help.org/zh-cn/causes/SD9013
-// http://stackoverflow.com/questions/17016740/onscroll-function-is-not-working-for-chrome
-const overflowScrollReg = /scroll|auto/i
-export function getScroller(el: HTMLElement, root: ScrollElement = window) {
-  let node = el
-
-  while (
-    node &&
-    node.tagName !== 'HTML' &&
-    node.nodeType === 1 &&
-    node !== root
-  ) {
-    const { overflowY } = window.getComputedStyle(node)
-
-    if (overflowScrollReg.test(overflowY)) {
-      if (node.tagName !== 'BODY') {
-        return node
-      }
-
-      // see: https://github.com/youzan/vant/issues/3823
-      const { overflowY: htmlOverflowY } = window.getComputedStyle(
-        node.parentNode as Element
-      )
-
-      if (overflowScrollReg.test(htmlOverflowY)) {
-        return node
-      }
-    }
-    node = node.parentNode as HTMLElement
-  }
-
-  return root
 }
 
 export function getScrollTop(el: ScrollElement): number {
@@ -69,7 +37,7 @@ export function setRootScrollTop(value: number) {
 }
 
 // get distance from element top to page top or scroller top
-export function getElementTop(el: ScrollElement, scroller?: HTMLElement) {
+export function getElementTop(el: ScrollElement, scroller?: ScrollElement) {
   if (isWindow(el)) {
     return 0
   }
@@ -90,4 +58,14 @@ export function getVisibleTop(el: ScrollElement) {
     return 0
   }
   return el.getBoundingClientRect().top
+}
+
+const isIOS = checkIsIOS()
+
+// hack for iOS12 page scroll
+// see: https://developers.weixin.qq.com/community/develop/doc/00044ae90742f8c82fb78fcae56800
+export function resetScroll() {
+  if (isIOS) {
+    setRootScrollTop(getRootScrollTop())
+  }
 }

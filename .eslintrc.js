@@ -11,7 +11,11 @@ module.exports = {
     'no-plusplus': ['off'],
     'consistent-return': ['off'],
     'no-unused-expressions': ['off'],
-    '@typescript-eslint/no-unused-expressions': ['off']
+    '@typescript-eslint/no-unused-expressions': ['off'],
+    '@typescript-eslint/no-loop-func': 'off',
+    '@typescript-eslint/no-redeclare': 'off',
+    '@typescript-eslint/no-shadow': 'off',
+    '@typescript-eslint/no-use-before-define': 'off'
   },
   globals: {}
 }
