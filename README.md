@@ -18,7 +18,7 @@ $ yarn start
 组件模版创建
 yarn generate compName 0
 
-组件实例创建
+组件Demo创建
 yarn generate pageName 1
 ```
 

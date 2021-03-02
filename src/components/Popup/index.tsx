@@ -26,11 +26,12 @@ const Popup: React.FC<PopupProps> = ({
   closeIcon = 'cross',
   closeIconPosition = 'top-right',
   transition,
+  transitionAppear = false,
   safeAreaInsetBottom = false,
   click,
   close,
   opened,
-  closed,
+  closed
 }) => {
   const isCenter = position === 'center'
   const transitionName =
@@ -65,7 +66,7 @@ const Popup: React.FC<PopupProps> = ({
       {overlay && (
         <Overlay
           show={show}
-          duration={0.1}
+          duration={0.3}
           className={overlayClass}
           customStyle={overlayStyle}
           click={() => closeOnClickOverlay && cickOverlay()}
@@ -75,8 +76,13 @@ const Popup: React.FC<PopupProps> = ({
       <CSSTransition
         in={show}
         classNames={transitionName}
-        timeout={300}
+        timeout={{
+          exit: 300,
+          enter: 10,
+          appear: 10
+        }}
         unmountOnExit
+        appear={transitionAppear}
         onEntered={() => opened && opened()}
         onExited={() => closed && closed()}
       >

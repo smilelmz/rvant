@@ -42,7 +42,11 @@ const Overlay: React.FC<OverlayProps> = ({
     <CSSTransition
       in={show}
       classNames={`${BASE_PREFIX}fade`}
-      timeout={300}
+      timeout={{
+        exit: 300,
+        enter: 10,
+        appear: 10
+      }}
       unmountOnExit
     >
       <div
