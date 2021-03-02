@@ -10,7 +10,7 @@ const Simulator = ({ url = '' }: IProps) => {
   const [height, setHeight] = useState(window.innerHeight - 120)
 
   const onWindowResize = () => {
-    setHeight(window.innerHeight - 120)
+    setHeight(window.innerHeight - 120 > 640 ? 640 : window.innerHeight - 120)
   }
 
   useEffect(() => {

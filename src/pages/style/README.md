@@ -9,17 +9,17 @@ Vant contains some common styles that can be used directly by the className.
 When the text content length exceeds the maximum container width, the excess text is automatically omitted.
 
 ```html
-<div class="smile-ellipsis">
+<div class="van-ellipsis">
   This is a paragraph that displays up to one line of text, and the rest of the
   text will be omitted.
 </div>
 
-<div class="smile-multi-ellipsis--l2">
+<div class="van-multi-ellipsis--l2">
   This is a paragraph that displays up to two lines of text, and the rest of the
   text will be omitted.
 </div>
 
-<div class="smile-multi-ellipsis--l3">
+<div class="van-multi-ellipsis--l3">
   This is a paragraph that displays up to three lines of text, and the rest of
   the text will be omitted.
 </div>
@@ -31,22 +31,22 @@ Add 1px border under the Retina screen for the element, based on a pseudo elemen
 
 ```html
 <!-- border top -->
-<div class="smile-hairline--top"></div>
+<div class="van-hairline--top"></div>
 
 <!-- border bottom -->
-<div class="smile-hairline--bottom"></div>
+<div class="van-hairline--bottom"></div>
 
 <!-- border left -->
-<div class="smile-hairline--left"></div>
+<div class="van-hairline--left"></div>
 
 <!-- border right -->
-<div class="smile-hairline--right"></div>
+<div class="van-hairline--right"></div>
 
 <!-- border top & bottom -->
-<div class="smile-hairline--top-bottom"></div>
+<div class="van-hairline--top-bottom"></div>
 
 <!-- full border -->
-<div class="smile-hairline--surround"></div>
+<div class="van-hairline--surround"></div>
 ```
 
 ### Animation
@@ -59,7 +59,7 @@ import CSSTransition from 'react-transition-group/CSSTransition'
 <!-- fade in  -->
 <CSSTransition
     in={visible}
-    classNames='smile-fade'
+    classNames='van-fade'
     timeout={300}
     unmountOnExit
 >
@@ -69,7 +69,7 @@ import CSSTransition from 'react-transition-group/CSSTransition'
 <!-- slide up -->
 <CSSTransition
     in={visible}
-    classNames='smile-slide-up'
+    classNames='van-slide-up'
     timeout={300}
     unmountOnExit
 >
@@ -79,7 +79,7 @@ import CSSTransition from 'react-transition-group/CSSTransition'
 <!-- slide down -->
 <CSSTransition
     in={visible}
-    classNames='smile-slide-down'
+    classNames='van-slide-down'
     timeout={300}
     unmountOnExit
 >
@@ -89,7 +89,7 @@ import CSSTransition from 'react-transition-group/CSSTransition'
 <!-- slide left -->
 <CSSTransition
     in={visible}
-    classNames='smile-slide-left'
+    classNames='van-slide-left'
     timeout={300}
     unmountOnExit
 >
@@ -99,7 +99,7 @@ import CSSTransition from 'react-transition-group/CSSTransition'
 <!-- slide right -->
 <CSSTransition
     in={visible}
-    classNames='smile-slide-right'
+    classNames='van-slide-right'
     timeout={300}
     unmountOnExit
 >

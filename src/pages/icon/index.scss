@@ -1,22 +1,31 @@
 @import '../../components/style/vars.scss';
 
-.demo-layout {
-    background: #fff;
+.demo-icon {
+  .van-col {
+    display: inline-block;
+    float: none;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
 
-    .#{$base-prefix}col:nth-child(odd) {
-        background-color: #39a9ed;
+    span {
+      display: block;
+      height: 36px;
+      margin: -4px 0 4px;
+      padding: 0 5px;
+      color: $gray-7;
+      font-size: 12px;
+      line-height: 18px;
     }
 
-    .#{$base-prefix}col:nth-child(even) {
-        background-color: #66c6f2;
+    &:active {
+      background-color: $active-color;
     }
+  }
 
-    .#{$base-prefix}col {
-        margin-bottom: 10px;
-        color: #fff;
-        font-size: 13px;
-        line-height: 30px;
-        text-align: center;
-        background-clip: content-box;
-    }
+  .van-icon {
+    margin: 16px 0 16px;
+    color: $text-color;
+    font-size: 32px;
+  }
 }

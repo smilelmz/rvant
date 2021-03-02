@@ -10,15 +10,15 @@ Vant 中默认包含了一些常用样式，可以直接通过 className 的方�
 
 ```html
 <!-- 最多显示一行 -->
-<div class="smile-ellipsis">这是一段最多显示一行的文字，多余的内容会被省略</div>
+<div class="van-ellipsis">这是一段最多显示一行的文字，多余的内容会被省略</div>
 
 <!-- 最多显示两行 -->
-<div class="smile-multi-ellipsis--l2">
+<div class="van-multi-ellipsis--l2">
   这是一段最多显示两行的文字，多余的内容会被省略
 </div>
 
 <!-- 最多显示三行 -->
-<div class="smile-multi-ellipsis--l3">
+<div class="van-multi-ellipsis--l3">
   这是一段最多显示三行的文字，多余的内容会被省略
 </div>
 ```
@@ -29,22 +29,22 @@ Vant 中默认包含了一些常用样式，可以直接通过 className 的方�
 
 ```html
 <!-- 上边框 -->
-<div class="smile-hairline--top"></div>
+<div class="van-hairline--top"></div>
 
 <!-- 下边框 -->
-<div class="smile-hairline--bottom"></div>
+<div class="van-hairline--bottom"></div>
 
 <!-- 左边框 -->
-<div class="smile-hairline--left"></div>
+<div class="van-hairline--left"></div>
 
 <!-- 右边框 -->
-<div class="smile-hairline--right"></div>
+<div class="van-hairline--right"></div>
 
 <!-- 上下边框 -->
-<div class="smile-hairline--top-bottom"></div>
+<div class="van-hairline--top-bottom"></div>
 
 <!-- 全边框 -->
-<div class="smile-hairline--surround"></div>
+<div class="van-hairline--surround"></div>
 ```
 
 ### 动画
@@ -59,7 +59,7 @@ import CSSTransition from 'react-transition-group/CSSTransition'
 <!-- 淡入 -->
 <CSSTransition
     in={visible}
-    classNames='smile-fade'
+    classNames='van-fade'
     timeout={300}
     unmountOnExit
 >
@@ -69,7 +69,7 @@ import CSSTransition from 'react-transition-group/CSSTransition'
 <!-- 上滑进入 -->
 <CSSTransition
     in={visible}
-    classNames='smile-slide-up'
+    classNames='van-slide-up'
     timeout={300}
     unmountOnExit
 >
@@ -79,7 +79,7 @@ import CSSTransition from 'react-transition-group/CSSTransition'
 <!-- 下滑进入 -->
 <CSSTransition
     in={visible}
-    classNames='smile-slide-down'
+    classNames='van-slide-down'
     timeout={300}
     unmountOnExit
 >
@@ -89,7 +89,7 @@ import CSSTransition from 'react-transition-group/CSSTransition'
 <!-- 左滑进入 -->
 <CSSTransition
     in={visible}
-    classNames='smile-slide-left'
+    classNames='van-slide-left'
     timeout={300}
     unmountOnExit
 >
@@ -99,7 +99,7 @@ import CSSTransition from 'react-transition-group/CSSTransition'
 <!-- 右滑进入 -->
 <CSSTransition
     in={visible}
-    classNames='smile-slide-right'
+    classNames='van-slide-right'
     timeout={300}
     unmountOnExit
 >

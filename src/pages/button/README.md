@@ -117,7 +117,7 @@ import { Button } from 'SmileUI'
 | loadingSize | Loading icon size | _string_ | `20px` |
 | size | Can be set to `large` `small` `mini` `normal` | _string_ | `normal` |
 | icon | Left Icon | _string_ | - |
-| iconPrefix | Icon className prefix | _string_ | `smile-icon` |
+| iconPrefix | Icon className prefix | _string_ | `van-icon` |
 | block | Whether to set display block | _boolean_ | `false` |
 | plain | Whether to be plain button | _boolean_ | `false` |
 | square | Whether to be square button | _boolean_ | `false` |

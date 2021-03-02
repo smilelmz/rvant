@@ -1,39 +1,30 @@
 @import '../../components/style/vars.scss';
 
 .demo-layout {
+  background: $white;
 
-    .demo-block {
-        padding: 0 $padding-md;
+  .demo-block {
+    padding: 0 $padding-md;
 
-        &__title {
-            padding-left: 0;
-        }
+    &__title {
+      padding-left: 0;
+    }
+  }
+
+  .van-col {
+    margin-bottom: 10px;
+    color: $white;
+    font-size: 13px;
+    line-height: 30px;
+    text-align: center;
+    background-clip: content-box;
+
+    &:nth-child(odd) {
+      background-color: #39a9ed;
     }
 
-    .#{$base-prefix}icon {
-        margin: 16px 0 16px;
-        color: #323233;
-        font-size: 32px;
+    &:nth-child(even) {
+      background-color: #66c6f2;
     }
-
-    .#{$base-prefix}col {
-        display: inline-block;
-        float: none;
-        text-align: center;
-        vertical-align: middle;
-        cursor: pointer;
-
-        span {
-            display: block;
-            height: 36px;
-            margin: -4px 0 4px;
-            color: #646566;
-            font-size: 12px;
-            line-height: 18px;
-        }
-    }
-
-    .demo-block-content {
-        background: #fff;
-    }
+  }
 }

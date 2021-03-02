@@ -141,7 +141,7 @@ import { Button } from 'SmileUI'
 | loadingSize | 加载图标大小 | _string_ | `20px` |
 | size | 尺寸，可选值为 `large` `small` `mini` `normal` | _string_ | `normal` |
 | icon | 左侧[图标名称](#/zh-CN/icon)或图片链接 | _string_ | - |
-| iconPrefix | 图标类名前缀，同 Icon 组件的 [class-prefix 属性](#/zh-CN/icon#props) | _string_ | `smile-icon` |
+| iconPrefix | 图标类名前缀，同 Icon 组件的 [class-prefix 属性](#/zh-CN/icon#props) | _string_ | `van-icon` |
 | block | 是否为块级元素 | _boolean_ | `false` |
 | plain | 是否为朴素按钮 | _boolean_ | `false` |
 | square | 是否为方形按钮 | _boolean_ | `false` |
