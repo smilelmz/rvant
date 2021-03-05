@@ -12,8 +12,11 @@ import Toast from './Toast'
 import Checkbox from './Checkbox'
 import RadioGroup from './RadioGroup'
 import Radio from './Radio'
+import { LocaleProvider, useI18n } from './locale'
 
 export {
+  LocaleProvider,
+  useI18n,
   Button,
   Col,
   Row,
