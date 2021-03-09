@@ -1,0 +1,12 @@
+import { Ref, useEffect, useRef } from 'react'
+import { getRect } from './rect'
+
+export const useHeight = (element: Element | Ref<Element | undefined>) => {
+  const height = useRef<number>()
+
+  useEffect(() => {
+    height.current = getRect(element).height
+  }, [])
+
+  return height
+}

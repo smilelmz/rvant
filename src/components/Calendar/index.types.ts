@@ -17,10 +17,10 @@ export type CalendarType = 'single' | 'range' | 'multiple'
 export type CalendarPosition = 'top' | 'bottom' | 'left' | 'right'
 export type DayItem = {
   date?: Date
-  text?: string | number
+  text?: string | number | React.ReactNode | React.ReactNode[]
   type?: DayType
   topInfo?: string
-  className?: unknown
+  className?: string
   bottomInfo?: string
 }
 
@@ -33,10 +33,11 @@ export interface CalendarProps {
   show: boolean
   type?: CalendarType
   title?: string | React.ReactNode | React.ReactNode[]
+  color?: string
   footer?: React.ReactNode | React.ReactNode[]
   minDate?: Date
   maxDate?: Date
-  defaultDate?: Date | Date[] | null
+  defaultDate?: Date | Date[]
   rowHeight?: number | string
   formatter?: (day: DayItem) => DayItem
   poppable?: boolean
@@ -51,17 +52,25 @@ export interface CalendarProps {
   firstDayOfWeek?: Number
   position?: CalendarPosition
   round?: boolean
-  closeOnPopstate?: boolean
   closeOnClickOverlay?: boolean
   safeAreaInsetBottom?: boolean
-  maxRanges?: number | string
+  maxRange?: number | string
   rangePrompt?: string
   allowSameDay?: boolean
-  select?: ValueFunction<Date | Date[]>
-  confirm?: ValueFunction<Date | Date[]>
+  select?: (date: Date | Date[], status?: boolean) => void
+  confirm?: ValueFunction<Date | Date[] | null>
   close?: VoidFunction
   opened?: VoidFunction
   closed?: VoidFunction
   unselect?: ValueFunction<Date>
   monthShow?: (date: Date, title: string) => void
+}
+
+export interface IHandles {
+  date: Date
+  showed: boolean
+  getTitle: () => string
+  getHeight: () => number | string | undefined
+  setVisible: (value?: boolean | undefined) => void
+  scrollIntoView: (body: Element) => void
 }

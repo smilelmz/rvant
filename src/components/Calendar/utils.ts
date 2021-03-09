@@ -1,5 +1,10 @@
-export function formatMonthTitle(date: Date) {
-  return ''
+import { createNamespace } from '../utils'
+
+const [bem, t] = createNamespace('calendar')
+export { bem, t }
+
+export function formatMonthTitle(messages: Record<string, any>, date: Date) {
+  return t(messages, 'monthTitle', date.getFullYear(), date.getMonth() + 1)
 }
 
 export function compareMonth(date1: Date, date2: Date) {
@@ -50,6 +55,7 @@ export function calcDateNum(date: [Date, Date]) {
 }
 
 export function copyDate(dates: Date) {
+  if (dates == null) return dates
   return new Date(dates)
 }
 
@@ -63,6 +69,5 @@ export function copyDates(dates: Date | Date[]) {
       return copyDate(date)
     })
   }
-
   return copyDate(dates)
 }

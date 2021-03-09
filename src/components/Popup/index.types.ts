@@ -1,3 +1,10 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+export type PopupPosition = 'top' | 'left' | 'bottom' | 'right' | 'center' | ''
+export type PopupCloseIconPosition =
+  | 'top-left'
+  | 'top-right'
+  | 'botttom-left'
+  | 'bottom-right'
 export interface PopupProps {
   show?: boolean
   className?: string
@@ -5,14 +12,14 @@ export interface PopupProps {
   overlay?: boolean
   overlayClass?: string
   overlayStyle?: Record<string, any>
-  position?: 'top' | 'bottom' | 'left' | 'right' | 'center'
+  position?: PopupPosition
   duration?: number | string
   round?: boolean
   lockScroll?: boolean
   closeOnClickOverlay?: boolean
   closeable?: boolean
   closeIcon?: string
-  closeIconPosition?: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right'
+  closeIconPosition?: PopupCloseIconPosition
   transition?: string
   transitionAppear?: boolean
   safeAreaInsetBottom?: boolean

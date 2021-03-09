@@ -32,7 +32,7 @@ function gen(name: string, mods?: Mods): string {
 }
 
 export function createBEM(name: string) {
-  return (el?: Mods, mods?: Mods): Mods => {
+  return (el?: Mods, mods?: Mods): string => {
     if (el && typeof el !== 'string') {
       mods = el
       el = ''

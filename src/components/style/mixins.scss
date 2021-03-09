@@ -57,3 +57,8 @@
   border-bottom: 1px solid $color;
   transform: scaleY(0.5);
 }
+
+@mixin safe-area-inset-bottom() {
+  padding-bottom: constant(safe-area-inset-bottom);
+  padding-bottom: env(safe-area-inset-bottom);
+}

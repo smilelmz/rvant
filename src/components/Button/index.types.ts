@@ -1,6 +1,6 @@
-
 export interface ButtonProps {
   style?: Record<string, string | number>
+  className?: string
   type?: ButtonTypes
   text?: string
   color?: string
