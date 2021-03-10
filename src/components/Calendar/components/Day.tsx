@@ -21,7 +21,7 @@ const CalendarDay: React.FC<IProps> = ({
   item,
   click
 }: IProps) => {
-  const style = useMemo(() => {
+  const getStyle = () => {
     const style: CSSProperties = {
       height: rowHeight
     }
@@ -49,7 +49,8 @@ const CalendarDay: React.FC<IProps> = ({
       }
     }
     return style
-  }, [])
+  }
+  const style = getStyle()
   const onClick = () => {
     if (item.type !== 'disabled') {
       click && click(item)
@@ -82,7 +83,7 @@ const CalendarDay: React.FC<IProps> = ({
     <div
       role='gridcell'
       style={style}
-      className={`${bem('day', item.type)} ${item.className}]`}
+      className={`${bem('day', item.type)} ${item.className || ''}`}
       tabIndex={item.type === 'disabled' ? undefined : -1}
       onClick={onClick}
     >

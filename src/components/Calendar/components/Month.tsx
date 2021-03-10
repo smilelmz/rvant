@@ -54,11 +54,9 @@ const CalendarMonth = (
   ref: React.Ref<IHandles>
 ) => {
   const { messages } = useI18n()
-  const [visible, setVisible] = useState(false)
   const daysRef = useRef<HTMLDivElement>(null)
   const monthRef = useRef<HTMLDivElement>(null)
   const height = useHeight(monthRef)
-
   const title = useMemo(() => formatMonthTitle(messages, date), [date])
   const clacRowHeight = useMemo(() => addUnit(rowHeight), [rowHeight])
   const offset = useMemo(() => {
@@ -72,9 +70,9 @@ const CalendarMonth = (
     () => getMonthEndDay(date.getFullYear(), date.getMonth() + 1),
     [date]
   )
-  const shouldRender = useMemo(() => visible, [visible])
   const getTitle = () => title
-  const scrollIntoView = (body: Element) => {
+  const scrollIntoView = (body: Element | null) => {
+    if (!body) return
     const el = showSubtitle ? daysRef.current : monthRef.current
     const scrollTop =
       el!.getBoundingClientRect().top -
@@ -83,8 +81,9 @@ const CalendarMonth = (
     setScrollTop(body, scrollTop)
   }
   const getMultipleDayType = (day: Date) => {
+    const curDate = Array.isArray(currentDate) ? currentDate : [currentDate]
     const isSelected = (date: Date) =>
-      (currentDate as Date[]).some((item) => compareDay(item, date) === 0)
+      (curDate as Date[]).some((item) => compareDay(item, date) === 0)
     if (isSelected(day)) {
       const prevDay = getPrevDay(day)
       const nextDay = getNextDay(day)
@@ -104,7 +103,8 @@ const CalendarMonth = (
     return ''
   }
   const getRangeDayType = (day: Date) => {
-    const [startDay, endDay] = currentDate as Date[]
+    const curDate = Array.isArray(currentDate) ? currentDate : [currentDate]
+    const [startDay, endDay] = curDate
     if (!startDay) {
       return ''
     }
@@ -131,17 +131,13 @@ const CalendarMonth = (
     if (compareDay(day, minDate) < 0 || compareDay(day, maxDate) > 0) {
       return 'disabled'
     }
-    if (currentDate === null) {
-      return ''
+    if (type === 'multiple') {
+      return getMultipleDayType(day)
     }
-    if (Array.isArray(currentDate)) {
-      if (type === 'multiple') {
-        return getMultipleDayType(day)
-      }
-      if (type === 'range') {
-        return getRangeDayType(day)
-      }
-    } else if (type === 'single') {
+    if (type === 'range') {
+      return getRangeDayType(day)
+    }
+    if (type === 'single') {
       return compareDay(day, currentDate as Date) === 0 ? 'selected' : ''
     }
     return ''
@@ -158,23 +154,15 @@ const CalendarMonth = (
   }
   const renderTitle = () => {
     if (showMonthTitle) {
-      return <div className={bem('month-title')}>{title.value}</div>
+      return <div className={bem('month-title')}>{title}</div>
     }
   }
   const renderMark = () => {
-    if (showMark && shouldRender) {
+    if (showMark) {
       return <div className={bem('month-mark')}>{date.getMonth() + 1}</div>
     }
   }
-  const placeholders = useMemo(() => {
-    const rows: DayItem[] = []
-    const count = Math.ceil((totalDay + offset) / 7)
-    for (let day = 1; day <= count; day++) {
-      rows.push({ type: 'placeholder' })
-    }
-    return rows
-  }, [])
-  const days = useMemo(() => {
+  const getDays = () => {
     const days: DayItem[] = []
     const year = date.getFullYear()
     const month = date.getMonth()
@@ -193,9 +181,11 @@ const CalendarMonth = (
       days.push(config)
     }
     return days
-  }, [])
+  }
+  const days = getDays()
   const renderDay = (item: DayItem, index: number) => (
     <CalendarDay
+      key={index}
       item={item}
       index={index}
       color={color}
@@ -210,7 +200,7 @@ const CalendarMonth = (
     return (
       <div ref={daysRef} role='grid' className={bem('days')}>
         {renderMark()}
-        {(shouldRender ? days : placeholders).map(renderDay)}
+        {days.map(renderDay)}
       </div>
     )
   }
@@ -219,7 +209,6 @@ const CalendarMonth = (
     date,
     getTitle,
     getHeight: () => height.current,
-    setVisible: () => setVisible(!visible),
     scrollIntoView
   }))
   return (

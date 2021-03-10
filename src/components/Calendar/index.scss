@@ -64,6 +64,11 @@
     flex: 1;
     overflow: auto;
     -webkit-overflow-scrolling: touch;
+
+    &::-webkit-scrollbar {
+      width: 0;
+      height: 0;
+    }
   }
 
   &__days {

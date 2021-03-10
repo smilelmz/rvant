@@ -50,9 +50,8 @@ export function delay(ms: number = 100) {
     setTimeout(r, ms)
   })
 }
-
+let prev = Date.now()
 function rafPolyfill(fn: (...args: any[]) => void) {
-  let prev = Date.now()
   const curr = Date.now()
   const ms = Math.max(0, 16 - (curr - prev))
   const id = setTimeout(fn, ms)

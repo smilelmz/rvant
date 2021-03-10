@@ -38,43 +38,45 @@ const getMaxDate = () => {
   return new Date(now.getFullYear(), now.getMonth() + 6, now.getDate())
 }
 
-const Calendar = ({
-  show,
-  type = 'single',
-  title,
-  color = '#ee0a24',
-  footer,
-  minDate = new Date(),
-  maxDate = getMaxDate(),
-  defaultDate,
-  rowHeight,
-  formatter,
-  poppable = true,
-  lazyRender,
-  showMark = true,
-  showTitle = true,
-  showSubtitle = true,
-  showConfirm = true,
-  readonly,
-  confirmText,
-  confirmDisabledText,
-  firstDayOfWeek = 0,
-  position = 'bottom',
-  round = true,
-  closeOnClickOverlay = true,
-  safeAreaInsetBottom = true,
-  maxRange = '',
-  rangePrompt,
-  allowSameDay,
-  select,
-  confirm,
-  close,
-  opened,
-  closed,
-  unselect,
-  monthShow
-}: CalendarProps) => {
-  const calendarRef = useRef<CalendarHandler>(null)
+const Calendar = (
+  {
+    show,
+    type = 'single',
+    title,
+    color = '#ee0a24',
+    footer,
+    minDate = new Date(),
+    maxDate = getMaxDate(),
+    defaultDate,
+    rowHeight,
+    formatter,
+    poppable = true,
+    lazyRender,
+    showMark = true,
+    showTitle = true,
+    showSubtitle = true,
+    showConfirm = true,
+    readonly,
+    confirmText,
+    confirmDisabledText,
+    firstDayOfWeek = 0,
+    position = 'bottom',
+    round = true,
+    closeOnClickOverlay = true,
+    safeAreaInsetBottom = true,
+    maxRange = '',
+    rangePrompt,
+    allowSameDay,
+    select,
+    confirm,
+    close,
+    opened,
+    closed,
+    unselect,
+    monthShow
+  }: CalendarProps,
+  calendarRef: React.Ref<CalendarHandler>
+) => {
   const limitDateRange = (date: Date, min = minDate, max = maxDate) => {
     if (compareDay(date, min) === -1) {
       return min
@@ -108,7 +110,7 @@ const Calendar = ({
     }
     return limitDateRange(date)
   }
-  let bodyHeight: number
+  const [bodyHeight, setBodyHeight] = useState(0)
   const bodyRef = useRef<HTMLDivElement>(null)
   const { messages } = useI18n()
   const [state, setState] = useState<{
@@ -147,7 +149,6 @@ const Calendar = ({
   const onScroll = () => {
     const top = getScrollTop(bodyRef.current!)
     const bottom = top + bodyHeight
-
     const heights = months.map((item, index) =>
       monthRefs.current[index]
         ? ((monthRefs.current[index] as unknown) as IHandles).getHeight()
@@ -179,16 +180,6 @@ const Calendar = ({
 
       height += heights[i] as number
     }
-
-    months.forEach((month, index) => {
-      const visible =
-        index >= visibleRange[0] - 1 && index <= visibleRange[1] + 1
-      monthRefs.current[index]
-        ? ((monthRefs.current[index] as unknown) as IHandles).setVisible(
-            visible
-          )
-        : null
-    })
     if (currentMonth) {
       setState({
         ...state,
@@ -202,7 +193,11 @@ const Calendar = ({
     raf(() => {
       months.some((month: Date, index: number) => {
         if (compareMonth(month, targetDate) === 0) {
-          monthRefs[index].scrollIntoView(bodyRef.current)
+          monthRefs.current[index]
+            ? ((monthRefs.current[
+                index
+              ] as unknown) as IHandles).scrollIntoView(bodyRef.current)
+            : null
           return true
         }
 
@@ -217,8 +212,8 @@ const Calendar = ({
     }
     const { currentDate } = state
     if (currentDate) {
-      const targetDate =
-        type === 'single' ? currentDate : (currentDate as Date[])[0]
+      const curDate = currentDate instanceof Date ? [currentDate] : currentDate
+      const targetDate = type === 'single' ? currentDate : curDate[0]
       scrollToDate(targetDate as Date)
     } else {
       raf(onScroll)
@@ -229,7 +224,7 @@ const Calendar = ({
       return
     }
     raf(() => {
-      bodyHeight = Math.floor(getRect(bodyRef).height)
+      setBodyHeight(Math.floor(getRect(bodyRef).height))
       scrollIntoView()
     })
   }
@@ -353,6 +348,7 @@ const Calendar = ({
     }
     return (
       <CalendarMonth
+        key={index}
         ref={setMonthRefs(index)}
         date={date}
         currentDate={state.currentDate}
@@ -363,7 +359,6 @@ const Calendar = ({
       />
     )
   }
-
   const renderFooterButton = () => {
     if (footer) {
       return footer
@@ -386,7 +381,6 @@ const Calendar = ({
       )
     }
   }
-
   const renderFooter = () => (
     <div className={bem('footer', { unfit: !safeAreaInsetBottom })}>
       {renderFooterButton()}
@@ -408,20 +402,18 @@ const Calendar = ({
       {renderFooter()}
     </div>
   )
-
   useEffect(() => {
     init()
   }, [show])
 
   useEffect(() => {
     reset(getInitialDate(state.currentDate))
-  }, [type, minDate, maxDate])
+  }, [type])
 
   useEffect(() => {
     if (defaultDate) setState({ ...state, currentDate: defaultDate })
     scrollIntoView()
   }, [defaultDate])
-
   useImperativeHandle(calendarRef, () => ({
     reset,
     scrollToDate

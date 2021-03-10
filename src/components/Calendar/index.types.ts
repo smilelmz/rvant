@@ -71,6 +71,5 @@ export interface IHandles {
   showed: boolean
   getTitle: () => string
   getHeight: () => number | string | undefined
-  setVisible: (value?: boolean | undefined) => void
-  scrollIntoView: (body: Element) => void
+  scrollIntoView: (body: Element | null) => void
 }
