@@ -3,7 +3,7 @@
 ### 引入
 
 ```js
-import { Button } from 'SmileUI'
+import { Button } from 'rvant'
 ```
 
 ## 代码演示

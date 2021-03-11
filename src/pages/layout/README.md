@@ -7,7 +7,7 @@ Quickly and easily create layouts with `Row` and `Col`
 ### Install
 
 ```js
-import { Col, Row } from 'SmileUI';
+import { Col, Row } from 'rvant';
 ```
 
 ## Usage

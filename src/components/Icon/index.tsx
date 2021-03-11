@@ -1,12 +1,9 @@
 import React from 'react'
-import { BASE_PREFIX } from '../utils/constant'
 import { IconProps } from './index.types'
-import { addUnit, isDef } from '../utils'
-import classnames from '../utils/classNames'
+import { addUnit, createNamespace } from '../utils'
+import Badge from '../Badge'
 
-import Info from '../Info'
-
-const baseClass = `${BASE_PREFIX}icon`
+const [bem] = createNamespace('icon')
 const isImage = (name?: string): boolean => {
   return name ? name.indexOf('/') !== -1 : false
 }
@@ -27,17 +24,15 @@ const Icon: React.FC<IconProps> = ({
   tag,
   name,
   size,
-  info,
   badge,
   color,
-  classPrefix = baseClass,
-  click
+  classPrefix = bem()
 }) => {
-  const CustomTag = tag || 'i' || 'span'
+  const CustomTag = tag || 'i'
+  const isImageIcon = isImage(name)
   const iconName = correctName(name)
-  const imageIcon = isImage(iconName)
   const classNames = `${classPrefix} ${
-    imageIcon ? '' : `${classPrefix}-${iconName}`
+    isImageIcon ? '' : `${classPrefix}-${iconName}`
   } ${className}`
   const iconStyle = {
     color,
@@ -45,15 +40,9 @@ const Icon: React.FC<IconProps> = ({
     ...style
   }
   return (
-    <CustomTag
-      className={classNames}
-      style={iconStyle}
-      onClick={(e) => click && click(e)}
-    >
-      {imageIcon && (
-        <img className={classnames(`${baseClass}__image`)} src={iconName} />
-      )}
-      <Info dot={dot} info={isDef(badge) ? badge : info} />
+    <CustomTag className={classNames} style={iconStyle}>
+      {isImageIcon && <img className={bem(`image`)} src={iconName} />}
+      <Badge dot={dot} content={badge || ''} className={bem(`info`)} />
     </CustomTag>
   )
 }

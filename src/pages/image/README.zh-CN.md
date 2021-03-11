@@ -7,7 +7,7 @@
 ### 引入
 
 ```js
-import { Image as XXXImage } from 'SmileUI';
+import { Image as XXXImage } from 'rvant';
 ```
 
 ## 代码演示

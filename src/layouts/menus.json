@@ -233,6 +233,12 @@
     "name": "展示组件",
     "children": [
       {
+        "name": "Badge 徽标",
+        "url": "/badge",
+        "m_url": "/badge/demo",
+        "simulator": true
+      },
+      {
         "name": "Circle 环形进度条",
         "url": "",
         "m_url": "",

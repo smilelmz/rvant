@@ -3,7 +3,7 @@
 ### Install
 
 ```js
-import { Popup } from 'SmileUI';
+import { Popup } from 'rvant';
 ```
 
 ## Usage

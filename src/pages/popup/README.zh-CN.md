@@ -7,7 +7,7 @@
 ### 引入
 
 ```js
-import { Popup } from 'SmileUI';
+import { Popup } from 'rvant';
 ```
 
 ## 代码演示

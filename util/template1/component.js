@@ -2,11 +2,11 @@ module.exports = (componentName) => ({
   content: `import React from 'react'
 import { BASE_PREFIX } from '../utils/constant'
 import { ${componentName}Props } from './index.types'
-import classnames from '../utils/classNames'
+import { createNamespace } from '../utils'
 
-const baseClass = \`\${BASE_PREFIX}${componentName.toLowerCase()}\`
+const [bem] = createNamespace('${componentName.toLowerCase()}')
 const ${componentName}: React.FC<${componentName}Props> = ({}) => {
-  const className = classnames(baseClass)
+  const className = bem('${componentName.toLowerCase()}')
   return (
     <div className={className}>
       123456

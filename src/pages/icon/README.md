@@ -3,7 +3,7 @@
 ### Install
 
 ```js
-import { Icon } from 'SmileUI';
+import { Icon } from 'rvant';
 ```
 
 ## Usage
@@ -87,7 +87,7 @@ import 'vant/lib/icon/local.css';
 | color          | Icon color              | _string_           | `inherit`  |
 | size           | Icon size               | _number \| string_ | `inherit`  |
 | classPrefix  | ClassName prefix        | _string_           | `Icon` |
-| tag            | HTML Tag                | _string_           | `i`        |
+| tag            | HTML Tag                | _HTMLElementTagNameMap_           | `i`        |
 
 ### Events
 

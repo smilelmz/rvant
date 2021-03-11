@@ -3,7 +3,7 @@
 ### 引入
 
 ```js
-import { Cell, CellGroup } from 'SmileUI';
+import { Cell, CellGroup } from 'rvant';
 ```
 
 ## 代码演示

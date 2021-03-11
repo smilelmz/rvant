@@ -3,7 +3,7 @@
 ### Install
 
 ```js
-import { Loading } from 'SmileUI';`
+import { Loading } from 'rvant';`
 ```
 
 ## Usage

@@ -7,7 +7,7 @@ Layout 提供了`Row`和`Col`两个组件来进行行列布局
 ### 引入
 
 ```js
-import { Col, Row } from 'SmileUI';
+import { Col, Row } from 'rvant';
 ```
 
 ## 代码演示

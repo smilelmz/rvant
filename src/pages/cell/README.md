@@ -3,7 +3,7 @@
 ### Install
 
 ```js
-import { Cell, CellGroup } from 'SmileUI';
+import { Cell, CellGroup } from 'rvant';
 ```
 
 ## Usage

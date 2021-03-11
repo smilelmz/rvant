@@ -3,7 +3,7 @@
 ### Install
 
 ```js
-import { Image as XXXImage } from 'SmileUI';
+import { Image as XXXImage } from 'rvant';
 ```
 
 ## Usage

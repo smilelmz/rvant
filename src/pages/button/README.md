@@ -3,7 +3,7 @@
 ### Install
 
 ```js
-import { Button } from 'SmileUI'
+import { Button } from 'rvant'
 ```
 
 ## Usage

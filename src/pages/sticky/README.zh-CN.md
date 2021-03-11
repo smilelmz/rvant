@@ -7,7 +7,7 @@ Sticky 组件与 CSS 中`position: sticky`属性实现的效果一致，当组�
 ### 引入
 
 ```js
-import { Loading } from 'SmileUI';`
+import { Loading } from 'rvant';`
 ```
 
 ## 代码演示

@@ -3,7 +3,7 @@
 ### 引入
 
 ```js
-import { Loading } from 'SmileUI';`
+import { Loading } from 'rvant';`
 ```
 
 ## 代码演示

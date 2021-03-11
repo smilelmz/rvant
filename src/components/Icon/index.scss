@@ -2,9 +2,17 @@
 @import '../assets/icons/index.scss';
 
 .#{$base-prefix}icon {
-    &__image {
-        width: 1em;
-        height: 1em;
-        object-fit: contain;
-    }
+  &__image {
+    width: 1em;
+    height: 1em;
+    object-fit: contain;
+  }
+
+  &__info {
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(50%, -50%);
+    transform-origin: 100%;
+  }
 }

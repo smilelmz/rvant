@@ -1,5 +1,5 @@
 {
-  "name": "SmileUI",
+  "name": "rvant",
   "version": "0.0.1",
   "main": "lib/index.esm.js",
   "module": "lib/index.umd.js",
