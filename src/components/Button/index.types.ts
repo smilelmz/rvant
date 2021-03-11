@@ -24,8 +24,8 @@ export interface ButtonProps {
   replace?: boolean
   tag?: 'button' | 'a'
   nativeType?: 'button' | 'submit' | 'reset'
+  iconPosition?: 'left' | 'right'
   click?: Function
-  touchstart?: Function
 }
 
 export interface LoadingIconProps {

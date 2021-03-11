@@ -1,13 +1,14 @@
 import React from 'react'
-import { BORDER_SURROUND, WHITE, BASE_PREFIX } from '../utils/constant'
-import classnames from '../utils/classNames'
+import { BORDER_SURROUND, WHITE } from '../utils/constant'
+import { createNamespace } from '../utils'
 import { ButtonProps } from './index.types'
 
 import Icon from '../Icon'
 import Loading from '../Loading'
 
-const baseClass = `${BASE_PREFIX}button`
+const [bem] = createNamespace('button')
 const Button: React.FC<ButtonProps> = ({
+  className,
   style,
   text,
   children,
@@ -30,76 +31,60 @@ const Button: React.FC<ButtonProps> = ({
   url,
   replace = false,
   click,
-  touchstart,
   icon,
   hairline,
-  size = 'normal'
+  size = 'normal',
+  iconPosition = 'left'
 }: ButtonProps) => {
   const CustomTag = tag || 'button'
-  let className = classnames(baseClass, [
-    { type },
-    { plain: plain || hairline },
-    { disabled },
-    { loading },
-    { round },
-    { square },
-    { block },
-    { hairline },
-    { [size]: size },
-    { onlyIcon: !text && !children }
-  ])
-  className = `${className} ${hairline ? BORDER_SURROUND : ''}`
-  const commonStyle: Record<string, string | number> = {}
-  if (color) {
-    commonStyle.color = plain ? color : WHITE
-    if (!plain) {
-      commonStyle.background = color
+  const classes = `${bem([
+    type,
+    size,
+    {
+      plain,
+      block,
+      round,
+      square,
+      loading,
+      disabled,
+      hairline
     }
-    if (color.indexOf('gradient') !== -1) {
-      commonStyle.border = 0
-    } else {
-      commonStyle.borderColor = color
-    }
-  }
-  if (fontColor) {
-    commonStyle.color = fontColor
-  }
+  ])} ${hairline ? BORDER_SURROUND : ''} ${className || ''}`
   const onClick = (e: any) => {
     if (!loading && !disabled) {
       click && click(e)
     }
   }
-  const onTouchStart = (e: any) => {
-    if (loading) {
-      touchstart && touchstart(e)
+  const renderLoadingIcon = () => {
+    if (loadingIcon) {
+      return loadingIcon
     }
+    return (
+      <Loading
+        key='loading'
+        className={bem('loading')}
+        size={loadingSize}
+        type={loadingType}
+        color='currentColor'
+      />
+    )
   }
-  const Content = () => {
-    const content = []
+  const renderIcon = () => {
     if (loading) {
-      if (loadingIcon) {
-        content.push(loadingIcon)
-      } else {
-        content.push(
-          <Loading
-            key='loading'
-            className={classnames(`${baseClass}__loading`)}
-            size={loadingSize}
-            type={loadingType}
-            color='currentColor'
-          />
-        )
-      }
-    } else if (icon) {
-      content.push(
+      return renderLoadingIcon()
+    }
+    if (icon) {
+      return (
         <Icon
           key='icon'
           name={icon}
-          className={classnames(`${baseClass}__icon`)}
+          className={bem('icon')}
           classPrefix={iconPrefix}
         />
       )
     }
+  }
+  const renderText = () => {
     let buttonText
     if (loading) {
       buttonText = loadingText
@@ -108,19 +93,35 @@ const Button: React.FC<ButtonProps> = ({
     }
 
     if (buttonText) {
-      content.push(
-        <span key='text' className={classnames(`${baseClass}__text`)}>
+      return (
+        <span key='text' className={bem('text')}>
           {buttonText}
         </span>
       )
     }
-    return content
+  }
+  const getStyle = () => {
+    const commonStyle: Record<string, string | number> = {}
+    if (color) {
+      commonStyle.color = plain ? color : WHITE
+      if (!plain) {
+        commonStyle.background = color
+      }
+      if (color.indexOf('gradient') !== -1) {
+        commonStyle.border = 0
+      } else {
+        commonStyle.borderColor = color
+      }
+    }
+    if (fontColor) {
+      commonStyle.color = fontColor
+    }
+    return commonStyle
   }
   const props: Record<string, any> = {
-    style: { ...style, ...commonStyle },
+    style: { ...getStyle(), ...style },
     onClick,
-    onTouchStart,
-    className
+    className: classes
   }
   if (nativeType) props.type = nativeType
   if (url && CustomTag === 'a') {
@@ -133,7 +134,11 @@ const Button: React.FC<ButtonProps> = ({
   }
   return (
     <CustomTag {...props}>
-      <div className={classnames(`${baseClass}__content`)}>{Content()}</div>
+      <div className={bem('content')}>
+        {iconPosition === 'left' && renderIcon()}
+        {renderText()}
+        {iconPosition === 'right' && renderIcon()}
+      </div>
     </CustomTag>
   )
 }

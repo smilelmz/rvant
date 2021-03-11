@@ -134,18 +134,19 @@ const Calendar = (
     } while (compareMonth(cursor, maxDate) !== 1)
     return months
   }, [minDate, maxDate])
-  const buttonDisabled = useMemo(() => {
+  const getBtnDisabled = () => {
     const { currentDate } = state
     if (currentDate) {
+      const curDate = currentDate instanceof Date ? [currentDate] : currentDate
       if (type === 'range') {
-        return !(currentDate as Date[])[0] || !(currentDate as Date[])[1]
+        return !curDate[0] || !curDate[1]
       }
       if (type === 'multiple') {
-        return !(currentDate as Date[]).length
+        return !curDate.length
       }
     }
     return !currentDate
-  }, [type])
+  }
   const onScroll = () => {
     const top = getScrollTop(bodyRef.current!)
     const bottom = top + bodyHeight
@@ -364,6 +365,7 @@ const Calendar = (
       return footer
     }
     if (showConfirm) {
+      const buttonDisabled = getBtnDisabled()
       const text = buttonDisabled ? confirmDisabledText : confirmText
       return (
         <Button

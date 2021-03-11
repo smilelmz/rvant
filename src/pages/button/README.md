@@ -128,10 +128,10 @@ import { Button } from 'SmileUI'
 | nativeType |  button type, can be set to `button` `submit` `reset` | _string_ | - |
 | url | jump url in tap | _string_ | - |
 | replace | Whether replace current page | _boolean_ | `false` |
+| iconPosition | Icon position, can be set to `right` | _string_ | `left` |
 
 ### Events
 
 | Event | Description | Arguments |
 | --- | --- | --- |
 | click | Triggered when click button and not disabled or loading | _event: Event_ |
-| touchstart | Triggered when touch start | _event: TouchEvent_ |

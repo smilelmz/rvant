@@ -152,10 +152,10 @@ import { Button } from 'SmileUI'
 | nativeType | 原生 button 标签的 type 属性，`button` `submit` `reset` | _string_ | - |
 | url | 点击后跳转的链接地址 | _string_ | - |
 | replace | 是否在跳转时替换当前页面历史 | _boolean_ | `false` |
+| iconPosition | 图标展示位置，可选值为 `right` | _string_ | `left` |
 
 ### Events
 
 | 事件名     | 说明                                     | 回调参数            |
 | ---------- | ---------------------------------------- | ------------------- |
 | click      | 点击按钮，且按钮状态不为加载或禁用时触发 | _event: Event_      |
-| touchstart | 开始触摸按钮时触发                       | _event: TouchEvent_ |

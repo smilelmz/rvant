@@ -12,8 +12,8 @@ const ButtonDemo = () => {
           <Button type='info'>信息按钮</Button>
           <Button type='default'>默认按钮</Button>
         </div>
-        <Button type='warning'>警告按钮</Button>
         <Button type='danger'>危险按钮</Button>
+        <Button type='warning'>警告按钮</Button>
       </DemoBlock>
       <DemoBlock title='朴素类型'>
         <Button plain type='primary'>
