@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 export interface ImageProps {
   src?: string
   fit?: 'contain' | 'cover' | 'fill' | 'none' | 'scale-down'
@@ -7,6 +8,7 @@ export interface ImageProps {
   radius?: number | string
   round?: boolean
   lazyLoad?: boolean
+  iconPrefix?: string
   showError?: boolean
   showLoading?: boolean
   errorIcon?: string | React.ReactNode

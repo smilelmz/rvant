@@ -1,12 +1,10 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import LazyLoad from 'react-lazyload'
-import { BASE_PREFIX } from '../utils/constant'
-import { isDef, addUnit } from '../utils'
+import { isDef, addUnit, createNamespace } from '../utils'
 import Icon from '../Icon'
 import { ImageProps } from './index.types'
-import classnames from '../utils/classNames'
 
-const baseClass = `${BASE_PREFIX}image`
+const [bem] = createNamespace('image')
 const Image: React.FC<ImageProps> = ({
   src,
   fit = 'fill',
@@ -14,6 +12,7 @@ const Image: React.FC<ImageProps> = ({
   width,
   height,
   radius,
+  iconPrefix,
   round = false,
   lazyLoad = false,
   showError = true,
@@ -26,6 +25,26 @@ const Image: React.FC<ImageProps> = ({
 }) => {
   const [isLoading, setIsLoading] = useState(true)
   const [isError, setIsError] = useState(false)
+  const getStyle = () => {
+    const style: Record<string, any> = {}
+    if (isDef(width)) {
+      style.width = addUnit(width)
+    }
+
+    if (isDef(height)) {
+      style.height = addUnit(height)
+    }
+
+    if (isDef(radius)) {
+      style.overflow = 'hidden'
+      style.borderRadius = addUnit(radius)
+    }
+    return style
+  }
+  useEffect(() => {
+    setIsLoading(true)
+    setIsError(false)
+  }, [src])
   const onLoad = () => {
     setIsLoading(false)
     load && load()
@@ -38,39 +57,41 @@ const Image: React.FC<ImageProps> = ({
   const onClick = () => {
     click && click()
   }
-  const genPlaceholder = () => {
+  const renderLoadingIcon = () => {
+    if (React.isValidElement(loadingIcon)) {
+      return loadingIcon
+    }
+    return (
+      <Icon
+        name={loadingIcon as string}
+        className={bem(`loading-icon`)}
+        classPrefix={iconPrefix}
+      />
+    )
+  }
+  const renderErrorIcon = () => {
+    if (React.isValidElement(errorIcon)) {
+      return errorIcon
+    }
+    return (
+      <Icon
+        name={errorIcon as string}
+        className={bem(`error-icon`)}
+        classPrefix={iconPrefix}
+      />
+    )
+  }
+  const renderPlaceholder = () => {
     if (isLoading && showLoading) {
-      return (
-        <div className={classnames(`${baseClass}__loading`)}>
-          {typeof loadingIcon === 'object' ? (
-            loadingIcon
-          ) : (
-            <Icon
-              name={loadingIcon as string}
-              className={classnames(`${baseClass}__loading-icon`)}
-            />
-          )}
-        </div>
-      )
+      return <div className={bem('loading')}>{renderLoadingIcon()}</div>
     }
     if (isError && showError) {
-      return (
-        <div className={classnames(`${baseClass}__error`)}>
-          {typeof errorIcon === 'object' ? (
-            errorIcon
-          ) : (
-            <Icon
-              name={errorIcon as string}
-              className={classnames(`${baseClass}__error-icon`)}
-            />
-          )}
-        </div>
-      )
+      return <div className={bem('error')}>{renderErrorIcon()}</div>
     }
   }
-  const genImage = () => {
+  const renderImage = () => {
     if (isError) {
-      return null
+      return <></>
     }
     if (lazyLoad) {
       return (
@@ -79,7 +100,7 @@ const Image: React.FC<ImageProps> = ({
             src={src}
             onLoad={onLoad}
             onError={onError}
-            className={classnames(`${baseClass}__img`)}
+            className={bem(`img`)}
             style={{ objectFit: fit }}
             alt={alt}
           />
@@ -91,30 +112,17 @@ const Image: React.FC<ImageProps> = ({
         src={src}
         onLoad={onLoad}
         onError={onError}
-        className={classnames(`${baseClass}__img`)}
+        className={bem(`img`)}
         style={{ objectFit: fit }}
         alt={alt}
       />
     )
   }
-  const style: Record<string, any> = {}
-  if (isDef(width)) {
-    style.width = addUnit(width)
-  }
-
-  if (isDef(height)) {
-    style.height = addUnit(height)
-  }
-
-  if (isDef(radius)) {
-    style.overflow = 'hidden'
-    style.borderRadius = addUnit(radius)
-  }
-  const className = classnames(baseClass, [{ round }])
+  const style = getStyle()
   return (
-    <div className={className} style={style} onClick={onClick}>
-      {genImage()}
-      {genPlaceholder()}
+    <div className={bem([{ round }])} style={style} onClick={onClick}>
+      {renderImage()}
+      {renderPlaceholder()}
     </div>
   )
 }

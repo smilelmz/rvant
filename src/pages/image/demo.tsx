@@ -8,9 +8,9 @@ import './index.scss'
 
 const ImageDemo = () => {
   const image = 'https://img.yzcdn.cn/vant/cat.jpeg'
-  const renderImage = (round = false) => {
+  const renderImage = (round = false, title = '填充模式') => {
     return (
-      <DemoBlock title='填充模式'>
+      <DemoBlock title={title}>
         <Row gutter={24}>
           <Col span={8}>
             <SmileImage
@@ -74,9 +74,7 @@ const ImageDemo = () => {
         <SmileImage width={100} height={100} src={image} />
       </DemoBlock>
       {renderImage()}
-      {renderImage(true)}
-      {renderImage()}
-      {renderImage()}
+      {renderImage(true, '圆形图片')}
       <DemoBlock title='加载中提示'>
         <Row gutter={24}>
           <Col span={8}>
