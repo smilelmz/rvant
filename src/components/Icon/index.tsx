@@ -26,7 +26,8 @@ const Icon: React.FC<IconProps> = ({
   size,
   badge,
   color,
-  classPrefix = bem()
+  classPrefix = bem(),
+  click
 }) => {
   const CustomTag = tag || 'i'
   const isImageIcon = isImage(name)
@@ -40,7 +41,11 @@ const Icon: React.FC<IconProps> = ({
     ...style
   }
   return (
-    <CustomTag className={classNames} style={iconStyle}>
+    <CustomTag
+      className={classNames}
+      style={iconStyle}
+      onClick={(e) => click && click(e)}
+    >
       {isImageIcon && <img className={bem(`image`)} src={iconName} />}
       <Badge dot={dot} content={badge || ''} className={bem(`info`)} />
     </CustomTag>

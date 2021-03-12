@@ -8,4 +8,5 @@ export interface IconProps {
   classPrefix?: string
   className?: string
   style?: Record<string, any>
+  click?: Function
 }

@@ -1,16 +1,18 @@
 /* eslint-disable no-useless-return */
-import React from 'react'
-import { BASE_PREFIX } from '../utils/constant'
+import React, { TouchEvent } from 'react'
 import { RateProps } from './index.types'
-import { addUnit, getTouchStartPos, getTouchMovePos } from '../utils'
-import classnames from '../utils/classNames'
-import { preventDefault } from '../utils/dom/event'
+import { addUnit, preventDefault, createNamespace } from '../utils'
+import { useTouch, useRefs } from '../composables'
 import Icon from '../Icon'
 
-const baseClass = `${BASE_PREFIX}rate`
-let startPos: Record<string, any> = {}
-let ranges: any[] = []
-const getRateStatus = (value: number, index: number, allowHalf: any) => {
+const [bem] = createNamespace('rate')
+
+type RateStatus = 'full' | 'half' | 'void'
+const getRateStatus = (
+  value: number,
+  index: number,
+  allowHalf: any
+): RateStatus => {
   if (value >= index) {
     return 'full'
   }
@@ -38,16 +40,14 @@ const Rate: React.FC<RateProps> = ({
   touchable = true,
   change
 }) => {
-  const refList: any[] = []
-  const sizeWithUnit = addUnit(size)
-  const gutterWithUnit = addUnit(gutter)
-  const list = []
-  for (let i = 1; i <= count; i++) {
-    list.push(getRateStatus(value, i, allowHalf))
-  }
-  const genRef = (dom: any) => {
-    refList.push(dom)
-  }
+  let ranges: Array<{ left: number; score: number }>
+  const touch = useTouch()
+  const [itemRefs, setItemRefs] = useRefs<HTMLDivElement>()
+  const untouchable = () => readonly || disabled || !touchable
+  const list: RateStatus[] = Array(count)
+    .fill('')
+    .map((_, i) => getRateStatus(value, i + 1, allowHalf))
+
   const select = (index: number) => {
     if (!disabled && !readonly && index !== value) {
       change && change(index)
@@ -61,16 +61,16 @@ const Rate: React.FC<RateProps> = ({
     }
     return allowHalf ? 0.5 : 1
   }
-  const onTouchStart = (event: any) => {
-    if (readonly || disabled || !touchable) {
+  const onTouchStart = (event: TouchEvent) => {
+    if (untouchable()) {
       return
     }
-    startPos = getTouchStartPos(event)
-    const rects = refList.map((item) => item.getBoundingClientRect())
-    const curRanges: any[] = []
+    touch.start(event)
+    const rects = itemRefs.current.map((item) => item.getBoundingClientRect())
+    ranges = []
     rects.forEach((rect, index) => {
       if (allowHalf) {
-        curRanges.push(
+        ranges.push(
           { score: index + 0.5, left: rect.left },
           { score: index + 1, left: rect.left + rect.width / 2 }
         )
@@ -78,56 +78,43 @@ const Rate: React.FC<RateProps> = ({
         ranges.push({ score: index + 1, left: rect.left })
       }
     })
-    ranges = curRanges
   }
-  const onTouchMove = (event: any) => {
-    if (readonly || disabled || !touchable) {
+  const onTouchMove = (event: TouchEvent) => {
+    if (untouchable()) {
       return
     }
-    const movePos = getTouchMovePos(event, startPos)
-    if (movePos.direction === 'horizontal') {
-      preventDefault(event)
-
+    touch.move(event)
+    if (touch.isHorizontal()) {
       const { clientX } = event.touches[0]
+      preventDefault(event)
       select(getScoreByPosition(clientX))
     }
   }
-  const genStar = (status: any, index: number) => {
+  const renderStar = (status: RateStatus, index: number) => {
     const score = index + 1
     const isFull = status === 'full'
     const isVoid = status === 'void'
     let style
-    if (gutterWithUnit && score !== +count) {
-      style = { paddingRight: gutterWithUnit }
-    }
-    let iconColor: any = ''
-    let halfColor: any = ''
-    if (disabled) {
-      iconColor = disabledColor
-      halfColor = disabledColor
-    } else {
-      iconColor = isFull ? color : voidColor
-      halfColor = isVoid ? voidColor : color
+    if (gutter && score !== +count) {
+      style = { paddingRight: addUnit(gutter) }
     }
     return (
       <div
-        ref={genRef}
+        ref={setItemRefs(index)}
         key={index}
         role='radio'
         style={style}
+        className={bem('item')}
+        tabIndex={0}
         aria-setsize={count}
         aria-posinset={score}
         aria-checked={!isVoid}
-        className={classnames(`${baseClass}__item`)}
       >
         <Icon
-          className={classnames(`${baseClass}__icon`, [
-            { disabled },
-            { full: isFull }
-          ])}
-          size={sizeWithUnit}
+          className={bem('icon', { disabled, full: isFull })}
+          size={size}
           name={isFull ? icon : voidIcon}
-          color={iconColor || ''}
+          color={disabled ? disabledColor : isFull ? color : voidColor}
           classPrefix={iconPrefix}
           data-score={score}
           click={() => {
@@ -136,20 +123,10 @@ const Rate: React.FC<RateProps> = ({
         />
         {allowHalf && (
           <Icon
-            size={sizeWithUnit}
+            size={size}
             name={isVoid ? voidIcon : icon}
-            className={classnames(`${baseClass}__icon`, [
-              {
-                half: true
-              },
-              {
-                disabled
-              },
-              {
-                full: !isVoid
-              }
-            ])}
-            color={halfColor}
+            className={bem('icon', ['half', { disabled, full: !isVoid }])}
+            color={disabled ? disabledColor : isVoid ? voidColor : color}
             classPrefix={iconPrefix}
             data-score={score - 0.5}
             click={() => {
@@ -161,16 +138,18 @@ const Rate: React.FC<RateProps> = ({
     )
   }
 
-  const className = classnames(baseClass, [{ readonly }, { disabled }])
   return (
     <div
-      className={className}
+      className={bem({
+        readonly,
+        disabled
+      })}
       tabIndex={0}
       role='radiogroup'
       onTouchStart={onTouchStart}
       onTouchMove={onTouchMove}
     >
-      {list.map((item, index) => genStar(item, index))}
+      {list.map(renderStar)}
     </div>
   )
 }
