@@ -1,114 +1,117 @@
-import React, { useState, useEffect, CSSProperties } from 'react'
-import { BASE_PREFIX } from '../utils/constant'
-import { unitToPx } from '../utils/format/unit'
-import { isHidden } from '../utils/dom/style'
-import { isDef } from '../utils'
-import classnames from '../utils/classNames'
-import { getScrollTop, getElementTop, getScroller } from '../utils/dom/scroll'
-import { on, off } from '../utils/dom/event'
+import React, { useRef, useState, CSSProperties } from 'react'
+import {
+  createNamespace,
+  isHidden,
+  unitToPx,
+  getScrollTop,
+  getZIndexStyle
+} from '../utils'
 import { StickyProps } from './index.types'
+import {
+  getRect,
+  useScrollParent,
+  useEventListener,
+  useVisibilityChange
+} from '../composables'
 
-const baseClass = `${BASE_PREFIX}sticky`
-const Sticky = ({
+const [bem] = createNamespace('sticky')
+const Sticky: React.FC<StickyProps> = ({
   zIndex,
   container = null,
-  offsetTop,
+  offsetTop = 0,
+  offsetBottom = 0,
+  position = 'top',
   scroll,
   children
 }: StickyProps) => {
-  const [fixed, setFixed] = useState(false)
-  const [height, setHeight] = useState(0)
-  const [transform, setTransform] = useState(0)
-  const [observer, setObserver] = useState<IntersectionObserver | null>(null)
-  let $el!: HTMLDivElement
-  let scroller: HTMLElement | Window
-  const handleScroll = () => {
-    if ($el && isHidden($el)) return
-    const curHeight = $el.offsetHeight
-    let curTransform = 0
-    let curFixed = false
-    const offsetTopPx = offsetTop ? unitToPx(offsetTop) : 0
-    const scrollTop = getScrollTop(window)
-    const topToPageTop = getElementTop($el)
-    if (container) {
-      const bottomToPageTop = topToPageTop + container.offsetHeight
-      if (scrollTop + offsetTopPx + curHeight > bottomToPageTop) {
-        const distanceToBottom = curHeight + scrollTop - bottomToPageTop
-        if (distanceToBottom < curHeight) {
-          curFixed = true
-          curTransform = -(distanceToBottom + offsetTopPx)
-        } else {
-          curFixed = false
-        }
-        setHeight(curHeight)
-        setFixed(curFixed)
-        setTransform(curTransform)
-        scroll && scroll(scrollTop, curFixed)
-        return
+  const root = useRef<HTMLDivElement>(null)
+  const scrollParent = useScrollParent(root)
+  const [state, setState] = useState({
+    fixed: false,
+    width: 0, // root width
+    height: 0, // root height
+    transform: 0
+  })
+  const getOffset = () =>
+    unitToPx(position === 'top' ? offsetTop : offsetBottom)
+  const getRootStyle = (): CSSProperties | undefined => {
+    const { fixed, height, width } = state
+    if (fixed) {
+      return {
+        width: `${width}px`,
+        height: `${height}px`
       }
     }
-    if (scrollTop + offsetTopPx > topToPageTop) {
-      curFixed = true
-      curTransform = 0
-    } else {
-      curFixed = false
+  }
+  const getStickyStyle = (): CSSProperties | undefined => {
+    if (!state.fixed) {
+      return
     }
-    setHeight(curHeight)
-    setFixed(curFixed)
-    setTransform(curTransform)
-    scroll && scroll(scrollTop, curFixed)
-  }
 
-  const initObserver = () => {
-    const options = { root: document.body }
-    const Observer = new IntersectionObserver((entries) => {
-      if (entries[0].intersectionRatio > 0) {
-        handleScroll()
-      }
-    }, options)
-    Observer.observe($el)
-    setObserver(Observer)
-  }
-
-  const resetObservation = () => {
-    observer && observer.unobserve($el)
-  }
-
-  const renderEle = (ele: any) => {
-    if (ele) $el = ele
-  }
-
-  const getStyle = () => {
-    const style: CSSProperties = {}
-    const offsetTopTrans = offsetTop ? unitToPx(offsetTop) : null
-    if (!fixed) {
-      return style
+    const style: CSSProperties = {
+      ...getZIndexStyle(zIndex),
+      width: `${state.width}px`,
+      height: `${state.height}px`,
+      [position]: `${getOffset()}px`
     }
-    if (isDef(zIndex)) style.zIndex = zIndex
-    if (offsetTopTrans && fixed) style.top = `${offsetTopTrans}px`
-    if (transform) style.transform = `translate3d(0, ${transform}px, 0)`
+
+    if (state.transform) {
+      style.transform = `translate3d(0, ${state.transform}px, 0)`
+    }
+
     return style
   }
-
-  useEffect(() => {
-    if (!scroller) {
-      scroller = getScroller($el)
+  const onScroll = () => {
+    if (!root.current || isHidden(root.current)) {
+      return
     }
-    initObserver()
-    on(scroller, 'scroll', handleScroll, true)
-    handleScroll()
-
-    return () => {
-      resetObservation()
-      scroller && off(scroller, 'scroll', handleScroll)
+    const offset = getOffset()
+    const rootRect = getRect(root)
+    const scrollTop = getScrollTop(window)
+    const curState = {
+      fixed: false,
+      width: 0,
+      height: 0,
+      transform: 0
     }
-  }, [container])
-  const pStyle: CSSProperties = {}
-  if (fixed) pStyle.height = `${height}px`
-  const className = classnames(baseClass, [{ fixed }])
+    curState.width = rootRect.width
+    curState.height = rootRect.height
+
+    if (position === 'top') {
+      if (container) {
+        const containerRect = getRect(container)
+        const difference = containerRect.bottom - offset - curState.height
+        curState.fixed = offset > rootRect.top && containerRect.bottom > 0
+        curState.transform = difference < 0 ? difference : 0
+      } else {
+        curState.fixed = offset > rootRect.top
+      }
+    } else {
+      const { clientHeight } = document.documentElement
+      if (container) {
+        const containerRect = getRect(container)
+        const difference =
+          clientHeight - containerRect.top - offset - curState.height
+        curState.fixed =
+          clientHeight - offset < rootRect.bottom &&
+          clientHeight > containerRect.top
+        curState.transform = difference < 0 ? -difference : 0
+      } else {
+        curState.fixed = clientHeight - offset < rootRect.bottom
+      }
+    }
+    setState(curState)
+    scroll &&
+      scroll({
+        scrollTop,
+        isFixed: curState.fixed
+      })
+  }
+  useEventListener('scroll', onScroll, { target: scrollParent.current })
+  useVisibilityChange(root, onScroll)
   return (
-    <div style={pStyle} ref={renderEle}>
-      <div className={className} style={getStyle()}>
+    <div style={getRootStyle()} ref={root}>
+      <div className={bem({ fixed: state.fixed })} style={getStickyStyle()}>
         {children}
       </div>
     </div>
