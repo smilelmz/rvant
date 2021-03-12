@@ -94,6 +94,7 @@ const [showBase, setShowBase] = useState(false)
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
 | show | 是否显示弹出层 | _boolean_ | `false` |
+| zIndex | 弹出框显示层级 | _number \| string_ | `2000` |
 | overlay | 是否显示遮罩层 | _boolean_ | `true` |
 | overlayClass | 自定义遮罩层类名 | _string \| Array \| object_ | - |
 | overlayStyle | 自定义遮罩层样式 | _object_ | - |
@@ -105,6 +106,7 @@ const [showBase, setShowBase] = useState(false)
 | closeable | 是否显示关闭图标 | _boolean_ | `false` |
 | closeIcon | 关闭图标名称或图片链接 | _string_ | `cross` |
 | closeIconPosition | 关闭图标位置，可选值为 `top-left`<br>`bottom-left` `bottom-right` | _string_ | `top-right` |
+| closeOnPopstate | 是否在页面回退时自动关闭 | _boolean_ | `false` |
 | transition | 动画类名，等价于 [transtion](https://v3.cn.vuejs.org/api/built-in-components.html#transition) 的 `name` 属性 | _string_ | - |
 | transitionAppear | 是否在初始渲染时启用过渡动画 | _boolean_ | `false` |
 | safeAreaInsetBottom | 是否开启[底部安全区适配](#/zh-CN/advanced-usage#di-bu-an-quan-qu-gua-pei) | _boolean_ | `false` |

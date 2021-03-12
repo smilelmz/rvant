@@ -84,6 +84,7 @@ Use `position` prop to set popup display position.
 | Attribute | Description | Type | Default |
 | --- | --- | --- | --- |
 | show | Whether to show popup | _boolean_ | `false` |
+| zIndex | show level | _number \| string_ | `2000` |
 | overlay | Whether to show overlay | _boolean_ | `true` |
 | overlayClass | Custom overlay class | _string \| Array \| object_ | - |
 | overlayStyle | Custom overlay style | _object_ | - |
@@ -95,6 +96,7 @@ Use `position` prop to set popup display position.
 | closeable | Whether to show close icon | _boolean_ | `false` |
 | closeIcon | Close icon name | _string_ | `cross` |
 | closeIconPosition | Close Icon Position，can be set to `top-left` `bottom-left` `bottom-right` | _string_ | `top-right` |
+| closeOnPopstate | Whether to close when popstate | _boolean_ | `false` |
 | transition | Transition, equivalent to `name` prop of [transtion](https://v3.vuejs.org/api/built-in-components.html#transition) | _string_ | - |
 | transitionAppear | Whether to apply transition on initial render | _boolean_ | `false` |
 | teleport | Return the mount node for Popup | _string \| Element_ | - |

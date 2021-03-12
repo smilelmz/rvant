@@ -1,19 +1,21 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import CSSTransition from 'react-transition-group/CSSTransition'
 // import { on, off } from '../utils/dom/event'
 import { BASE_PREFIX } from '../utils/constant'
 import { PopupProps } from './index.types'
-import classnames from '../utils/classNames'
-import { isDef } from '../utils'
+import { isDef, createNamespace } from '../utils'
 import Icon from '../Icon'
 import Overlay from '../Overlay'
+import { useEventListener } from '../composables'
 
-const baseClass = `${BASE_PREFIX}popup`
+const [bem] = createNamespace('popup')
+let globalZIndex = 2000
 const Popup: React.FC<PopupProps> = ({
   children,
   show = false,
   className = '',
   style = {},
+  zIndex,
   overlay = true,
   overlayClass,
   overlayStyle = {},
@@ -25,6 +27,7 @@ const Popup: React.FC<PopupProps> = ({
   closeable = false,
   closeIcon = 'cross',
   closeIconPosition = 'top-right',
+  closeOnPopstate = true,
   transition,
   transitionAppear = false,
   safeAreaInsetBottom = false,
@@ -33,34 +36,65 @@ const Popup: React.FC<PopupProps> = ({
   opened,
   closed
 }) => {
+  let isOpen: boolean
   const isCenter = position === 'center'
+  const [pzIndex, setPzIndex] = useState<number>()
   const transitionName =
     transition ||
     (isCenter ? `${BASE_PREFIX}fade` : `${BASE_PREFIX}popup-slide-${position}`)
-  const popupStyle: Record<any, string> = {}
-  if (isDef(duration)) {
-    const key = isCenter ? 'animationDuration' : 'transitionDuration'
-    popupStyle[key] = `${duration}s`
+  const getStyle = () => {
+    const popupStyle: Record<any, string> = {
+      zIndex: `${pzIndex}`
+    }
+    if (isDef(duration)) {
+      const key = isCenter ? 'animationDuration' : 'transitionDuration'
+      popupStyle[key] = `${duration}s`
+    }
+    if (show && lockScroll) {
+      document.body.classList.add(`${BASE_PREFIX}overflow-hidden`)
+    }
+    return popupStyle
   }
-  if (show && lockScroll) {
-    document.body.classList.add(`${BASE_PREFIX}overflow-hidden`)
+  const open = () => {
+    if (!isOpen) {
+      if (zIndex !== undefined) {
+        globalZIndex = +zIndex
+      }
+
+      isOpen = true
+      setPzIndex(++globalZIndex)
+    }
   }
-  const popupClassName = classnames(baseClass, [
+  const popupClassName = bem([
     { round },
     { [position]: position },
     { 'safe-area-inset-bottom': safeAreaInsetBottom }
   ])
+  const closePopup = () => {
+    isOpen = false
+    close && close()
+    if (lockScroll) {
+      document.body.classList.remove(`${BASE_PREFIX}overflow-hidden`)
+    }
+  }
   const cickOverlay = () => {
     if (closeOnClickOverlay) {
-      close && close()
+      closePopup()
     }
   }
-  const closePopup = () => {
-    if (close && lockScroll) {
-      document.body.classList.remove(`${BASE_PREFIX}overflow-hidden`)
-      close && close()
+  useEffect(() => {
+    if (show) {
+      open()
+    } else {
+      closePopup()
     }
-  }
+  }, [show])
+  useEventListener('popstate', () => {
+    if (closeOnPopstate) {
+      closePopup()
+    }
+  })
+
   return (
     <div>
       {overlay && (
@@ -68,6 +102,7 @@ const Popup: React.FC<PopupProps> = ({
           show={show}
           duration={0.3}
           className={overlayClass}
+          zIndex={pzIndex}
           customStyle={overlayStyle}
           click={() => closeOnClickOverlay && cickOverlay()}
           lockScroll={lockScroll}
@@ -87,7 +122,7 @@ const Popup: React.FC<PopupProps> = ({
         onExited={() => closed && closed()}
       >
         <div
-          style={{ ...popupStyle, ...style }}
+          style={{ ...getStyle(), ...style }}
           className={`${popupClassName} ${className}`}
           onClick={click}
         >
@@ -95,9 +130,7 @@ const Popup: React.FC<PopupProps> = ({
           {closeable && (
             <Icon
               name={closeIcon}
-              className={classnames(`${baseClass}__close-icon`, [
-                { [closeIconPosition]: true }
-              ])}
+              className={bem(`close-icon`, [{ [closeIconPosition]: true }])}
               click={closePopup}
             />
           )}
