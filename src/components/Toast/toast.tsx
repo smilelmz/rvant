@@ -1,13 +1,11 @@
 /* eslint-disable react/no-danger */
 import React from 'react'
-import { BASE_PREFIX } from '../utils/constant'
 import { ToastProps } from './index.types'
-import { isDef } from '../utils'
-import classnames from '../utils/classNames'
+import { isDef, createNamespace } from '../utils'
 import Icon from '../Icon'
 import Loading from '../Loading'
 
-const baseClass = `${BASE_PREFIX}toast-content`
+const [bem] = createNamespace('toast--content')
 const Toast: React.FC<ToastProps> = ({
   type = 'text',
   position = 'middle',
@@ -17,13 +15,13 @@ const Toast: React.FC<ToastProps> = ({
   loadingType = 'circular',
   className = ''
 }: ToastProps) => {
-  const genIcon = () => {
+  const renderIcon = () => {
     const hasIcon = icon || type === 'success' || type === 'fail'
 
     if (hasIcon) {
       return (
         <Icon
-          className={`${baseClass}__icon`}
+          className={bem('icon')}
           classPrefix={iconPrefix}
           name={icon || type}
         />
@@ -31,11 +29,11 @@ const Toast: React.FC<ToastProps> = ({
     }
 
     if (type === 'loading') {
-      return <Loading className={`${baseClass}__loading`} type={loadingType} />
+      return <Loading className={bem('loading')} type={loadingType} />
     }
   }
 
-  const genMessage = () => {
+  const renderMessage = () => {
     if (!isDef(message) || message === '') {
       return
     }
@@ -43,22 +41,18 @@ const Toast: React.FC<ToastProps> = ({
     if (type === 'html') {
       return (
         <div
-          className={`${baseClass}__text`}
+          className={bem('text')}
           dangerouslySetInnerHTML={{ __html: message }}
         />
       )
     }
-    return <div className={`${baseClass}__text`}>{message}</div>
+    return <div className={bem('text')}>{message}</div>
   }
 
-  const toastClassName = classnames(baseClass, [
-    { [position]: true },
-    { [type]: !icon }
-  ])
   return (
-    <div className={`${toastClassName} ${className}`}>
-      {genIcon()}
-      {genMessage()}
+    <div className={`${bem([position, { [type]: !icon }])} ${className}`}>
+      {renderIcon()}
+      {renderMessage()}
     </div>
   )
 }

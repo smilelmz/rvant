@@ -6,5 +6,6 @@ export interface LoadingProps {
   color?: string
   vertical?: boolean
   textSize?: string | number
+  textColor?: string
   children?: React.ReactNode | React.ReactNode[]
 }

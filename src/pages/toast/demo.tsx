@@ -6,7 +6,7 @@ import './index.scss'
 
 const ToastDemo = () => {
   const showText = () => {
-    Toast.info('提示内容', 20)
+    Toast.info('提示内容', 10)
   }
   const showLoading = () => {
     Toast.loading({ message: '加载提示' })
@@ -26,7 +26,7 @@ const ToastDemo = () => {
   const showIconUrl = () => {
     Toast.show({
       message: '自定义图片',
-      icon: 'https://img.yzcdn.cn/vant/logo.png',
+      icon: 'https://img.yzcdn.cn/vant/logo.png'
     })
   }
   const showCommonLoading = () => {
@@ -39,13 +39,13 @@ const ToastDemo = () => {
   const showTop = () => {
     Toast.show({
       message: '顶部展示',
-      position: 'top',
+      position: 'top'
     })
   }
   const showBottom = () => {
     Toast.show({
       message: '底部展示',
-      position: 'bottom',
+      position: 'bottom'
     })
   }
 

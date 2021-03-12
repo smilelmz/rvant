@@ -1,13 +1,14 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable no-param-reassign */
 import React from 'react'
 import createNotification from './notification'
 import { BASE_PREFIX } from '../utils/constant'
 import { ToastProps, ToastType, ToastPosition } from './index.types'
-import classnames from '../utils/classNames'
+import { createNamespace } from '../utils'
 import Toast from './toast'
 
 const SHORT = 3
-
+const [bem] = createNamespace('toast')
 interface IToastConfig {
   duration: number
   mask: boolean
@@ -36,21 +37,15 @@ const defaultOptions: ToastProps = {
 
 let messageInstance: any
 let messageNeedHide: boolean
-const prefixCls = `${BASE_PREFIX}toast`
 
 const getMessageInstance = (
   mask: boolean,
   callback: (notification: any) => void
 ) => {
   console.log('getMessageInstance')
-  const className = classnames(
-    prefixCls,
-    [{ [`mask`]: mask }, { [`nomask`]: !mask }],
-    false
-  )
+  const className = bem([{ [`mask`]: mask }, { [`nomask`]: !mask }])
   createNotification(
     {
-      prefixCls,
       style: {},
       transitionName: `${BASE_PREFIX}fade`,
       className: `${className}`

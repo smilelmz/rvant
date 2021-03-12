@@ -1,16 +1,11 @@
 /* eslint-disable @typescript-eslint/no-implied-eval */
-/* eslint-disable no-useless-return */
-/* eslint-disable no-multi-assign */
-/* eslint-disable no-param-reassign */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable react/no-unused-state */
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
 import { BASE_PREFIX } from '../utils/constant'
 
 interface IProps {
-  prefixCls?: string
   className?: string
   transitionName?: string
   transitionTime?: number
@@ -28,7 +23,6 @@ const getNoticeKey = () => {
 
 class Notification extends Component<IProps, IState> {
   static defaultProps = {
-    prefixCls: `${BASE_PREFIX}`,
     className: '',
     transitionName: `${BASE_PREFIX}fade`,
     transitionTime: 300,
@@ -41,7 +35,8 @@ class Notification extends Component<IProps, IState> {
 
   add = (notice: Record<string, any>) => {
     const self = this
-    const key = (notice.key = notice.key || getNoticeKey())
+    notice.key = notice.key || getNoticeKey()
+    const { key } = notice
     this.setState((previousState) => {
       const { notices } = previousState
       if (!notices.filter((v: any) => v.key === key).length) {
@@ -75,16 +70,10 @@ class Notification extends Component<IProps, IState> {
   }
 
   render() {
-    const {
-      className,
-      transitionName,
-      transitionTime,
-      prefixCls,
-      style
-    } = this.props
+    const { className, transitionName, transitionTime, style } = this.props
     const { notices } = this.state
     return (
-      <TransitionGroup className={`${prefixCls} ${className}`} style={style}>
+      <TransitionGroup className={`${className}`} style={style}>
         {notices.map((notice: any) => (
           <CSSTransition
             key={notice.key}

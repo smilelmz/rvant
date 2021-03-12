@@ -51,6 +51,7 @@ import { Loading } from 'rvant';`
 | type | Can be set to `spinner` | _string_ | `circular` |
 | size | Icon size | _number \| string_ | `30px` |
 | textSize | Text font size | _number \| string_ | `14px` |
+| textColor | Text color | _string_ | `#c9c9c9` |
 | vertical | Whether to arrange icons and text content vertically | _boolean_ | `false` |
 
 ### Slots

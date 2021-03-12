@@ -61,6 +61,7 @@ import { Loading } from 'rvant';`
 | type      | 类型，可选值为 `spinner`     | _string_           | `circular` |
 | size      | 加载图标大小，默认单位为`px` | _number \| string_ | `30px`     |
 | textSize | 文字大小，默认单位为`px`     | _number \| string_ | `14px`     |
+| textColor | 文字颜色      | _number \| string_ | `#c9c9c9`     |
 | vertical  | 是否垂直排列图标和文字内容   | _boolean_          | `false`    |
 
 ### Slots

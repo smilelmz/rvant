@@ -1,16 +1,11 @@
-import React from 'react'
+import React, { CSSProperties } from 'react'
 import CSSTransition from 'react-transition-group/CSSTransition'
 import { BASE_PREFIX } from '../utils/constant'
 import { OverlayProps } from './index.types'
-import { isDef, noop } from '../utils'
+import { isDef, noop, getZIndexStyle, createNamespace } from '../utils'
 import { preventDefault } from '../utils/dom/event'
-import classnames from '../utils/classNames'
 
-const baseClass = `${BASE_PREFIX}overlay`
-function preventTouchMove(event: any) {
-  console.log(event)
-  preventDefault(event, true)
-}
+const [bem] = createNamespace('overlay')
 const Overlay: React.FC<OverlayProps> = ({
   children,
   show,
@@ -21,22 +16,37 @@ const Overlay: React.FC<OverlayProps> = ({
   lockScroll = true,
   click
 }) => {
-  const overlayClassName = classnames(baseClass)
-  const overlayStyle: Record<string, any> = {
-    zIndex,
-    ...customStyle
-  }
-  if (isDef(duration)) {
-    overlayStyle.animationDuration = `${duration}s`
+  const preventTouchMove = (event: any) => {
+    preventDefault(event, true)
   }
   if (show && lockScroll) {
     document.body.classList.add(`${BASE_PREFIX}overflow-hidden`)
   }
   const onClick = () => {
-    if (click && lockScroll) {
+    if (lockScroll) {
       document.body.classList.remove(`${BASE_PREFIX}overflow-hidden`)
-      click && click()
     }
+    click && click()
+  }
+  const renderOverlay = () => {
+    const style: CSSProperties = {
+      ...getZIndexStyle(zIndex),
+      ...customStyle
+    }
+
+    if (isDef(duration)) {
+      style.animationDuration = `${duration}s`
+    }
+    return (
+      <div
+        className={`${bem()} ${className}`}
+        style={style}
+        onClick={onClick}
+        onTouchMove={lockScroll ? preventTouchMove : noop}
+      >
+        {children}
+      </div>
+    )
   }
   return (
     <CSSTransition
@@ -49,14 +59,7 @@ const Overlay: React.FC<OverlayProps> = ({
       }}
       unmountOnExit
     >
-      <div
-        className={`${overlayClassName} ${className}`}
-        style={overlayStyle}
-        onClick={onClick}
-        onTouchMove={lockScroll ? preventTouchMove : noop}
-      >
-        {children}
-      </div>
+      {renderOverlay()}
     </CSSTransition>
   )
 }

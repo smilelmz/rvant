@@ -25,7 +25,7 @@
     transform: translateZ(1px);
   }
 
-  &-content {
+  &--content {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -83,7 +83,7 @@
       min-height: 0;
       padding: $toast-text-padding;
 
-      .#{$base-prefix}toast-content__text {
+      .#{$base-prefix}toast--content__text {
         margin-top: 0;
       }
     }
