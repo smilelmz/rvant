@@ -1,6 +1,5 @@
 import React from 'react'
-import { BORDER_SURROUND, WHITE } from '../utils/constant'
-import { createNamespace } from '../utils'
+import { createNamespace, BORDER_SURROUND, WHITE } from '../utils'
 import { ButtonProps } from './index.types'
 
 import Icon from '../Icon'

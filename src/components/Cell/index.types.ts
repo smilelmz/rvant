@@ -1,3 +1,5 @@
+import { EventFunction } from '../type'
+
 export interface CellProps {
   title?: number | string | React.ReactNode | React.ReactNode[]
   value?: number | string | React.ReactNode | React.ReactNode[]
@@ -18,5 +20,5 @@ export interface CellProps {
   titleClass?: string
   valueClass?: string
   labelClass?: string
-  click?: (event: Event) => void
+  click?: EventFunction<Event>
 }

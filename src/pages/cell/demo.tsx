@@ -42,7 +42,7 @@ const CellDemo = () => {
           <Cell title='单元格' value='内容' />
         </CellGroup>
       </DemoBlock>
-      <DemoBlock title='居中'>
+      <DemoBlock title='垂直居中'>
         <Cell center title='单元格' value='内容' label='描述信息' />
       </DemoBlock>
       <DemoBlock title='自定义'>

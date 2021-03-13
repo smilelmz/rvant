@@ -3,7 +3,7 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
-import { BASE_PREFIX } from '../utils/constant'
+import { BASE_PREFIX } from '../utils'
 
 interface IProps {
   className?: string

@@ -1,8 +1,13 @@
 import React, { CSSProperties } from 'react'
 import CSSTransition from 'react-transition-group/CSSTransition'
-import { BASE_PREFIX } from '../utils/constant'
 import { OverlayProps } from './index.types'
-import { isDef, noop, getZIndexStyle, createNamespace } from '../utils'
+import {
+  isDef,
+  noop,
+  getZIndexStyle,
+  createNamespace,
+  BASE_PREFIX
+} from '../utils'
 import { preventDefault } from '../utils/dom/event'
 
 const [bem] = createNamespace('overlay')

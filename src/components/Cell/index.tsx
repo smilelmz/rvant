@@ -1,12 +1,10 @@
 /* eslint-disable jsx-a11y/no-noninteractive-tabindex */
 import React from 'react'
-import { BASE_PREFIX } from '../utils/constant'
-import { isDef } from '../utils'
+import { isDef, createNamespace } from '../utils'
 import { CellProps } from './index.types'
-import classnames from '../utils/classNames'
 import Icon from '../Icon'
 
-const baseClass = `${BASE_PREFIX}cell`
+const [bem] = createNamespace('cell')
 const Cell: React.FC<CellProps> = ({
   title,
   value,
@@ -32,69 +30,74 @@ const Cell: React.FC<CellProps> = ({
 }) => {
   const CustomTag = url ? 'a' : 'div'
   const showTitle = isDef(title)
-  const Label = () => {
+  const isElement = (el: any) => {
+    if (Array.isArray(el)) {
+      for (let i = 0; i < el.length; i++) {
+        if (React.isValidElement(el[i])) return true
+      }
+    } else if (React.isValidElement(el)) return true
+    return false
+  }
+  const renderLabel = () => {
     const showLabel = isDef(label)
     if (showLabel) {
       return (
-        <div
-          className={`${classnames(`${baseClass}__label`)} ${labelClass || ''}`}
-        >
-          {label}
-        </div>
+        <div className={`${bem('label')} ${labelClass || ''}`}>{label}</div>
       )
     }
+    return <></>
   }
-  const Title = () => {
+  const renderTitle = () => {
     if (showTitle) {
       return (
         <div
-          className={`${classnames(`${baseClass}__title`)} ${titleClass || ''}`}
+          className={`${bem('title')} ${titleClass || ''}`}
           style={titleStyle || {}}
         >
           {typeof title === 'object' ? title : <span>{title}</span>}
-          {Label()}
+          {renderLabel()}
         </div>
       )
     }
-    return null
+    return <></>
   }
-  const Value = () => {
+  const renderValue = () => {
     const showValue = isDef(value)
 
     if (showValue) {
       return (
         <div
-          className={`${classnames(`${baseClass}__value`, [
-            { alone: !showTitle }
-          ])} ${valueClass || ''}`}
+          className={`${bem('value', { alone: !showTitle })} ${valueClass ||
+            ''}`}
         >
-          {typeof value === 'object' ? value : <span>{value}</span>}
+          {isElement(value) ? value : <span>{value}</span>}
         </div>
       )
     }
   }
-  const LeftIcon = () => {
-    if (typeof icon === 'object') {
+  const renderLeftIcon = () => {
+    if (isElement(icon)) {
       return icon
     }
     if (icon) {
       return (
         <Icon
-          className={classnames(`${baseClass}__left-icon`)}
+          className={bem('left-icon')}
           name={icon as string}
           classPrefix={iconPrefix}
         />
       )
     }
+    return <></>
   }
-  const RightIcon = () => {
-    if (typeof rightIcon === 'object') {
+  const renderRightIcon = () => {
+    if (isElement(rightIcon)) {
       return rightIcon
     }
     if (rightIcon) {
       return (
         <Icon
-          className={classnames(`${baseClass}__right-icon`)}
+          className={bem('right-icon')}
           name={rightIcon as string}
           classPrefix={iconPrefix}
         />
@@ -103,16 +106,14 @@ const Cell: React.FC<CellProps> = ({
     if (isLink) {
       return (
         <Icon
-          className={classnames(`${baseClass}__right-icon`)}
+          className={bem('right-icon')}
           name={arrowDirection ? `arrow-${arrowDirection}` : 'arrow'}
         />
       )
     }
+    return <></>
   }
-  const onClick = (e: any) => {
-    click && click(e)
-  }
-  const className = classnames(baseClass, [
+  const className = bem([
     { clickable: isLink || clickable },
     { center },
     { required },
@@ -123,7 +124,7 @@ const Cell: React.FC<CellProps> = ({
     className,
     role: clickable ? 'button' : undefined,
     tabIndex: clickable ? 0 : undefined,
-    onClick
+    onClick: (e: Event) => click && click(e)
   }
   if (url && CustomTag === 'a') {
     props.href = url
@@ -135,10 +136,10 @@ const Cell: React.FC<CellProps> = ({
   }
   return (
     <CustomTag {...props}>
-      {LeftIcon()}
-      {Title()}
-      {Value()}
-      {RightIcon()}
+      {renderLeftIcon()}
+      {renderTitle()}
+      {renderValue()}
+      {renderRightIcon()}
       {children}
     </CustomTag>
   )

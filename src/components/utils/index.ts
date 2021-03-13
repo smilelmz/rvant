@@ -1,4 +1,7 @@
 export * from './base'
+export * from './constant'
+export * from './deep-assign'
+export * from './deep-clone'
 export * from './create'
 export * from './format/unit'
 export * from './format/number'

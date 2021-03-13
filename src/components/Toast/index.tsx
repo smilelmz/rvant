@@ -2,9 +2,8 @@
 /* eslint-disable no-param-reassign */
 import React from 'react'
 import createNotification from './notification'
-import { BASE_PREFIX } from '../utils/constant'
 import { ToastProps, ToastType, ToastPosition } from './index.types'
-import { createNamespace } from '../utils'
+import { createNamespace, BASE_PREFIX } from '../utils'
 import Toast from './toast'
 
 const SHORT = 3
