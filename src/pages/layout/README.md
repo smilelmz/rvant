@@ -88,7 +88,6 @@ Setting `type` to `flex` to enable flex layout
 
 | Attribute | Description | Type | Default |
 | --- | --- | --- | --- |
-| type | Layout type, can be set to `flex` | _string_ | - |
 | gutter | Grid spacing（px） | _number \| string_ | - |
 | justify | Flex main axis，can be set to end/center/space-around/space-between | _string_ | `start` |
 | align | Flex cross axis, be set to center/bottom | _string_ | `top` |

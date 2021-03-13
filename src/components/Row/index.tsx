@@ -1,31 +1,25 @@
 import React from 'react'
-import { BASE_PREFIX } from '../utils/constant'
-import { RowProps } from './index.types'
-import classnames from '../utils/classNames'
+import { createNamespace } from '../utils'
+import { RowProps, RowSpaces } from './index.types'
 
-const baseClass = `${BASE_PREFIX}row`
+const [bem] = createNamespace('row')
 const Row: React.FC<RowProps> = ({
-  type,
   align,
   justify,
-  gutter,
+  gutter = 0,
   click,
   children = []
 }) => {
-  const calcSpaces = () => {
-    if (!gutter) {
-      return
-    }
-    const gutterNum = Number(gutter)
-    let curChildren = []
-    if (children) {
-      curChildren = children instanceof Array ? children : [children]
-    }
-    const spaces: any[] = []
-    const groups: Array<Array<number>> = [[]]
+  const getGroups = () => {
+    const groups: number[][] = [[]]
     let totalSpan = 0
-    curChildren.forEach((item: any, index: number) => {
-      totalSpan += Number(item.span)
+    let arr = []
+    if (children) {
+      arr = children instanceof Array ? children : [children]
+    }
+    arr.forEach((child, index) => {
+      totalSpan += Number(child.span)
+
       if (totalSpan > 24) {
         groups.push([index])
         totalSpan -= 24
@@ -34,8 +28,20 @@ const Row: React.FC<RowProps> = ({
       }
     })
 
+    return groups
+  }
+  const getSpaces = () => {
+    const groups = getGroups()
+    const gutterNum = Number(gutter || 0)
+    const spaces: RowSpaces = []
+
+    if (!gutterNum) {
+      return spaces
+    }
+
     groups.forEach((group) => {
       const averagePadding = (gutterNum * (group.length - 1)) / group.length
+
       group.forEach((item, index) => {
         if (index === 0) {
           spaces.push({ right: averagePadding })
@@ -46,17 +52,18 @@ const Row: React.FC<RowProps> = ({
         }
       })
     })
+
     return spaces
   }
-  const spaces = calcSpaces()
-  const flex = type === 'flex'
-  const c1 = {}
-  c1[`align-${align}`] = flex && align
-  const c2 = {}
-  c2[`justify-${justify}`] = flex && justify
-  const className = classnames(baseClass, [{ flex }, c1, c2])
+  const spaces = getSpaces()
   return (
-    <div className={className} onClick={(e) => click && click(e)}>
+    <div
+      className={bem({
+        [`align-${align}`]: align,
+        [`justify-${justify}`]: justify
+      })}
+      onClick={(e: any) => click && click(e)}
+    >
       {React.Children.map(children, (child: any, index) => {
         const config: Record<string, string | number | any[]> = { index }
         if (gutter) config.gutter = gutter

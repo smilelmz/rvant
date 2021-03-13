@@ -93,7 +93,6 @@ Layout 组件提供了`24列栅格`，通过在`Col`上添加`span`属性设置�
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| type | 布局方式，可选值为`flex` | _string_ | - |
 | gutter | 列元素之间的间距（单位为 px） | _number \| string_ | - |
 | justify | Flex 主轴对齐方式，可选值为 `end` `center` <br> `space-around` `space-between` | _string_ | `start` |
 | align | Flex 交叉轴对齐方式，可选值为 `center` `bottom` | _string_ | `top` |

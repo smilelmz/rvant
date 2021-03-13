@@ -1,9 +1,8 @@
 import React from 'react'
-import { BASE_PREFIX } from '../utils/constant'
+import { createNamespace } from '../utils'
 import { ColProps } from './index.types'
-import classnames from '../utils/classNames'
 
-const baseClass = `${BASE_PREFIX}col`
+const [bem] = createNamespace('col')
 const Col: React.FC<ColProps> = ({
   offset,
   span,
@@ -12,7 +11,7 @@ const Col: React.FC<ColProps> = ({
   spaces,
   click
 }) => {
-  let style: Record<string, string | number | null> = {}
+  let style: Record<string, any> = {}
   if (spaces && spaces[index]) {
     const { left, right } = spaces[index]
     style = {
@@ -20,13 +19,12 @@ const Col: React.FC<ColProps> = ({
       paddingRight: right ? `${right}px` : null
     }
   }
-  const c1 = {}
-  c1[`${span}`] = true
-  const c2 = {}
-  c2[`offset-${offset}`] = offset
-  const className = classnames(baseClass, [c1, c2])
   return (
-    <div style={style} className={className} onClick={(e) => click && click(e)}>
+    <div
+      style={style}
+      className={bem({ [`${span}`]: span, [`offset-${offset}`]: offset })}
+      onClick={(e: any) => click && click(e)}
+    >
       {children}
     </div>
   )
