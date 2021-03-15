@@ -1,0 +1,8 @@
+@import '../style/vars.scss';
+
+.#{$base-prefix}checkbox-group {
+  &--horizontal {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}

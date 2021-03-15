@@ -1,7 +1,7 @@
 module.exports = (componentName) => ({
   content: `import React from 'react'
 import { ${componentName}Props } from './index.types'
-import { createNamespace, BASE_PREFIX } from '../utils'
+import { createNamespace } from '../utils'
 
 const [bem] = createNamespace('${componentName.toLowerCase()}')
 const ${componentName}: React.FC<${componentName}Props> = ({}) => {

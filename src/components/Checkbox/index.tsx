@@ -1,104 +1,141 @@
 /* eslint-disable jsx-a11y/role-has-required-aria-props */
-import React, { useState, useEffect } from 'react'
-import { BASE_PREFIX } from '../utils/constant'
-import { CheckboxProps } from './index.types'
-import classnames from '../utils/classNames'
-import { addUnit } from '../utils'
+import React, { useState, useRef, useImperativeHandle } from 'react'
+import { createNamespace, addUnit } from '../utils'
+import { CheckboxProps, CheckboxHandler } from './index.types'
 import Icon from '../Icon'
 
-const baseClass = `${BASE_PREFIX}checkbox`
-const Checkbox: React.FC<CheckboxProps> = ({
-  checked = false,
-  change,
-  click,
-  name,
-  shape = 'round',
-  checkedColor = '#1989fa',
-  icon,
-  iconSize,
-  labelText,
-  disabled,
-  labelDisabled,
-  labelPosition = 'right',
-}) => {
-  const [isChecked, handleChecked] = useState(checked)
-  const handleClick = (e: any) => {
-    return click && click(e)
+const [bem] = createNamespace('checkbox')
+const Checkbox = (
+  {
+    checked = false,
+    change,
+    click,
+    name,
+    shape = 'round',
+    checkedColor = '#1989fa',
+    icon,
+    iconSize,
+    labelText,
+    disabled,
+    labelDisabled,
+    labelPosition = 'right',
+    bindGroup = true,
+    parent = {},
+    children
+  }: CheckboxProps,
+  ref: React.Ref<CheckboxHandler>
+) => {
+  const { modelValue = [], max, updateGroupValue } = parent
+
+  const iconRef = useRef<HTMLDivElement>(null)
+  const [isChecked, setIsChecked] = useState(
+    bindGroup ? modelValue.indexOf(name) !== -1 : checked
+  )
+  const checkedStatus = bindGroup ? modelValue.indexOf(name) !== -1 : isChecked
+  const getDisabled = () => {
+    return parent.disabled || disabled
   }
-  useEffect(() => {
-    return change && change(isChecked)
-  }, [isChecked])
-  const handleContainerClick = (e: any) => {
-    e.preventDefault()
-    if (!disabled && !labelDisabled) {
-      handleChecked(!isChecked)
-      handleClick(e)
+  const setGroupValue = (checked: boolean) => {
+    if (!bindGroup) return
+    const value = modelValue ? modelValue.slice() : []
+    if (checked) {
+      const overlimit = max && value.length >= max
+      if (!overlimit && !value.includes(name)) {
+        value.push(name)
+        if (bindGroup) {
+          updateGroupValue && updateGroupValue(value)
+        }
+      }
+    } else {
+      const index = value.indexOf(name)
+
+      if (index !== -1) {
+        value.splice(index, 1)
+
+        if (bindGroup) {
+          updateGroupValue && updateGroupValue(value)
+        }
+      }
     }
   }
-  const handleIconClick = (e: any) => {
-    e.preventDefault()
-    if (!disabled) {
-      handleChecked(!isChecked)
-      handleClick(e)
+  const handleContainerClick = (event: any) => {
+    const { target } = event
+    const icon = iconRef.current
+    const iconClicked = icon === target || icon!.contains(target as Node)
+    if (!getDisabled() && (iconClicked || !labelDisabled)) {
+      setGroupValue(!isChecked)
+      change && change(!isChecked)
+      setIsChecked(!isChecked)
     }
+    click && click(event)
   }
-  const genIcon = () => {
+  const renderIcon = () => {
     const iconStyle: Record<string, any> = {}
-    if (checkedColor && checked && !disabled) {
-      iconStyle.borderColor = checkedColor
-      iconStyle.backgroundColor = checkedColor
+    if (checkedColor && checkedStatus && !getDisabled()) {
+      iconStyle.borderColor = checkedColor || parent.checkedColor
+      iconStyle.backgroundColor = checkedColor || parent.checkedColor
     }
     return (
       <div
+        ref={iconRef}
         key='icon'
-        className={classnames(`${baseClass}__icon`, [
+        className={bem(`icon`, [
           { [shape]: true },
-          { disabled },
-          { checked }
+          { disabled: getDisabled() },
+          { checked: checkedStatus }
         ])}
-        style={{ fontSize: addUnit(iconSize) }}
-        onClick={handleIconClick}
+        style={{ fontSize: addUnit(iconSize || parent.iconSize) }}
       >
         {icon || <Icon name='success' style={iconStyle} />}
       </div>
     )
   }
-  const genLabel = () => {
-    if (labelText) {
+  const renderLabel = () => {
+    if (labelText || children) {
       return (
         <label
           key='label'
           htmlFor={name}
-          className={classnames(`${baseClass}__label`, [
+          className={bem(`label`, [
             { [labelPosition]: true },
-            { disabled }
+            { disabled: getDisabled() }
           ])}
         >
-          {labelText}
+          {labelText || children}
         </label>
       )
     }
   }
-  const className = classnames(baseClass, [
-    { disabled },
-    { 'label-disabled': labelDisabled }
-  ])
-  const Children: any[] = [genIcon()]
+  const nodes: any[] = [renderIcon()]
   if (labelPosition === 'left') {
-    Children.unshift(genLabel())
+    nodes.unshift(renderLabel())
   } else {
-    Children.push(genLabel())
+    nodes.push(renderLabel())
   }
+  const toggle = (newValue = !isChecked) => {
+    console.log(newValue)
+  }
+  useImperativeHandle(ref, () => ({
+    bindGroup,
+    name,
+    checked: checkedStatus,
+    toggle,
+    disabled: getDisabled() || false
+  }))
   return (
     <div
       role='checkbox'
-      className={className}
-      aria-checked={checked}
+      className={bem([
+        { disabled: getDisabled() },
+        { 'label-disabled': labelDisabled },
+        parent.direction
+      ])}
+      aria-checked={checkedStatus}
       tabIndex={0}
       onClick={handleContainerClick}
     >
-      {Children}
+      {nodes}
     </div>
   )
 }
-export default Checkbox
+export default React.forwardRef(Checkbox)

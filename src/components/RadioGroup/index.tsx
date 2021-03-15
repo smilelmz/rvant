@@ -1,9 +1,8 @@
 import React from 'react'
-import { BASE_PREFIX } from '../utils/constant'
+import { createNamespace } from '../utils'
 import { RadioGroupProps } from './index.types'
-import classnames from '../utils/classNames'
 
-const baseClass = `${BASE_PREFIX}radio-group`
+const [bem] = createNamespace('radio-group')
 const RadioGroup: React.FC<RadioGroupProps> = ({
   value,
   className,
@@ -13,10 +12,9 @@ const RadioGroup: React.FC<RadioGroupProps> = ({
   iconSize = 20,
   change,
   children = []
-}) => {
-  const groupClassName = classnames(baseClass, [{ [direction]: true }])
+}: RadioGroupProps) => {
   return (
-    <div className={`${groupClassName} ${className}`} role='radiogroup'>
+    <div className={`${bem([direction])} ${className}`} role='radiogroup'>
       {React.Children.map(children, (child: any) => {
         const config: Record<string, any> = {
           value,

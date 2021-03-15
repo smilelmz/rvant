@@ -9,6 +9,7 @@ import Cell from './Cell'
 import Image from './Image'
 import Popup from './Popup'
 import Toast from './Toast'
+import CheckboxGroup from './CheckboxGroup'
 import Checkbox from './Checkbox'
 import RadioGroup from './RadioGroup'
 import Radio from './Radio'
@@ -28,6 +29,7 @@ export {
   Image,
   Popup,
   Toast,
+  CheckboxGroup,
   Checkbox,
   RadioGroup,
   Radio
