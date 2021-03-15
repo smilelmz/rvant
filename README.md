@@ -57,7 +57,7 @@ yarn generate pageName 1
 - [ ] ActionSheet
 - [ ] Dialog
 - [ ] DropdownMenu
-- [ ] Loading
+- [x] Loading
 - [ ] Notify
 - [ ] Overlay
 - [ ] PullRefresh

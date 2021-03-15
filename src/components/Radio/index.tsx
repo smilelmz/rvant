@@ -1,12 +1,10 @@
 /* eslint-disable jsx-a11y/role-has-required-aria-props */
 import React from 'react'
-import { BASE_PREFIX } from '../utils/constant'
 import { RadioProps } from './index.types'
-import classnames from '../utils/classNames'
-import { addUnit } from '../utils'
+import { addUnit, createNamespace } from '../utils'
 import Icon from '../Icon'
 
-const baseClass = `${BASE_PREFIX}radio`
+const [bem] = createNamespace('radio')
 const Radio: React.FC<RadioProps> = ({
   value,
   change,
@@ -48,7 +46,7 @@ const Radio: React.FC<RadioProps> = ({
     return (
       <div
         key='icon'
-        className={classnames(`${baseClass}__icon`, [
+        className={bem(`icon`, [
           { [shape]: true },
           { disabled },
           { checked: isChecked }
@@ -66,17 +64,14 @@ const Radio: React.FC<RadioProps> = ({
         <label
           key='label'
           htmlFor={name}
-          className={classnames(`${baseClass}__label`, [
-            { [labelPosition]: true },
-            { disabled }
-          ])}
+          className={bem(`label`, [{ [labelPosition]: true }, { disabled }])}
         >
           {labelText}
         </label>
       )
     }
   }
-  const className = classnames(baseClass, [
+  const className = bem([
     { disabled },
     { 'label-disabled': labelDisabled },
     { [direction]: true }

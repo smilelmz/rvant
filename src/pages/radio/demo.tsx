@@ -2,8 +2,6 @@ import React, { useState } from 'react'
 import { MobileLayout, DemoBlock } from '@/doc'
 import RadioGroup from '@/components/RadioGroup'
 import Radio from '@/components/Radio'
-import Cell from '@/components/Cell'
-import CellGroup from '@/components/CellGroup'
 import './index.scss'
 
 const RadioDemo = () => {
@@ -11,6 +9,7 @@ const RadioDemo = () => {
   const [dirRadio, setDirRadio] = useState('1')
   const [disabledAll, setDisabledAll] = useState('1')
   const [shapeRadio, setShapeRadio] = useState('1')
+  const [colorRadio, setColorRadio] = useState('1')
   const [sizeRadio, setSizeRadio] = useState('1')
   const [iconRadio, setIconRadio] = useState('1')
   const [textRadio, setTextRadio] = useState('1')
@@ -63,8 +62,8 @@ const RadioDemo = () => {
       <DemoBlock title='自定义颜色'>
         <RadioGroup
           className='demo-radio-group'
-          value={shapeRadio}
-          change={(v: any) => setShapeRadio(v)}
+          value={colorRadio}
+          change={(v: any) => setColorRadio(v)}
         >
           <Radio name='1' labelText='单选框 1' checkedColor='#07c160' />
           <Radio name='2' labelText='单选框 2' checkedColor='#07c160' />
@@ -117,12 +116,6 @@ const RadioDemo = () => {
           <Radio name='1' labelText='单选框 1' labelDisabled />
           <Radio name='2' labelText='单选框 2' labelDisabled />
         </RadioGroup>
-      </DemoBlock>
-      <DemoBlock title='配合Cell'>
-        <CellGroup>
-          <Cell title='单元格' />
-          <Cell title='单元格' />
-        </CellGroup>
       </DemoBlock>
     </MobileLayout>
   )
