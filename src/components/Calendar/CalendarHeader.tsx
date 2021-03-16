@@ -1,6 +1,6 @@
 import React from 'react'
 import { useI18n } from '@/components/locale'
-import { t, bem } from '../utils'
+import { t, bem } from './utils'
 
 interface IProps {
   title?: string | React.ReactNode | React.ReactNode[]

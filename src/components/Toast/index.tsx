@@ -41,7 +41,6 @@ const getMessageInstance = (
   mask: boolean,
   callback: (notification: any) => void
 ) => {
-  console.log('getMessageInstance')
   const className = bem([{ [`mask`]: mask }, { [`nomask`]: !mask }])
   createNotification(
     {

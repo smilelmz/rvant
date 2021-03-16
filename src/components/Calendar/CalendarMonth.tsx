@@ -1,9 +1,8 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { useMemo, useRef, useImperativeHandle, useState } from 'react'
-import { ValueFunction, ValueFunctionMayBeNull } from '@/components/type'
+import React, { useMemo, useRef, useImperativeHandle } from 'react'
+import { ValueFunction } from '@/components/type'
 import { useI18n } from '@/components/locale'
-import { addUnit, setScrollTop } from '../../utils'
-import { getMonthEndDay } from '../../DatetimePicker/utils'
+import { addUnit, setScrollTop } from '../utils'
+import { getMonthEndDay } from '../DatetimePicker/utils'
 import {
   t,
   bem,
@@ -11,17 +10,18 @@ import {
   getPrevDay,
   getNextDay,
   formatMonthTitle
-} from '../utils'
+} from './utils'
 
-import { useHeight } from '../../composables'
-import { DayItem, DayType, CalendarType, IHandles } from '../index.types'
-import CalendarDay from './Day'
+import { useHeight } from '../composables'
+import { DayItem, DayType, CalendarType, IHandles } from './index.types'
+import CalendarDay from './CalendarDay'
 
 interface IProps {
   type?: CalendarType
   color?: string
   showMark?: boolean
   rowHeight: number | string | undefined
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   formatter?: (item: DayItem) => DayItem
   currentDate?: Date | Date[] | null
   allowSameDay?: boolean
@@ -138,6 +138,7 @@ const CalendarMonth = (
       return getRangeDayType(day)
     }
     if (type === 'single') {
+      if (Array.isArray(currentDate)) return ''
       return compareDay(day, currentDate as Date) === 0 ? 'selected' : ''
     }
     return ''

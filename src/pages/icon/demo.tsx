@@ -6,7 +6,6 @@ import icons from '@/components/assets/icons/config'
 import './index.scss'
 
 const IconDemo = () => {
-  console.log(icons)
   return (
     <MobileLayout title='Icon' className='demo-icon'>
       <DemoBlock title='用法示例'>

@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { useMemo, CSSProperties } from 'react'
+import React, { CSSProperties } from 'react'
 import { ValueFunction } from '@/components/type'
-import { DayItem } from '../index.types'
-import { bem } from '../utils'
+import { DayItem } from './index.types'
+import { bem } from './utils'
 
 interface IProps {
   color?: string
@@ -58,9 +58,15 @@ const CalendarDay: React.FC<IProps> = ({
   }
   const renderContent = () => {
     const { type, text, topInfo, bottomInfo } = item
-    const TopInfo = topInfo && <div className={bem('top-info')}>{topInfo}</div>
+    const TopInfo = topInfo && (
+      <div className={bem('top-info')} key='top-info'>
+        {topInfo}
+      </div>
+    )
     const BottomInfo = bottomInfo && (
-      <div className={bem('bottom-info')}>{bottomInfo}</div>
+      <div className={bem('bottom-info')} key='bottom-info'>
+        {bottomInfo}
+      </div>
     )
     const Nodes = [TopInfo, text, BottomInfo]
     if (type === 'selected') {

@@ -30,7 +30,9 @@ export interface CalendarHandler {
 }
 
 export interface CalendarProps {
-  show: boolean
+  style?: Record<string, string | number>
+  className?: string
+  show?: boolean
   type?: CalendarType
   title?: string | React.ReactNode | React.ReactNode[]
   color?: string
@@ -58,7 +60,7 @@ export interface CalendarProps {
   rangePrompt?: string
   allowSameDay?: boolean
   select?: (date: Date | Date[], status?: boolean) => void
-  confirm?: ValueFunction<Date | Date[] | null>
+  confirm?: ValueFunction<Date | Date[]>
   close?: VoidFunction
   opened?: VoidFunction
   closed?: VoidFunction

@@ -6,10 +6,6 @@ const template2 = require('./template2/page')
 
 const componentName = process.argv[2]
 const type = parseInt(process.argv[3])
-console.log(process.argv[0])
-console.log(process.argv[1])
-console.log(process.argv[2])
-console.log(process.argv[3])
 
 if (!componentName) {
   console.error('Please supply a valid component name'.red)

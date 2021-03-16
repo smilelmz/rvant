@@ -8,6 +8,9 @@ export function formatMonthTitle(messages: Record<string, any>, date: Date) {
 }
 
 export function compareMonth(date1: Date, date2: Date) {
+  if (!date1 && !date2) return 0
+  if (!date1) return -1
+  if (!date2) return 1
   const year1 = date1.getFullYear()
   const year2 = date2.getFullYear()
   const month1 = date1.getMonth()

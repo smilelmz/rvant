@@ -1,11 +1,5 @@
 /* eslint-disable no-lonely-if */
-import React, {
-  useEffect,
-  useImperativeHandle,
-  useMemo,
-  useRef,
-  useState
-} from 'react'
+import React, { useImperativeHandle, useMemo, useRef, useState } from 'react'
 import {
   t,
   bem,
@@ -27,9 +21,9 @@ import {
 import Popup from '../Popup'
 import Button from '../Button'
 import Toast from '../Toast'
-import CalendarMonth from './components/Month'
-import CalendarHeader from './components/Header'
-import { useRefs, getRect } from '../composables'
+import CalendarMonth from './CalendarMonth'
+import CalendarHeader from './CalendarHeader'
+import { useRefs, getRect, useWatch } from '../composables'
 import { getScrollTop, raf } from '../utils'
 import { useI18n } from '../locale'
 
@@ -40,7 +34,9 @@ const getMaxDate = () => {
 
 const Calendar = (
   {
-    show,
+    show = false,
+    style = {},
+    className,
     type = 'single',
     title,
     color = '#ee0a24',
@@ -134,10 +130,15 @@ const Calendar = (
     } while (compareMonth(cursor, maxDate) !== 1)
     return months
   }, [minDate, maxDate])
+  const getDateArr = () => {
+    const { currentDate } = state
+    if (!currentDate) return []
+    return currentDate instanceof Date ? [currentDate] : currentDate
+  }
   const getBtnDisabled = () => {
     const { currentDate } = state
     if (currentDate) {
-      const curDate = currentDate instanceof Date ? [currentDate] : currentDate
+      const curDate = getDateArr()
       if (type === 'range') {
         return !curDate[0] || !curDate[1]
       }
@@ -182,12 +183,13 @@ const Calendar = (
       height += heights[i] as number
     }
     if (currentMonth) {
-      setState({
-        ...state,
-        subtitle: currentMonth
-          ? ((currentMonth as unknown) as IHandles).getTitle()
-          : ''
-      })
+      const subtitle = ((currentMonth as unknown) as IHandles).getTitle() || ''
+      if (subtitle !== state.subtitle) {
+        setState({
+          ...state,
+          subtitle
+        })
+      }
     }
   }
   const scrollToDate = (targetDate: Date) => {
@@ -213,9 +215,9 @@ const Calendar = (
     }
     const { currentDate } = state
     if (currentDate) {
-      const curDate = currentDate instanceof Date ? [currentDate] : currentDate
+      const curDate = getDateArr()
       const targetDate = type === 'single' ? currentDate : curDate[0]
-      scrollToDate(targetDate as Date)
+      if (!Array.isArray(targetDate)) scrollToDate(targetDate as Date)
     } else {
       raf(onScroll)
     }
@@ -286,8 +288,7 @@ const Calendar = (
         selectDay([date])
         return
       }
-      const [startDay, endDay] =
-        currentDate instanceof Date ? [currentDate] : currentDate
+      const [startDay, endDay] = getDateArr()
       if (startDay && !endDay) {
         const compareToStart = compareDay(date, startDay)
         if (compareToStart === 1) {
@@ -306,10 +307,7 @@ const Calendar = (
         return
       }
       let selectedIndex: number = -1
-      const dateList =
-        state.currentDate instanceof Date
-          ? [state.currentDate]
-          : state.currentDate
+      const dateList = getDateArr()
       const selected = dateList.some((dateItem: Date, index: number) => {
         const equal = compareDay(dateItem, date) === 0
         if (equal) {
@@ -323,11 +321,7 @@ const Calendar = (
       } else if (maxRange && dateList.length >= maxRange) {
         Toast.info(rangePrompt || t(messages, 'rangePrompt', maxRange))
       } else {
-        if (currentDate instanceof Date) {
-          selectDay([currentDate, date])
-        } else {
-          selectDay([...currentDate, date])
-        }
+        selectDay([...getDateArr(), date])
       }
     } else {
       selectDay(date, true)
@@ -389,33 +383,34 @@ const Calendar = (
     </div>
   )
 
-  const renderCalendar = () => (
-    <div className={bem()}>
-      <CalendarHeader
-        title={title}
-        showTitle={showTitle}
-        subtitle={state.subtitle}
-        showSubtitle={showSubtitle}
-        firstDayOfWeek={dayOffset}
-      />
-      <div ref={bodyRef} className={bem('body')} onScroll={onScroll}>
-        {months.map(renderMonth)}
+  const renderCalendar = () => {
+    return (
+      <div className={`${bem()} ${className || ''}`} style={style}>
+        <CalendarHeader
+          title={title}
+          showTitle={showTitle}
+          subtitle={state.subtitle}
+          showSubtitle={showSubtitle}
+          firstDayOfWeek={dayOffset}
+        />
+        <div ref={bodyRef} className={bem('body')} onScroll={onScroll}>
+          {months.map(renderMonth)}
+        </div>
+        {renderFooter()}
       </div>
-      {renderFooter()}
-    </div>
-  )
-  useEffect(() => {
+    )
+  }
+  useWatch(show, () => {
     init()
-  }, [show])
-
-  useEffect(() => {
+  })
+  useWatch(type, () => {
     reset(getInitialDate(state.currentDate))
-  }, [type])
-
-  useEffect(() => {
+  })
+  useWatch(defaultDate, () => {
     if (defaultDate) setState({ ...state, currentDate: defaultDate })
     scrollIntoView()
-  }, [defaultDate])
+  })
+
   useImperativeHandle(calendarRef, () => ({
     reset,
     scrollToDate
