@@ -18,6 +18,7 @@ const CheckboxDemo = () => {
   const activeIcon = 'https://img.yzcdn.cn/vant/user-active.png'
   const inactiveIcon = 'https://img.yzcdn.cn/vant/user-inactive.png'
   const groupRef = useRef(null)
+  const cRef = useRef(null)
   return (
     <MobileLayout title='Checkbox' className='demo-checkbox'>
       <DemoBlock title='基础用法'>
@@ -25,7 +26,13 @@ const CheckboxDemo = () => {
           checked={baseChecked}
           change={(v: boolean) => setBaseChecked(v)}
           labelText='复选框'
+          ref={cRef}
         />
+        <div className='demo-checkbox-buttons'>
+          <Button type='primary' click={() => cRef.current.toggle()}>
+            测试toggle
+          </Button>
+        </div>
       </DemoBlock>
       <DemoBlock title='禁用状态'>
         <Checkbox disabled checked={false} labelText='复选框' />

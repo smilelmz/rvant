@@ -31,7 +31,10 @@ const Checkbox = (
   const [isChecked, setIsChecked] = useState(
     bindGroup ? modelValue.indexOf(name) !== -1 : checked
   )
-  const checkedStatus = bindGroup ? modelValue.indexOf(name) !== -1 : isChecked
+  const checkedStatus =
+    bindGroup && JSON.stringify(parent) !== '{}'
+      ? modelValue.indexOf(name) !== -1
+      : isChecked
   const getDisabled = () => {
     return parent.disabled || disabled
   }
@@ -114,6 +117,14 @@ const Checkbox = (
   }
   const toggle = (newValue = !isChecked) => {
     console.log(newValue)
+    if (JSON.stringify(parent) !== '{}' && bindGroup) {
+      console.log(1)
+      setGroupValue(newValue)
+    } else {
+      console.log(2)
+      change && change(newValue)
+    }
+    setIsChecked(newValue)
   }
   useImperativeHandle(ref, () => ({
     bindGroup,
