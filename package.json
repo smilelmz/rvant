@@ -17,7 +17,10 @@
     "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",
     "generate": "node ./util/create-component",
     "build:comp": "npm run clean && rollup -c && gulp sass && gulp copy-sass",
-    "clean": "rimraf lib && rimraf es"
+    "clean": "rimraf lib && rimraf es",
+    "lint": "npm run lint-eslint && npm run lint-stylelint",
+    "lint-eslint": "eslint -c .eslintrc.js --ext .ts,.tsx,.js src",
+    "lint-stylelint": "stylelint --config .stylelintrc.js src/**/*.{less,css,scss}"
   },
   "gitHooks": {
     "pre-commit": "lint-staged"
@@ -81,6 +84,12 @@
     "rollup-plugin-peer-deps-external": "^2.2.0",
     "rollup-plugin-postcss": "^3.1.2",
     "rollup-plugin-terser": "^7.0.0",
-    "rollup-plugin-typescript2": "^0.27.0"
+    "rollup-plugin-typescript2": "^0.27.0",
+    "stylelint": "^13.12.0",
+    "stylelint-config-prettier": "^8.0.2",
+    "stylelint-config-rational-order": "^0.1.2",
+    "stylelint-declaration-block-no-ignored-properties": "^2.3.0",
+    "stylelint-order": "^4.1.0",
+    "stylelint-scss": "^3.19.0"
   }
 }
