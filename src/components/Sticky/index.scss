@@ -1,6 +1,7 @@
-@import '../style/vars.scss';
+@import './vars.scss';
 
 .#{$base-prefix}sticky {
+
   &--fixed {
     position: fixed;
     top: 0;
@@ -11,6 +12,7 @@
 }
 
 .sticky {
+
   &_fixed {
       position: fixed;
       top: 0;

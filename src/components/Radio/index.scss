@@ -1,88 +1,86 @@
-@import '../style/vars.scss';
+@import './vars.scss';
 
 .#{$base-prefix}radio {
-    display: flex;
-    align-items: center;
-    overflow: hidden;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  cursor: pointer;
+  user-select: none;
+
+  &--disabled {
+    cursor: not-allowed;
+  }
+
+  &--label-disabled {
+    cursor: default;
+  }
+
+  &--horizontal {
+    margin-right: $padding-sm;
+  }
+
+  &__icon {
+    flex: none;
+    height: 1em;
+    font-size: $radio-size;
+    line-height: 1em;
     cursor: pointer;
-    user-select: none;
+
+    .#{$base-prefix}icon {
+      display: block;
+      box-sizing: border-box;
+      width: 1.25em;
+      height: 1.25em;
+      color: transparent;
+      font-size: 0.8em;
+      line-height: 1.25;
+      text-align: center;
+      border: 1px solid $radio-border-color;
+      transition-duration: $radio-transition-duration;
+      transition-property: color, border-color, background-color;
+    }
+
+    &--round {
+      .#{$base-prefix}icon {
+        border-radius: 100%;
+      }
+    }
+
+    &--checked {
+      .#{$base-prefix}icon {
+        color: $white;
+        background-color: $radio-checked-icon-color;
+        border-color: $radio-checked-icon-color;
+      }
+    }
 
     &--disabled {
-        cursor: not-allowed;
-    }
+      cursor: not-allowed;
 
-    &--label-disabled {
-        cursor: default;
-    }
+      .#{$base-prefix}icon {
+        background-color: $radio-disabled-background-color;
+        border-color: $radio-disabled-icon-color;
+      }
 
-    &--horizontal {
-        margin-right: $padding-sm;
-    }
-
-    &__icon {
-        flex: none;
-        height: 1em;
-        font-size: $radio-size;
-        line-height: 1em;
-        cursor: pointer;
-
+      &.#{$base-prefix}checkbox--checked {
         .#{$base-prefix}icon {
-            display: block;
-            box-sizing: border-box;
-            width: 1.25em;
-            height: 1.25em;
-            color: transparent;
-            font-size: 0.8em;
-            line-height: 1.25;
-            text-align: center;
-            border: 1px solid $radio-border-color;
-            transition-duration: $radio-transition-duration;
-            transition-property: color, border-color, background-color;
+          color: $radio-disabled-icon-color;
         }
+      }
+    }
+  }
 
-        &--round {
-            .#{$base-prefix}icon {
-                border-radius: 100%;
-            }
-        }
+  &__label {
+    margin-left: $radio-label-margin;
+    color: $radio-label-color;
+    line-height: $radio-size;
 
-        &--checked {
-            .#{$base-prefix}icon {
-                color: $white;
-                background-color: $radio-checked-icon-color;
-                border-color: $radio-checked-icon-color;
-            }
-        }
-
-        &--disabled {
-            cursor: not-allowed;
-
-            .#{$base-prefix}icon {
-                background-color: $radio-disabled-background-color;
-                border-color: $radio-disabled-icon-color;
-            }
-        }
-
-        &--disabled {
-            &.#{$base-prefix}checkbox--checked {
-                .#{$base-prefix}icon {
-                    color: $radio-disabled-icon-color;
-                }
-            }
-        }
+    &--left {
+      margin: 0 $radio-label-margin 0 0;
     }
 
-    &__label {
-        margin-left: $radio-label-margin;
-        color: $radio-label-color;
-        line-height: $radio-size;
-
-        &--left {
-            margin: 0 $radio-label-margin 0 0;
-        }
-
-        &--disabled {
-            color: $radio-disabled-label-color;
-        }
+    &--disabled {
+      color: $radio-disabled-label-color;
     }
+  }
 }

@@ -1,4 +1,4 @@
-@import '../style/vars.scss';
+@import './vars.scss';
 @import '../style/mixins.scss';
 
 .#{$base-prefix}calendar {
@@ -8,6 +8,7 @@
   background-color: $calendar-background-color;
 
   &__popup {
+
     &.van-popup--top,
     &.van-popup--bottom {
       height: $calendar-popup-height;

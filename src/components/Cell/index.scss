@@ -1,4 +1,4 @@
-@import '../style/vars.scss';
+@import './vars.scss';
 @import '../style/mixins.scss';
 
 .#{$base-prefix}cell {
@@ -104,6 +104,7 @@
 }
 
 a.#{$base-prefix}cell {
+
     &:hover {
         color: $cell-text-color;
     }

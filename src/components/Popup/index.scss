@@ -1,6 +1,7 @@
-@import '../style/vars.scss';
+@import './vars.scss';
 
 .#{$base-prefix-no} {
+
   &-overflow-hidden {
     overflow: hidden !important;
   }

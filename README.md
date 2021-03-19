@@ -49,7 +49,7 @@ yarn generate pageName 1
 - [ ] Search
 - [ ] Slider
 - [ ] Stepper
-- [ ] Switch
+- [x] Switch
 - [ ] Uploader
 
 ### Action Components
