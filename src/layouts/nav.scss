@@ -46,9 +46,9 @@
     color: #455a64;
     font-size: 14px;
     line-height: 28px;
+    cursor: pointer;
     -webkit-transition: color 0.2s;
     transition: color 0.2s;
-    cursor: pointer;
 
     &:hover,
     &.active {
@@ -69,6 +69,7 @@
 }
 
 @media (min-width: 1680px) {
+
   .doc_nav {
     left: 50%;
     margin-left: -840px;
@@ -78,6 +79,7 @@
 @media (max-width: 1300px) {
 
   .doc_nav {
+
     .doc_nav_item .item_inner {
       font-size: 13px;
     }
