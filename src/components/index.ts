@@ -13,6 +13,7 @@ import CheckboxGroup from './CheckboxGroup'
 import Checkbox from './Checkbox'
 import RadioGroup from './RadioGroup'
 import Radio from './Radio'
+import Switch from './Switch'
 import { LocaleProvider, useI18n } from './locale'
 
 export {
@@ -32,5 +33,6 @@ export {
   CheckboxGroup,
   Checkbox,
   RadioGroup,
-  Radio
+  Radio,
+  Switch
 }

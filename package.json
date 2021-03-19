@@ -73,6 +73,7 @@
     "@typescript-eslint/parser": "^3.9.0",
     "@umijs/fabric": "^2.2.2",
     "babel-plugin-transform-remove-console": "^6.9.4",
+    "colors": "^1.4.0",
     "gulp": "^4.0.2",
     "gulp-cssmin": "^0.2.0",
     "gulp-sass": "^4.1.0",

@@ -1,0 +1,8 @@
+@import '../../components/style/vars.scss';
+
+.demo-switch {
+
+  .#{$base-prefix}switch {
+    margin-left: $padding-md;
+  }
+}

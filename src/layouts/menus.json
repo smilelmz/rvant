@@ -158,8 +158,8 @@
       },
       {
         "name": "Switch 开关",
-        "url": "",
-        "m_url": "",
+        "url": "/switch",
+        "m_url": "/switch/demo",
         "simulator": true
       },
       {
