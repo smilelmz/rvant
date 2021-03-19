@@ -54,6 +54,9 @@ const CheckboxDemo = () => {
           change={(v: boolean) => setColorChecked(v)}
         />
       </DemoBlock>
+      <DemoBlock title='自定义大小'>
+        <Checkbox checked={true} labelText='自定义大小' iconSize='24px' />
+      </DemoBlock>
       <DemoBlock title='自定义图标'>
         <Checkbox
           checked={iconChecked}

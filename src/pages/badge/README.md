@@ -104,3 +104,18 @@ Use `content` slot to custom :content of badge.
 | color | Background color | _string_ | `#ee0a24` |
 | offset `v3.0.5` | Offset of badge dot | _[number, number]_ | - |
 | content | Badge content | _number \| string \| React.ReactNode \| React.ReactNode[]_ | - |
+
+### Scss 变量
+
+| 名称 | 默认值 | 描述 |
+| --- | --- | --- |
+| $badge-size | `16px` | - |
+| $badge-color | `$white` | - |
+| $badge-padding | `0 3px` | - |
+| $badge-font-size | `$font-size-sm` | - |
+| $badge-font-weight | `$font-weight-bold` | - |
+| $badge-border-width | `$border-width-base` | - |
+| $badge-background-color | `$red` | - |
+| $badge-dot-color | `$red` | - |
+| $badge-dot-size | `8px` | - |
+| $badge-font-family | `-apple-system-font, Helvetica Neue, Arial, sans-serif` | - |

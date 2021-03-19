@@ -116,3 +116,19 @@ import { Badge } from 'rvant'
 | color | 徽标背景颜色 | _string_ | `#ee0a24` |
 | offset `v3.0.5` | 设置徽标的偏移量，数组的两项分别对应水平和垂直方向的偏移量 | _[number, number]_ | - |
 | content | 徽标内容 | _number \| string \| React.ReactNode \| React.ReactNode[]_ | - |
+
+
+### Scss Variables
+
+| Name | Default Value | Description |
+| --- | --- | --- |
+| $badge-size | `16px` | - |
+| $badge-color | `$white` | - |
+| $badge-padding | `0 3px` | - |
+| $badge-font-size | `$font-size-sm` | - |
+| $badge-font-weight | `$font-weight-bold` | - |
+| $badge-border-width | `$border-width-base` | - |
+| $badge-background-color | `$red` | - |
+| $badge-dot-color | `$red` | - |
+| $badge-dot-size | `8px` | - |
+| $badge-font-family | `-apple-system-font, Helvetica Neue, Arial, sans-serif` | - |
