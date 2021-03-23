@@ -51,7 +51,7 @@ export interface CalendarProps {
   readonly?: boolean
   confirmText?: string
   confirmDisabledText?: string
-  firstDayOfWeek?: Number
+  firstDayOfWeek?: number
   position?: CalendarPosition
   round?: boolean
   closeOnClickOverlay?: boolean

@@ -10,6 +10,7 @@ export interface RadioProps {
   disabled?: boolean
   labelDisabled?: boolean
   labelPosition?: 'left' | 'right'
+  children?: React.ReactNode | React.ReactNode[]
   change?: Function
   click?: Function
 }

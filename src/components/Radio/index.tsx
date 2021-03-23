@@ -18,7 +18,8 @@ const Radio: React.FC<RadioProps> = ({
   labelText,
   disabled,
   labelDisabled,
-  labelPosition = 'right'
+  labelPosition = 'right',
+  children
 }) => {
   const isChecked = value === name
   const handleClick = (e: any) => {
@@ -59,14 +60,14 @@ const Radio: React.FC<RadioProps> = ({
     )
   }
   const genLabel = () => {
-    if (labelText) {
+    if (labelText || children) {
       return (
         <label
           key='label'
           htmlFor={name}
           className={bem(`label`, [{ [labelPosition]: true }, { disabled }])}
         >
-          {labelText}
+          {labelText || children}
         </label>
       )
     }

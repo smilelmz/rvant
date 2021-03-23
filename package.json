@@ -19,7 +19,7 @@
     "build:comp": "npm run clean && rollup -c && gulp sass && gulp copy-sass",
     "clean": "rimraf lib && rimraf es",
     "lint": "npm run lint-eslint && npm run lint-stylelint",
-    "lint-eslint": "eslint -c .eslintrc --ext .ts,.tsx,.js src",
+    "lint-eslint": "eslint -c .eslintrc.js --ext .ts,.tsx,.js src",
     "lint-stylelint": "stylelint --config .stylelintrc src/**/*.{less,css,scss}"
   },
   "gitHooks": {
@@ -69,8 +69,8 @@
     "@types/react-sticky": "^6.0.3",
     "@types/react-syntax-highlighter": "^11.0.5",
     "@types/react-transition-group": "^4.4.0",
-    "@typescript-eslint/eslint-plugin": "^3.9.0",
-    "@typescript-eslint/parser": "^3.9.0",
+    "@typescript-eslint/eslint-plugin": "^4.18.0",
+    "@typescript-eslint/parser": "^4.18.0",
     "@umijs/fabric": "^2.2.2",
     "babel-plugin-transform-remove-console": "^6.9.4",
     "colors": "^1.4.0",

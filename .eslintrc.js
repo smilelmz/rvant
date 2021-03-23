@@ -19,5 +19,8 @@ module.exports = {
     '@typescript-eslint/no-shadow': 'off',
     '@typescript-eslint/no-use-before-define': 'off'
   },
-  globals: {}
+  globals: {},
+  parserOptions: {
+    project: './tsconfig.eslint.json'
+  }
 }
