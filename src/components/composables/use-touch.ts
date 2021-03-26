@@ -42,7 +42,7 @@ export const useTouch = () => {
 
   const move = ((event: TouchEvent) => {
     const touch = event.touches[0]
-    deltaX.current = touch.clientX - startX.current
+    deltaX.current = touch.clientX < 0 ? 0 : touch.clientX - startX.current
     deltaY.current = touch.clientY - startY.current
     offsetX.current = Math.abs(deltaX.current)
     offsetY.current = Math.abs(deltaY.current)

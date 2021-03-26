@@ -13,6 +13,7 @@ const Image: React.FC<ImageProps> = ({
   height,
   radius,
   iconPrefix,
+  iconSize,
   round = false,
   lazyLoad = false,
   showError = true,
@@ -75,6 +76,7 @@ const Image: React.FC<ImageProps> = ({
     }
     return (
       <Icon
+        size={iconSize}
         name={errorIcon as string}
         className={bem(`error-icon`)}
         classPrefix={iconPrefix}

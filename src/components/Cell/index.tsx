@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/no-noninteractive-tabindex */
 import React from 'react'
 import { isDef, createNamespace } from '../utils'
 import { CellProps } from './index.types'

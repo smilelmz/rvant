@@ -8,4 +8,5 @@ export interface BadgeProps {
   children?: React.ReactNode | React.ReactNode[]
   style?: Record<string, any>
   className?: string
+  showZero?: boolean
 }

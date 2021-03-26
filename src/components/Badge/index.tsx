@@ -12,10 +12,14 @@ const Badge: React.FC<BadgeProps> = ({
   content,
   children,
   style,
-  className
+  className,
+  showZero = true
 }: BadgeProps) => {
   const CustomTag = tag || 'div'
-  const hasContent = () => !!(content || (isDef(content) && content !== ''))
+  const hasContent = () => {
+    if (content) return true
+    return isDef(content) && content !== '' && (showZero || content !== 0)
+  }
   const renderContent = () => {
     if (content && React.isValidElement(content)) {
       return content

@@ -48,7 +48,7 @@ import { Tag } from 'vant';
 添加 `closeable` 属性表示标签是可关闭的，关闭标签时会触发 `close` 事件，在 `close` 事件中可以执行隐藏标签的逻辑。
 
 ```html
-<van-tag :show="show" closeable size="medium" type="primary" @close="close">
+<van-tag :show="show" closeable size="medium" type="primary" $close="close">
   标签
 </van-tag>
 ```
@@ -126,19 +126,19 @@ export default {
 
 | 名称                        | 默认值                      | 描述 |
 | --------------------------- | --------------------------- | ---- |
-| @tag-padding                | `0 @padding-base`           | -    |
-| @tag-text-color             | `@white`                    | -    |
-| @tag-font-size              | `@font-size-sm`             | -    |
-| @tag-border-radius          | `2px`                       | -    |
-| @tag-line-height            | `16px`                      | -    |
-| @tag-medium-padding         | `2px 6px`                   | -    |
-| @tag-large-padding          | `@padding-base @padding-xs` | -    |
-| @tag-large-border-radius    | `@border-radius-md`         | -    |
-| @tag-large-font-size        | `@font-size-md`             | -    |
-| @tag-round-border-radius    | `@border-radius-max`        | -    |
-| @tag-danger-color           | `@red`                      | -    |
-| @tag-primary-color          | `@blue`                     | -    |
-| @tag-success-color          | `@green`                    | -    |
-| @tag-warning-color          | `@orange`                   | -    |
-| @tag-default-color          | `@gray-6`                   | -    |
-| @tag-plain-background-color | `@white`                    | -    |
+| $tag-padding                | `0 $padding-base`           | -    |
+| $tag-text-color             | `$white`                    | -    |
+| $tag-font-size              | `$font-size-sm`             | -    |
+| $tag-border-radius          | `2px`                       | -    |
+| $tag-line-height            | `16px`                      | -    |
+| $tag-medium-padding         | `2px 6px`                   | -    |
+| $tag-large-padding          | `$padding-base $padding-xs` | -    |
+| $tag-large-border-radius    | `$border-radius-md`         | -    |
+| $tag-large-font-size        | `$font-size-md`             | -    |
+| $tag-round-border-radius    | `$border-radius-max`        | -    |
+| $tag-danger-color           | `$red`                      | -    |
+| $tag-primary-color          | `$blue`                     | -    |
+| $tag-success-color          | `$green`                    | -    |
+| $tag-warning-color          | `$orange`                   | -    |
+| $tag-default-color          | `$gray-6`                   | -    |
+| $tag-plain-background-color | `$white`                    | -    |

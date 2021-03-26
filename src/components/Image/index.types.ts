@@ -9,6 +9,7 @@ export interface ImageProps {
   round?: boolean
   lazyLoad?: boolean
   iconPrefix?: string
+  iconSize?: number | string
   showError?: boolean
   showLoading?: boolean
   errorIcon?: string | React.ReactNode
