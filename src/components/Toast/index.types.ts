@@ -8,6 +8,7 @@ export interface ToastProps {
   position?: ToastPosition
   message?: string
   icon?: string
+  iconSize?: number | string
   iconPrefix?: string
   mask?: boolean
   loadingType?: LoadingType

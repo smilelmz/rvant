@@ -34,6 +34,7 @@ class Notification extends Component<IProps, IState> {
   }
 
   add = (notice: Record<string, any>) => {
+    // eslint-disable-next-line @typescript-eslint/no-this-alias
     const self = this
     notice.key = notice.key || getNoticeKey()
     const { key } = notice

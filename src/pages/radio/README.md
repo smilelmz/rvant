@@ -3,7 +3,7 @@
 ### Install
 
 ```js
-import { RadioGroup, Radio } from 'vant';
+import { RadioGroup, Radio } from 'rvant';
 ```
 
 ## Usage

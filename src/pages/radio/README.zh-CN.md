@@ -7,7 +7,7 @@
 ### 引入
 
 ```js
-import { RadioGroup, Radio } from 'vant';
+import { RadioGroup, Radio } from 'rvant';
 ```
 
 ## 代码演示

@@ -25,6 +25,7 @@ const defaultOptions: ToastProps = {
   position: config.position,
   message: '',
   icon: '',
+  iconSize: undefined,
   iconPrefix: undefined,
   mask: config.mask,
   loadingType: 'circular',
@@ -168,7 +169,7 @@ export default {
       messageNeedHide = true
     }
   },
-  config(conf: Partial<IToastConfig> = {}) {
+  setDefaultConfig(conf: Partial<IToastConfig> = {}) {
     const { duration = SHORT, mask = true, position = 'middle' } = conf
     config.duration = duration
     config.position = position

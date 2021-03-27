@@ -3,7 +3,7 @@
 ### 引入
 
 ```js
-import { Tag } from 'vant';
+import { Tag } from 'rvant';
 ```
 
 ## 代码演示

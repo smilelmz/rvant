@@ -3,7 +3,7 @@
 ### Install
 
 ```js
-import { Tag } from 'vant';
+import { Tag } from 'rvant';
 ```
 
 ## Usage

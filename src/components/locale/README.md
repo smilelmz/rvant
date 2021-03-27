@@ -11,7 +11,7 @@ Vant uses Chinese as the default language. If you want to use other languages, p
 Vant supports multiple languages with the Locale component, and the `Locale.use` method allows you to switch to different languages.
 
 ```js
-import { Locale } from 'vant';
+import { Locale } from 'rvant';
 import enUS from 'vant/es/locale/lang/en-US';
 
 Locale.use('en-US', enUS);
@@ -22,7 +22,7 @@ Locale.use('en-US', enUS);
 Use `Locale.add` method to modify the default configs.
 
 ```js
-import { Locale } from 'vant';
+import { Locale } from 'rvant';
 
 const messages = {
   'en-US': {

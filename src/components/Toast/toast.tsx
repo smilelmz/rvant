@@ -11,6 +11,7 @@ const Toast: React.FC<ToastProps> = ({
   position = 'middle',
   message = '',
   icon = '',
+  iconSize,
   iconPrefix = undefined,
   loadingType = 'circular',
   className = ''
@@ -23,6 +24,7 @@ const Toast: React.FC<ToastProps> = ({
         <Icon
           className={bem('icon')}
           classPrefix={iconPrefix}
+          size={iconSize}
           name={icon || type}
         />
       )
@@ -42,7 +44,7 @@ const Toast: React.FC<ToastProps> = ({
       return (
         <div
           className={bem('text')}
-          dangerouslySetInnerHTML={{ __html: message }}
+          dangerouslySetInnerHTML={{ __html: `${message}` }}
         />
       )
     }
