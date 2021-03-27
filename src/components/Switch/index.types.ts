@@ -1,3 +1,5 @@
+import { ValueFunction } from '../type'
+
 export interface SwitchProps {
   size?: number | string
   loading?: boolean
@@ -7,5 +9,5 @@ export interface SwitchProps {
   inactiveColor?: string
   activeValue?: unknown
   inactiveValue?: unknown
-  change?: Function
+  change?: ValueFunction<unknown>
 }

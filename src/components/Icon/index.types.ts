@@ -1,3 +1,6 @@
+import { MouseEvent } from 'react'
+import { EventFunction } from '../type'
+
 export interface IconProps {
   dot?: boolean
   name?: string
@@ -8,5 +11,5 @@ export interface IconProps {
   classPrefix?: string
   className?: string
   style?: Record<string, any>
-  click?: Function
+  click?: EventFunction<MouseEvent>
 }

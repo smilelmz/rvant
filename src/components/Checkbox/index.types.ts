@@ -1,4 +1,5 @@
-import { EventFunction } from '../type'
+import { MouseEvent } from 'react'
+import { EventFunction, ValueFunction } from '../type'
 
 export type CheckerShape = 'square' | 'round'
 export type CheckerDirection = 'horizontal' | 'vertical'
@@ -11,7 +12,7 @@ export type CheckerParent = {
   direction?: CheckerDirection
   checkedColor?: string
   modelValue?: unknown[]
-  updateGroupValue?: Function
+  updateGroupValue?: ValueFunction<unknown[]>
 }
 
 export interface CheckboxProps {
@@ -25,8 +26,8 @@ export interface CheckboxProps {
   disabled?: boolean
   labelDisabled?: boolean
   labelPosition?: CheckerLabelPosition
-  change?: Function
-  click?: Function
+  change?: ValueFunction<boolean>
+  click?: EventFunction<MouseEvent>
   bindGroup?: boolean
   parent?: CheckerParent
   children?: React.ReactNode | React.ReactNode[]

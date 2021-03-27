@@ -1,3 +1,6 @@
+import { MouseEvent } from 'react'
+import { EventFunction } from '../type'
+
 /* eslint-disable @typescript-eslint/no-unused-vars */
 export type PopupPosition = 'top' | 'left' | 'bottom' | 'right' | 'center' | ''
 export type PopupCloseIconPosition =
@@ -25,8 +28,8 @@ export interface PopupProps {
   transition?: string
   transitionAppear?: boolean
   safeAreaInsetBottom?: boolean
-  click?: (e?: any) => void
-  close?: () => void
-  opened?: () => void
-  closed?: () => void
+  click?: EventFunction<MouseEvent>
+  close?: VoidFunction
+  opened?: VoidFunction
+  closed?: VoidFunction
 }

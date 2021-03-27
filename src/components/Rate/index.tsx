@@ -8,6 +8,10 @@ import Icon from '../Icon'
 const [bem] = createNamespace('rate')
 
 type RateStatus = 'full' | 'half' | 'void'
+interface RangeItem {
+  left: number
+  score: number
+}
 const getRateStatus = (
   value: number,
   index: number,
@@ -40,7 +44,7 @@ const Rate: React.FC<RateProps> = ({
   touchable = true,
   change
 }) => {
-  let ranges: Array<{ left: number; score: number }>
+  let ranges: RangeItem[]
   const touch = useTouch()
   const [itemRefs, setItemRefs] = useRefs<HTMLDivElement>()
   const untouchable = () => readonly || disabled || !touchable

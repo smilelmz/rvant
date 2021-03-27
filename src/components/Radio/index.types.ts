@@ -1,3 +1,6 @@
+import { MouseEvent } from 'react'
+import { EventFunction, ValueFunction } from '../type'
+
 export interface RadioProps {
   value?: any
   name?: string
@@ -11,6 +14,6 @@ export interface RadioProps {
   labelDisabled?: boolean
   labelPosition?: 'left' | 'right'
   children?: React.ReactNode | React.ReactNode[]
-  change?: Function
-  click?: Function
+  change?: ValueFunction<unknown>
+  click?: EventFunction<MouseEvent>
 }

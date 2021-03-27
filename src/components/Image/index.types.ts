@@ -1,4 +1,6 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
+import { MouseEvent } from 'react'
+import { EventFunction } from '../type'
+
 export interface ImageProps {
   src?: string
   fit?: 'contain' | 'cover' | 'fill' | 'none' | 'scale-down'
@@ -14,7 +16,7 @@ export interface ImageProps {
   showLoading?: boolean
   errorIcon?: string | React.ReactNode
   loadingIcon?: string | React.ReactNode
-  click?: (e?: any) => void
-  load?: (e?: any) => void
-  error?: (e?: any) => void
+  click?: EventFunction<MouseEvent>
+  load?: VoidFunction
+  error?: VoidFunction
 }

@@ -297,7 +297,7 @@ Use [ref] to get Calendar instance and call instance methods.
 | $calendar-weekdays-height | `30px` | - |
 | $calendar-weekdays-font-size | `$font-size-sm` | - |
 | $calendar-month-title-font-size | `$font-size-md` | - |
-| $calendar-month-mark-color | `fade($gray-2, 80%)` | - |
+| $calendar-month-mark-color | `rgba($gray-2, 80%)` | - |
 | $calendar-month-mark-font-size | `160px` | - |
 | $calendar-day-height | `64px` | - |
 | $calendar-day-font-size | `$font-size-lg` | - |

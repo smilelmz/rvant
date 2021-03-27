@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { MouseEvent } from 'react'
 import { createNamespace } from '../utils'
 import { ColProps } from './index.types'
 
@@ -23,7 +23,7 @@ const Col: React.FC<ColProps> = ({
     <div
       style={style}
       className={bem({ [`${span}`]: span, [`offset-${offset}`]: offset })}
-      onClick={(e: any) => click && click(e)}
+      onClick={(e: MouseEvent) => click && click(e)}
     >
       {children}
     </div>

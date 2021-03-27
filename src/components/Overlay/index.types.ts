@@ -1,3 +1,6 @@
+import { MouseEvent } from 'react'
+import { EventFunction } from '../type'
+
 export interface OverlayProps {
   show?: boolean
   zIndex?: number
@@ -5,5 +8,5 @@ export interface OverlayProps {
   className?: string
   customStyle?: Record<string, any>
   lockScroll?: boolean
-  click?: (e?: any) => void
+  click?: EventFunction<MouseEvent>
 }

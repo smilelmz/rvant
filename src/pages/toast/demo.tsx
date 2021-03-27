@@ -6,7 +6,7 @@ import './index.scss'
 
 const ToastDemo = () => {
   const showText = () => {
-    Toast.info('提示内容', 10)
+    Toast.info('提示内容', 5)
   }
   const showLoading = () => {
     Toast.loading({ message: '加载提示' })

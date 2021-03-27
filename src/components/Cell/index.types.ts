@@ -1,3 +1,4 @@
+import { MouseEvent } from 'react'
 import { EventFunction } from '../type'
 
 export interface CellProps {
@@ -20,5 +21,5 @@ export interface CellProps {
   titleClass?: string
   valueClass?: string
   labelClass?: string
-  click?: EventFunction<Event>
+  click?: EventFunction<MouseEvent>
 }

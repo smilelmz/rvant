@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { MouseEvent } from 'react'
 import { createNamespace, BORDER_SURROUND, WHITE } from '../utils'
 import { ButtonProps } from './index.types'
 
@@ -49,7 +49,7 @@ const Button: React.FC<ButtonProps> = ({
       hairline
     }
   ])} ${hairline ? BORDER_SURROUND : ''} ${className || ''}`
-  const onClick = (e: any) => {
+  const onClick = (e: MouseEvent) => {
     if (!loading && !disabled) {
       click && click(e)
     }

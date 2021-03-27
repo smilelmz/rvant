@@ -1,3 +1,5 @@
+import { EventFunction } from '../type'
+
 /* eslint-disable @typescript-eslint/no-unused-vars */
 export type CheckerDirection = 'horizontal' | 'vertical'
 
@@ -8,7 +10,7 @@ export interface CheckboxGroupProps {
   direction?: CheckerDirection
   iconSize?: number | string
   checkedColor?: string
-  change?: Function
+  change?: EventFunction<unknown[]>
   children?: React.ReactNode | React.ReactNode[]
 }
 

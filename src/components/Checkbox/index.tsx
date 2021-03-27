@@ -1,5 +1,4 @@
-/* eslint-disable jsx-a11y/role-has-required-aria-props */
-import React, { useState, useRef, useImperativeHandle } from 'react'
+import React, { useState, useRef, useImperativeHandle, MouseEvent } from 'react'
 import { createNamespace, addUnit } from '../utils'
 import { CheckboxProps, CheckboxHandler } from './index.types'
 import Icon from '../Icon'
@@ -61,7 +60,7 @@ const Checkbox = (
       }
     }
   }
-  const handleContainerClick = (event: any) => {
+  const handleContainerClick = (event: MouseEvent) => {
     const { target } = event
     const icon = iconRef.current
     const iconClicked = icon === target || icon!.contains(target as Node)
@@ -116,12 +115,9 @@ const Checkbox = (
     nodes.push(renderLabel())
   }
   const toggle = (newValue = !isChecked) => {
-    console.log(newValue)
     if (JSON.stringify(parent) !== '{}' && bindGroup) {
-      console.log(1)
       setGroupValue(newValue)
     } else {
-      console.log(2)
       change && change(newValue)
     }
     setIsChecked(newValue)

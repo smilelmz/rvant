@@ -13,6 +13,6 @@ export interface ToastProps {
   loadingType?: LoadingType
   duration?: number
   className?: string
-  onOpened?: () => void
-  onClose?: () => void
+  onOpened?: VoidFunction
+  onClose?: VoidFunction
 }

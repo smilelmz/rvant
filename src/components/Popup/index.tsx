@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react'
 import CSSTransition from 'react-transition-group/CSSTransition'
 import { PopupProps } from './index.types'

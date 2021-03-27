@@ -1,3 +1,4 @@
+import { MouseEvent } from 'react'
 import { EventFunction } from '../type'
 
 export type RowSpaces = { left?: number; right: number }[]
@@ -14,6 +15,6 @@ export interface RowProps {
   align?: RowAlign
   justify?: RowJustify
   gutter?: number | string
-  click?: EventFunction<Event>
+  click?: EventFunction<MouseEvent>
   children?: React.ReactNode[] | React.ReactNode
 }

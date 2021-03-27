@@ -1,3 +1,5 @@
+import { ValueFunction } from '../type'
+
 export interface RateProps {
   value?: number
   count?: number
@@ -13,5 +15,5 @@ export interface RateProps {
   readonly?: boolean
   disabled?: boolean
   touchable?: boolean
-  change?: Function
+  change?: ValueFunction<number>
 }

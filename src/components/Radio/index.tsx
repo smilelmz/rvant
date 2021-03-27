@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/role-has-required-aria-props */
 import React from 'react'
 import { RadioProps } from './index.types'
 import { addUnit, createNamespace } from '../utils'

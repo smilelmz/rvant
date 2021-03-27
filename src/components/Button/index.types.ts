@@ -1,3 +1,6 @@
+import { MouseEvent } from 'react'
+import { EventFunction } from '../type'
+
 export interface ButtonProps {
   style?: Record<string, string | number>
   className?: string
@@ -25,7 +28,7 @@ export interface ButtonProps {
   tag?: 'button' | 'a'
   nativeType?: 'button' | 'submit' | 'reset'
   iconPosition?: 'left' | 'right'
-  click?: Function
+  click?: EventFunction<MouseEvent>
 }
 
 export interface LoadingIconProps {

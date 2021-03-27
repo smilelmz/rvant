@@ -1,8 +1,9 @@
-import React, { CSSProperties } from 'react'
+import React, { CSSProperties, MouseEvent } from 'react'
 import CSSTransition from 'react-transition-group/CSSTransition'
 import { TagProps } from './index.types'
 import { createNamespace, BASE_PREFIX } from '../utils'
 import Icon from '../Icon'
+import { EventFunction } from '../type'
 
 const [bem] = createNamespace('tag')
 const Tag: React.FC<TagProps> = ({
@@ -18,8 +19,8 @@ const Tag: React.FC<TagProps> = ({
   children,
   close
 }) => {
-  const onClose = (event: MouseEvent) => {
-    event.stopPropagation()
+  const onClose: EventFunction<MouseEvent> = (event?: MouseEvent) => {
+    event && event.stopPropagation()
     close && close(event)
   }
   const getStyle = (): CSSProperties => {

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { MouseEvent, useEffect, useState } from 'react'
 import LazyLoad from 'react-lazyload'
 import { isDef, addUnit, createNamespace } from '../utils'
 import Icon from '../Icon'
@@ -54,9 +54,6 @@ const Image: React.FC<ImageProps> = ({
     setIsLoading(false)
     setIsError(true)
     error && error()
-  }
-  const onClick = () => {
-    click && click()
   }
   const renderLoadingIcon = () => {
     if (React.isValidElement(loadingIcon)) {
@@ -122,7 +119,11 @@ const Image: React.FC<ImageProps> = ({
   }
   const style = getStyle()
   return (
-    <div className={bem([{ round }])} style={style} onClick={onClick}>
+    <div
+      className={bem([{ round }])}
+      style={style}
+      onClick={(e: MouseEvent) => click && click(e)}
+    >
       {renderImage()}
       {renderPlaceholder()}
     </div>

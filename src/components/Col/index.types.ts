@@ -1,3 +1,4 @@
+import { MouseEvent } from 'react'
 import { EventFunction } from '../type'
 
 export interface ColProps {
@@ -5,5 +6,5 @@ export interface ColProps {
   offset?: string | number
   index?: number
   spaces?: any[]
-  click?: EventFunction<Event>
+  click?: EventFunction<MouseEvent>
 }

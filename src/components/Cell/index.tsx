@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { MouseEvent } from 'react'
 import { isDef, createNamespace } from '../utils'
 import { CellProps } from './index.types'
 import Icon from '../Icon'
@@ -123,7 +123,7 @@ const Cell: React.FC<CellProps> = ({
     className,
     role: clickable ? 'button' : undefined,
     tabIndex: clickable ? 0 : undefined,
-    onClick: (e: Event) => click && click(e)
+    onClick: (e: MouseEvent) => click && click(e)
   }
   if (url && CustomTag === 'a') {
     props.href = url

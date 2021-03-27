@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { MouseEvent } from 'react'
 import { createNamespace } from '../utils'
 import { RowProps, RowSpaces } from './index.types'
 
@@ -62,7 +62,7 @@ const Row: React.FC<RowProps> = ({
         [`align-${align}`]: align,
         [`justify-${justify}`]: justify
       })}
-      onClick={(e: any) => click && click(e)}
+      onClick={(e: MouseEvent) => click && click(e)}
     >
       {React.Children.map(children, (child: any, index) => {
         const config: Record<string, string | number | any[]> = { index }

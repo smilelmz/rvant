@@ -1,4 +1,4 @@
-import React, { CSSProperties } from 'react'
+import React, { CSSProperties, MouseEvent } from 'react'
 import CSSTransition from 'react-transition-group/CSSTransition'
 import { OverlayProps } from './index.types'
 import {
@@ -27,11 +27,11 @@ const Overlay: React.FC<OverlayProps> = ({
   if (show && lockScroll) {
     document.body.classList.add(`${BASE_PREFIX}overflow-hidden`)
   }
-  const onClick = () => {
+  const onClick = (e: MouseEvent) => {
     if (lockScroll) {
       document.body.classList.remove(`${BASE_PREFIX}overflow-hidden`)
     }
-    click && click()
+    click && click(e)
   }
   const renderOverlay = () => {
     const style: CSSProperties = {

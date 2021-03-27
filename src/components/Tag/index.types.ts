@@ -1,3 +1,4 @@
+import { MouseEvent } from 'react'
 import { EventFunction } from '../type'
 
 export type TagType = 'default' | 'primary' | 'success' | 'warning' | 'danger'

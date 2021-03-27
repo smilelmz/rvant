@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { useRef, TouchEvent } from 'react'
 
 const MIN_DISTANCE = 10
 
@@ -34,13 +34,13 @@ export const useTouch = () => {
     direction.current = ''
   }
 
-  const start = ((event: TouchEvent) => {
+  const start = (event: TouchEvent) => {
     reset()
     startX.current = event.touches[0].clientX
     startY.current = event.touches[0].clientY
-  }) as EventListener
+  }
 
-  const move = ((event: TouchEvent) => {
+  const move = (event: TouchEvent) => {
     const touch = event.touches[0]
     deltaX.current = touch.clientX < 0 ? 0 : touch.clientX - startX.current
     deltaY.current = touch.clientY - startY.current
@@ -50,7 +50,7 @@ export const useTouch = () => {
     if (!direction.current) {
       direction.current = getDirection(offsetX.current, offsetY.current)
     }
-  }) as EventListener
+  }
 
   return {
     move,
