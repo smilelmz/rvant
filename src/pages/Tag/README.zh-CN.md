@@ -13,10 +13,10 @@ import { Tag } from 'rvant';
 通过 `type` 属性控制标签颜色。
 
 ```html
-<van-tag type="primary">标签</van-tag>
-<van-tag type="success">标签</van-tag>
-<van-tag type="danger">标签</van-tag>
-<van-tag type="warning">标签</van-tag>
+<Tag type="primary">标签</Tag>
+<Tag type="success">标签</Tag>
+<Tag type="danger">标签</Tag>
+<Tag type="warning">标签</Tag>
 ```
 
 ### 空心样式
@@ -24,7 +24,7 @@ import { Tag } from 'rvant';
 设置 `plain` 属性设置为空心样式。
 
 ```html
-<van-tag plain type="primary">标签</van-tag>
+<Tag plain type="primary">标签</Tag>
 ```
 
 ### 圆角样式
@@ -32,7 +32,7 @@ import { Tag } from 'rvant';
 通过 `round` 设置为圆角样式。
 
 ```html
-<van-tag round type="primary">标签</van-tag>
+<Tag round type="primary">标签</Tag>
 ```
 
 ### 标记样式
@@ -40,7 +40,7 @@ import { Tag } from 'rvant';
 通过 `mark` 设置为标记样式(半圆角)。
 
 ```html
-<van-tag mark type="primary">标签</van-tag>
+<Tag mark type="primary">标签</Tag>
 ```
 
 ### 可关闭标签
@@ -48,27 +48,16 @@ import { Tag } from 'rvant';
 添加 `closeable` 属性表示标签是可关闭的，关闭标签时会触发 `close` 事件，在 `close` 事件中可以执行隐藏标签的逻辑。
 
 ```html
-<van-tag :show="show" closeable size="medium" type="primary" $close="close">
+<Tag show={show} closeable size="medium" type="primary" close={close}>
   标签
-</van-tag>
+</Tag>
 ```
 
 ```js
-import { ref } from 'vue';
-
-export default {
-  setup() {
-    const show = ref(true);
-    const close = () => {
-      show.value = false;
-    };
-
-    return {
-      show,
-      close,
-    };
-  },
-};
+const [show, setShow] = useState(true)
+const close = () => {
+  setShow(false)
+}
 ```
 
 ### 标签大小
@@ -76,19 +65,19 @@ export default {
 通过 `size` 属性调整标签大小。
 
 ```html
-<van-tag type="primary">标签</van-tag>
-<van-tag type="primary" size="medium">标签</van-tag>
-<van-tag type="primary" size="large">标签</van-tag>
+<Tag type="primary">标签</Tag>
+<Tag type="primary" size="medium">标签</Tag>
+<Tag type="primary" size="large">标签</Tag>
 ```
 
 ### 自定义颜色
 
-通过 `color` 和 `text-color` 属性设置标签颜色。
+通过 `color` 和 `textColor` 属性设置标签颜色。
 
 ```html
-<van-tag color="#7232dd">标签</van-tag>
-<van-tag color="#ffe1e1" text-color="#ad0000">标签</van-tag>
-<van-tag color="#7232dd" plain>标签</van-tag>
+<Tag color="#7232dd">标签</Tag>
+<Tag color="#ffe1e1" textColor="#ad0000">标签</Tag>
+<Tag color="#7232dd" plain>标签</Tag>
 ```
 
 ## API
@@ -104,14 +93,8 @@ export default {
 | plain | 是否为空心样式 | _boolean_ | `false` |
 | round | 是否为圆角样式 | _boolean_ | `false` |
 | mark | 是否为标记样式 | _boolean_ | `false` |
-| text-color | 文本颜色，优先级高于 `color` 属性 | _string_ | `white` |
+| textColor | 文本颜色，优先级高于 `color` 属性 | _string_ | `white` |
 | closeable | 是否为可关闭标签 | _boolean_ | `false` |
-
-### Slots
-
-| 名称    | 说明         |
-| ------- | ------------ |
-| default | 标签显示内容 |
 
 ### Events
 
@@ -120,9 +103,7 @@ export default {
 | click  | 点击时触发     | _event: MouseEvent_ |
 | close  | 关闭标签时触发 | _event: MouseEvent_ |
 
-### 样式变量
-
-组件提供了下列 Less 变量，可用于自定义样式，使用方法请参考[主题定制](#/zh-CN/theme)。
+### Scss变量
 
 | 名称                        | 默认值                      | 描述 |
 | --------------------------- | --------------------------- | ---- |

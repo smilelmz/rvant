@@ -18,7 +18,8 @@ module.exports = {
     '@typescript-eslint/no-redeclare': 'off',
     '@typescript-eslint/no-shadow': 'off',
     '@typescript-eslint/no-use-before-define': 'off',
-    '@typescript-eslint/consistent-type-imports': 'off'
+    '@typescript-eslint/consistent-type-imports': 'off',
+    'react/no-array-index-key': 'off'
   },
   globals: {},
   parserOptions: {

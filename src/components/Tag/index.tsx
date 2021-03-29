@@ -17,7 +17,8 @@ const Tag: React.FC<TagProps> = ({
   type = 'default',
   show = true,
   children,
-  close
+  close,
+  click
 }) => {
   const onClose: EventFunction<MouseEvent> = (event?: MouseEvent) => {
     event && event.stopPropagation()
@@ -45,7 +46,13 @@ const Tag: React.FC<TagProps> = ({
       <Icon name='cross' className={bem('close')} click={onClose} />
     )
     return (
-      <span style={getStyle()} className={bem([classes, type])}>
+      <span
+        style={getStyle()}
+        className={bem([classes, type])}
+        onClick={(e) => {
+          click && click(e)
+        }}
+      >
         {children}
         {CloseIcon}
       </span>

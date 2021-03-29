@@ -1,4 +1,8 @@
 @import '../../components/style/vars.scss';
+
 .demo-tag {
+
+  .van-tag + .van-tag {
+    margin-left: $padding-xs;
+  }
 }
-    

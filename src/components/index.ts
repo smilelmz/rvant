@@ -14,6 +14,8 @@ import Checkbox from './Checkbox'
 import RadioGroup from './RadioGroup'
 import Radio from './Radio'
 import Switch from './Switch'
+import Tag from './Tag'
+import Skeleton from './Skeleton'
 import { LocaleProvider, useI18n } from './locale'
 
 export {
@@ -34,5 +36,7 @@ export {
   Checkbox,
   RadioGroup,
   Radio,
-  Switch
+  Switch,
+  Tag,
+  Skeleton
 }

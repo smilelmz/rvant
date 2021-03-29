@@ -11,70 +11,59 @@ import { Tag } from 'rvant';
 ### Basic Usage
 
 ```html
-<van-tag type="primary">Tag</van-tag>
-<van-tag type="success">Tag</van-tag>
-<van-tag type="danger">Tag</van-tag>
-<van-tag type="warning">Tag</van-tag>
+<Tag type="primary">Tag</Tag>
+<Tag type="success">Tag</Tag>
+<Tag type="danger">Tag</Tag>
+<Tag type="warning">Tag</Tag>
 ```
 
 ### Plain style
 
 ```html
-<van-tag plain type="primary">Tag</van-tag>
+<Tag plain type="primary">Tag</Tag>
 ```
 
 ### Round style
 
 ```html
-<van-tag round type="primary">Tag</van-tag>
+<Tag round type="primary">Tag</Tag>
 ```
 
 ### Mark style
 
 ```html
-<van-tag mark type="primary">Tag</van-tag>
+<Tag mark type="primary">Tag</Tag>
 ```
 
 ### Closeable
 
 ```html
-<van-tag :show="show" closeable size="medium" type="primary" $close="close">
-  Tag
-</van-tag>
+<Tag show={show} closeable size="medium" type="primary" close={close}>
+  标签
+</Tag>
 ```
 
 ```js
-import { ref } from 'vue';
-
-export default {
-  setup() {
-    const show = ref(true);
-    const close = () => {
-      show.value = false;
-    };
-
-    return {
-      show,
-      close,
-    };
-  },
-};
+const [show, setShow] = useState(true)
+const close = () => {
+  setShow(false)
+}
 ```
 
 ### Custom Size
 
 ```html
-<van-tag type="primary">Tag</van-tag>
-<van-tag type="primary" size="medium">Tag</van-tag>
-<van-tag type="primary" size="large">Tag</van-tag>
+<Tag type="primary">Tag</Tag>
+<Tag type="primary" size="medium">Tag</Tag>
+<Tag type="primary" size="large">Tag</Tag>
 ```
 
 ### Custom Color
 
 ```html
-<van-tag color="#7232dd">Tag</van-tag>
-<van-tag color="#ffe1e1" text-color="#ad0000">Tag</van-tag>
-<van-tag color="#7232dd" plain>Tag</van-tag>
+<Tag color="#7232dd">Tag</Tag>
+<Tag color="#ffe1e1" textColor="#ad0000">Tag</Tag>
+<Tag color="#7232dd" plain>Tag</Tag>
 ```
 
 ## API
@@ -90,14 +79,8 @@ export default {
 | plain | Whether to be plain style | _boolean_ | `false` |
 | round | Whether to be round style | _boolean_ | `false` |
 | mark | Whether to be mark style | _boolean_ | `false` |
-| text-color | Text color | _string_ | `white` |
+| textColor | Text color | _string_ | `white` |
 | closeable | Whether to be closeable | _boolean_ | `false` |
-
-### Slots
-
-| Name    | Description  |
-| ------- | ------------ |
-| default | Default slot |
 
 ### Events
 
@@ -106,9 +89,7 @@ export default {
 | click | Emitted when component is clicked  | _event: MouseEvent_ |
 | close | Emitted when close icon is clicked | _event: MouseEvent_ |
 
-### Less Variables
-
-How to use: [Custom Theme](#/en-US/theme).
+### Scss Variables
 
 | Name                        | Default Value               | Description |
 | --------------------------- | --------------------------- | ----------- |

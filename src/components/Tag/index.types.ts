@@ -4,7 +4,7 @@ import { EventFunction } from '../type'
 export type TagType = 'default' | 'primary' | 'success' | 'warning' | 'danger'
 export interface TagProps {
   size?: string
-  mark?: string
+  mark?: boolean
   color?: string
   plain?: boolean
   round?: boolean
@@ -14,4 +14,5 @@ export interface TagProps {
   show?: boolean
   children?: React.ReactNode | React.ReactNode[]
   close?: EventFunction<MouseEvent>
+  click?: EventFunction<MouseEvent>
 }

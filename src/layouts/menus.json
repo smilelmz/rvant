@@ -300,8 +300,8 @@
       },
       {
         "name": "Skeleton 骨架屏",
-        "url": "",
-        "m_url": "",
+        "url": "/skeleton",
+        "m_url": "skeleton/demo",
         "simulator": true
       },
       {
@@ -324,8 +324,8 @@
       },
       {
         "name": "Tag 标签",
-        "url": "",
-        "m_url": "",
+        "url": "/tag",
+        "m_url": "/tag/demo",
         "simulator": true
       }
     ]

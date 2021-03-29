@@ -1,91 +1,91 @@
 # Toast
 
-### 引入
+### Install
 
 ```js
 import { Toast } from 'rvant';
 ```
 
-## 代码演示
+## Usage
 
-### 基础用法
+### Basic Usage
 
 ```html
-<Cell title='文字提示' isLink click={showText} />
-<Cell title='加载提示' isLink click={showLoading} />
-<Cell title='成功提示' isLink click={showSuccess} />
-<Cell title='失败提示' isLink click={showFailure} />
+<Cell title='Text' isLink click={showText} />
+<Cell title='Loading' isLink click={showLoading} />
+<Cell title='Success' isLink click={showSuccess} />
+<Cell title='Failure' isLink click={showFailure} />
 ```
 
 ```js
 const showText = () => {
-  Toast.info('提示内容', 5)
+  Toast.info('text content', 5)
 }
 const showLoading = () => {
-  Toast.loading({ message: '加载提示' })
+  Toast.loading({ message: 'loading text' })
 }
 const showSuccess = () => {
-  Toast.success('成功提示')
+  Toast.success('success text')
 }
 const showFailure = () => {
-  Toast.fail('失败提示')
+  Toast.fail('fail text')
 }
 ```
 
-### 自定义图标
+### Custom Icon
 
 ```html
-<Cell title='自定义图标' isLink click={showIcon} />
-<Cell title='自定义图片' isLink click={showIconUrl} />
-<Cell title='自定义加载图标' isLink click={showCommonLoading} />
+<Cell title='custom icon' isLink click={showIcon} />
+<Cell title='custom image' isLink click={showIconUrl} />
+<Cell title='custom loading icon' isLink click={showCommonLoading} />
 ```
 
 ```js
 const showIcon = () => {
   Toast.show({
-    message: '自定义图标',
+    message: 'custom icon',
     icon: 'like-o'
   })
 }
 const showIconUrl = () => {
   Toast.show({
-    message: '自定义图片',
+    message: 'custom image',
     icon: 'https://img.yzcdn.cn/vant/logo.png'
   })
 }
 const showCommonLoading = () => {
   Toast.show({
     type: 'loading',
-    message: '加载中...',
+    message: 'loading...',
     loadingType: 'spinner'
   })
 }
 ```
 
-### 自定义位置
+### Custom Position
 
 ```html
-<Cell title='顶部提示' isLink click={showTop} />
-<Cell title='底部展示' isLink click={showBottom} />
+<Cell title='Top' isLink click={showTop} />
+<Cell title='Bottom' isLink click={showBottom} />
 ```
 
 ```js
 const showTop = () => {
   Toast.show({
-    message: '顶部展示',
+    message: 'Top',
     position: 'top'
   })
 }
 const showBottom = () => {
   Toast.show({
-    message: '底部展示',
+    message: 'Bottom',
     position: 'bottom'
   })
 ```
 
-### 修改默认配置
+### Set Default Options
 
-通过 `Toast.setDefaultConfig` 函数可以全局修改 Toast 的默认配置。
+The Toast default configuration can be globally modified with the `Toast.setDefaultConfig` function.
 
 ```js
 Toast.setDefaultConfig({ duration: 3, mask: false, position: 'middle' });
@@ -93,49 +93,49 @@ Toast.setDefaultConfig({ duration: 3, mask: false, position: 'middle' });
 
 ### 方法
 
-| 方法名 | 说明 | 参数 | 返回值 |
-| --- | --- | --- | --- |
-| Toast.show | 展示提示 | `options` | `void` |
-| Toast.info | 展示提示 | `message, duration, position` | `void` |
-| Toast.success | 展示成功提示 | `message, duration` | `void` |
-| Toast.fail | 展示失败提示 | `message, duration` | `void` |
-| Toast.loading | 展示加载提示 | `options` | `void` |
-| Toast.hide | 关闭提示 | - | `void` |
-| Toast.setDefaultConfig | 修改默认配置，对所有 Toast 生效。<br>传入 type 可以修改指定类型的默认配置 | `IToastConfig` | `void` |
+| Methods                | Description                         | Attribute                     | Return value |
+| ---------------------- | ----------------------------------- | ----------------------------- | ------------ |
+| Toast.show             | Show toast                          | `options`                     | `void`       |
+| Toast.info             | Show info toast                     | `message, duration, position` | `void`       |
+| Toast.success          | Show success toast                  | `message, duration`           | `void`       |
+| Toast.fail             | Show fail toast                     | `message, duration`           | `void`       |
+| Toast.loading          | Show loading toast                  | `options`                     | `void`       |
+| Toast.hide             | Close toast                         | -                             | `void`       |
+| Toast.setDefaultConfig | Reset default options of all toasts | `IToastConfig`                | `void`       |
 
 ### Options
 
-| 参数                  | 说明                                                        | 类型                        | 默认值     |   |
-| --------------------- | ----------------------------------------------------------- | --------------------------- | ---------- | - |
-| type                  | 提示类型，可选值为 `text` `loading` `success` `fail` `html` | _string_                    | `text`     |   |
-| position              | 位置，可选值为 `top` `bottom`                               | _string_                    | `middle`   |   |
-| message               | 文本内容                                                    | _string_                    | `''`       | - |
-| icon                  | 自定义图标                                                  | _string_                    | -          |   |
-| iconSize              | 图标大小，如 `20px` `2em`，默认单位为 `px`                  | _number \| string_          | `36px`     |   |
-| iconPrefix            | 图标类名前缀，同 Icon 组件的                                | _string_                    | `van-icon` |   |
-| mask                  | 是否显示背景遮罩层                                          | _boolean_                   | `false`    |   |
-| loadingType           | 加载图标类型, 可选值为 `spinner`                            | _string_                    | `circular` |   |
-| duration              | 展示时长(ms)，值为 0 时，toast 不会消失                     | _number_                    | `2000`     |   |
-| className             | 自定义类名                                                  | _string \| Array \| object_ | -          |   |
-| onOpened              | 完全展示后的回调函数                                        | _Function_                  | -          |   |
-| onClose               | 关闭时的回调函数                                            | _Function_                  | -          |   |
+| Attribute   | Description                                            | Type                        | Default    |   |
+| ----------- | ------------------------------------------------------ | --------------------------- | ---------- | - |
+| type        | Can be set to `text` `loading` `success` `fail` `html` | _string_                    | `text`     |   |
+| position    | Can be set to `top` `bottom`                           | _string_                    | `middle`   |   |
+| message     | Message                                                | _string_                    | `''`       | - |
+| icon        | Custom icon                                            | _string_                    | -          |   |
+| iconSize    | Custom icon size                                       | _number \| string_          | `36px`     |   |
+| iconPrefix  | Icon className prefix                                  | _string_                    | `van-icon` |   |
+| mask        | Whether to show overlay                                | _boolean_                   | `false`    |   |
+| loadingType | Loading icon type, can be set to `spinner`             | _string_                    | `circular` |   |
+| duration    | Toast duration(ms), won't disappear if value is 0      | _number_                    | `2000`     |   |
+| className   | Custom className                                       | _string \| Array \| object_ | -          |   |
+| onOpened    | Callback function after opened                         | _Function_                  | -          |   |
+| onClose     | Callback function after close                          | _Function_                  | -          |   |
 
-### Scss 变量
+### Scss Variables
 
-| 名称                            | 默认值                    | 描述 |
-| ------------------------------- | ------------------------- | ---- |
-| $toast-max-width                | `70%`                     | -    |
-| $toast-font-size                | `$font-size-md`           | -    |
-| $toast-text-color               | `$white`                  | -    |
-| $toast-loading-icon-color       | `$white`                  | -    |
-| $toast-line-height              | `$line-height-md`         | -    |
-| $toast-border-radius            | `$border-radius-lg`       | -    |
-| $toast-background-color         | `rgba($black, 70%)`       | -    |
-| $toast-icon-size                | `36px`                    | -    |
-| $toast-text-min-width           | `96px`                    | -    |
-| $toast-text-padding             | `$padding-xs $padding-sm` | -    |
-| $toast-default-padding          | `$padding-md`             | -    |
-| $toast-default-width            | `88px`                    | -    |
-| $toast-default-min-height       | `88px`                    | -    |
-| $toast-position-top-distance    | `20%`                     | -    |
-| $toast-position-bottom-distance | `20%`                     | -    |
+| Name                            | Default Value             | Description |
+| ------------------------------- | ------------------------- | ----------- |
+| $toast-max-width                | `70%`                     | -           |
+| $toast-font-size                | `$font-size-md`           | -           |
+| $toast-text-color               | `$white`                  | -           |
+| $toast-loading-icon-color       | `$white`                  | -           |
+| $toast-line-height              | `$line-height-md`         | -           |
+| $toast-border-radius            | `$border-radius-lg`       | -           |
+| $toast-background-color         | `rgba($black, 70%)`       | -           |
+| $toast-icon-size                | `36px`                    | -           |
+| $toast-text-min-width           | `96px`                    | -           |
+| $toast-text-padding             | `$padding-xs $padding-sm` | -           |
+| $toast-default-padding          | `$padding-md`             | -           |
+| $toast-default-width            | `88px`                    | -           |
+| $toast-default-min-height       | `88px`                    | -           |
+| $toast-position-top-distance    | `20%`                     | -           |
+| $toast-position-bottom-distance | `20%`                     | -           |
