@@ -35,7 +35,7 @@ yarn generate pageName 1
 
 ### Form Components
 
-- [ ] Calendar
+- [x] Calendar
 - [ ] Cascader
 - [x] Checkbox
 - [ ] DatetimePicker
@@ -59,7 +59,7 @@ yarn generate pageName 1
 - [ ] DropdownMenu
 - [x] Loading
 - [ ] Notify
-- [ ] Overlay
+- [x] Overlay
 - [ ] PullRefresh
 - [ ] ShareSheet
 - [ ] SwipeCell
@@ -78,11 +78,11 @@ yarn generate pageName 1
 - [ ] NoticeBar
 - [ ] Popover
 - [ ] Progress
-- [ ] Skeleton
+- [x] Skeleton
 - [ ] Steps
 - [x] Sticky
 - [ ] Swipe
-- [ ] Tag
+- [x] Tag
 
 ### Navigation Components
 

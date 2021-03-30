@@ -5,9 +5,8 @@ import { createNamespace } from '../utils'
 
 const [bem] = createNamespace('${componentName.toLowerCase()}')
 const ${componentName}: React.FC<${componentName}Props> = ({}) => {
-  const className = bem('${componentName.toLowerCase()}')
   return (
-    <div className={className}>
+    <div className={bem('${componentName.toLowerCase()}')}>
       123456
     </div>
   )

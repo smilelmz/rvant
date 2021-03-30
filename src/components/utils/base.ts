@@ -8,7 +8,7 @@ export function isDef(val: unknown): boolean {
   return val !== undefined && val !== null
 }
 
-export function isFunction(val: unknown): val is Function {
+export function isFunction(val: unknown): boolean {
   return typeof val === 'function'
 }
 
@@ -33,7 +33,7 @@ export function get(object: any, path: string): any {
 
 export function pick<T, U extends keyof T>(
   obj: T,
-  keys: ReadonlyArray<U>,
+  keys: readonly U[],
   ignoreUndefined?: boolean
 ) {
   return keys.reduce((ret, key) => {
@@ -67,4 +67,10 @@ export function doubleRaf(fn: FrameRequestCallback) {
   raf(() => {
     raf(fn)
   })
+}
+
+export function cancelRaf(id: number) {
+  const root = inBrowser ? window : global
+  const cancelAnimationFrame = root.cancelAnimationFrame || root.clearTimeout
+  cancelAnimationFrame.call(root, id)
 }

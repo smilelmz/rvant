@@ -240,8 +240,8 @@
       },
       {
         "name": "Circle 环形进度条",
-        "url": "",
-        "m_url": "",
+        "url": "/circle",
+        "m_url": "/circle/demo",
         "simulator": true
       },
       {

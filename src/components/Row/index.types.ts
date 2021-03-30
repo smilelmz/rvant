@@ -14,6 +14,7 @@ export interface RowProps {
   type?: string
   align?: RowAlign
   justify?: RowJustify
+  wrap?: boolean
   gutter?: number | string
   click?: EventFunction<MouseEvent>
   children?: React.ReactNode[] | React.ReactNode

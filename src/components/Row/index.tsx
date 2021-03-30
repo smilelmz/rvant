@@ -7,6 +7,7 @@ const Row: React.FC<RowProps> = ({
   align,
   justify,
   gutter = 0,
+  wrap = true,
   click,
   children = []
 }) => {
@@ -60,7 +61,8 @@ const Row: React.FC<RowProps> = ({
     <div
       className={bem({
         [`align-${align}`]: align,
-        [`justify-${justify}`]: justify
+        [`justify-${justify}`]: justify,
+        nowrap: !wrap
       })}
       onClick={(e: MouseEvent) => click && click(e)}
     >

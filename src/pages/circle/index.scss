@@ -1,0 +1,16 @@
+@import '../../components/style/vars.scss';
+
+.demo-circle {
+
+  .van-circle {
+    margin-left: $padding-md;
+  }
+
+  .van-button {
+    margin: $padding-md 0 0 10px;
+
+    &:first-of-type {
+      margin-left: $padding-md;
+    }
+  }
+}
