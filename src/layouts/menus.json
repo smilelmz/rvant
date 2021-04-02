@@ -252,8 +252,8 @@
       },
       {
         "name": "CountDown 倒计时",
-        "url": "",
-        "m_url": "",
+        "url": "/countDown",
+        "m_url": "/countDown/demo",
         "simulator": true
       },
       {
@@ -294,8 +294,8 @@
       },
       {
         "name": "Progress 进度条",
-        "url": "",
-        "m_url": "",
+        "url": "/progress",
+        "m_url": "/progress/demo",
         "simulator": true
       },
       {

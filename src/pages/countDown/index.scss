@@ -1,0 +1,37 @@
+@import '../../components/style/vars.scss';
+
+.demo-countdown {
+  background-color: $white;
+
+  .van-count-down {
+    margin-left: $padding-md;
+  }
+
+  .colon {
+    display: inline-block;
+    margin: 0 4px;
+    color: $red;
+  }
+
+  .block {
+    display: inline-block;
+    width: 22px;
+    color: #fff;
+    font-size: 12px;
+    text-align: center;
+    background-color: $red;
+    border-radius: 4px;
+  }
+
+  .van-grid {
+    margin-top: 10px;
+  }
+
+  &-buttons {
+    margin-top: $padding-md;
+
+    .#{$base-prefix}button {
+        margin-left: $padding-md;
+    }
+}
+}

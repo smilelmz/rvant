@@ -67,7 +67,7 @@ yarn generate pageName 1
 ### Display Components
 
 - [x] Badge
-- [ ] Circle
+- [x] Circle
 - [ ] Collapse
 - [ ] CountDown
 - [ ] Divider

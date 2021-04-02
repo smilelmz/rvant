@@ -17,6 +17,7 @@ import Switch from './Switch'
 import Tag from './Tag'
 import Skeleton from './Skeleton'
 import Circle from './Circle'
+import CountDown from './CountDown'
 import { LocaleProvider, useI18n } from './locale'
 
 export {
@@ -40,5 +41,6 @@ export {
   Switch,
   Tag,
   Skeleton,
-  Circle
+  Circle,
+  CountDown
 }

@@ -19,7 +19,8 @@ module.exports = {
     '@typescript-eslint/no-shadow': 'off',
     '@typescript-eslint/no-use-before-define': 'off',
     '@typescript-eslint/consistent-type-imports': 'off',
-    'react/no-array-index-key': 'off'
+    'react/no-array-index-key': 'off',
+    'react-hooks/exhaustive-deps': 'off'
   },
   globals: {},
   parserOptions: {
