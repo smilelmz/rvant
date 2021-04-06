@@ -1,0 +1,13 @@
+@import '../../components/style/vars.scss';
+
+.demo-progress {
+  background: $white;
+
+  .van-progress {
+    margin: 20px;
+
+    &:first-of-type {
+      margin-top: 5px;
+    }
+  }
+}

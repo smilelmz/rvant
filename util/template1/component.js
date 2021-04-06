@@ -9,7 +9,7 @@ const ${componentName}: React.FC<${componentName}Props> = ({
   className,
 }) => {
   return (
-    <div style={style} className={\`\${bem('${componentName.toLowerCase()}')} \${className || ''}\`}>
+    <div style={style} className={\`\${bem()} \${className || ''}\`}>
       123456
     </div>
   )

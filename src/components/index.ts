@@ -20,6 +20,7 @@ import Circle from './Circle'
 import CountDown from './CountDown'
 import Divider from './Divider'
 import Empty from './Empty'
+import Progress from './Progress'
 import { LocaleProvider, useI18n } from './locale'
 
 export {
@@ -46,5 +47,6 @@ export {
   Circle,
   CountDown,
   Divider,
-  Empty
+  Empty,
+  Progress
 }
