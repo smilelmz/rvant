@@ -70,8 +70,8 @@ yarn generate pageName 1
 - [x] Circle
 - [ ] Collapse
 - [x] CountDown
-- [ ] Divider
-- [ ] Empty
+- [x] Divider
+- [x] Empty
 - [ ] ImagePreview
 - [ ] Lazyload
 - [ ] List

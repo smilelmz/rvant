@@ -1,0 +1,9 @@
+@import '../../components/style/vars.scss';
+
+.demo-divider {
+  background-color: $white;
+
+  .van-doc-demo-block__title {
+    padding-top: $padding-md;
+  }
+}

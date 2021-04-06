@@ -18,6 +18,8 @@ import Tag from './Tag'
 import Skeleton from './Skeleton'
 import Circle from './Circle'
 import CountDown from './CountDown'
+import Divider from './Divider'
+import Empty from './Empty'
 import { LocaleProvider, useI18n } from './locale'
 
 export {
@@ -42,5 +44,7 @@ export {
   Tag,
   Skeleton,
   Circle,
-  CountDown
+  CountDown,
+  Divider,
+  Empty
 }

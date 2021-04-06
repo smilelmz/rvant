@@ -258,14 +258,14 @@
       },
       {
         "name": "Divider 分割线",
-        "url": "",
-        "m_url": "",
+        "url": "/divider",
+        "m_url": "/divider/demo",
         "simulator": true
       },
       {
         "name": "Empty 空状态",
-        "url": "",
-        "m_url": "",
+        "url": "/empty",
+        "m_url": "/empty/demo",
         "simulator": true
       },
       {
