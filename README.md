@@ -69,7 +69,7 @@ yarn generate pageName 1
 - [x] Badge
 - [x] Circle
 - [ ] Collapse
-- [ ] CountDown
+- [x] CountDown
 - [ ] Divider
 - [ ] Empty
 - [ ] ImagePreview

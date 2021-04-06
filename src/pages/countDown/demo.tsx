@@ -1,5 +1,6 @@
 import React, { useRef } from 'react'
 import { MobileLayout, DemoBlock } from '@/doc'
+import { CountDownHandler } from '@/components/CountDown/index.types'
 import CountDown from '@/components/CountDown'
 import Toast from '@/components/Toast'
 import Button from '@/components/Button'
@@ -7,7 +8,7 @@ import './index.scss'
 
 const CountDownDemo = () => {
   const time = 30 * 60 * 60 * 1000
-  const countDownRef = useRef(null)
+  const countDownRef = useRef<CountDownHandler>(null)
   const start = () => {
     countDownRef.current?.start()
   }
@@ -20,7 +21,7 @@ const CountDownDemo = () => {
   const onFinish = () => Toast.info('倒计时结束')
   return (
     <MobileLayout title='CountDown' className='demo-countdown'>
-      {/* <DemoBlock title='基础用法'>
+      <DemoBlock title='基础用法'>
         <CountDown time={time} />
       </DemoBlock>
       <DemoBlock title='自定义格式'>
@@ -46,7 +47,7 @@ const CountDownDemo = () => {
             )
           }}
         />
-      </DemoBlock> */}
+      </DemoBlock>
       <DemoBlock title='手动控制'>
         <CountDown
           ref={countDownRef}
