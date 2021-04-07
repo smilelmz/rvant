@@ -335,8 +335,8 @@
     "children": [
       {
         "name": "Grid 宫格",
-        "url": "",
-        "m_url": "",
+        "url": "/grid",
+        "m_url": "/grid/demo",
         "simulator": true
       },
       {

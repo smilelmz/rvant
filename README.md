@@ -77,7 +77,7 @@ yarn generate pageName 1
 - [ ] List
 - [ ] NoticeBar
 - [ ] Popover
-- [ ] Progress
+- [x] Progress
 - [x] Skeleton
 - [ ] Steps
 - [x] Sticky

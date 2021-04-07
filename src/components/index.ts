@@ -21,6 +21,8 @@ import CountDown from './CountDown'
 import Divider from './Divider'
 import Empty from './Empty'
 import Progress from './Progress'
+import Grid from './Grid'
+import GridItem from './GridItem'
 import { LocaleProvider, useI18n } from './locale'
 
 export {
@@ -48,5 +50,7 @@ export {
   CountDown,
   Divider,
   Empty,
-  Progress
+  Progress,
+  Grid,
+  GridItem
 }
