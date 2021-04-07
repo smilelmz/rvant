@@ -18,7 +18,7 @@ const RateDemo = () => {
         <Rate
           value={rateIcon}
           icon='like'
-          void-icon='like-o'
+          voidIcon='like-o'
           change={(v: number) => setRateIcon(v)}
         />
       </DemoBlock>
@@ -27,21 +27,29 @@ const RateDemo = () => {
           value={rateStyle}
           size='25'
           color='#ffd21e'
-          void-icon='star'
-          void-color='#eee'
+          voidIcon='star'
+          voidColor='#eee'
           change={(v: number) => setRateStyle(v)}
         />
       </DemoBlock>
       <DemoBlock title='半星'>
-        <Rate value={rateHalf} allowHalf change={(v: number) => setRateHalf(v)} />
+        <Rate
+          value={rateHalf}
+          allowHalf
+          change={(v: number) => setRateHalf(v)}
+        />
       </DemoBlock>
       <DemoBlock title='自定义数量'>
-        <Rate value={rateCount} count={6} change={(v: number) => setRateCount(v)} />
+        <Rate
+          value={rateCount}
+          count={6}
+          change={(v: number) => setRateCount(v)}
+        />
       </DemoBlock>
       <DemoBlock title='禁用状态'>
         <Rate value={3} disabled />
       </DemoBlock>
-      <DemoBlock title='只堵状态'>
+      <DemoBlock title='只读状态'>
         <Rate value={3} readonly />
       </DemoBlock>
     </MobileLayout>

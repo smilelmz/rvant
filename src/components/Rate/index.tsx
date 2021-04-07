@@ -1,5 +1,5 @@
 /* eslint-disable no-useless-return */
-import React, { TouchEvent } from 'react'
+import React, { TouchEvent, useRef } from 'react'
 import { RateProps } from './index.types'
 import { addUnit, preventDefault, createNamespace } from '../utils'
 import { useTouch, useRefs } from '../composables'
@@ -44,23 +44,22 @@ const Rate: React.FC<RateProps> = ({
   touchable = true,
   change
 }) => {
-  let ranges: RangeItem[]
   const touch = useTouch()
+  const ranges = useRef<RangeItem[]>([])
   const [itemRefs, setItemRefs] = useRefs<HTMLDivElement>()
   const untouchable = () => readonly || disabled || !touchable
   const list: RateStatus[] = Array(count)
     .fill('')
     .map((_, i) => getRateStatus(value, i + 1, allowHalf))
-
   const select = (index: number) => {
     if (!disabled && !readonly && index !== value) {
       change && change(index)
     }
   }
   const getScoreByPosition = (x: number) => {
-    for (let i = ranges.length - 1; i > 0; i--) {
-      if (x > ranges[i].left) {
-        return ranges[i].score
+    for (let i = ranges.current.length - 1; i > 0; i--) {
+      if (x > ranges.current[i].left) {
+        return ranges.current[i].score
       }
     }
     return allowHalf ? 0.5 : 1
@@ -71,15 +70,15 @@ const Rate: React.FC<RateProps> = ({
     }
     touch.start(event)
     const rects = itemRefs.current.map((item) => item.getBoundingClientRect())
-    ranges = []
+    ranges.current = []
     rects.forEach((rect, index) => {
       if (allowHalf) {
-        ranges.push(
+        ranges.current.push(
           { score: index + 0.5, left: rect.left },
           { score: index + 1, left: rect.left + rect.width / 2 }
         )
       } else {
-        ranges.push({ score: index + 1, left: rect.left })
+        ranges.current.push({ score: index + 1, left: rect.left })
       }
     })
   }

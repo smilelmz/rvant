@@ -42,6 +42,7 @@
     "@umijs/plugin-sass": "^1.1.1",
     "@umijs/preset-react": "1.x",
     "@umijs/test": "^3.2.19",
+    "@vant/touch-emulator": "^1.2.0",
     "dva-model-extend": "^0.1.2",
     "highlight.js": "^10.1.2",
     "lint-staged": "^10.0.7",

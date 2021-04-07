@@ -86,7 +86,7 @@ yarn generate pageName 1
 
 ### Navigation Components
 
-- [ ] Grid
+- [x] Grid
 - [ ] IndexBar
 - [ ] NavBar
 - [ ] Pagination
