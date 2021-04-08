@@ -121,9 +121,9 @@ const onChange = (v: React.SetStateAction<SliderValue | undefined>) => {
 | min               | 最小值                                     | _number \| string_   | `0`       |
 | step              | 步长                                       | _number \| string_   | `1`       |
 | bar-height        | 进度条高度，默认单位为`px`                 | _number \| string_   | `2px`     |
-| button-size       | 滑块按钮大小，默认单位为`px`               | _number \| string_   | `24px`    |
-| active-color      | 进度条激活态颜色                           | _string_             | `#1989fa` |
-| inactive-color    | 进度条非激活态颜色                         | _string_             | `#e5e5e5` |
+| buttonSize       | 滑块按钮大小，默认单位为`px`               | _number \| string_   | `24px`    |
+| activeColor      | 进度条激活态颜色                           | _string_             | `#1989fa` |
+| inactiveColor    | 进度条非激活态颜色                         | _string_             | `#e5e5e5` |
 | range             | 是否开启双滑块模式                         | _boolean_            | `false`   |
 | disabled          | 是否禁用滑块                               | _boolean_            | `false`   |
 | readonly `v3.0.5` | 是否为只读状态，只读状态下无法修改滑块的值 | _boolean_            | `false`   |

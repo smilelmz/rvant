@@ -114,8 +114,8 @@ const onChange = (v: React.SetStateAction<SliderValue | undefined>) => {
 | max               | Max value                            | _number \| string_   | `100`     |
 | min               | Min value                            | _number \| string_   | `0`       |
 | step              | Step size                            | _number \| string_   | `1`       |
-| bar-height        | Height of bar                        | _number \| string_   | `2px`     |
-| button-size       | Button size                          | _number \| string_   | `24px`    |
+| barHeight        | Height of bar                        | _number \| string_   | `2px`     |
+| buttonSize       | Button size                          | _number \| string_   | `24px`    |
 | activeColor       | Active color of bar                  | _string_             | `#1989fa` |
 | inactiveColor     | Inactive color of bar                | _string_             | `#e5e5e5` |
 | range             | Whether to enable dual thumb mode    | _boolean_            | `false`   |
