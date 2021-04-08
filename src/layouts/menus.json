@@ -146,8 +146,8 @@
       },
       {
         "name": "Slider 滑块",
-        "url": "",
-        "m_url": "",
+        "url": "/slider",
+        "m_url": "/slider/demo",
         "simulator": true
       },
       {

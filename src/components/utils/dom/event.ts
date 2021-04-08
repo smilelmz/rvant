@@ -1,4 +1,4 @@
-export function stopPropagation(event: Event) {
+export function stopPropagation(event: any) {
   event.stopPropagation()
 }
 

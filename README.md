@@ -47,7 +47,7 @@ yarn generate pageName 1
 - [x] Radio
 - [x] Rate
 - [ ] Search
-- [ ] Slider
+- [x] Slider
 - [ ] Stepper
 - [x] Switch
 - [ ] Uploader

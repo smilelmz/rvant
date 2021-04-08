@@ -1,0 +1,24 @@
+@import '../../components/style/vars.scss';
+
+.demo-slider {
+  background: $white;
+  user-select: none;
+
+  .demo-block {
+    padding: 0 $padding-md 20px;
+  }
+
+  .demo-block__title {
+    padding-left: 0;
+  }
+
+  .custom-button {
+    width: 26px;
+    color: #fff;
+    font-size: 10px;
+    line-height: 18px;
+    text-align: center;
+    background-color: $red;
+    border-radius: 100px;
+  }
+}

@@ -23,6 +23,7 @@ import Empty from './Empty'
 import Progress from './Progress'
 import Grid from './Grid'
 import GridItem from './GridItem'
+import Slider from './Slider'
 import { LocaleProvider, useI18n } from './locale'
 
 export {
@@ -52,5 +53,6 @@ export {
   Empty,
   Progress,
   Grid,
-  GridItem
+  GridItem,
+  Slider
 }
