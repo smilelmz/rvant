@@ -175,8 +175,8 @@
     "children": [
       {
         "name": "ActionSheet 动作面板",
-        "url": "",
-        "m_url": "",
+        "url": "/ActionSheet",
+        "m_url": "/ActionSheet/demo",
         "simulator": true
       },
       {

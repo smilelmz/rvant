@@ -25,6 +25,7 @@ import Grid from './Grid'
 import GridItem from './GridItem'
 import Slider from './Slider'
 import Stepper from './Stepper'
+import ActionSheet from './ActionSheet'
 import { LocaleProvider, useI18n } from './locale'
 
 export {
@@ -56,5 +57,6 @@ export {
   Grid,
   GridItem,
   Slider,
-  Stepper
+  Stepper,
+  ActionSheet
 }

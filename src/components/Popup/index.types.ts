@@ -33,3 +33,17 @@ export interface PopupProps {
   opened?: VoidFunction
   closed?: VoidFunction
 }
+
+export interface PopupSharedProps {
+  show?: boolean
+  zIndex?: number | string
+  duration?: number | string
+  overlay?: boolean
+  overlayClass?: string
+  overlayStyle?: Record<string, any>
+  transitionAppear?: boolean
+  lockScroll?: boolean
+  closeOnClickOverlay?: boolean
+  opened?: VoidFunction
+  closed?: VoidFunction
+}

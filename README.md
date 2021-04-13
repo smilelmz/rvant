@@ -48,13 +48,13 @@ yarn generate pageName 1
 - [x] Rate
 - [ ] Search
 - [x] Slider
-- [ ] Stepper
+- [x] Stepper
 - [x] Switch
 - [ ] Uploader
 
 ### Action Components
 
-- [ ] ActionSheet
+- [x] ActionSheet
 - [ ] Dialog
 - [ ] DropdownMenu
 - [x] Loading

@@ -1,0 +1,8 @@
+@import '../../components/style/vars.scss';
+
+.demo-action-sheet {
+
+  &-content {
+    padding: $padding-md $padding-md $padding-md * 10;
+  }
+}
