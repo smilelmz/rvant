@@ -217,8 +217,8 @@
       },
       {
         "name": "ShareSheet 分享面板",
-        "url": "",
-        "m_url": "",
+        "url": "/ShareSheet",
+        "m_url": "/ShareSheet/demo",
         "simulator": true
       },
       {
