@@ -24,6 +24,7 @@ import Progress from './Progress'
 import Grid from './Grid'
 import GridItem from './GridItem'
 import Slider from './Slider'
+import Stepper from './Stepper'
 import { LocaleProvider, useI18n } from './locale'
 
 export {
@@ -54,5 +55,6 @@ export {
   Progress,
   Grid,
   GridItem,
-  Slider
+  Slider,
+  Stepper
 }

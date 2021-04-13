@@ -26,6 +26,7 @@ input,
 button,
 textarea,
 [class*='#{$base-prefix}'] {
+
   &:focus {
     outline: none;
   }

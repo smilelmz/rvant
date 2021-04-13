@@ -33,6 +33,19 @@ class Notification extends Component<IProps, IState> {
     notices: []
   }
 
+  closeTimer: NodeJS.Timeout | null | undefined
+
+  componentWillUnmount() {
+    this.clearCloseTimer()
+  }
+
+  clearCloseTimer = () => {
+    if (this.closeTimer) {
+      clearTimeout(this.closeTimer)
+      this.closeTimer = null
+    }
+  }
+
   add = (notice: Record<string, any>) => {
     // eslint-disable-next-line @typescript-eslint/no-this-alias
     const self = this
@@ -42,7 +55,8 @@ class Notification extends Component<IProps, IState> {
       const { notices } = previousState
       if (!notices.filter((v: any) => v.key === key).length) {
         if (notice.duration > 0) {
-          setTimeout(() => {
+          self.closeTimer = setTimeout(() => {
+            self.clearCloseTimer()
             self.remove(notice.key)
           }, notice.duration * 1000)
         }

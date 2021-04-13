@@ -18,6 +18,12 @@ export function useWatch<T>(
   const inited = useRef(false)
   const stop = useRef(false)
 
+  let effectArr = []
+  if (Array.isArray(dep)) {
+    effectArr = dep
+  } else {
+    effectArr = [dep]
+  }
   useEffect(() => {
     const execute = () => callback(curRef.current, prev.current)
     if (!stop.current) {
@@ -32,7 +38,7 @@ export function useWatch<T>(
       }
       prev.current = dep
     }
-  }, [dep])
+  }, effectArr)
 
   return () => {
     stop.current = true

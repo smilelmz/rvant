@@ -2,6 +2,7 @@
 @import './mixins.scss';
 
 [class*='#{$base-prefix}hairline'] {
+
   &::after {
     @include hairline();
   }
@@ -37,6 +38,7 @@
 
   &,
   &-unset {
+
     &--top-bottom::after {
       border-width: $border-width-base 0;
     }

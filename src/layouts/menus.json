@@ -152,8 +152,8 @@
       },
       {
         "name": "Stepper 步进器",
-        "url": "",
-        "m_url": "",
+        "url": "/stepper",
+        "m_url": "/stepper/demo",
         "simulator": true
       },
       {
