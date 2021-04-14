@@ -27,6 +27,7 @@ import Slider from './Slider'
 import Stepper from './Stepper'
 import ActionSheet from './ActionSheet'
 import ShareSheet from './ShareSheet'
+import NavBar from './NavBar'
 import { LocaleProvider, useI18n } from './locale'
 
 export {
@@ -60,5 +61,6 @@ export {
   Slider,
   Stepper,
   ActionSheet,
-  ShareSheet
+  ShareSheet,
+  NavBar
 }
