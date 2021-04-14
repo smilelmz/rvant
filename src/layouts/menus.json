@@ -353,8 +353,8 @@
       },
       {
         "name": "Pagination 分页",
-        "url": "",
-        "m_url": "",
+        "url": "/pagination",
+        "m_url": "/pagination/demo",
         "simulator": true
       },
       {

@@ -89,7 +89,7 @@ yarn generate pageName 1
 - [x] Grid
 - [ ] IndexBar
 - [x] NavBar
-- [ ] Pagination
+- [x] Pagination
 - [ ] Sidebar
 - [ ] Tab
 - [ ] Tabbar

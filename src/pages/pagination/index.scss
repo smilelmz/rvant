@@ -1,0 +1,17 @@
+@import '../../components/style/vars.scss';
+
+.demo-pagination {
+
+  .van-pagination {
+    width: 100%;
+    margin: 5px 0;
+  }
+
+  .demo-block {
+    padding: 0 $padding-md;
+  }
+
+  .demo-block__title {
+    padding-left: 0;
+  }
+}

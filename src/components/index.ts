@@ -28,6 +28,7 @@ import Stepper from './Stepper'
 import ActionSheet from './ActionSheet'
 import ShareSheet from './ShareSheet'
 import NavBar from './NavBar'
+import Pagination from './Pagination'
 import { LocaleProvider, useI18n } from './locale'
 
 export {
@@ -62,5 +63,6 @@ export {
   Stepper,
   ActionSheet,
   ShareSheet,
-  NavBar
+  NavBar,
+  Pagination
 }
