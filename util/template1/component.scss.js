@@ -4,6 +4,5 @@ module.exports = (componentName) => ({
 .#{$base-prefix}${componentName.toLowerCase()} {
 }
 `,
-  extension: `.scss`,
-  name: 'index'
+  extension: `index.scss`
 })

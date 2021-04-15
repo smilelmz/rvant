@@ -25,6 +25,5 @@ describe('Test Component', () => {
   })
 })
 `,
-  extension: `.test.tsx`,
-  name: 'index'
+  extension: `index.test.tsx`
 })

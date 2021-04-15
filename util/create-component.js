@@ -1,4 +1,3 @@
-/* eslint-disable radix */
 require('colors')
 const fs = require('fs')
 const template1 = require('./template1')
@@ -30,7 +29,7 @@ if (type === 0) {
   const generatedTemplates = template1.map((template) => template(cName))
   generatedTemplates.forEach((template) => {
     fs.writeFileSync(
-      `${componentDirectory}/${template.name}${template.extension}`,
+      `${componentDirectory}/${template.extension}`,
       template.content
     )
   })

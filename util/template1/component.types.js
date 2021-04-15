@@ -4,6 +4,5 @@ module.exports = (componentName) => ({
   className?: string
 }
 `,
-  extension: `.types.ts`,
-  name: 'index'
+  extension: `index.types.ts`
 })
