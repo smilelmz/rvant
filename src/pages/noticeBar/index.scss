@@ -1,0 +1,18 @@
+@import '../../components/style/vars.scss';
+
+.demo-notice-bar {
+  background: $white;
+
+  .van-notice-bar:not(:first-of-type) {
+    margin-top: 4px;
+  }
+
+  .van-doc-demo-block__title {
+    padding-top: 24px;
+  }
+
+  .notice-swipe {
+    height: 40px;
+    line-height: 40px;
+  }
+}

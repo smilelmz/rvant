@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { MouseEvent } from 'react'
 import { IconProps } from './index.types'
 import { addUnit, createNamespace } from '../utils'
 import Badge from '../Badge'
@@ -44,7 +44,7 @@ const Icon: React.FC<IconProps> = ({
     <CustomTag
       className={classNames}
       style={iconStyle}
-      onClick={(e) => click && click(e)}
+      onClick={(e: MouseEvent) => click && click(e)}
     >
       {isImageIcon && <img className={bem(`image`)} src={iconName} />}
       <Badge dot={dot} content={badge || ''} className={bem(`info`)} />

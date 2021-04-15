@@ -288,8 +288,8 @@
       },
       {
         "name": "NoticeBar 通知栏",
-        "url": "",
-        "m_url": "",
+        "url": "/noticeBar",
+        "m_url": "/noticeBar/demo",
         "simulator": true
       },
       {

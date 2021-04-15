@@ -29,6 +29,7 @@ import ActionSheet from './ActionSheet'
 import ShareSheet from './ShareSheet'
 import NavBar from './NavBar'
 import Pagination from './Pagination'
+import NoticeBar from './NoticeBar'
 import { LocaleProvider, useI18n } from './locale'
 
 export {
@@ -64,5 +65,6 @@ export {
   ActionSheet,
   ShareSheet,
   NavBar,
-  Pagination
+  Pagination,
+  NoticeBar
 }
