@@ -1,8 +1,9 @@
 module.exports = (componentName) => ({
-  content: `@import './vars.scss';
+  content: `@import './var.scss';
 
 .#{$base-prefix}${componentName.toLowerCase()} {
 }
 `,
-  extension: `.scss`
+  extension: `.scss`,
+  name: 'index'
 })

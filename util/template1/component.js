@@ -16,5 +16,6 @@ const ${componentName} = ({
 }
 export default ${componentName}
 `,
-  extension: `.tsx`
+  extension: `.tsx`,
+  name: 'index'
 })

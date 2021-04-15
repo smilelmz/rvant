@@ -30,7 +30,7 @@ if (type === 0) {
   const generatedTemplates = template1.map((template) => template(cName))
   generatedTemplates.forEach((template) => {
     fs.writeFileSync(
-      `${componentDirectory}/index${template.extension}`,
+      `${componentDirectory}/${template.name}${template.extension}`,
       template.content
     )
   })
