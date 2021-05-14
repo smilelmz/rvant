@@ -31,6 +31,8 @@ import NavBar from './NavBar'
 import Pagination from './Pagination'
 import NoticeBar from './NoticeBar'
 import Popover from './Popover'
+import Step from './Step'
+import Steps from './Steps'
 import { LocaleProvider, useI18n } from './locale'
 
 export {
@@ -68,5 +70,7 @@ export {
   NavBar,
   Pagination,
   NoticeBar,
-  Popover
+  Popover,
+  Step,
+  Steps
 }

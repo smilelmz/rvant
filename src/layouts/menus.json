@@ -312,8 +312,8 @@
       },
       {
         "name": "Steps 步骤条",
-        "url": "",
-        "m_url": "",
+        "url": "/steps",
+        "m_url": "/steps/demo",
         "simulator": true
       },
       {

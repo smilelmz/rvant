@@ -1,0 +1,24 @@
+@import '../../components/style/vars.scss';
+
+.demo-steps {
+
+  .steps-success,
+  .van-icon-location {
+    color: $green;
+  }
+
+  .van-button {
+    margin: $padding-md 0 0 $padding-md;
+  }
+
+  p,
+  h3 {
+    margin: 0;
+    font-weight: normal;
+    font-size: inherit;
+  }
+
+  .van-steps__message+p {
+    margin-bottom: 10px;
+  }
+}

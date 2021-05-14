@@ -79,7 +79,7 @@ yarn generate pageName 1
 - [x] Popover
 - [x] Progress
 - [x] Skeleton
-- [ ] Steps
+- [x] Steps
 - [x] Sticky
 - [ ] Swipe
 - [x] Tag
