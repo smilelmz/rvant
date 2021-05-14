@@ -76,7 +76,7 @@ yarn generate pageName 1
 - [ ] Lazyload
 - [ ] List
 - [x] NoticeBar
-- [ ] Popover
+- [x] Popover
 - [x] Progress
 - [x] Skeleton
 - [ ] Steps
