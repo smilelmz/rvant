@@ -1,5 +1,7 @@
 import { ValueFunction } from '../type'
 
+export type PaginationMode = 'simple' | 'multi'
+
 export type PageItem = {
   text: string | number
   number: number
@@ -12,7 +14,7 @@ export interface PaginationProps {
   prevText?: string | React.ReactNode
   nextText?: string | React.ReactNode
   forceEllipses?: boolean
-  mode?: string
+  mode?: PaginationMode
   value?: number
   pageDesc?: React.ReactNode
   pageCount?: number | string

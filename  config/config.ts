@@ -1,5 +1,5 @@
 /* eslint-disable global-require */
-import { defineConfig } from 'umi';
+import { defineConfig } from 'umi'
 
 export default defineConfig({
   title: false,
@@ -7,16 +7,15 @@ export default defineConfig({
   base: '/',
   favicon: 'favicon.ico',
   nodeModulesTransform: {
-    type: 'none',
+    type: 'none'
   },
+  fastRefresh: {},
   sass: {
-    implementation: require('node-sass'),
+    implementation: require('node-sass')
   },
-  extraBabelPlugins: [
-    'transform-remove-console'
-  ],
+  extraBabelPlugins: ['transform-remove-console']
   // dva: {
   //   immer: true,
   //   hmr: true,
   // }
-});
+})

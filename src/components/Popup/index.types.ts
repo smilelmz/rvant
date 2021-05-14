@@ -1,4 +1,4 @@
-import { MouseEvent } from 'react'
+import { MouseEvent, RefObject } from 'react'
 import { EventFunction } from '../type'
 
 /* eslint-disable @typescript-eslint/no-unused-vars */
@@ -28,6 +28,7 @@ export interface PopupProps {
   transition?: string
   transitionAppear?: boolean
   safeAreaInsetBottom?: boolean
+  children?: React.ReactNode | React.ReactNode[]
   click?: EventFunction<MouseEvent>
   close?: VoidFunction
   opened?: VoidFunction
@@ -46,4 +47,8 @@ export interface PopupSharedProps {
   closeOnClickOverlay?: boolean
   opened?: VoidFunction
   closed?: VoidFunction
+}
+
+export interface PopupHandler {
+  popupRef: RefObject<HTMLDivElement>
 }

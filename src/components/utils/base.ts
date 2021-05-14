@@ -4,6 +4,8 @@ export const inBrowser = typeof window !== 'undefined'
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function noop(_e?: any) {}
 
+export const extend = Object.assign
+
 export function isDef(val: unknown): boolean {
   return val !== undefined && val !== null
 }

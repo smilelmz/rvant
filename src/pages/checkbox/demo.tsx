@@ -74,10 +74,7 @@ const CheckboxDemo = () => {
         />
       </DemoBlock>
       <DemoBlock title='复选框组'>
-        <CheckboxGroup
-          value={result}
-          change={(v: React.SetStateAction<string[]>) => setResult(v)}
-        >
+        <CheckboxGroup value={result} change={(v: string[]) => setResult(v)}>
           <Checkbox name='a'>复选框 a</Checkbox>
           <Checkbox name='b'>复选框 b</Checkbox>
         </CheckboxGroup>

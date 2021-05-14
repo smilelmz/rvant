@@ -23,7 +23,7 @@ const NoticeBar = ({
   background,
   scrollable = null,
   delay = 1,
-  speed = 50,
+  speed = 60,
   children,
   click,
   close,

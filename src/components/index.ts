@@ -30,6 +30,7 @@ import ShareSheet from './ShareSheet'
 import NavBar from './NavBar'
 import Pagination from './Pagination'
 import NoticeBar from './NoticeBar'
+import Popover from './Popover'
 import { LocaleProvider, useI18n } from './locale'
 
 export {
@@ -66,5 +67,6 @@ export {
   ShareSheet,
   NavBar,
   Pagination,
-  NoticeBar
+  NoticeBar,
+  Popover
 }

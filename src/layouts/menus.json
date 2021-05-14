@@ -293,6 +293,12 @@
         "simulator": true
       },
       {
+        "name": "Popover 气泡弹出框",
+        "url": "/popover",
+        "m_url": "/popover/demo",
+        "simulator": true
+      },
+      {
         "name": "Progress 进度条",
         "url": "/progress",
         "m_url": "/progress/demo",

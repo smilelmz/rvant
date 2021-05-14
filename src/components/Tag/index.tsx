@@ -25,15 +25,16 @@ const Tag: React.FC<TagProps> = ({
     close && close(event)
   }
   const getStyle = (): CSSProperties => {
+    const key = plain ? 'color' : 'backgroundColor'
+    const style = { [key]: color }
     if (plain) {
-      return {
-        color: textColor || color
-      }
+      style.color = textColor || color
+      style.borderColor = color
+    } else {
+      style.color = textColor
+      style.background = color
     }
-    return {
-      color: textColor,
-      background: color
-    }
+    return style
   }
   const renderTag = () => {
     const classes: Record<string, unknown> = {

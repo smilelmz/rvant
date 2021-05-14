@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useImperativeHandle, useRef, useState } from 'react'
 import CSSTransition from 'react-transition-group/CSSTransition'
-import { PopupProps } from './index.types'
+import { PopupProps, PopupHandler } from './index.types'
 import { isDef, createNamespace, BASE_PREFIX } from '../utils'
 import Icon from '../Icon'
 import Overlay from '../Overlay'
@@ -9,35 +9,39 @@ import { useEventListener } from '../composables'
 
 const [bem] = createNamespace('popup')
 let globalZIndex = 2000
-const Popup: React.FC<PopupProps> = ({
-  children,
-  show = false,
-  className = '',
-  style = {},
-  zIndex,
-  overlay = true,
-  overlayClass,
-  overlayStyle = {},
-  position = 'center',
-  duration = 0.3,
-  round = false,
-  lockScroll = true,
-  closeOnClickOverlay = true,
-  closeable = false,
-  closeIcon = 'cross',
-  closeIconPosition = 'top-right',
-  closeOnPopstate = true,
-  transition,
-  transitionAppear = false,
-  safeAreaInsetBottom = false,
-  click,
-  close,
-  opened,
-  closed
-}) => {
+const Popup = (
+  {
+    children,
+    show = false,
+    className = '',
+    style = {},
+    zIndex,
+    overlay = true,
+    overlayClass,
+    overlayStyle = {},
+    position = 'center',
+    duration,
+    round = false,
+    lockScroll = true,
+    closeOnClickOverlay = true,
+    closeable = false,
+    closeIcon = 'cross',
+    closeIconPosition = 'top-right',
+    closeOnPopstate = true,
+    transition,
+    transitionAppear = false,
+    safeAreaInsetBottom = false,
+    click,
+    close,
+    opened,
+    closed
+  }: PopupProps,
+  ref: React.Ref<PopupHandler>
+) => {
   let isOpen: boolean
   const isCenter = position === 'center'
-  const [pzIndex, setPzIndex] = useState<number>()
+  const [pzIndex, setPzIndex] = useState<number>(globalZIndex)
+  const popupRef = useRef<HTMLDivElement>(null)
   const transitionName =
     transition ||
     (isCenter ? `${BASE_PREFIX}fade` : `${BASE_PREFIX}popup-slide-${position}`)
@@ -81,6 +85,9 @@ const Popup: React.FC<PopupProps> = ({
       closePopup()
     }
   }
+  const onExited = () => {
+    closed && closed()
+  }
   useEffect(() => {
     if (show) {
       open()
@@ -93,9 +100,12 @@ const Popup: React.FC<PopupProps> = ({
       closePopup()
     }
   })
+  useImperativeHandle(ref, () => ({
+    popupRef
+  }))
 
   return (
-    <div>
+    <>
       {overlay && (
         <Overlay
           show={show}
@@ -115,12 +125,13 @@ const Popup: React.FC<PopupProps> = ({
           enter: 10,
           appear: 10
         }}
-        unmountOnExit
+        unmountOnExit={true}
         appear={transitionAppear}
         onEntered={() => opened && opened()}
-        onExited={() => closed && closed()}
+        onExited={onExited}
       >
         <div
+          ref={popupRef}
           style={{ ...getStyle(), ...style }}
           className={`${popupClassName} ${className}`}
           onClick={click}
@@ -135,7 +146,7 @@ const Popup: React.FC<PopupProps> = ({
           )}
         </div>
       </CSSTransition>
-    </div>
+    </>
   )
 }
-export default Popup
+export default React.forwardRef(Popup)
