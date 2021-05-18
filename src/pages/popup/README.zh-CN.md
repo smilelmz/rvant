@@ -87,6 +87,30 @@ const [showBase, setShowBase] = useState(false)
   close={() => setShowRound(false)}
 />
 ```
+
+### 指定挂载节点
+
+设置 `round` 属性后，弹窗会根据弹出位置添加不同的圆角样式。
+
+```html
+<Popup
+  show={showGetContainer}
+  style={{ padding: '30px 50px' }}
+  teleport={true}
+  close={() => setShowGetContainer(false)}
+/>
+<Popup
+  show={showGetContainer}
+  style={{ padding: '30px 50px' }}
+  teleport={myContainer}
+  close={() => setShowGetContainer(false)}
+/>
+```
+
+```js
+const [showGetContainer, setShowGetContainer] = useState(false)
+const myContainer = document.querySelector('.my-container');
+```
 ## API
 
 ### Props
@@ -110,6 +134,9 @@ const [showBase, setShowBase] = useState(false)
 | transition | 动画类名，等价于 [transtion](https://v3.cn.vuejs.org/api/built-in-components.html#transition) 的 `name` 属性 | _string_ | - |
 | transitionAppear | 是否在初始渲染时启用过渡动画 | _boolean_ | `false` |
 | safeAreaInsetBottom | 是否开启[底部安全区适配](#/zh-CN/advanced-usage#di-bu-an-quan-qu-gua-pei) | _boolean_ | `false` |
+| teleport | 指定挂载的节点,默认为body | _boolean \| Element_ | - |
+| teleportClassName | 指定挂载的节点的样式名称 | _string_ | - |
+| teleportStyle | 指定挂载的节点的样式 | _object_ | - |
 
 ### Events
 

@@ -1,5 +1,5 @@
 import React, { MouseEvent } from 'react'
-import { isDef, createNamespace } from '../utils'
+import { isDef, createNamespace, isElement } from '../utils'
 import { CellProps } from './index.types'
 import Icon from '../Icon'
 
@@ -29,14 +29,6 @@ const Cell: React.FC<CellProps> = ({
 }) => {
   const CustomTag = url ? 'a' : 'div'
   const showTitle = isDef(title)
-  const isElement = (el: any) => {
-    if (Array.isArray(el)) {
-      for (let i = 0; i < el.length; i++) {
-        if (React.isValidElement(el[i])) return true
-      }
-    } else if (React.isValidElement(el)) return true
-    return false
-  }
   const renderLabel = () => {
     const showLabel = isDef(label)
     if (showLabel) {

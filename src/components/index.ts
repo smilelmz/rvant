@@ -1,3 +1,4 @@
+import CreatePortal from './CreatePortal'
 import Col from './Col'
 import Row from './Row'
 import Icon from './Icon'
@@ -33,11 +34,13 @@ import NoticeBar from './NoticeBar'
 import Popover from './Popover'
 import Step from './Step'
 import Steps from './Steps'
+
 import { LocaleProvider, useI18n } from './locale'
 
 export {
   LocaleProvider,
   useI18n,
+  CreatePortal,
   Button,
   Col,
   Row,

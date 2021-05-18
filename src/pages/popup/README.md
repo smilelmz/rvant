@@ -77,6 +77,30 @@ Use `position` prop to set popup display position.
   close={() => setShowRound(false)}
 />
 ```
+
+### Get Container
+
+Use `teleport` prop to specify mount location.
+
+```html
+<Popup
+  show={showGetContainer}
+  style={{ padding: '30px 50px' }}
+  teleport={true}
+  close={() => setShowGetContainer(false)}
+/>
+<Popup
+  show={showGetContainer}
+  style={{ padding: '30px 50px' }}
+  teleport={myContainer}
+  close={() => setShowGetContainer(false)}
+/>
+```
+
+```js
+const [showGetContainer, setShowGetContainer] = useState(false)
+const myContainer = document.querySelector('.my-container');
+```
 ## API
 
 ### Props
@@ -101,6 +125,9 @@ Use `position` prop to set popup display position.
 | transitionAppear | Whether to apply transition on initial render | _boolean_ | `false` |
 | teleport | Return the mount node for Popup | _string \| Element_ | - |
 | safeAreaInsetBottom | Whether to enable bottom safe area adaptation | _boolean_ | `false` |
+| teleport | Return the mount node for Popup, default is body element | _boolean \| Element_ | - |
+| teleportClassName | Custom teleport class | _string_ | - |
+| teleportStyle | Custom teleport style | _object_ | - |
 
 ### Events
 

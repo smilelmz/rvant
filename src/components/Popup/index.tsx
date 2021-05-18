@@ -2,9 +2,10 @@
 import React, { useEffect, useImperativeHandle, useRef, useState } from 'react'
 import CSSTransition from 'react-transition-group/CSSTransition'
 import { PopupProps, PopupHandler } from './index.types'
-import { isDef, createNamespace, BASE_PREFIX } from '../utils'
+import { isDef, isBoolean, createNamespace, BASE_PREFIX } from '../utils'
 import Icon from '../Icon'
 import Overlay from '../Overlay'
+import CreatePortal from '../CreatePortal'
 import { useEventListener } from '../composables'
 
 const [bem] = createNamespace('popup')
@@ -31,6 +32,9 @@ const Popup = (
     transition,
     transitionAppear = false,
     safeAreaInsetBottom = false,
+    teleport,
+    teleportClassName,
+    teleportStyle,
     click,
     close,
     opened,
@@ -42,6 +46,7 @@ const Popup = (
   const isCenter = position === 'center'
   const [pzIndex, setPzIndex] = useState<number>(globalZIndex)
   const popupRef = useRef<HTMLDivElement>(null)
+
   const transitionName =
     transition ||
     (isCenter ? `${BASE_PREFIX}fade` : `${BASE_PREFIX}popup-slide-${position}`)
@@ -85,6 +90,64 @@ const Popup = (
       closePopup()
     }
   }
+  const renderCloseIcon = () => {
+    if (closeable) {
+      return (
+        <Icon
+          name={closeIcon}
+          className={bem(`close-icon`, [{ [closeIconPosition]: true }])}
+          click={closePopup}
+        />
+      )
+    }
+  }
+  const renderPopup = () => {
+    return (
+      <div
+        ref={popupRef}
+        style={{ ...getStyle(), ...style }}
+        className={`${popupClassName} ${className}`}
+        onClick={click}
+      >
+        {children}
+        {renderCloseIcon()}
+      </div>
+    )
+  }
+  const renderOverlay = () => {
+    if (overlay) {
+      return (
+        <Overlay
+          show={show}
+          duration={0.3}
+          className={overlayClass}
+          zIndex={pzIndex}
+          customStyle={overlayStyle}
+          click={() => closeOnClickOverlay && cickOverlay()}
+          lockScroll={lockScroll}
+        />
+      )
+    }
+  }
+  const renderTransition = () => {
+    return (
+      <CSSTransition
+        in={show}
+        classNames={transitionName}
+        timeout={{
+          exit: 300,
+          enter: 10,
+          appear: 10
+        }}
+        unmountOnExit={true}
+        appear={transitionAppear}
+        onEntered={() => opened && opened()}
+        onExited={onExited}
+      >
+        {renderPopup()}
+      </CSSTransition>
+    )
+  }
   const onExited = () => {
     closed && closed()
   }
@@ -103,49 +166,26 @@ const Popup = (
   useImperativeHandle(ref, () => ({
     popupRef
   }))
+  if (teleport) {
+    const teleportEle = !isBoolean(teleport)
+      ? (teleport as HTMLElement)
+      : undefined
+    return (
+      <CreatePortal
+        el={teleportEle}
+        style={teleportStyle}
+        className={teleportClassName}
+      >
+        {renderOverlay()}
+        {renderTransition()}
+      </CreatePortal>
+    )
+  }
 
   return (
     <>
-      {overlay && (
-        <Overlay
-          show={show}
-          duration={0.3}
-          className={overlayClass}
-          zIndex={pzIndex}
-          customStyle={overlayStyle}
-          click={() => closeOnClickOverlay && cickOverlay()}
-          lockScroll={lockScroll}
-        />
-      )}
-      <CSSTransition
-        in={show}
-        classNames={transitionName}
-        timeout={{
-          exit: 300,
-          enter: 10,
-          appear: 10
-        }}
-        unmountOnExit={true}
-        appear={transitionAppear}
-        onEntered={() => opened && opened()}
-        onExited={onExited}
-      >
-        <div
-          ref={popupRef}
-          style={{ ...getStyle(), ...style }}
-          className={`${popupClassName} ${className}`}
-          onClick={click}
-        >
-          {children}
-          {closeable && (
-            <Icon
-              name={closeIcon}
-              className={bem(`close-icon`, [{ [closeIconPosition]: true }])}
-              click={closePopup}
-            />
-          )}
-        </div>
-      </CSSTransition>
+      {renderOverlay()}
+      {renderTransition()}
     </>
   )
 }

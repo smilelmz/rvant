@@ -1,6 +1,6 @@
 import React from 'react'
 import { StepProps } from './index.types'
-import { BORDER, createNamespace } from '../utils'
+import { BORDER, createNamespace, isElement } from '../utils'
 import Icon from '../Icon'
 
 const [bem] = createNamespace('step')
@@ -16,15 +16,6 @@ const Step = ({
       console.error('[Vant] <Step> must be a child component of <Steps>.')
     }
     return <></>
-  }
-
-  const isElement = (el: any) => {
-    if (Array.isArray(el)) {
-      for (let i = 0; i < el.length; i++) {
-        if (React.isValidElement(el[i])) return true
-      }
-    } else if (React.isValidElement(el)) return true
-    return false
   }
 
   const getStatus = () => {

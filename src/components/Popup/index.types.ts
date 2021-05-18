@@ -28,6 +28,9 @@ export interface PopupProps {
   transition?: string
   transitionAppear?: boolean
   safeAreaInsetBottom?: boolean
+  teleport?: HTMLElement | boolean
+  teleportClassName?: string
+  teleportStyle?: Record<string, any>
   children?: React.ReactNode | React.ReactNode[]
   click?: EventFunction<MouseEvent>
   close?: VoidFunction

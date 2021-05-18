@@ -14,6 +14,7 @@ const PopupDemo = () => {
   const [showIconTwo, setShowIconTwo] = useState(false)
   const [showIconThree, setShowIconThree] = useState(false)
   const [showRound, setShowRound] = useState(false)
+  const [showGetContainer, setShowGetContainer] = useState(false)
   return (
     <MobileLayout title='Popup' className='demo-popup'>
       <DemoBlock title='基础用法' card>
@@ -92,6 +93,19 @@ const PopupDemo = () => {
           position='bottom'
           round
           close={() => setShowRound(false)}
+        />
+      </DemoBlock>
+      <DemoBlock title='指定挂载节点' card>
+        <Cell
+          title='指定挂载节点'
+          isLink
+          click={() => setShowGetContainer(true)}
+        />
+        <Popup
+          show={showGetContainer}
+          style={{ padding: '30px 50px' }}
+          teleport={true}
+          close={() => setShowGetContainer(false)}
         />
       </DemoBlock>
     </MobileLayout>

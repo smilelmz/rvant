@@ -1,3 +1,5 @@
+import React from 'react'
+
 /* eslint-disable @typescript-eslint/no-unused-vars */
 export const inBrowser = typeof window !== 'undefined'
 
@@ -14,12 +16,25 @@ export function isFunction(val: unknown): boolean {
   return typeof val === 'function'
 }
 
+export function isBoolean(val: unknown): boolean {
+  return typeof val === 'boolean'
+}
+
 export function isObject(val: unknown): val is Record<any, any> {
   return val !== null && typeof val === 'object'
 }
 
 export function isPromise<T = any>(val: unknown): val is Promise<T> {
   return isObject(val) && isFunction(val.then) && isFunction(val.catch)
+}
+
+export function isElement(el: any) {
+  if (Array.isArray(el)) {
+    for (let i = 0; i < el.length; i++) {
+      if (React.isValidElement(el[i])) return true
+    }
+  } else if (React.isValidElement(el)) return true
+  return false
 }
 
 export function get(object: any, path: string): any {
