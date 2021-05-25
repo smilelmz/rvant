@@ -34,6 +34,7 @@ import NoticeBar from './NoticeBar'
 import Popover from './Popover'
 import Step from './Step'
 import Steps from './Steps'
+import Field from './Field'
 
 import { LocaleProvider, useI18n } from './locale'
 
@@ -75,5 +76,6 @@ export {
   NoticeBar,
   Popover,
   Step,
-  Steps
+  Steps,
+  Field
 }

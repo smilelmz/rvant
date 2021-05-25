@@ -1,4 +1,4 @@
-import React, { MouseEvent } from 'react'
+import React, { MouseEvent, TouchEvent } from 'react'
 import { IconProps } from './index.types'
 import { addUnit, createNamespace } from '../utils'
 import Badge from '../Badge'
@@ -27,7 +27,8 @@ const Icon: React.FC<IconProps> = ({
   badge,
   color,
   classPrefix = bem(),
-  click
+  click,
+  touchstart
 }) => {
   const CustomTag = tag || 'i'
   const isImageIcon = isImage(name)
@@ -45,6 +46,7 @@ const Icon: React.FC<IconProps> = ({
       className={classNames}
       style={iconStyle}
       onClick={(e: MouseEvent) => click && click(e)}
+      onTouchStart={(e: TouchEvent) => touchstart && touchstart(e)}
     >
       {isImageIcon && <img className={bem(`image`)} src={iconName} />}
       <Badge dot={dot} content={badge || ''} className={bem(`info`)} />

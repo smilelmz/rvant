@@ -108,8 +108,3 @@ yarn generate pageName 1
 - [ ] GoodsAction
 - [ ] SubmitBar
 - [ ] Sku
-
-### Deprecated
-
-- [ ] SwitchCell
-- [ ] Panel

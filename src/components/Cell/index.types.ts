@@ -2,6 +2,8 @@ import { MouseEvent } from 'react'
 import { EventFunction } from '../type'
 
 export interface CellProps {
+  style?: Record<string, string | number>
+  className?: string
   title?: number | string | React.ReactNode | React.ReactNode[]
   value?: number | string | React.ReactNode | React.ReactNode[]
   label?: number | string | React.ReactNode | React.ReactNode[]
@@ -21,5 +23,6 @@ export interface CellProps {
   titleClass?: string
   valueClass?: string
   labelClass?: string
+  extra?: React.ReactNode
   click?: EventFunction<MouseEvent>
 }

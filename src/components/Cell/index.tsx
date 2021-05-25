@@ -5,6 +5,8 @@ import Icon from '../Icon'
 
 const [bem] = createNamespace('cell')
 const Cell: React.FC<CellProps> = ({
+  style = {},
+  className,
   title,
   value,
   label,
@@ -21,9 +23,10 @@ const Cell: React.FC<CellProps> = ({
   center = false,
   arrowDirection,
   titleStyle,
-  titleClass,
-  valueClass,
-  labelClass,
+  titleClass = '',
+  valueClass = '',
+  labelClass = '',
+  extra,
   children,
   click
 }) => {
@@ -32,9 +35,7 @@ const Cell: React.FC<CellProps> = ({
   const renderLabel = () => {
     const showLabel = isDef(label)
     if (showLabel) {
-      return (
-        <div className={`${bem('label')} ${labelClass || ''}`}>{label}</div>
-      )
+      return <div className={`${bem('label')} ${labelClass}`}>{label}</div>
     }
     return <></>
   }
@@ -42,7 +43,7 @@ const Cell: React.FC<CellProps> = ({
     if (showTitle) {
       return (
         <div
-          className={`${bem('title')} ${titleClass || ''}`}
+          className={`${bem('title')} ${titleClass}`}
           style={titleStyle || {}}
         >
           {typeof title === 'object' ? title : <span>{title}</span>}
@@ -53,15 +54,12 @@ const Cell: React.FC<CellProps> = ({
     return <></>
   }
   const renderValue = () => {
-    const showValue = isDef(value)
-
-    if (showValue) {
+    const hasValue = children || isDef(value)
+    if (hasValue) {
+      const element = isElement(value) ? value : <span>{value}</span>
       return (
-        <div
-          className={`${bem('value', { alone: !showTitle })} ${valueClass ||
-            ''}`}
-        >
-          {isElement(value) ? value : <span>{value}</span>}
+        <div className={`${bem('value', { alone: !showTitle })} ${valueClass}`}>
+          {children || element}
         </div>
       )
     }
@@ -104,7 +102,7 @@ const Cell: React.FC<CellProps> = ({
     }
     return <></>
   }
-  const className = bem([
+  const classes = bem([
     { clickable: isLink || clickable },
     { center },
     { required },
@@ -112,7 +110,8 @@ const Cell: React.FC<CellProps> = ({
     { large: size && size === 'large' }
   ])
   const props: Record<string, any> = {
-    className,
+    className: `${classes} ${className}`,
+    style,
     role: clickable ? 'button' : undefined,
     tabIndex: clickable ? 0 : undefined,
     onClick: (e: MouseEvent) => click && click(e)
@@ -131,7 +130,7 @@ const Cell: React.FC<CellProps> = ({
       {renderTitle()}
       {renderValue()}
       {renderRightIcon()}
-      {children}
+      {extra || null}
     </CustomTag>
   )
 }

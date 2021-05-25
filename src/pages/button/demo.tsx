@@ -9,7 +9,7 @@ const ButtonDemo = () => {
       <DemoBlock title='按钮类型'>
         <div className='demo-button-row'>
           <Button type='primary'>主要按钮</Button>
-          <Button type='info'>信息按钮</Button>
+          <Button type='success'>成功按钮</Button>
           <Button type='default'>默认按钮</Button>
         </div>
         <Button type='danger'>危险按钮</Button>
@@ -19,7 +19,7 @@ const ButtonDemo = () => {
         <Button plain type='primary'>
           朴素按钮
         </Button>
-        <Button plain type='info'>
+        <Button plain type='success'>
           朴素按钮
         </Button>
       </DemoBlock>
@@ -27,7 +27,7 @@ const ButtonDemo = () => {
         <Button plain hairline type='primary'>
           细边框按钮
         </Button>
-        <Button plain hairline type='info'>
+        <Button plain hairline type='success'>
           细边框按钮
         </Button>
       </DemoBlock>
@@ -35,31 +35,31 @@ const ButtonDemo = () => {
         <Button disabled type='primary'>
           禁用状态
         </Button>
-        <Button disabled type='info'>
+        <Button disabled type='success'>
           禁用状态
         </Button>
       </DemoBlock>
       <DemoBlock title='加载状态'>
         <Button loading type='primary' />
         <Button loading loadingType='spinner' type='primary' />
-        <Button loading loadingText='加载中' type='info' />
+        <Button loading loadingText='加载中' type='success' />
       </DemoBlock>
       <DemoBlock title='按钮形状'>
         <Button square type='primary'>
           方形按钮
         </Button>
-        <Button round type='info'>
+        <Button round type='success'>
           圆形按钮
         </Button>
       </DemoBlock>
       <DemoBlock title='图标按钮'>
         <Button icon='plus' type='primary' />
-        <Button icon='plus' type='info'>
+        <Button icon='plus' type='primary'>
           按钮
         </Button>
         <Button
           icon='https://img.yzcdn.cn/vant/user-active.png'
-          type='info'
+          type='primary'
           plain
         >
           按钮
@@ -69,13 +69,13 @@ const ButtonDemo = () => {
         <Button type='primary' size='large'>
           大号按钮
         </Button>
-        <Button type='info' size='normal'>
+        <Button type='primary' size='normal'>
           普通按钮
         </Button>
-        <Button type='default' size='small'>
+        <Button type='primary' size='small'>
           小型按钮
         </Button>
-        <Button type='danger' size='mini'>
+        <Button type='primary' size='mini'>
           迷你按钮
         </Button>
       </DemoBlock>
@@ -94,7 +94,7 @@ const ButtonDemo = () => {
       </DemoBlock>
       <DemoBlock title='自定义样式'>
         <Button color='#7232dd'>单色按钮</Button>
-        <Button color='#7232dd' plain fontColor='#ee0a24'>
+        <Button color='#7232dd' plain fontColor='#7232dd'>
           单色按钮
         </Button>
         <Button color='linear-gradient(to right, #ff6034, #ee0a24)'>

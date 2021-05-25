@@ -40,4 +40,9 @@ export interface LoadingIconProps {
 
 export type LoadingTypes = 'spinner' | 'circular' | undefined
 
-export type ButtonTypes = 'default' | 'primary' | 'warning' | 'info' | 'danger'
+export type ButtonTypes =
+  | 'default'
+  | 'primary'
+  | 'warning'
+  | 'success'
+  | 'danger'

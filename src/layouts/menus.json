@@ -98,8 +98,8 @@
       },
       {
         "name": "Field 输入框",
-        "url": "",
-        "m_url": "",
+        "url": "/field",
+        "m_url": "/field/demo",
         "simulator": true
       },
       {
