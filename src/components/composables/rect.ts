@@ -1,22 +1,15 @@
-import { Ref } from 'react'
+import { BasicTarget, getTargetElement } from '../utils'
 
 function isWindow(val: unknown): val is Window {
   return val === window
 }
 
-export const getRect = (
-  elementRef: (Element | Window) | Ref<Element | Window | undefined>
-) => {
-  let element
-  if (elementRef && 'current' in elementRef) {
-    element = elementRef.current
-  } else {
-    element = elementRef
-  }
+export const getRect = (target: BasicTarget) => {
+  const el = getTargetElement(target)
 
-  if (isWindow(element)) {
-    const width = element.innerWidth
-    const height = element.innerHeight
+  if (isWindow(el)) {
+    const width = el.innerWidth
+    const height = el.innerHeight
 
     return {
       top: 0,
@@ -28,8 +21,8 @@ export const getRect = (
     }
   }
 
-  if (element && 'getBoundingClientRect' in element) {
-    return element.getBoundingClientRect()
+  if (el && 'getBoundingClientRect' in el) {
+    return el.getBoundingClientRect()
   }
 
   return {

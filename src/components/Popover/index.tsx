@@ -124,7 +124,7 @@ const Popover = ({
     }
   }, [])
   useWatch([show, placement], updateLocation)
-  useClickAway(wrapperRef.current, onClickAway, { eventName: 'touchstart' })
+  useClickAway(onClickAway, wrapperRef, 'touchstart')
 
   const popupProps = {
     show,

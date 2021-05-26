@@ -1,55 +1,77 @@
-import { useEffect } from 'react'
-import { inBrowser } from '../utils'
+/* eslint-disable @typescript-eslint/ban-types */
+import { useEffect, useRef } from 'react'
+import { BasicTarget, getTargetElement, inBrowser } from '../utils'
 
-let supportsPassive = false
-if (inBrowser) {
-  try {
-    const opts = {}
-    Object.defineProperty(opts, 'passive', {
-      get() {
-        supportsPassive = true
-      }
-    })
-    window.addEventListener('test-passive', null as any, opts)
-    // eslint-disable-next-line no-empty
-  } catch (e) {}
-}
-
-export type UseEventListenerOptions = {
-  target?: EventTarget
+export type Target = BasicTarget<HTMLElement | Element | Window | Document>
+export type Options<T extends Target = Target> = {
+  target?: T
   capture?: boolean
   passive?: boolean
+  once?: boolean
 }
 
-export function useEventListener(
-  type: string,
-  listener: EventListener,
-  options: UseEventListenerOptions = {}
+function useEventListener<K extends keyof HTMLElementEventMap>(
+  eventName: K,
+  handler: (ev: HTMLElementEventMap[K]) => void,
+  options?: Options<HTMLElement>
+): void
+function useEventListener<K extends keyof ElementEventMap>(
+  eventName: K,
+  handler: (ev: ElementEventMap[K]) => void,
+  options?: Options<Element>
+): void
+function useEventListener<K extends keyof DocumentEventMap>(
+  eventName: K,
+  handler: (ev: DocumentEventMap[K]) => void,
+  options?: Options<Document>
+): void
+function useEventListener<K extends keyof WindowEventMap>(
+  eventName: K,
+  handler: (ev: WindowEventMap[K]) => void,
+  options?: Options<Window>
+): void
+function useEventListener(
+  eventName: string,
+  handler: Function,
+  options: Options
+): void
+function useEventListener(
+  eventName: string,
+  handler: EventListener,
+  options: Options = {}
 ) {
-  const { target = window, passive = false, capture = false } = options
-  let attached: boolean
-  const add = () => {
-    if (inBrowser && target && !attached) {
-      target.addEventListener(
-        type,
-        listener,
-        supportsPassive ? { capture, passive } : capture
-      )
-      attached = true
-    }
-  }
-
-  const remove = () => {
-    if (inBrowser && target && attached) {
-      target.removeEventListener(type, listener, capture)
-      attached = false
-    }
-  }
-
+  const handlerRef = useRef<Function>()
+  handlerRef.current = handler
   useEffect(() => {
-    add()
-    return () => {
-      remove()
+    const targetElement = getTargetElement(options.target, window)!
+    if (!targetElement.addEventListener || !inBrowser) {
+      return
     }
-  })
+
+    const eventListener = (
+      event: Event
+    ): EventListenerOrEventListenerObject | AddEventListenerOptions => {
+      return handlerRef.current && handlerRef.current(event)
+    }
+
+    targetElement.addEventListener(eventName, eventListener, {
+      capture: options.capture,
+      once: options.once,
+      passive: options.passive
+    })
+
+    return () => {
+      targetElement.removeEventListener(eventName, eventListener, {
+        capture: options.capture
+      })
+    }
+  }, [
+    eventName,
+    options.target,
+    options.capture,
+    options.once,
+    options.passive
+  ])
 }
+
+export default useEventListener

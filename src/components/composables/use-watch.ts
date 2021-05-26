@@ -1,7 +1,5 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import { useRef, useEffect } from 'react'
+import { useRef, useEffect, useMemo } from 'react'
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 type Callback<T> = (current: T | undefined, prev: T | undefined) => void
 type Config = {
   immediate: boolean
@@ -18,12 +16,12 @@ export function useWatch<T>(
   const inited = useRef(false)
   const stop = useRef(false)
 
-  let effectArr = []
-  if (Array.isArray(dep)) {
-    effectArr = dep
-  } else {
-    effectArr = [dep]
-  }
+  const effectArr = useMemo(() => {
+    if (Array.isArray(dep)) {
+      return dep
+    }
+    return [dep]
+  }, [dep])
   useEffect(() => {
     const execute = () => callback(curRef.current, prev.current)
     if (!stop.current) {

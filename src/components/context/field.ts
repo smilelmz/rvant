@@ -1,6 +1,19 @@
-import { createContext } from 'react'
-import { FieldParentProps } from '../Field/index.types'
+import { createContext, useContext } from 'react'
+import { useWatch } from '../composables/use-watch'
+import { FieldContextProps } from '../Field/index.types'
 
-const FieldContext = createContext<Partial<FieldParentProps>>({})
+export const FieldContext = createContext<Partial<FieldContextProps>>(null)
 
-export default FieldContext
+export function useLinkField(value: unknown) {
+  const field = useContext(FieldContext)
+  console.log(field)
+  if (field && !field.childFieldValue.current) {
+    field.childFieldValue.current = value
+
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    useWatch(value, () => {
+      field.resetValidation()
+      field.validateWithTrigger('onChange')
+    })
+  }
+}

@@ -123,3 +123,9 @@ export type FieldHandle = {
   formValue: () => unknown
   resetValidation: VoidFunction
 }
+
+export type FieldContextProps = {
+  childFieldValue?: React.MutableRefObject<unknown>
+  resetValidation?: VoidFunction
+  validateWithTrigger?: (trigger: FieldValidateTrigger) => void
+}

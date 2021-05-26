@@ -1,7 +1,9 @@
-import { Ref, useEffect, useRef } from 'react'
+import { MutableRefObject, useEffect, useRef } from 'react'
 import { getRect } from './rect'
 
-export const useHeight = (element: Element | Ref<Element | undefined>) => {
+export const useHeight = (
+  element: HTMLElement | MutableRefObject<HTMLElement | null | undefined>
+) => {
   const height = useRef<number>()
 
   useEffect(() => {

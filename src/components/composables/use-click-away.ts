@@ -1,27 +1,36 @@
-import { inBrowser } from '../utils'
-import { useEventListener } from './use-event-listener'
+import { useEffect, useRef } from 'react'
+import { BasicTarget, getTargetElement } from '../utils'
 
-export type UseClickAwayOptions = {
-  eventName?: string
-}
+const defaultEvent = 'click'
+
+type EventType = MouseEvent | TouchEvent
 
 export function useClickAway(
-  element: Element | null,
-  listener: EventListener,
-  options: UseClickAwayOptions = {}
+  onClickAway: (event: EventType) => void,
+  target: BasicTarget | BasicTarget[],
+  eventName: string = defaultEvent
 ) {
-  if (!inBrowser) {
-    return
-  }
+  const onClickAwayRef = useRef(onClickAway)
+  onClickAwayRef.current = onClickAway
 
-  const { eventName = 'click' } = options
-
-  const onClick = (event: Event) => {
-    if (element && !element.contains(event.target as Node)) {
-      listener(event)
+  useEffect(() => {
+    const handler = (event: any) => {
+      const targets = Array.isArray(target) ? target : [target]
+      if (
+        targets.some((targetItem) => {
+          const targetElement = getTargetElement(targetItem) as HTMLElement
+          return !targetElement || targetElement?.contains(event.target)
+        })
+      ) {
+        return
+      }
+      onClickAwayRef.current(event)
     }
-  }
 
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  useEventListener(eventName, onClick, { target: document })
+    document.addEventListener(eventName, handler)
+
+    return () => {
+      document.removeEventListener(eventName, handler)
+    }
+  }, [target, eventName])
 }

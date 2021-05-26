@@ -39,7 +39,7 @@ import {
 import Icon from '../Icon'
 import { useWatch } from '../composables'
 import Cell from '../Cell'
-import FormContext from '../context/form'
+import { FormContext, FieldContext } from '../context'
 
 const [bem] = createNamespace('field')
 
@@ -67,7 +67,7 @@ const Field = (fieldProps: FieldProps, ref: React.Ref<FieldHandle>) => {
   const [validateMessage, setValidateMessage] = useState('')
 
   const inputRef = useRef<HTMLInputElement & HTMLTextAreaElement>()
-  const childFieldValue = useRef<() => unknown>()
+  const childFieldValue = useRef<unknown>()
 
   const parent = useContext(FormContext)
 
@@ -98,7 +98,7 @@ const Field = (fieldProps: FieldProps, ref: React.Ref<FieldHandle>) => {
 
   const formValue = () => {
     if (childFieldValue.current && props.input) {
-      return childFieldValue.current()
+      return childFieldValue.current
     }
     return props.value
   }
@@ -437,43 +437,51 @@ const Field = (fieldProps: FieldProps, ref: React.Ref<FieldHandle>) => {
 
   const labelAlign = getProp('labelAlign')
   return (
-    <Cell
-      icon={renderLeftIcon() || null}
-      title={renderLabel() || null}
-      extra={props.extra}
-      size={props.size}
-      className={`${bem({
-        error: showError(),
-        disabled: getProp('disabled'),
-        [`label-${getProp('labelAlign')}`]: getProp('labelAlign'),
-        'min-height': props.type === 'textarea' && !props.autosize
-      })} ${className}`}
-      style={style}
-      center={props.center}
-      border={props.border}
-      isLink={props.isLink}
-      required={props.required}
-      clickable={props.clickable}
-      titleStyle={labelStyle()}
-      valueClass={bem('value')}
-      titleClass={`${bem('label', labelAlign)} ${labelClass}`}
-      arrowDirection={props.arrowDirection}
+    <FieldContext.Provider
+      value={{
+        childFieldValue,
+        resetValidation,
+        validateWithTrigger
+      }}
     >
-      <div className={bem('body')}>
-        {renderInput()}
-        {showClear() && (
-          <Icon
-            name={props.clearIcon}
-            className={bem('clear')}
-            touchstart={onClear}
-          />
-        )}
-        {renderRightIcon()}
-        {props.button && <div className={bem('button')}>{props.button}</div>}
-      </div>
-      {renderWordLimit()}
-      {renderMessage()}
-    </Cell>
+      <Cell
+        icon={renderLeftIcon() || null}
+        title={renderLabel() || null}
+        extra={props.extra}
+        size={props.size}
+        className={`${bem({
+          error: showError(),
+          disabled: getProp('disabled'),
+          [`label-${getProp('labelAlign')}`]: getProp('labelAlign'),
+          'min-height': props.type === 'textarea' && !props.autosize
+        })} ${className}`}
+        style={style}
+        center={props.center}
+        border={props.border}
+        isLink={props.isLink}
+        required={props.required}
+        clickable={props.clickable}
+        titleStyle={labelStyle()}
+        valueClass={bem('value')}
+        titleClass={`${bem('label', labelAlign)} ${labelClass}`}
+        arrowDirection={props.arrowDirection}
+      >
+        <div className={bem('body')}>
+          {renderInput()}
+          {showClear() && (
+            <Icon
+              name={props.clearIcon}
+              className={bem('clear')}
+              touchstart={onClear}
+            />
+          )}
+          {renderRightIcon()}
+          {props.button && <div className={bem('button')}>{props.button}</div>}
+        </div>
+        {renderWordLimit()}
+        {renderMessage()}
+      </Cell>
+    </FieldContext.Provider>
   )
 }
 export default React.forwardRef(Field)

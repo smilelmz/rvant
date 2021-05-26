@@ -28,6 +28,18 @@ const NavBarDemo = () => {
           leftArrow
         />
       </DemoBlock>
+      {/* <DemoBlock title='基本用法'>
+        <NavBar
+          title='标题'
+          leftText='返回'
+          rightText='按钮'
+          leftArrow
+          fixed
+          placeholder
+          clickLeft={onClickLeft}
+          clickRight={onClickRight}
+        />
+      </DemoBlock> */}
     </MobileLayout>
   )
 }

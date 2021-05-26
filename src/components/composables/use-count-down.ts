@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { raf, cancelRaf, inBrowser } from '../utils'
 
 export type CurrentTime = {
@@ -44,99 +44,100 @@ function isSameSecond(time1: number, time2: number): boolean {
 }
 
 export function useCountDown(options: UseCountDownOptions) {
-  let rafId: number
-  let endTime: number
-
   const counting = useRef(false)
   const remain = useRef(options.time)
   const [timeLeft, setTimeLeft] = useState<CurrentTime>(
     parseTime(remain.current)
   )
 
-  const pause = () => {
-    counting.current = false
-    cancelRaf(rafId)
-  }
+  const actions = useMemo(() => {
+    let rafId: number
+    let endTime: number
+    const pause = () => {
+      counting.current = false
+      cancelRaf(rafId)
+    }
 
-  const getCurrentRemain = () => Math.max(endTime - Date.now(), 0)
+    const getCurrentRemain = () => Math.max(endTime - Date.now(), 0)
 
-  const setRemain = (value: number) => {
-    remain.current = value
-    options.onChange?.(timeLeft)
-    setTimeLeft(parseTime(remain.current))
-    if (value === 0) {
+    const setRemain = (value: number) => {
+      remain.current = value
+      options.onChange?.(timeLeft)
+      setTimeLeft(parseTime(remain.current))
+      if (value === 0) {
+        pause()
+        options.onFinish?.()
+      }
+    }
+
+    const microTick = () => {
+      rafId = raf(() => {
+        // in case of call reset immediately after finish
+        if (counting.current) {
+          setRemain(getCurrentRemain())
+
+          if (remain.current > 0) {
+            microTick()
+          }
+        }
+      })
+    }
+
+    const macroTick = () => {
+      rafId = raf(() => {
+        // in case of call reset immediately after finish
+        if (counting.current) {
+          const remainRemain = getCurrentRemain()
+          if (
+            !isSameSecond(remainRemain, remain.current) ||
+            remainRemain === 0
+          ) {
+            setRemain(remainRemain)
+          }
+
+          if (remain.current > 0) {
+            macroTick()
+          }
+        }
+      })
+    }
+
+    const tick = () => {
+      // should not start counting in server
+      // see: https://github.com/youzan/vant/issues/7807
+      if (!inBrowser) {
+        return
+      }
+
+      if (options.millisecond) {
+        microTick()
+      } else {
+        macroTick()
+      }
+    }
+
+    const start = () => {
+      if (!counting.current) {
+        endTime = Date.now() + remain.current
+        counting.current = true
+        tick()
+      }
+    }
+
+    const reset = (totalTime: number = options.time) => {
       pause()
-      options.onFinish?.()
-    }
-  }
-
-  const microTick = () => {
-    rafId = raf(() => {
-      // in case of call reset immediately after finish
-      if (counting.current) {
-        setRemain(getCurrentRemain())
-
-        if (remain.current > 0) {
-          microTick()
-        }
-      }
-    })
-  }
-
-  const macroTick = () => {
-    rafId = raf(() => {
-      // in case of call reset immediately after finish
-      if (counting.current) {
-        const remainRemain = getCurrentRemain()
-        if (!isSameSecond(remainRemain, remain.current) || remainRemain === 0) {
-          setRemain(remainRemain)
-        }
-
-        if (remain.current > 0) {
-          macroTick()
-        }
-      }
-    })
-  }
-
-  const tick = () => {
-    // should not start counting in server
-    // see: https://github.com/youzan/vant/issues/7807
-    if (!inBrowser) {
-      return
+      remain.current = totalTime
+      setTimeLeft(parseTime(remain.current))
     }
 
-    if (options.millisecond) {
-      microTick()
-    } else {
-      macroTick()
-    }
-  }
-
-  const start = () => {
-    if (!counting.current) {
-      endTime = Date.now() + remain.current
-      counting.current = true
-      tick()
-    }
-  }
-
-  const reset = (totalTime: number = options.time) => {
-    pause()
-    remain.current = totalTime
-    setTimeLeft(parseTime(remain.current))
-  }
+    return { start, reset, pause }
+  }, [])
 
   useEffect(() => {
     return () => {
-      pause()
+      actions.pause()
     }
   }, [])
 
-  return {
-    start,
-    pause,
-    reset,
-    timeLeft
-  }
+  return [timeLeft, actions] as const
 }

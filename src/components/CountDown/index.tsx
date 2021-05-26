@@ -17,12 +17,13 @@ const CountDown = (
   }: CountDownProps,
   ref: React.Ref<CountDownHandler>
 ) => {
-  const { start, pause, reset, timeLeft } = useCountDown({
+  const [timeLeft, actions] = useCountDown({
     time: +time,
     millisecond,
     onChange: (current) => change && change(current),
     onFinish: () => finish && finish()
   })
+  const { start, pause, reset } = actions
   const timeText = useMemo(() => parseFormat(format, timeLeft), [timeLeft])
   const resetTime = () => {
     reset(+time)
