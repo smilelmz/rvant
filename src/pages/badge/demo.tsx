@@ -1,15 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { MobileLayout, DemoBlock } from '@/doc'
 import Badge from '@/components/Badge'
 import Icon from '@/components/Icon'
 import './index.scss'
 
 const BadgeDemo = () => {
+  const [num, setNum] = useState(5)
   return (
     <MobileLayout title='Badge' className='demo-badge'>
       <DemoBlock title='基础用法'>
-        <Badge content='5'>
-          <div className='child' />
+        <Badge content={num}>
+          <div className='child' onClick={() => setNum(num + 1)} />
         </Badge>
         <Badge content='10'>
           <div className='child' />

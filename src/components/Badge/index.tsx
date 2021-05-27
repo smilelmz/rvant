@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import { BadgeProps } from './index.types'
 import { isDef, isNumeric, createNamespace } from '../utils'
 
@@ -16,25 +16,24 @@ const Badge: React.FC<BadgeProps> = ({
   showZero = true
 }: BadgeProps) => {
   const CustomTag = tag || 'div'
-  const hasContent = () => {
+  const hasContent = useMemo(() => {
     if (content) return true
     return isDef(content) && content !== '' && (showZero || content !== 0)
-  }
+  }, [content])
   const renderContent = () => {
     if (content && React.isValidElement(content)) {
       return content
     }
-    if (!dot && hasContent()) {
+    if (!dot && hasContent) {
       const curContent = content as number | string
       if (max && isNumeric(curContent!) && +curContent > max) {
         return `${max}+`
       }
-
       return content
     }
   }
   const renderBadge = () => {
-    if (hasContent() || dot) {
+    if (hasContent || dot) {
       const badgeStyle: Record<string, any> = {
         background: color
       }
