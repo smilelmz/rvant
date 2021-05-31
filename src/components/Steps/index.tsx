@@ -44,4 +44,4 @@ const Steps = ({
     </StepsContext.Provider>
   )
 }
-export default Steps
+export default React.memo(Steps)

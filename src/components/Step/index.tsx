@@ -118,4 +118,4 @@ const Step = ({ style = {}, className, index = 0, children }: StepProps) => {
     </div>
   )
 }
-export default Step
+export default React.memo(Step)
