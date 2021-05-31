@@ -1,4 +1,4 @@
-import React, { MouseEvent } from 'react'
+import React, { MouseEvent, useMemo } from 'react'
 import { createNamespace } from '../utils'
 import { RowProps, RowSpaces } from './index.types'
 
@@ -11,7 +11,7 @@ const Row: React.FC<RowProps> = ({
   click,
   children = []
 }) => {
-  const getGroups = () => {
+  const groups = useMemo(() => {
     const groups: number[][] = [[]]
     let totalSpan = 0
     let arr = []
@@ -30,9 +30,8 @@ const Row: React.FC<RowProps> = ({
     })
 
     return groups
-  }
-  const getSpaces = () => {
-    const groups = getGroups()
+  }, [children])
+  const spaces = useMemo(() => {
     const gutterNum = Number(gutter || 0)
     const spaces: RowSpaces = []
 
@@ -55,8 +54,7 @@ const Row: React.FC<RowProps> = ({
     })
 
     return spaces
-  }
-  const spaces = getSpaces()
+  }, [])
   return (
     <div
       className={bem({
@@ -67,9 +65,10 @@ const Row: React.FC<RowProps> = ({
       onClick={(e: MouseEvent) => click && click(e)}
     >
       {React.Children.map(children, (child: any, index) => {
-        const config: Record<string, string | number | any[]> = { index }
-        if (gutter) config.gutter = gutter
-        if (spaces) config.spaces = spaces
+        const config: Record<string, string | number | any[]> = {
+          index,
+          spaces
+        }
         return React.cloneElement(child, config)
       })}
     </div>

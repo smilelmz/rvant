@@ -1,4 +1,4 @@
-import React, { MouseEvent } from 'react'
+import React, { MouseEvent, useMemo } from 'react'
 import { createNamespace } from '../utils'
 import { ColProps } from './index.types'
 
@@ -11,14 +11,17 @@ const Col: React.FC<ColProps> = ({
   spaces,
   click
 }) => {
-  let style: Record<string, any> = {}
-  if (spaces && spaces[index]) {
-    const { left, right } = spaces[index]
-    style = {
-      paddingLeft: left ? `${left}px` : null,
-      paddingRight: right ? `${right}px` : null
+  const style = useMemo(() => {
+    let style: Record<string, any> = {}
+    if (spaces && spaces[index]) {
+      const { left, right } = spaces[index]
+      style = {
+        paddingLeft: left ? `${left}px` : null,
+        paddingRight: right ? `${right}px` : null
+      }
     }
-  }
+    return style
+  }, [])
   return (
     <div
       style={style}
