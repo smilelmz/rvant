@@ -9,7 +9,6 @@ export interface GridItemProps {
   icon?: string | React.ReactNode
   badge?: number | string
   iconPrefix?: string
-  parent?: Record<string, any>
   index?: number
   children?: React.ReactNode | React.ReactNode[]
   click?: EventFunction<MouseEvent>

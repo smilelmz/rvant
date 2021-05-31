@@ -1,23 +1,24 @@
-import React, { CSSProperties } from 'react'
+import React, { CSSProperties, useContext } from 'react'
 import { GridItemProps } from './index.types'
 import { createNamespace, addUnit, BORDER } from '../utils'
 import Badge from '../Badge'
 import Icon from '../Icon'
+import { GridContext } from '../context'
 
 const [bem] = createNamespace('grid-item')
 const GridItem = ({
   style = {},
-  className,
+  className = '',
   dot,
   text,
   icon,
   badge,
   iconPrefix,
-  parent,
   index = 0,
   children,
   click
 }: GridItemProps) => {
+  const parent = useContext(GridContext)
   if (!parent) {
     if (process.env.NODE_ENV !== 'production') {
       console.error('[Vant] <GridItem> must be a child component of <Grid>.')
@@ -108,7 +109,7 @@ const GridItem = ({
   return (
     <div
       style={{ ...getRootStyle(), ...style }}
-      className={`${bem({ square })} ${className || ''}`}
+      className={`${bem({ square })} ${className}`}
     >
       <div
         role={clickable ? 'button' : undefined}

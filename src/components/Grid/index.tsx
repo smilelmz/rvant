@@ -1,11 +1,12 @@
 import React from 'react'
 import { GridProps } from './index.types'
 import { createNamespace, addUnit } from '../utils'
+import { GridContext } from '../context'
 
 const [bem] = createNamespace('grid')
 const Grid: React.FC<GridProps> = ({
   style = {},
-  className,
+  className = '',
   square,
   gutter,
   iconSize,
@@ -17,30 +18,32 @@ const Grid: React.FC<GridProps> = ({
   children
 }) => {
   return (
-    <div
-      style={{
-        paddingLeft: addUnit(gutter),
-        ...style
+    <GridContext.Provider
+      value={{
+        square,
+        gutter,
+        iconSize,
+        direction,
+        clickable,
+        columnNum,
+        center,
+        border
       }}
-      className={`${bem([direction])} ${className || ''}`}
     >
-      {React.Children.map(children, (child: any, index: number) => {
-        const config: Record<string, any> = {
-          square,
-          gutter,
-          iconSize,
-          direction,
-          clickable,
-          columnNum,
-          center,
-          border
-        }
-        return React.cloneElement(child, {
-          parent: config,
-          index
-        })
-      })}
-    </div>
+      <div
+        style={{
+          paddingLeft: addUnit(gutter),
+          ...style
+        }}
+        className={`${bem([direction])} ${className}`}
+      >
+        {React.Children.map(children, (child: any, index: number) => {
+          return React.cloneElement(child, {
+            index
+          })
+        })}
+      </div>
+    </GridContext.Provider>
   )
 }
 export default Grid

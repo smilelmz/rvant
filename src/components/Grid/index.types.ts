@@ -1,8 +1,6 @@
 export type GridDirection = 'horizontal' | 'vertical'
 
-export interface GridProps {
-  style?: Record<string, string | number>
-  className?: string
+export interface GridParent {
   square?: boolean
   gutter?: number | string
   iconSize?: number | string
@@ -11,5 +9,10 @@ export interface GridProps {
   columnNum?: number | string
   center?: boolean
   border?: boolean
-  children?: React.ReactNode | React.ReactNode[]
 }
+
+export type GridProps = {
+  style?: Record<string, string | number>
+  className?: string
+  children?: React.ReactNode | React.ReactNode[]
+} & GridParent

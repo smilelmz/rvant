@@ -7,7 +7,7 @@ const [bem] = createNamespace('empty')
 const PRESET_IMAGES = ['error', 'search', 'default']
 const Empty: React.FC<EmptyProps> = ({
   style = {},
-  className,
+  className = '',
   imageSize,
   description,
   image = 'default',
@@ -38,7 +38,7 @@ const Empty: React.FC<EmptyProps> = ({
     }
   }
   return (
-    <div className={`${bem()} ${className || ''}`} style={style}>
+    <div className={`${bem()} ${className}`} style={style}>
       <div className={bem('image')} style={getSizeStyle(imageSize)}>
         {renderImage()}
       </div>

@@ -5,7 +5,7 @@ import { createNamespace } from '../utils'
 const [bem] = createNamespace('divider')
 const Divider: React.FC<DividerProps> = ({
   style = {},
-  className,
+  className = '',
   dashed,
   hairline = true,
   contentPosition = 'center',
@@ -19,7 +19,7 @@ const Divider: React.FC<DividerProps> = ({
         dashed,
         hairline,
         [`content-${contentPosition}`]: !!children
-      })} ${className || ''}`}
+      })} ${className}`}
     >
       {children}
     </div>
