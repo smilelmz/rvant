@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import { MobileLayout, DemoBlock } from '@/doc'
 import Circle from '@/components/Circle'
 import Button from '@/components/Button'
@@ -30,7 +30,7 @@ const CircleDemo = () => {
           rate={rate}
           speed={100}
           text={`${currentRate1.toFixed(0)}%`}
-          change={(r) => setCurrentDate1(r)}
+          change={useCallback((r) => setCurrentDate1(r), [])}
         />
       </DemoBlock>
       <DemoBlock title='样式定制'>
@@ -40,7 +40,7 @@ const CircleDemo = () => {
           speed={100}
           strokeWidth={60}
           text={`宽度定制`}
-          change={(r) => setCurrentDate3(r)}
+          change={useCallback((r) => setCurrentDate3(r), [])}
         />
         <Circle
           currentRate={currentRate3}
@@ -49,7 +49,7 @@ const CircleDemo = () => {
           rate={rate}
           speed={100}
           text={`颜色定制`}
-          change={(r) => setCurrentDate3(r)}
+          change={useCallback((r) => setCurrentDate3(r), [])}
         />
         <Circle
           currentRate={currentRate2}
@@ -57,7 +57,7 @@ const CircleDemo = () => {
           speed={100}
           color={gradientColor}
           text={`${currentRate1.toFixed(0)}%`}
-          change={(r) => setCurrentDate2(r)}
+          change={useCallback((r) => setCurrentDate2(r), [])}
         />
         <Circle
           currentRate={currentRate4}
@@ -67,7 +67,7 @@ const CircleDemo = () => {
           clockwise={false}
           style={{ marginTop: 15 }}
           text={`逆时针`}
-          change={(r) => setCurrentDate4(r)}
+          change={useCallback((r) => setCurrentDate4(r), [])}
         />
         <Circle
           currentRate={currentRate4}
@@ -78,7 +78,7 @@ const CircleDemo = () => {
           clockwise={false}
           text={`大小定制`}
           style={{ marginTop: 15 }}
-          change={(r) => setCurrentDate4(r)}
+          change={useCallback((r) => setCurrentDate4(r), [])}
         />
       </DemoBlock>
       <div style={{ marginTop: 15 }}>

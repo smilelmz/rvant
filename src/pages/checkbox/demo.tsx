@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useCallback, useMemo, useRef, useState } from 'react'
 import { MobileLayout, DemoBlock } from '@/doc'
 import CheckboxGroup from '@/components/CheckboxGroup'
 import Checkbox from '@/components/Checkbox'
@@ -24,8 +24,8 @@ const CheckboxDemo = () => {
       <DemoBlock title='基础用法'>
         <Checkbox
           checked={baseChecked}
-          change={(v: boolean) => setBaseChecked(v)}
-          labelText='复选框'
+          change={useCallback((v: boolean) => setBaseChecked(v), [])}
+          labelText='复选框1'
           ref={cRef}
         />
         <div className='demo-checkbox-buttons'>
@@ -35,15 +35,15 @@ const CheckboxDemo = () => {
         </div>
       </DemoBlock>
       <DemoBlock title='禁用状态'>
-        <Checkbox disabled checked={false} labelText='复选框' />
-        <Checkbox disabled checked labelText='复选框' />
+        <Checkbox disabled checked={false} labelText='复选框2' />
+        <Checkbox disabled checked labelText='复选框3' />
       </DemoBlock>
       <DemoBlock title='自定义形状'>
         <Checkbox
           checked={shapeChecked}
           labelText='自定义形状'
           shape='square'
-          change={(v: boolean) => setShapeChecked(v)}
+          change={useCallback((v: boolean) => setShapeChecked(v), [])}
         />
       </DemoBlock>
       <DemoBlock title='自定义颜色'>
@@ -51,7 +51,7 @@ const CheckboxDemo = () => {
           checked={colorChecked}
           labelText='自定义颜色'
           checkedColor='#07c160'
-          change={(v: boolean) => setColorChecked(v)}
+          change={useCallback((v: boolean) => setColorChecked(v), [])}
         />
       </DemoBlock>
       <DemoBlock title='自定义大小'>
@@ -61,8 +61,13 @@ const CheckboxDemo = () => {
         <Checkbox
           checked={iconChecked}
           labelText='自定义图标'
-          icon={<img src={iconChecked ? activeIcon : inactiveIcon} />}
-          change={(v: boolean) => setIconChecked(v)}
+          icon={useMemo(
+            () => (
+              <img src={iconChecked ? activeIcon : inactiveIcon} />
+            ),
+            [iconChecked]
+          )}
+          change={useCallback((v: boolean) => setIconChecked(v), [])}
         />
       </DemoBlock>
       <DemoBlock title='禁用文本点击'>
@@ -70,20 +75,23 @@ const CheckboxDemo = () => {
           checked={labelChecked}
           labelText='禁用文本点击'
           labelDisabled
-          change={(v: boolean) => setLabelChecked(v)}
+          change={useCallback((v: boolean) => setLabelChecked(v), [])}
         />
       </DemoBlock>
       <DemoBlock title='复选框组'>
-        <CheckboxGroup value={result} change={(v: string[]) => setResult(v)}>
+        <CheckboxGroup
+          value={result}
+          change={useCallback((v: string[]) => setResult(v), [])}
+        >
           <Checkbox name='a'>复选框 a</Checkbox>
           <Checkbox name='b'>复选框 b</Checkbox>
         </CheckboxGroup>
       </DemoBlock>
-      <DemoBlock title='水平排列'>
+      {/* <DemoBlock title='水平排列'>
         <CheckboxGroup
           value={horizontalResult}
           direction='horizontal'
-          change={(v: React.SetStateAction<string[]>) => setHorizontalResult(v)}
+          change={useCallback((v: React.SetStateAction<string[]>) => setHorizontalResult(v), [])}
         >
           <Checkbox name='a'>复选框 a</Checkbox>
           <Checkbox name='b'>复选框 b</Checkbox>
@@ -93,7 +101,7 @@ const CheckboxDemo = () => {
         <CheckboxGroup
           value={result2}
           max={2}
-          change={(v: React.SetStateAction<string[]>) => setResult2(v)}
+          change={useCallback((v: React.SetStateAction<string[]>) => setResult2(v), [])}
         >
           <Checkbox name='a'>复选框 a</Checkbox>
           <Checkbox name='b'>复选框 b</Checkbox>
@@ -104,7 +112,7 @@ const CheckboxDemo = () => {
         <CheckboxGroup
           ref={groupRef}
           value={checkAllResult}
-          change={(v: React.SetStateAction<string[]>) => setCheckAllResult(v)}
+          change={useCallback((v: React.SetStateAction<string[]>) => setCheckAllResult(v), [])}
         >
           <Checkbox name='a'>复选框 a</Checkbox>
           <Checkbox name='b'>复选框 b</Checkbox>
@@ -125,7 +133,7 @@ const CheckboxDemo = () => {
             反选
           </Button>
         </div>
-      </DemoBlock>
+      </DemoBlock> */}
     </MobileLayout>
   )
 }

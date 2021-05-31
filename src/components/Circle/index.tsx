@@ -1,4 +1,4 @@
-import React, { CSSProperties } from 'react'
+import React, { CSSProperties, useMemo } from 'react'
 import { CircleProps } from './index.types'
 import {
   isObject,
@@ -39,8 +39,11 @@ const Circle: React.FC<CircleProps> = ({
   change
 }) => {
   const id = `van-circle-${uid++}`
-  const viewBoxSize = +strokeWidth + 1000
-  const path = getPath(clockwise, viewBoxSize)
+  const viewBoxSize = useMemo(() => +strokeWidth + 1000, [strokeWidth])
+  const path = useMemo(() => getPath(clockwise, viewBoxSize), [
+    clockwise,
+    strokeWidth
+  ])
   useWatch<string | number>(
     rate,
     (newRate) => {
