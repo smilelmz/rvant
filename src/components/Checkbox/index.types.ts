@@ -29,7 +29,6 @@ export interface CheckboxProps {
   change?: ValueFunction<boolean>
   click?: EventFunction<MouseEvent>
   bindGroup?: boolean
-  parent?: CheckerParent
   children?: React.ReactNode | React.ReactNode[]
 }
 

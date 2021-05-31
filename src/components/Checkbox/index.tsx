@@ -1,7 +1,14 @@
-import React, { useState, useRef, useImperativeHandle, MouseEvent } from 'react'
+import React, {
+  useState,
+  useRef,
+  useImperativeHandle,
+  MouseEvent,
+  useContext
+} from 'react'
 import { createNamespace, addUnit } from '../utils'
 import { CheckboxProps, CheckboxHandler } from './index.types'
 import Icon from '../Icon'
+import { CheckboxGroupContext } from '../context'
 
 const [bem] = createNamespace('checkbox')
 const Checkbox = (
@@ -19,11 +26,11 @@ const Checkbox = (
     labelDisabled,
     labelPosition = 'right',
     bindGroup = true,
-    parent = {},
     children
   }: CheckboxProps,
   ref: React.Ref<CheckboxHandler>
 ) => {
+  const parent = useContext(CheckboxGroupContext)
   const { modelValue = [], max, updateGroupValue } = parent
 
   const iconRef = useRef<HTMLDivElement>(null)
@@ -145,4 +152,4 @@ const Checkbox = (
     </div>
   )
 }
-export default React.forwardRef(Checkbox)
+export default React.memo(React.forwardRef(Checkbox))

@@ -1,6 +1,7 @@
 import React from 'react'
 import { StepsProps } from './index.types'
 import { createNamespace } from '../utils'
+import { StepsContext } from '../context'
 
 const [bem] = createNamespace('steps')
 const Steps = ({
@@ -18,27 +19,29 @@ const Steps = ({
   clickStep
 }: StepsProps) => {
   return (
-    <div style={style} className={`${bem([direction])} ${className || ''}`}>
-      <div className={bem('items')}>
-        {React.Children.map(children, (child: any, index: number) => {
-          const config: Record<string, any> = {
-            active,
-            iconPrefix,
-            finishIcon,
-            activeColor,
-            inactiveIcon,
-            inactiveColor,
-            direction,
-            activeIcon,
-            clickStep
-          }
-          return React.cloneElement(child, {
-            parent: config,
-            index
-          })
-        })}
+    <StepsContext.Provider
+      value={{
+        active,
+        iconPrefix,
+        finishIcon,
+        activeColor,
+        inactiveIcon,
+        inactiveColor,
+        direction,
+        activeIcon,
+        clickStep
+      }}
+    >
+      <div style={style} className={`${bem([direction])} ${className || ''}`}>
+        <div className={bem('items')}>
+          {React.Children.map(children, (child: any, index: number) => {
+            return React.cloneElement(child, {
+              index
+            })
+          })}
+        </div>
       </div>
-    </div>
+    </StepsContext.Provider>
   )
 }
 export default Steps

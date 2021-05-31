@@ -6,7 +6,7 @@ export const FieldContext = createContext<Partial<FieldContextProps>>(null)
 
 export function useLinkField(value: unknown) {
   const field = useContext(FieldContext)
-  console.log(field)
+
   if (field && !field.childFieldValue.current) {
     field.childFieldValue.current = value
 

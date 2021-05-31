@@ -7,6 +7,7 @@ import {
 import { createNamespace } from '../utils'
 import { useRefs } from '../composables'
 import { CheckboxHandler } from '../Checkbox/index.types'
+import { CheckboxGroupContext } from '../context'
 
 const [bem] = createNamespace('checkbox-group')
 const CheckboxGroup = (
@@ -52,23 +53,25 @@ const CheckboxGroup = (
     toggleAll
   }))
   return (
-    <div className={bem([direction])}>
-      {React.Children.map(children, (child: any, index: number) => {
-        const config: Record<string, any> = {
-          modelValue: value,
-          direction,
-          disabled,
-          iconSize,
-          max,
-          updateGroupValue: change
-        }
-        if (checkedColor) config.checkedColor = checkedColor
-        return React.cloneElement(child, {
-          parent: config,
-          ref: setCheckboxRefs(index)
-        })
-      })}
-    </div>
+    <CheckboxGroupContext.Provider
+      value={{
+        modelValue: value,
+        direction,
+        disabled,
+        iconSize,
+        max,
+        checkedColor,
+        updateGroupValue: change
+      }}
+    >
+      <div className={bem([direction])}>
+        {React.Children.map(children, (child: any, index: number) => {
+          return React.cloneElement(child, {
+            ref: setCheckboxRefs(index)
+          })
+        })}
+      </div>
+    </CheckboxGroupContext.Provider>
   )
 }
-export default React.forwardRef(CheckboxGroup)
+export default React.memo(React.forwardRef(CheckboxGroup))

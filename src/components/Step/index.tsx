@@ -1,16 +1,12 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { StepProps } from './index.types'
 import { BORDER, createNamespace, isElement } from '../utils'
 import Icon from '../Icon'
+import { StepsContext } from '../context'
 
 const [bem] = createNamespace('step')
-const Step = ({
-  style = {},
-  className,
-  parent = {},
-  index = 0,
-  children
-}: StepProps) => {
+const Step = ({ style = {}, className, index = 0, children }: StepProps) => {
+  const parent = useContext(StepsContext)
   if (!parent) {
     if (process.env.NODE_ENV !== 'production') {
       console.error('[Vant] <Step> must be a child component of <Steps>.')
