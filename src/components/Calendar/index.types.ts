@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
+import { Actions } from '../composables/use-toggle'
 import { ValueFunction, ValueFunctionMayBeNull } from '../type'
 
 export type DayType =
@@ -71,7 +72,8 @@ export interface CalendarProps {
 export interface IHandles {
   date: Date
   showed: boolean
+  setVisible: (value?: boolean) => void
   getTitle: () => string
-  getHeight: () => number | string | undefined
+  getHeight: () => number
   scrollIntoView: (body: Element | null) => void
 }

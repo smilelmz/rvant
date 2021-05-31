@@ -14,7 +14,7 @@ const ${componentName} = ({
     </div>
   )
 }
-export default ${componentName}
+export default React.memo(${componentName})
 `,
   extension: `index.tsx`
 })

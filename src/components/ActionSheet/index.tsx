@@ -158,4 +158,4 @@ const ActionSheet = ({
     </Popup>
   )
 }
-export default ActionSheet
+export default React.memo(ActionSheet)

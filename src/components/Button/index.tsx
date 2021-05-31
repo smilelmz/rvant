@@ -1,4 +1,4 @@
-import React, { MouseEvent } from 'react'
+import React, { MouseEvent, useMemo } from 'react'
 import { createNamespace, BORDER_SURROUND, WHITE } from '../utils'
 import { ButtonProps } from './index.types'
 
@@ -99,7 +99,7 @@ const Button: React.FC<ButtonProps> = ({
       )
     }
   }
-  const getStyle = () => {
+  const btnStyle = useMemo(() => {
     const commonStyle: Record<string, string | number> = {}
     if (color) {
       commonStyle.color = plain ? color : WHITE
@@ -116,9 +116,9 @@ const Button: React.FC<ButtonProps> = ({
       commonStyle.color = fontColor
     }
     return commonStyle
-  }
+  }, [fontColor, color, plain])
   const props: Record<string, any> = {
-    style: { ...getStyle(), ...style },
+    style: { ...btnStyle, ...style },
     onClick,
     className: classes
   }
@@ -142,4 +142,4 @@ const Button: React.FC<ButtonProps> = ({
   )
 }
 
-export default Button
+export default React.memo(Button)

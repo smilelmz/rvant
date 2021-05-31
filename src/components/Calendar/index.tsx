@@ -26,6 +26,7 @@ import CalendarHeader from './CalendarHeader'
 import { useRefs, getRect, useWatch } from '../composables'
 import { getScrollTop, raf } from '../utils'
 import { useI18n } from '../locale'
+import useSyncCallback from '../composables/use-sync-callback'
 
 const getMaxDate = () => {
   const now = new Date()
@@ -82,6 +83,7 @@ const Calendar = (
     }
     return date
   }
+
   const getInitialDate = (date = defaultDate) => {
     if (date === null) {
       return date
@@ -109,14 +111,11 @@ const Calendar = (
   const [bodyHeight, setBodyHeight] = useState(0)
   const bodyRef = useRef<HTMLDivElement>(null)
   const { messages } = useI18n()
-  const [state, setState] = useState<{
-    subtitle: string
-    currentDate: Date | Date[]
-  }>({
+  const [state, setState] = useState(() => ({
     subtitle: '',
     currentDate: getInitialDate()
-  })
-  const [monthRefs, setMonthRefs] = useRefs<React.Ref<IHandles>>()
+  }))
+  const [monthRefs, setMonthRefs] = useRefs<IHandles>()
   const dayOffset = useMemo(() => (firstDayOfWeek ? +firstDayOfWeek % 7 : 0), [
     firstDayOfWeek
   ])
@@ -133,9 +132,9 @@ const Calendar = (
   const getDateArr = () => {
     const { currentDate } = state
     if (!currentDate) return []
-    return currentDate instanceof Date ? [currentDate] : currentDate
+    return Array.isArray(currentDate) ? currentDate : [currentDate]
   }
-  const getBtnDisabled = () => {
+  const buttonDisabled = useMemo(() => {
     const { currentDate } = state
     if (currentDate) {
       const curDate = getDateArr()
@@ -147,17 +146,14 @@ const Calendar = (
       }
     }
     return !currentDate
-  }
+  }, [type, state.currentDate])
   const onScroll = () => {
     const top = getScrollTop(bodyRef.current!)
     const bottom = top + bodyHeight
     const heights = months.map((item, index) =>
-      monthRefs.current[index]
-        ? ((monthRefs.current[index] as unknown) as IHandles).getHeight()
-        : 0
+      monthRefs.current[index] ? monthRefs.current[index].getHeight() : 0
     )
-    const heightSum =
-      heights.reduce((a, b) => (a as number) + (b as number), 0) || 0
+    const heightSum = heights.reduce((a, b) => a + b, 0) || 0
     // iOS scroll bounce may exceed the range
     if (bottom > heightSum && top > 0) {
       return
@@ -166,8 +162,8 @@ const Calendar = (
     let currentMonth
     const visibleRange = [-1, -1]
     for (let i = 0; i < months.length; i++) {
-      const month = (monthRefs.current[i] as unknown) as IHandles
-      const visible = height <= bottom && height + (heights[i] as number) >= top
+      const month = monthRefs.current[i]
+      const visible = height <= bottom && height + heights[i] >= top
       if (visible) {
         visibleRange[1] = i
         if (!currentMonth) {
@@ -180,15 +176,20 @@ const Calendar = (
         }
       }
 
-      height += heights[i] as number
+      height += heights[i]
     }
+    months.forEach((month, index) => {
+      const visible =
+        index >= visibleRange[0] - 1 && index <= visibleRange[1] + 1
+      monthRefs.current[index].setVisible(visible)
+    })
     if (currentMonth) {
-      const subtitle = ((currentMonth as unknown) as IHandles).getTitle() || ''
+      const subtitle = currentMonth.getTitle() || ''
       if (subtitle !== state.subtitle) {
-        setState({
-          ...state,
+        setState((prevState) => ({
+          ...prevState,
           subtitle
-        })
+        }))
       }
     }
   }
@@ -196,20 +197,15 @@ const Calendar = (
     raf(() => {
       months.some((month: Date, index: number) => {
         if (compareMonth(month, targetDate) === 0) {
-          monthRefs.current[index]
-            ? ((monthRefs.current[
-                index
-              ] as unknown) as IHandles).scrollIntoView(bodyRef.current)
-            : null
+          monthRefs.current[index].scrollIntoView(bodyRef.current)
           return true
         }
-
         return false
       })
       onScroll()
     })
   }
-  const scrollIntoView = () => {
+  const scrollIntoView = useSyncCallback(() => {
     if (poppable && !show) {
       return
     }
@@ -221,7 +217,7 @@ const Calendar = (
     } else {
       raf(onScroll)
     }
-  }
+  })
   const init = () => {
     if (poppable && !show) {
       return
@@ -231,15 +227,14 @@ const Calendar = (
       scrollIntoView()
     })
   }
-
   const reset = (date = getInitialDate()) => {
-    setState({
-      ...state,
+    // 存在同步获取数据问题
+    setState((prevState) => ({
+      ...prevState,
       currentDate: date
-    })
+    }))
     scrollIntoView()
   }
-
   const checkRange = (date: [Date, Date]) => {
     if (maxRange && calcDateNum(date) > maxRange) {
       Toast.info(rangePrompt || t(messages, 'rangePrompt', maxRange))
@@ -247,13 +242,14 @@ const Calendar = (
     }
     return true
   }
-  const onConfirm = () => {
-    confirm && confirm(copyDates(state.currentDate))
-  }
+  const onConfirm = () => confirm && confirm(copyDates(state.currentDate))
   const selectDay = (date: Date | Date[], complete?: boolean) => {
     const setCurrentDate = (date: Date | Date[]) => {
-      setState({ ...state, currentDate: date })
-      select && select(copyDates(state.currentDate))
+      setState((prevState) => ({
+        ...prevState,
+        currentDate: date
+      }))
+      select && select(copyDates(date))
     }
 
     if (complete && type === 'range') {
@@ -274,7 +270,7 @@ const Calendar = (
     }
     setCurrentDate(date)
     if (complete && !showConfirm) {
-      onConfirm()
+      confirm && confirm(copyDates(date))
     }
   }
   const onClickDay = (item: DayItem) => {
@@ -359,7 +355,6 @@ const Calendar = (
       return footer
     }
     if (showConfirm) {
-      const buttonDisabled = getBtnDisabled()
       const text = buttonDisabled ? confirmDisabledText : confirmText
       return (
         <Button
@@ -382,7 +377,6 @@ const Calendar = (
       {renderFooterButton()}
     </div>
   )
-
   const renderCalendar = () => {
     return (
       <div className={`${bem()} ${className || ''}`} style={style}>
@@ -407,8 +401,10 @@ const Calendar = (
     reset(getInitialDate(state.currentDate))
   })
   useWatch(defaultDate, () => {
-    if (defaultDate) setState({ ...state, currentDate: defaultDate })
-    scrollIntoView()
+    if (defaultDate) {
+      setState((prevState) => ({ ...prevState, currentDate: defaultDate }))
+      scrollIntoView()
+    }
   })
 
   useImperativeHandle(calendarRef, () => ({
@@ -434,4 +430,4 @@ const Calendar = (
   }
   return renderCalendar()
 }
-export default React.forwardRef(Calendar)
+export default React.memo(React.forwardRef(Calendar))

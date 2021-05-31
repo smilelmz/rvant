@@ -11,4 +11,5 @@ export * from './use-watch'
 export * from './use-count-down'
 export * from './use-placeholder'
 export * from './use-click-away'
+export * from './use-sync-callback'
 export { useEventListener }

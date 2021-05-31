@@ -15,6 +15,7 @@ import {
 import { useHeight } from '../composables'
 import { DayItem, DayType, CalendarType, IHandles } from './index.types'
 import CalendarDay from './CalendarDay'
+import useToggle from '../composables/use-toggle'
 
 interface IProps {
   type?: CalendarType
@@ -54,9 +55,11 @@ const CalendarMonth = (
   ref: React.Ref<IHandles>
 ) => {
   const { messages } = useI18n()
+  const [visible, { toggle }] = useToggle()
   const daysRef = useRef<HTMLDivElement>(null)
   const monthRef = useRef<HTMLDivElement>(null)
   const height = useHeight(monthRef)
+
   const title = useMemo(() => formatMonthTitle(messages, date), [date])
   const clacRowHeight = useMemo(() => addUnit(rowHeight), [rowHeight])
   const offset = useMemo(() => {
@@ -70,6 +73,7 @@ const CalendarMonth = (
     () => getMonthEndDay(date.getFullYear(), date.getMonth() + 1),
     [date]
   )
+  const shouldRender = useMemo(() => visible, [visible])
   const getTitle = () => title
   const scrollIntoView = (body: Element | null) => {
     if (!body) return
@@ -159,12 +163,16 @@ const CalendarMonth = (
     }
   }
   const renderMark = () => {
-    if (showMark) {
+    if (showMark && shouldRender) {
       return <div className={bem('month-mark')}>{date.getMonth() + 1}</div>
     }
   }
-  const getDays = () => {
-    const days: DayItem[] = []
+  const placeholders = useMemo<DayItem[]>(() => {
+    const count = Math.ceil((totalDay + offset) / 7)
+    return Array(count).fill({ type: 'placeholder' })
+  }, [])
+  const days = useMemo(() => {
+    const daysList: DayItem[] = []
     const year = date.getFullYear()
     const month = date.getMonth()
     for (let day = 1; day <= totalDay; day++) {
@@ -179,11 +187,10 @@ const CalendarMonth = (
       if (formatter) {
         config = formatter(config)
       }
-      days.push(config)
+      daysList.push(config)
     }
-    return days
-  }
-  const days = getDays()
+    return daysList
+  }, [date, formatter, type])
   const renderDay = (item: DayItem, index: number) => (
     <CalendarDay
       key={index}
@@ -201,7 +208,7 @@ const CalendarMonth = (
     return (
       <div ref={daysRef} role='grid' className={bem('days')}>
         {renderMark()}
-        {days.map(renderDay)}
+        {(shouldRender ? days : placeholders).map(renderDay)}
       </div>
     )
   }
@@ -210,6 +217,7 @@ const CalendarMonth = (
     date,
     getTitle,
     getHeight: () => height.current,
+    setVisible: toggle,
     scrollIntoView
   }))
   return (
@@ -219,4 +227,4 @@ const CalendarMonth = (
     </div>
   )
 }
-export default React.forwardRef(CalendarMonth)
+export default React.memo(React.forwardRef(CalendarMonth))

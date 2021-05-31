@@ -72,4 +72,4 @@ const Badge: React.FC<BadgeProps> = ({
 
   return renderBadge()
 }
-export default Badge
+export default React.memo(Badge)

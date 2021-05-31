@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { CSSProperties } from 'react'
+import React, { CSSProperties, useMemo } from 'react'
 import { ValueFunction } from '@/components/type'
 import { DayItem } from './index.types'
 import { bem } from './utils'
@@ -21,7 +21,7 @@ const CalendarDay: React.FC<IProps> = ({
   item,
   click
 }: IProps) => {
-  const getStyle = () => {
+  const style = useMemo(() => {
     const style: CSSProperties = {
       height: rowHeight
     }
@@ -49,8 +49,7 @@ const CalendarDay: React.FC<IProps> = ({
       }
     }
     return style
-  }
-  const style = getStyle()
+  }, [item, index, color, offset, rowHeight])
   const onClick = () => {
     if (item.type !== 'disabled') {
       click && click(item)
@@ -98,4 +97,4 @@ const CalendarDay: React.FC<IProps> = ({
   )
 }
 
-export default CalendarDay
+export default React.memo(CalendarDay)

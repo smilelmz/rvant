@@ -57,4 +57,4 @@ const CalendarHeader: React.FC<IProps> = ({
   )
 }
 
-export default CalendarHeader
+export default React.memo(CalendarHeader)
