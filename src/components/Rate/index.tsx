@@ -1,5 +1,5 @@
 /* eslint-disable no-useless-return */
-import React, { TouchEvent, useRef } from 'react'
+import React, { MouseEvent, TouchEvent, useMemo, useRef } from 'react'
 import { RateProps } from './index.types'
 import { addUnit, preventDefault, createNamespace } from '../utils'
 import { useTouch, useRefs } from '../composables'
@@ -8,24 +8,39 @@ import Icon from '../Icon'
 const [bem] = createNamespace('rate')
 
 type RateStatus = 'full' | 'half' | 'void'
-interface RangeItem {
+
+type RangeItem = {
   left: number
   score: number
+}
+
+type RateListItem = {
+  value: number
+  status: RateStatus
 }
 const getRateStatus = (
   value: number,
   index: number,
-  allowHalf: any
-): RateStatus => {
+  allowHalf: any,
+  readonly: boolean
+): RateListItem => {
   if (value >= index) {
-    return 'full'
+    return { status: 'full', value: 1 }
   }
 
-  if (value + 0.5 >= index && allowHalf) {
-    return 'half'
+  if (value + 0.5 >= index && allowHalf && !readonly) {
+    return { status: 'half', value: 0.5 }
   }
 
-  return 'void'
+  if (value + 1 >= index && allowHalf && readonly) {
+    const cardinal = 10 ** 10
+    return {
+      status: 'half',
+      value: Math.round((value - index + 1) * cardinal) / cardinal
+    }
+  }
+
+  return { status: 'void', value: 0 }
 }
 const Rate: React.FC<RateProps> = ({
   value = 0,
@@ -48,28 +63,16 @@ const Rate: React.FC<RateProps> = ({
   const ranges = useRef<RangeItem[]>([])
   const [itemRefs, setItemRefs] = useRefs<HTMLDivElement>()
   const untouchable = () => readonly || disabled || !touchable
-  const list: RateStatus[] = Array(count)
-    .fill('')
-    .map((_, i) => getRateStatus(value, i + 1, allowHalf))
-  const select = (index: number) => {
-    if (!disabled && !readonly && index !== value) {
-      change && change(index)
-    }
-  }
-  const getScoreByPosition = (x: number) => {
-    for (let i = ranges.current.length - 1; i > 0; i--) {
-      if (x > ranges.current[i].left) {
-        return ranges.current[i].score
-      }
-    }
-    return allowHalf ? 0.5 : 1
-  }
-  const onTouchStart = (event: TouchEvent) => {
-    if (untouchable()) {
-      return
-    }
-    touch.start(event)
+  const list: RateListItem[] = useMemo(
+    () =>
+      Array(count)
+        .fill('')
+        .map((_, i) => getRateStatus(value, i + 1, allowHalf, readonly)),
+    [count, value, allowHalf, readonly]
+  )
+  const updateRanges = () => {
     const rects = itemRefs.current.map((item) => item.getBoundingClientRect())
+
     ranges.current = []
     rects.forEach((rect, index) => {
       if (allowHalf) {
@@ -82,6 +85,26 @@ const Rate: React.FC<RateProps> = ({
       }
     })
   }
+  const getScoreByPosition = (x: number) => {
+    for (let i = ranges.current.length - 1; i > 0; i--) {
+      if (x > ranges.current[i].left) {
+        return ranges.current[i].score
+      }
+    }
+    return allowHalf ? 0.5 : 1
+  }
+  const select = (index: number) => {
+    if (!disabled && !readonly && index !== value) {
+      change && change(index)
+    }
+  }
+  const onTouchStart = (event: TouchEvent) => {
+    if (untouchable()) {
+      return
+    }
+    touch.start(event)
+    updateRanges()
+  }
   const onTouchMove = (event: TouchEvent) => {
     if (untouchable()) {
       return
@@ -93,13 +116,18 @@ const Rate: React.FC<RateProps> = ({
       select(getScoreByPosition(clientX))
     }
   }
-  const renderStar = (status: RateStatus, index: number) => {
+  const renderStar = (item: RateListItem, index: number) => {
     const score = index + 1
-    const isFull = status === 'full'
-    const isVoid = status === 'void'
+    const isFull = item.status === 'full'
+    const isVoid = item.status === 'void'
+    const renderHalf = allowHalf && item.value > 0 && item.value < 1
     let style
     if (gutter && score !== +count) {
       style = { paddingRight: addUnit(gutter) }
+    }
+    const onClickItem = (event: MouseEvent) => {
+      updateRanges()
+      select(allowHalf ? getScoreByPosition(event.clientX) : score)
     }
     return (
       <div
@@ -112,6 +140,7 @@ const Rate: React.FC<RateProps> = ({
         aria-setsize={count}
         aria-posinset={score}
         aria-checked={!isVoid}
+        onClick={onClickItem}
       >
         <Icon
           className={bem('icon', { disabled, full: isFull })}
@@ -120,11 +149,8 @@ const Rate: React.FC<RateProps> = ({
           color={disabled ? disabledColor : isFull ? color : voidColor}
           classPrefix={iconPrefix}
           data-score={score}
-          click={() => {
-            select(score)
-          }}
         />
-        {allowHalf && (
+        {renderHalf && (
           <Icon
             size={size}
             name={isVoid ? voidIcon : icon}
@@ -132,9 +158,6 @@ const Rate: React.FC<RateProps> = ({
             color={disabled ? disabledColor : isVoid ? voidColor : color}
             classPrefix={iconPrefix}
             data-score={score - 0.5}
-            click={() => {
-              select(score - 0.5)
-            }}
           />
         )}
       </div>
@@ -156,4 +179,5 @@ const Rate: React.FC<RateProps> = ({
     </div>
   )
 }
-export default Rate
+
+export default React.memo(Rate)

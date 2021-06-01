@@ -74,4 +74,4 @@ const Tag: React.FC<TagProps> = ({
     </CSSTransition>
   )
 }
-export default Tag
+export default React.memo(Tag)

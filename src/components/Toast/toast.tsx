@@ -58,4 +58,4 @@ const Toast: React.FC<ToastProps> = ({
     </div>
   )
 }
-export default Toast
+export default React.memo(Toast)

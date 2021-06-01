@@ -6,4 +6,4 @@ const [bem] = createNamespace('datetime-picker')
 const DatetimePicker: React.FC<DatetimePickerProps> = () => {
   return <div className={bem()}>123456</div>
 }
-export default DatetimePicker
+export default React.memo(DatetimePicker)

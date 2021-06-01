@@ -123,4 +123,4 @@ const GridItem = ({
     </div>
   )
 }
-export default GridItem
+export default React.memo(GridItem)

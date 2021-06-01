@@ -10,4 +10,4 @@ const Form = ({ style = {}, className }: FormProps) => {
     </div>
   )
 }
-export default Form
+export default React.memo(Form)

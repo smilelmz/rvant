@@ -46,4 +46,4 @@ const Grid: React.FC<GridProps> = ({
     </GridContext.Provider>
   )
 }
-export default Grid
+export default React.memo(Grid)

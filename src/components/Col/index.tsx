@@ -33,4 +33,4 @@ const Col: React.FC<ColProps> = ({
   )
 }
 
-export default Col
+export default React.memo(Col)

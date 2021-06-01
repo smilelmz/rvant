@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useMemo, useState } from 'react'
 import { PageItem, PaginationProps } from './index.types'
 import { BORDER, createNamespace } from '../utils'
 import { useWatch } from '../composables'
@@ -31,13 +31,13 @@ const Pagination = ({
 }: PaginationProps) => {
   const { messages } = useI18n()
   const [modelValue, setModelValue] = useState(value)
-  const getCount = () => {
+  const count = useMemo(() => {
     const count = +pageCount || Math.ceil(+totalItems / +itemsPerPage)
     return Math.max(1, count)
-  }
-  const getPages = () => {
+  }, [pageCount, totalItems, itemsPerPage])
+  const pages = useMemo(() => {
     const items: PageItem[] = []
-    const pageCount = getCount()
+    const pageCount = count
     const curShowPageSize = +showPageSize
 
     if (mode !== 'multi') return items
@@ -73,10 +73,10 @@ const Pagination = ({
     }
 
     return items
-  }
+  }, [showPageSize, mode, modelValue, forceEllipses])
 
   const select = (page: number, emitChange?: boolean) => {
-    const curPage = Math.min(getCount(), Math.max(1, page))
+    const curPage = Math.min(count, Math.max(1, page))
     if (modelValue !== curPage) {
       setModelValue(curPage)
       if (emitChange) {
@@ -97,13 +97,13 @@ const Pagination = ({
     if (mode !== 'multi') {
       return (
         <li className={bem('page-desc')}>
-          {pageDesc || `${modelValue}/${getCount()}`}
+          {pageDesc || `${modelValue}/${count}`}
         </li>
       )
     }
   }
 
-  const simple = mode !== 'multi'
+  const simple = useMemo(() => mode !== 'multi', [mode])
   const onSelect = (value: number) => () => select(value, true)
   return (
     <ul style={style} className={`${bem({ simple })} ${className || ''}`}>
@@ -115,7 +115,7 @@ const Pagination = ({
       >
         {prevText || t(messages, 'prev')}
       </li>
-      {getPages().map((page) => (
+      {pages.map((page) => (
         <li
           className={`${bem('item', { active: page.active })} ${bem(
             'page'
@@ -127,7 +127,7 @@ const Pagination = ({
       ))}
       {renderDesc()}
       <li
-        className={`${bem('item', { disabled: value === getCount() })} ${bem(
+        className={`${bem('item', { disabled: value === count })} ${bem(
           'next'
         )} ${BORDER}`}
         onClick={onSelect(value + 1)}
@@ -137,4 +137,4 @@ const Pagination = ({
     </ul>
   )
 }
-export default Pagination
+export default React.memo(Pagination)

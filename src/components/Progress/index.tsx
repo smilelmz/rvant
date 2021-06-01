@@ -77,4 +77,4 @@ const Progress = (
     </div>
   )
 }
-export default React.forwardRef(Progress)
+export default React.memo(React.forwardRef(Progress))

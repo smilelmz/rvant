@@ -94,4 +94,4 @@ const Radio: React.FC<RadioProps> = ({
     </div>
   )
 }
-export default Radio
+export default React.memo(Radio)

@@ -47,4 +47,4 @@ const Empty: React.FC<EmptyProps> = ({
     </div>
   )
 }
-export default Empty
+export default React.memo(Empty)

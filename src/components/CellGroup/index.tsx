@@ -26,4 +26,4 @@ const CellGroup: React.FC<CellGroupProps> = ({
   }
   return renderGroup()
 }
-export default CellGroup
+export default React.memo(CellGroup)

@@ -179,4 +179,4 @@ const NoticeBar = ({
     </div>
   )
 }
-export default NoticeBar
+export default React.memo(NoticeBar)

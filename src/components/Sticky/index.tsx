@@ -118,4 +118,4 @@ const Sticky: React.FC<StickyProps> = ({
   )
 }
 
-export default Sticky
+export default React.memo(Sticky)

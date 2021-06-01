@@ -8,15 +8,6 @@ const isImage = (name?: string): boolean => {
   return name ? name.indexOf('/') !== -1 : false
 }
 
-const LEGACY_MAP: Record<string, string> = {
-  medel: 'medal',
-  'medel-o': 'medal-o'
-}
-
-function correctName(name?: string) {
-  return (name && LEGACY_MAP[name]) || name
-}
-
 const Icon: React.FC<IconProps> = ({
   className,
   style,
@@ -32,9 +23,8 @@ const Icon: React.FC<IconProps> = ({
 }) => {
   const CustomTag = tag || 'i'
   const isImageIcon = isImage(name)
-  const iconName = correctName(name)
   const classNames = `${classPrefix} ${
-    isImageIcon ? '' : `${classPrefix}-${iconName}`
+    isImageIcon ? '' : `${classPrefix}-${name}`
   } ${className}`
   const iconStyle = {
     color,
@@ -48,10 +38,10 @@ const Icon: React.FC<IconProps> = ({
       onClick={(e: MouseEvent) => click && click(e)}
       onTouchStart={(e: TouchEvent) => touchstart && touchstart(e)}
     >
-      {isImageIcon && <img className={bem(`image`)} src={iconName} />}
+      {isImageIcon && <img className={bem(`image`)} src={name} />}
       <Badge dot={dot} content={badge || ''} className={bem(`info`)} />
     </CustomTag>
   )
 }
 
-export default Icon
+export default React.memo(Icon)

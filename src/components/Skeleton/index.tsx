@@ -71,4 +71,4 @@ const Skeleton: React.FC<SkeletonProps> = ({
     </div>
   )
 }
-export default Skeleton
+export default React.memo(Skeleton)

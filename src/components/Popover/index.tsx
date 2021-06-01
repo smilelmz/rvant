@@ -166,4 +166,4 @@ const Popover = ({
     </>
   )
 }
-export default Popover
+export default React.memo(Popover)

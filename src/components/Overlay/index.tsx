@@ -68,4 +68,4 @@ const Overlay: React.FC<OverlayProps> = ({
     </CSSTransition>
   )
 }
-export default Overlay
+export default React.memo(Overlay)

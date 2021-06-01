@@ -1,5 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useImperativeHandle, useRef, useState } from 'react'
+import React, {
+  useEffect,
+  useImperativeHandle,
+  useMemo,
+  useRef,
+  useState
+} from 'react'
 import CSSTransition from 'react-transition-group/CSSTransition'
 import { PopupProps, PopupHandler } from './index.types'
 import { isDef, isBoolean, createNamespace, BASE_PREFIX } from '../utils'
@@ -50,7 +56,7 @@ const Popup = (
   const transitionName =
     transition ||
     (isCenter ? `${BASE_PREFIX}fade` : `${BASE_PREFIX}popup-slide-${position}`)
-  const getStyle = () => {
+  const popupStyle = useMemo(() => {
     const popupStyle: Record<any, string> = {
       zIndex: `${pzIndex}`
     }
@@ -62,7 +68,7 @@ const Popup = (
       document.body.classList.add(`${BASE_PREFIX}overflow-hidden`)
     }
     return popupStyle
-  }
+  }, [pzIndex, duration, position])
   const open = () => {
     if (!isOpen) {
       if (zIndex !== undefined) {
@@ -105,7 +111,7 @@ const Popup = (
     return (
       <div
         ref={popupRef}
-        style={{ ...getStyle(), ...style }}
+        style={{ ...popupStyle, ...style }}
         className={`${popupClassName} ${className}`}
         onClick={click}
       >
@@ -189,4 +195,4 @@ const Popup = (
     </>
   )
 }
-export default React.forwardRef(Popup)
+export default React.memo(React.forwardRef(Popup))

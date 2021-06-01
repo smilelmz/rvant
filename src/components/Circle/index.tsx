@@ -147,4 +147,4 @@ const Circle: React.FC<CircleProps> = ({
     </div>
   )
 }
-export default Circle
+export default React.memo(Circle)

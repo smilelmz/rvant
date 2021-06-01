@@ -29,4 +29,4 @@ const RadioGroup: React.FC<RadioGroupProps> = ({
     </div>
   )
 }
-export default RadioGroup
+export default React.memo(RadioGroup)

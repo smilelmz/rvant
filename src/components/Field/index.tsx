@@ -484,4 +484,4 @@ const Field = (fieldProps: FieldProps, ref: React.Ref<FieldHandle>) => {
     </FieldContext.Provider>
   )
 }
-export default React.forwardRef(Field)
+export default React.memo(React.forwardRef(Field))

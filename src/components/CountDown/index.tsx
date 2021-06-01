@@ -43,4 +43,4 @@ const CountDown = (
     </div>
   )
 }
-export default React.forwardRef(CountDown)
+export default React.memo(React.forwardRef(CountDown))

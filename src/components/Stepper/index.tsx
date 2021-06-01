@@ -279,4 +279,4 @@ const Stepper = ({
     </div>
   )
 }
-export default Stepper
+export default React.memo(Stepper)

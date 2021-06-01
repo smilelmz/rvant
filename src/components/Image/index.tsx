@@ -1,4 +1,4 @@
-import React, { MouseEvent, useEffect, useState } from 'react'
+import React, { MouseEvent, useEffect, useMemo, useState } from 'react'
 import LazyLoad from 'react-lazyload'
 import { isDef, addUnit, createNamespace } from '../utils'
 import Icon from '../Icon'
@@ -26,7 +26,7 @@ const Image: React.FC<ImageProps> = ({
 }) => {
   const [isLoading, setIsLoading] = useState(true)
   const [isError, setIsError] = useState(false)
-  const getStyle = () => {
+  const style = useMemo(() => {
     const style: Record<string, any> = {}
     if (isDef(width)) {
       style.width = addUnit(width)
@@ -41,7 +41,7 @@ const Image: React.FC<ImageProps> = ({
       style.borderRadius = addUnit(radius)
     }
     return style
-  }
+  }, [width, height, radius])
   useEffect(() => {
     setIsLoading(true)
     setIsError(false)
@@ -117,7 +117,6 @@ const Image: React.FC<ImageProps> = ({
       />
     )
   }
-  const style = getStyle()
   return (
     <div
       className={bem([{ round }])}
@@ -129,4 +128,4 @@ const Image: React.FC<ImageProps> = ({
     </div>
   )
 }
-export default Image
+export default React.memo(Image)

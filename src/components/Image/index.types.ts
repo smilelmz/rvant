@@ -1,9 +1,10 @@
 import { MouseEvent } from 'react'
 import { EventFunction } from '../type'
 
+export type ImageFit = 'contain' | 'cover' | 'fill' | 'none' | 'scale-down'
 export interface ImageProps {
   src?: string
-  fit?: 'contain' | 'cover' | 'fill' | 'none' | 'scale-down'
+  fit?: ImageFit
   alt?: string
   width?: number | string
   height?: number | string

@@ -140,4 +140,4 @@ const ShareSheet = ({
     </Popup>
   )
 }
-export default ShareSheet
+export default React.memo(ShareSheet)

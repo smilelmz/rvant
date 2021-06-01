@@ -75,4 +75,4 @@ const Row: React.FC<RowProps> = ({
   )
 }
 
-export default Row
+export default React.memo(Row)

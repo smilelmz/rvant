@@ -48,4 +48,4 @@ const Switch: React.FC<SwitchProps> = ({
     </div>
   )
 }
-export default Switch
+export default React.memo(Switch)

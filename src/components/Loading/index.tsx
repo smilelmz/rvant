@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import { LoadingProps } from './index.types'
 import { addUnit, createNamespace, getSizeStyle } from '../utils'
 
@@ -21,7 +21,10 @@ const Loading: React.FC<LoadingProps> = ({
   textColor,
   children
 }: LoadingProps) => {
-  const spinnerStyle = { color, ...getSizeStyle(size) }
+  const spinnerStyle = useMemo(() => ({ color, ...getSizeStyle(size) }), [
+    color,
+    size
+  ])
   const renderText = () => {
     if (children) {
       return (
@@ -48,4 +51,4 @@ const Loading: React.FC<LoadingProps> = ({
   )
 }
 
-export default Loading
+export default React.memo(Loading)
