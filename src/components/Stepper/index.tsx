@@ -2,6 +2,7 @@ import React, {
   FocusEvent,
   FormEvent,
   MouseEvent,
+  useMemo,
   useRef,
   useState
 } from 'react'
@@ -89,11 +90,14 @@ const Stepper = ({
 
   const minusDisabled = disabled || disableMinus || current.current <= +min
   const plusDisabled = disabled || disablePlus || current.current >= +max
-  const inputStyle = {
-    width: addUnit(inputWidth),
-    height: addUnit(buttonSize)
-  }
-  const buttonStyle = getSizeStyle(buttonSize)
+  const inputStyle = useMemo(
+    () => ({
+      width: addUnit(inputWidth),
+      height: addUnit(buttonSize)
+    }),
+    [inputWidth, buttonSize]
+  )
+  const buttonStyle = useMemo(() => getSizeStyle(buttonSize), [buttonSize])
   const setCurrentValue = (value: number | string) => {
     current.current = value
     setModelValue(value)

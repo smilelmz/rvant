@@ -1,4 +1,4 @@
-import React, { MouseEvent, TouchEvent, useRef, useState } from 'react'
+import React, { MouseEvent, TouchEvent, useMemo, useRef, useState } from 'react'
 import { SliderProps, SliderValue } from './index.types'
 import {
   createNamespace,
@@ -37,21 +37,21 @@ const Slider = ({
   const buttonIndex = useRef(-1)
   const startValue = useRef<SliderValue>()
   const currentValue = useRef<SliderValue>()
+
   const root = useRef<HTMLDivElement>(null)
   const dragStatus = useRef<'start' | 'draging' | ''>()
   const touch = useTouch()
-  const scope = Number(max) - Number(min)
 
-  const wrapperStyle = () => {
+  const scope = useMemo(() => Number(max) - Number(min), [max, min])
+
+  const wrapperStyle = useMemo(() => {
     const crossAxis = vertical ? 'width' : 'height'
-    const obj = {} as Record<string, any>
-    if (inactiveColor) obj.background = inactiveColor
-    if (barHeight) obj[crossAxis] = addUnit(barHeight)
     return {
-      ...obj,
+      background: inactiveColor,
+      [crossAxis]: addUnit(barHeight),
       ...style
     }
-  }
+  }, [vertical, inactiveColor, barHeight])
 
   const isRange = (val: unknown): val is number[] =>
     !!range && Array.isArray(val)
@@ -72,7 +72,7 @@ const Slider = ({
     return '0%'
   }
 
-  const barStyle = () => {
+  const barStyle = useMemo(() => {
     const mainAxis = vertical ? 'height' : 'width'
     return {
       [mainAxis]: calcMainAxis(),
@@ -81,7 +81,7 @@ const Slider = ({
       background: activeColor,
       transition: dragStatus ? 'none' : undefined
     }
-  }
+  }, [vertical, activeColor])
 
   const format = (value: number) => {
     value = Math.max(+min, Math.min(value, +max))
@@ -256,9 +256,9 @@ const Slider = ({
         disabled
       })} ${className || ''}`}
       onClick={onClick}
-      style={wrapperStyle()}
+      style={wrapperStyle}
     >
-      <div className={bem('bar')} style={barStyle()}>
+      <div className={bem('bar')} style={barStyle}>
         {range ? [renderButton(0), renderButton(1)] : renderButton()}
       </div>
     </div>

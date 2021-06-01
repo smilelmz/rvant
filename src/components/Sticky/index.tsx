@@ -1,4 +1,4 @@
-import React, { useRef, useState, CSSProperties } from 'react'
+import React, { useRef, useState, CSSProperties, useMemo } from 'react'
 import {
   createNamespace,
   isHidden,
@@ -32,9 +32,11 @@ const Sticky: React.FC<StickyProps> = ({
     height: 0, // root height
     transform: 0
   })
-  const getOffset = () =>
-    unitToPx(position === 'top' ? offsetTop : offsetBottom)
-  const getRootStyle = (): CSSProperties | undefined => {
+  const offset = useMemo(
+    () => unitToPx(position === 'top' ? offsetTop : offsetBottom),
+    [position, offsetTop, offsetBottom]
+  )
+  const rootStyle = useMemo((): CSSProperties | undefined => {
     const { fixed, height, width } = state
     if (fixed) {
       return {
@@ -42,8 +44,8 @@ const Sticky: React.FC<StickyProps> = ({
         height: `${height}px`
       }
     }
-  }
-  const getStickyStyle = (): CSSProperties | undefined => {
+  }, [state])
+  const stickyStyle = useMemo((): CSSProperties | undefined => {
     if (!state.fixed) {
       return
     }
@@ -52,7 +54,7 @@ const Sticky: React.FC<StickyProps> = ({
       ...getZIndexStyle(zIndex),
       width: `${state.width}px`,
       height: `${state.height}px`,
-      [position]: `${getOffset()}px`
+      [position]: `${offset}px`
     }
 
     if (state.transform) {
@@ -60,12 +62,11 @@ const Sticky: React.FC<StickyProps> = ({
     }
 
     return style
-  }
+  }, [state, zIndex, position, offsetTop, offsetBottom])
   const onScroll = () => {
     if (!root.current || isHidden(root.current)) {
       return
     }
-    const offset = getOffset()
     const rootRect = getRect(root)
     const scrollTop = getScrollTop(window)
     const curState = {
@@ -110,8 +111,8 @@ const Sticky: React.FC<StickyProps> = ({
   useEventListener('scroll', onScroll, { target: scrollParent.current })
   useVisibilityChange(root, onScroll)
   return (
-    <div style={getRootStyle()} ref={root}>
-      <div className={bem({ fixed: state.fixed })} style={getStickyStyle()}>
+    <div style={rootStyle} ref={root}>
+      <div className={bem({ fixed: state.fixed })} style={stickyStyle}>
         {children}
       </div>
     </div>
