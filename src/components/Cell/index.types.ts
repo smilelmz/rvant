@@ -25,4 +25,5 @@ export interface CellProps {
   labelClass?: string
   extra?: React.ReactNode
   click?: EventFunction<MouseEvent>
+  children?: React.ReactNode | React.ReactNode[]
 }

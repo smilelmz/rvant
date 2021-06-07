@@ -51,7 +51,6 @@ declare global {
 export type FieldCellProps = {
   icon?: string
   size?: string
-  title?: number | string | React.ReactNode | React.ReactNode[]
   label?: number | string | React.ReactNode | React.ReactNode[]
   center?: boolean
   isLink?: boolean
@@ -105,7 +104,7 @@ export type FieldProps = FieldCellProps &
     // slots
     input?: React.ReactNode
     button?: React.ReactNode
-    extra?: React.ReactNode
+    extra?: React.ReactNode | React.ReactNode[]
     blur?: EventFunction<FocusEvent>
     focus?: EventFunction<FocusEvent>
     clear?: EventFunction<TouchEvent>

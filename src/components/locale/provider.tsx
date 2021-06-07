@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { createContext, useState, useEffect, useContext } from 'react'
 import { deepAssign } from '../utils'

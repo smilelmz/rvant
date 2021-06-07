@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import { MobileLayout, DemoBlock } from '@/doc'
 import Field from '@/components/Field'
 import CellGroup from '@/components/CellGroup'
@@ -14,7 +14,7 @@ const BaseUsage = () => {
           value={value}
           label='文本'
           placeholder='请输入文本'
-          change={(v) => setValue(v)}
+          change={useCallback((v) => setValue(v), [])}
         />
       </CellGroup>
     </DemoBlock>
@@ -41,28 +41,28 @@ const CustomType = () => {
         type='tel'
         label='手机号'
         placeholder='请输入手机号'
-        change={(v) => setPhone(v)}
+        change={useCallback((v) => setPhone(v), [])}
       />
       <Field
         value={digit}
         type='digit'
         label='整数'
         placeholder='请输入整数'
-        change={(v) => setDigit(v)}
+        change={useCallback((v) => setDigit(v), [])}
       />
       <Field
         value={number}
         type='number'
         label='数字'
         placeholder='请输入数字（支持小数）'
-        change={(v) => setNumber(v)}
+        change={useCallback((v) => setNumber(v), [])}
       />
       <Field
         value={password}
         type='password'
         label='密码'
         placeholder='请输入密码'
-        change={(v) => setPassword(v)}
+        change={useCallback((v) => setPassword(v), [])}
       />
     </DemoBlock>
   )
@@ -71,8 +71,10 @@ const CustomType = () => {
 const Disabled = () => {
   return (
     <DemoBlock title='禁用输入框'>
-      <Field value={'输入框只读'} label='文本' readonly />
-      <Field value={'输入框只读'} label='文本' disabled />
+      <CellGroup>
+        <Field value={'输入框只读'} label='文本' readonly />
+        <Field value={'输入框只读'} label='文本' disabled />
+      </CellGroup>
     </DemoBlock>
   )
 }
@@ -82,22 +84,24 @@ const ShowIcon = () => {
   const [icon2, setIcon2] = useState('123')
   return (
     <DemoBlock title='显示图标'>
-      <Field
-        value={icon1}
-        label='文本'
-        leftIcon='smile-o'
-        rightIcon='warning-o'
-        placeholder='显示图标'
-        change={(v) => setIcon1(v)}
-      />
-      <Field
-        value={icon2}
-        clearable
-        label='文本'
-        leftIcon='music-o'
-        placeholder='显示清除图标'
-        change={(v) => setIcon2(v)}
-      />
+      <CellGroup>
+        <Field
+          value={icon1}
+          label='文本'
+          leftIcon='smile-o'
+          rightIcon='warning-o'
+          placeholder='显示图标'
+          change={useCallback((v) => setIcon1(v), [])}
+        />
+        <Field
+          value={icon2}
+          clearable
+          label='文本'
+          leftIcon='music-o'
+          placeholder='显示清除图标'
+          change={useCallback((v) => setIcon2(v), [])}
+        />
+      </CellGroup>
     </DemoBlock>
   )
 }
@@ -107,22 +111,24 @@ const ErrorInfo = () => {
   const [username, setUsername] = useState('')
   return (
     <DemoBlock title='错误提示'>
-      <Field
-        value={username}
-        error
-        required
-        label='用户名'
-        placeholder='请输入用户名'
-        change={(v) => setUsername(v)}
-      />
-      <Field
-        required
-        value={phone}
-        label='手机号'
-        placeholder='请输入手机号'
-        errorMessage='手机号格式错误'
-        change={(v) => setPhone(v)}
-      />
+      <CellGroup>
+        <Field
+          value={username}
+          error
+          required
+          label='用户名'
+          placeholder='请输入用户名'
+          change={useCallback((v) => setUsername(v), [])}
+        />
+        <Field
+          required
+          value={phone}
+          label='手机号'
+          placeholder='请输入手机号'
+          errorMessage='手机号格式错误'
+          change={useCallback((v) => setPhone(v), [])}
+        />
+      </CellGroup>
     </DemoBlock>
   )
 }
@@ -142,7 +148,7 @@ const InsertButton = () => {
             发送验证码
           </Button>
         }
-        change={(v) => setSms(v)}
+        change={useCallback((v) => setSms(v), [])}
       />
     </DemoBlock>
   )
@@ -159,7 +165,7 @@ const FormatValue = () => {
         label='文本'
         placeholder='在输入时执行格式化'
         formatter={formatter}
-        change={(v) => setValue1(v)}
+        change={useCallback((v) => setValue1(v), [])}
       />
       <Field
         value={value2}
@@ -167,7 +173,7 @@ const FormatValue = () => {
         placeholder='在失焦时执行格式化'
         formatTrigger='onBlur'
         formatter={formatter}
-        change={(v) => setValue2(v)}
+        change={useCallback((v) => setValue2(v), [])}
       />
     </DemoBlock>
   )
@@ -184,7 +190,7 @@ const AutoSize = () => {
         type='textarea'
         label='留言'
         placeholder='请输入留言'
-        change={(v) => setValue(v)}
+        change={useCallback((v) => setValue(v), [])}
       />
     </DemoBlock>
   )
@@ -204,7 +210,7 @@ const ShowWordLimit = () => {
           maxlength='50'
           label='留言'
           placeholder='请输入留言'
-          change={(v) => setValue(v)}
+          change={useCallback((v) => setValue(v), [])}
         />
       </CellGroup>
     </DemoBlock>
@@ -221,7 +227,7 @@ const InputAlign = () => {
           label='文本'
           inputAlign='right'
           placeholder='输入框内容右对齐'
-          change={(v) => setValue(v)}
+          change={useCallback((v) => setValue(v), [])}
         />
       </CellGroup>
     </DemoBlock>
