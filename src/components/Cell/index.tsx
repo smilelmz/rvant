@@ -17,7 +17,7 @@ const Cell: React.FC<CellProps> = ({
   url,
   border = true,
   replace = false,
-  clickable = false,
+  clickable = null,
   isLink = false,
   required = false,
   center = false,
@@ -103,7 +103,7 @@ const Cell: React.FC<CellProps> = ({
     return <></>
   }
   const classes = bem([
-    { clickable: isLink || clickable },
+    { clickable: clickable ?? isLink },
     { center },
     { required },
     { borderless: !border },

@@ -35,6 +35,8 @@ import Popover from './Popover'
 import Step from './Step'
 import Steps from './Steps'
 import Field from './Field'
+import Collapse from './Collapse'
+import CollapseItem from './CollapseItem'
 
 import { LocaleProvider, useI18n } from './locale'
 
@@ -77,5 +79,7 @@ export {
   Popover,
   Step,
   Steps,
-  Field
+  Field,
+  Collapse,
+  CollapseItem
 }

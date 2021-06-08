@@ -246,8 +246,8 @@
       },
       {
         "name": "Collapse 折叠面板",
-        "url": "",
-        "m_url": "",
+        "url": "/collapse",
+        "m_url": "/collapse/demo",
         "simulator": true
       },
       {

@@ -4,10 +4,10 @@ import { ${componentName}Props } from './index.types'
 import { createNamespace } from '../utils'
 
 const [bem] = createNamespace('${componentName.toLowerCase()}')
-const ${componentName} = (${componentName.toLowerCase()}Props: ${componentName}Props) => {
+const ${componentName} = (fieldProps: ${componentName}Props) => {
   const props: ${componentName}Props = {
-    style = {},
-    className = '',
+    style: {},
+    className: '',
     ...fieldProps
   }
   const { style, className } = props

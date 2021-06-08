@@ -39,7 +39,7 @@ yarn generate pageName 1
 - [ ] Cascader
 - [x] Checkbox
 - [ ] DatetimePicker
-- [ ] Field
+- [x] Field
 - [ ] Form
 - [ ] NumberKeyboard
 - [ ] PasswordInput
@@ -68,7 +68,7 @@ yarn generate pageName 1
 
 - [x] Badge
 - [x] Circle
-- [ ] Collapse
+- [x] Collapse
 - [x] CountDown
 - [x] Divider
 - [x] Empty

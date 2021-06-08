@@ -14,7 +14,7 @@ export interface CellProps {
   url?: string
   border?: boolean
   replace?: boolean
-  clickable?: boolean
+  clickable?: boolean | null
   isLink?: boolean
   required?: boolean
   center?: boolean
