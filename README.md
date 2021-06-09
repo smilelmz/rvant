@@ -92,7 +92,7 @@ yarn generate pageName 1
 - [x] Pagination
 - [ ] Sidebar
 - [ ] Tab
-- [ ] Tabbar
+- [x] Tabbar
 - [ ] TreeSelect
 
 ### Business Components
