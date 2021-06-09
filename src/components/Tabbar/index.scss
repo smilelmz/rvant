@@ -1,0 +1,22 @@
+@import './var.scss';
+@import '../style/mixins.scss';
+
+.#{$base-prefix}tabbar {
+  z-index: $tabbar-z-index;
+  display: flex;
+  box-sizing: content-box;
+  width: 100%;
+  height: $tabbar-height;
+  background-color: $tabbar-background-color;
+  @include safe-area-inset-bottom();
+
+  &--fixed {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+  }
+
+  &--unfit {
+    padding-bottom: 0;
+  }
+}

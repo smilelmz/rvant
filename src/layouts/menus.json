@@ -377,8 +377,8 @@
       },
       {
         "name": "Tabbar 标签栏",
-        "url": "",
-        "m_url": "",
+        "url": "/tabbar",
+        "m_url": "/tabbar/demo",
         "simulator": true
       },
       {

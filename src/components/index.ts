@@ -37,6 +37,8 @@ import Steps from './Steps'
 import Field from './Field'
 import Collapse from './Collapse'
 import CollapseItem from './CollapseItem'
+import Tabbar from './Tabbar'
+import TabbarItem from './TabbarItem'
 
 import { LocaleProvider, useI18n } from './locale'
 
@@ -81,5 +83,7 @@ export {
   Steps,
   Field,
   Collapse,
-  CollapseItem
+  CollapseItem,
+  Tabbar,
+  TabbarItem
 }

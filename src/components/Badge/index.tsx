@@ -4,6 +4,8 @@ import { isDef, isNumeric, createNamespace } from '../utils'
 
 const [bem] = createNamespace('badge')
 const Badge: React.FC<BadgeProps> = ({
+  className = '',
+  style = {},
   dot = false,
   max,
   color,
@@ -11,8 +13,7 @@ const Badge: React.FC<BadgeProps> = ({
   tag,
   content,
   children,
-  style,
-  className,
+
   showZero = true
 }: BadgeProps) => {
   const CustomTag = tag || 'div'
@@ -51,8 +52,8 @@ const Badge: React.FC<BadgeProps> = ({
 
       return (
         <div
-          className={`${bem({ dot, fixed: !!children })} ${className}`}
-          style={{ ...badgeStyle, ...style }}
+          className={`${bem({ dot, fixed: !!children })}`}
+          style={badgeStyle}
         >
           {renderContent()}
         </div>
@@ -63,7 +64,7 @@ const Badge: React.FC<BadgeProps> = ({
 
   if (children) {
     return (
-      <CustomTag className={`${bem('wrapper')}`}>
+      <CustomTag className={`${bem('wrapper')} ${className}`} style={style}>
         {children}
         {renderBadge()}
       </CustomTag>

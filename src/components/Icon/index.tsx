@@ -9,8 +9,8 @@ const isImage = (name?: string): boolean => {
 }
 
 const Icon: React.FC<IconProps> = ({
-  className,
-  style,
+  className = '',
+  style = {},
   dot,
   tag,
   name,
