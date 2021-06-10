@@ -365,8 +365,8 @@
       },
       {
         "name": "Sidebar 侧边导航",
-        "url": "",
-        "m_url": "",
+        "url": "/sidebar",
+        "m_url": "/sidebar/demo",
         "simulator": true
       },
       {
@@ -383,8 +383,8 @@
       },
       {
         "name": "TreeSelect 分类选择",
-        "url": "",
-        "m_url": "",
+        "url": "/TreeSelect",
+        "m_url": "/TreeSelect/demo",
         "simulator": true
       }
     ]

@@ -39,6 +39,9 @@ import Collapse from './Collapse'
 import CollapseItem from './CollapseItem'
 import Tabbar from './Tabbar'
 import TabbarItem from './TabbarItem'
+import Sidebar from './Sidebar'
+import SidebarItem from './SidebarItem'
+import TreeSelect from './TreeSelect'
 
 import { LocaleProvider, useI18n } from './locale'
 
@@ -85,5 +88,8 @@ export {
   Collapse,
   CollapseItem,
   Tabbar,
-  TabbarItem
+  TabbarItem,
+  Sidebar,
+  SidebarItem,
+  TreeSelect
 }

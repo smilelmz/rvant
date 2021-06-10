@@ -90,10 +90,10 @@ yarn generate pageName 1
 - [ ] IndexBar
 - [x] NavBar
 - [x] Pagination
-- [ ] Sidebar
+- [x] Sidebar
 - [ ] Tab
 - [x] Tabbar
-- [ ] TreeSelect
+- [x] TreeSelect
 
 ### Business Components
 
