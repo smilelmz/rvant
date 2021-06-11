@@ -6,7 +6,7 @@ import Icon from '../Icon'
 const [bem] = createNamespace('cell')
 const Cell: React.FC<CellProps> = ({
   style = {},
-  className,
+  className = '',
   title,
   value,
   label,

@@ -42,6 +42,7 @@ import TabbarItem from './TabbarItem'
 import Sidebar from './Sidebar'
 import SidebarItem from './SidebarItem'
 import TreeSelect from './TreeSelect'
+import SwipeCell from './SwipeCell'
 
 import { LocaleProvider, useI18n } from './locale'
 
@@ -91,5 +92,6 @@ export {
   TabbarItem,
   Sidebar,
   SidebarItem,
-  TreeSelect
+  TreeSelect,
+  SwipeCell
 }

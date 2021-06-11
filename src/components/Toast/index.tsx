@@ -153,7 +153,7 @@ export default {
     }
     showToast(options)
   },
-  loading: (opts: ToastProps) => {
+  loading: (opts: ToastProps = {}) => {
     const options = {
       ...defaultOptions,
       ...opts,

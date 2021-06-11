@@ -1,0 +1,14 @@
+@import '../../components/style/vars.scss';
+
+.demo-swipecell {
+  user-select: none;
+
+  .van-card {
+    margin: 0;
+    background-color: $white;
+  }
+
+  .delete-button {
+    height: 100%;
+  }
+}
