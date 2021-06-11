@@ -62,7 +62,7 @@ yarn generate pageName 1
 - [x] Overlay
 - [ ] PullRefresh
 - [x] ShareSheet
-- [ ] SwipeCell
+- [x] SwipeCell
 
 ### Display Components
 
