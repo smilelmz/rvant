@@ -175,8 +175,8 @@
     "children": [
       {
         "name": "ActionSheet 动作面板",
-        "url": "/ActionSheet",
-        "m_url": "/ActionSheet/demo",
+        "url": "/action-sheet",
+        "m_url": "/action-sheet/demo",
         "simulator": true
       },
       {
@@ -217,14 +217,14 @@
       },
       {
         "name": "ShareSheet 分享面板",
-        "url": "/ShareSheet",
-        "m_url": "/ShareSheet/demo",
+        "url": "/share-sheet",
+        "m_url": "/share-sheet/demo",
         "simulator": true
       },
       {
         "name": "SwipeCell 滑动单元格",
-        "url": "/SwipeCell",
-        "m_url": "/SwipeCell/demo",
+        "url": "/swipe-cell",
+        "m_url": "/swipe-cell/demo",
         "simulator": true
       }
     ]
@@ -288,8 +288,8 @@
       },
       {
         "name": "NoticeBar 通知栏",
-        "url": "/noticeBar",
-        "m_url": "/noticeBar/demo",
+        "url": "/notice-bar",
+        "m_url": "/notice-bar/demo",
         "simulator": true
       },
       {
@@ -324,8 +324,8 @@
       },
       {
         "name": "Swipe 轮播",
-        "url": "/Swipe",
-        "m_url": "/Swipe/demo",
+        "url": "/swipe",
+        "m_url": "/swipe/demo",
         "simulator": true
       },
       {
@@ -383,8 +383,8 @@
       },
       {
         "name": "TreeSelect 分类选择",
-        "url": "/TreeSelect",
-        "m_url": "/TreeSelect/demo",
+        "url": "/tree-select",
+        "m_url": "/tree-select/demo",
         "simulator": true
       }
     ]
