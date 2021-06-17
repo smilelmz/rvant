@@ -125,38 +125,47 @@ export default {
     }
     showToast(options)
   },
-  info: (message = '', duration = SHORT, position = '') => {
+  info: (
+    message = '',
+    duration = SHORT,
+    position = '',
+    extra: ToastProps = {}
+  ) => {
     const p = (position || 'middle') as ToastPosition
     const options = {
       ...defaultOptions,
+      ...extra,
       message,
       position: p,
       duration
     }
     showToast(options)
   },
-  success: (message = '', duration = SHORT) => {
+  success: (message = '', duration = SHORT, extra: ToastProps = {}) => {
     const options = {
       ...defaultOptions,
+      ...extra,
       message,
       type: 'success' as ToastType,
       duration
     }
     showToast(options)
   },
-  fail: (message = '', duration = SHORT) => {
+  fail: (message = '', duration = SHORT, extra: ToastProps = {}) => {
     const options = {
       ...defaultOptions,
+      ...extra,
       message,
       type: 'fail' as ToastType,
       duration
     }
     showToast(options)
   },
-  loading: (opts: ToastProps = {}) => {
+  loading: (opts: ToastProps = {}, extra: ToastProps = {}) => {
     const options = {
       ...defaultOptions,
       ...opts,
+      ...extra,
       type: 'loading' as ToastType
     }
     showToast(options)

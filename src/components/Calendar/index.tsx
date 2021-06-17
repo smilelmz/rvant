@@ -23,10 +23,9 @@ import Button from '../Button'
 import Toast from '../Toast'
 import CalendarMonth from './CalendarMonth'
 import CalendarHeader from './CalendarHeader'
-import { useRefs, getRect, useWatch } from '../composables'
+import { useRefs, getRect, useWatch, useSyncCallback } from '../composables'
 import { getScrollTop, raf } from '../utils'
 import { useI18n } from '../locale'
-import useSyncCallback from '../composables/use-sync-callback'
 
 const getMaxDate = () => {
   const now = new Date()

@@ -12,4 +12,6 @@ export * from './use-count-down'
 export * from './use-placeholder'
 export * from './use-click-away'
 export * from './use-sync-callback'
+export * from './use-window-size'
+export * from './use-page-visibility'
 export { useEventListener }

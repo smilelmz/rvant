@@ -37,7 +37,14 @@ const Tabs = (props: TabsTitleProps) => {
     }
 
     return style
-  }, [])
+  }, [
+    props.type,
+    props.color,
+    props.disabled,
+    props.isActive,
+    props.activeColor,
+    props.inactiveColor
+  ])
 
   const renderText = () => {
     const Text = (

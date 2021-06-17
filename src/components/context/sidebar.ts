@@ -1,4 +1,4 @@
 import { createContext } from 'react'
-import { SidebarProvider } from '../Sidebar/index.types'
+import { SidebarProvide } from '../Sidebar/index.types'
 
-export const SidebarContext = createContext<Partial<SidebarProvider>>({})
+export const SidebarContext = createContext<Partial<SidebarProvide>>({})
