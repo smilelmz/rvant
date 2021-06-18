@@ -23,6 +23,15 @@ import { Swipe, SwipeItem } from 'rvant'
   <SwipeItem>3</SwipeItem>
   <SwipeItem>4</SwipeItem>
 </Swipe>
+<div className='btn-group'>
+  <Button type='primary' click={() => swipeRef.current.prev()}>上一页</Button>
+  <Button type='success' click={() => swipeRef.current.next()}>下一页</Button>
+  <Button type='danger' click={() => swipeRef.current.swipeTo(0)}>第一页</Button>
+</div>
+```
+
+```js
+const swipeRef = useRef<SwipeHandler>()
 ```
 
 ### 懒加载

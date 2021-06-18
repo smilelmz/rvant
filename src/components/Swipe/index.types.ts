@@ -27,6 +27,7 @@ export type StateType = {
   height: number
   offset: number
   swiping: boolean
+  active: number
 }
 
 export type SwipeToOptions = {

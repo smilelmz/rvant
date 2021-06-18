@@ -52,6 +52,7 @@ const Swipe = (fieldProps: SwipeProps, ref: React.Ref<SwipeHandler>) => {
     width: 0,
     height: 0,
     offset: 0,
+    active: 0,
     swiping: false
   })
   const activeRef = useRef(0)
@@ -77,7 +78,7 @@ const Swipe = (fieldProps: SwipeProps, ref: React.Ref<SwipeHandler>) => {
   }, [props.vertical, state.rect])
   const maxCount = Math.ceil(Math.abs(minOffset) / size)
   const trackSize = count * size
-  const activeIndicator = (activeRef.current + count) % count
+  const activeIndicator = (state.active + count) % count
   const trackStyle = useMemo(() => {
     const style: CSSProperties = {
       transitionDuration: `${swipingRef.current ? 0 : props.duration}ms`,
@@ -155,7 +156,8 @@ const Swipe = (fieldProps: SwipeProps, ref: React.Ref<SwipeHandler>) => {
 
     setState({
       ...state,
-      offset: targetOffset
+      offset: targetOffset,
+      active: targetActive
     })
 
     activeRef.current = targetActive

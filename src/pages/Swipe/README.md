@@ -23,6 +23,15 @@ Use `autoplay` prop to set autoplay interval.
   <SwipeItem>3</SwipeItem>
   <SwipeItem>4</SwipeItem>
 </Swipe>
+<div className='btn-group'>
+  <Button type='primary' click={() => swipeRef.current.prev()}>prev</Button>
+  <Button type='success' click={() => swipeRef.current.next()}>next</Button>
+  <Button type='danger' click={() => swipeRef.current.swipeTo(0)}>first page</Button>
+</div>
+```
+
+```js
+const swipeRef = useRef<SwipeHandler>()
 ```
 
 ### Lazy Render

@@ -3,6 +3,16 @@
 .demo-swipe {
   padding-bottom: 30px;
 
+  .btn-group {
+    padding: 0 15px;
+    padding-top: 10px;
+    padding-bottom: 0;
+
+    .van-button {
+      margin-right: 10px;
+    }
+  }
+
   .van-swipe {
 
     &-item {

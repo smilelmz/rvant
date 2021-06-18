@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import { MobileLayout, DemoBlock } from '@/doc'
-import { Swipe, SwipeItem, Toast } from '@/components'
+import { Button, Swipe, SwipeItem, Toast } from '@/components'
 import './index.scss'
+import { SwipeHandler } from '@/components/Swipe/index.types'
 
 const images = [
   'https://img.yzcdn.cn/vant/apple-1.jpg',
@@ -11,14 +12,26 @@ const images = [
 ]
 
 const BaseUsage = () => {
+  const swipeRef = useRef<SwipeHandler>()
   return (
     <DemoBlock title='基本用法'>
-      <Swipe autoplay={3000} indicatorColor='white'>
+      <Swipe ref={swipeRef} autoplay={3000} indicatorColor='white'>
         <SwipeItem>1</SwipeItem>
         <SwipeItem>2</SwipeItem>
         <SwipeItem>3</SwipeItem>
         <SwipeItem>4</SwipeItem>
       </Swipe>
+      <div className='btn-group'>
+        <Button type='primary' click={() => swipeRef.current.prev()}>
+          上一页
+        </Button>
+        <Button type='success' click={() => swipeRef.current.next()}>
+          下一页
+        </Button>
+        <Button type='danger' click={() => swipeRef.current.swipeTo(0)}>
+          第一页
+        </Button>
+      </div>
     </DemoBlock>
   )
 }

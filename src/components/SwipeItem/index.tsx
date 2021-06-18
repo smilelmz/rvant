@@ -1,5 +1,6 @@
 import React, {
   CSSProperties,
+  MouseEvent,
   useContext,
   useEffect,
   useImperativeHandle,
@@ -13,7 +14,7 @@ import { SwipeContext } from '../context'
 
 const [bem] = createNamespace('swipe-item')
 const SwipeItem = (
-  { index = 0, children }: SwipeItemProps,
+  { index = 0, children, click }: SwipeItemProps,
   ref: React.Ref<SwipeItemHandler>
 ) => {
   const rendered = useRef(false)
@@ -68,7 +69,11 @@ const SwipeItem = (
   }))
 
   return (
-    <div className={bem()} style={style}>
+    <div
+      className={bem()}
+      style={style}
+      onClick={(e: MouseEvent) => click && click(e)}
+    >
       {shouldRender() ? children : null}
     </div>
   )
