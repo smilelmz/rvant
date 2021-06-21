@@ -14,7 +14,7 @@ import { SwipeContext } from '../context'
 
 const [bem] = createNamespace('swipe-item')
 const SwipeItem = (
-  { index = 0, children, click }: SwipeItemProps,
+  { className = '', style = {}, index = 0, children, click }: SwipeItemProps,
   ref: React.Ref<SwipeItemHandler>
 ) => {
   const rendered = useRef(false)
@@ -22,7 +22,7 @@ const SwipeItem = (
   const [mounted, setMounted] = useState(false)
   const parent = useContext(SwipeContext)
 
-  const style = useMemo(() => {
+  const itemStyle = useMemo(() => {
     const style: CSSProperties = {}
     const { vertical } = parent.props
 
@@ -70,8 +70,8 @@ const SwipeItem = (
 
   return (
     <div
-      className={bem()}
-      style={style}
+      className={`${bem()} ${className}`}
+      style={{ ...style, ...itemStyle }}
       onClick={(e: MouseEvent) => click && click(e)}
     >
       {shouldRender() ? children : null}
