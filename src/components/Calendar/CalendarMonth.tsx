@@ -190,7 +190,7 @@ const CalendarMonth = (
       daysList.push(config)
     }
     return daysList
-  }, [date, formatter, type])
+  }, [date, formatter, type, currentDate])
   const renderDay = (item: DayItem, index: number) => (
     <CalendarDay
       key={index}
