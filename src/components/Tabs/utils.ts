@@ -36,6 +36,7 @@ export function scrollTopTo(
   duration: number,
   callback: () => void
 ) {
+  console.log(to)
   let current = getScrollTop(scroller)
 
   const isDown = current < to

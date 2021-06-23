@@ -45,6 +45,8 @@ import TreeSelect from './TreeSelect'
 import SwipeCell from './SwipeCell'
 import Swipe from './Swipe'
 import SwipeItem from './SwipeItem'
+import Tabs from './Tabs'
+import Tab from './Tab'
 
 import { LocaleProvider, useI18n } from './locale'
 
@@ -97,5 +99,7 @@ export {
   TreeSelect,
   SwipeCell,
   Swipe,
-  SwipeItem
+  SwipeItem,
+  Tabs,
+  Tab
 }

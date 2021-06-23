@@ -4,8 +4,9 @@ import { createNamespace, isDef } from '../utils'
 import { TabsTitleProps } from './index.types'
 
 const [bem] = createNamespace('tab')
-const Tabs = (props: TabsTitleProps) => {
-  const style = useMemo(() => {
+const Tab = (props: TabsTitleProps, ref: React.Ref<HTMLDivElement>) => {
+  const { style = {}, className = '' } = props
+  const titleStyle = useMemo(() => {
     const style: CSSProperties = {}
     const {
       type,
@@ -49,7 +50,7 @@ const Tabs = (props: TabsTitleProps) => {
   const renderText = () => {
     const Text = (
       <span className={bem('text', { ellipsis: !props.scrollable })}>
-        {props.renderTitle ? props.renderTitle() : props.title}
+        {props.customTitle ? props.customTitle : props.title}
       </span>
     )
 
@@ -70,12 +71,14 @@ const Tabs = (props: TabsTitleProps) => {
       className={`${bem({
         active: props.isActive,
         disabled: props.disabled
-      })}`}
-      style={style}
+      })} ${className}`}
+      style={{ ...style, ...titleStyle }}
       aria-selected={props.isActive}
+      ref={ref}
+      onClick={() => props.click && props.click()}
     >
       {renderText()}
     </div>
   )
 }
-export default React.memo(Tabs)
+export default React.memo(React.forwardRef(Tab))

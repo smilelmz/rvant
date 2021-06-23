@@ -7,7 +7,7 @@
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
-  padding: 0 =$padding-base;
+  padding: 0 $padding-base;
   color: $tab-text-color;
   font-size: $tab-font-size;
   line-height: $tab-line-height;
@@ -50,6 +50,7 @@
     }
 
     &--scrollable {
+
       .#{$base-prefix}tab {
         flex: 1 0 auto;
         padding: 0 $padding-sm;
@@ -93,7 +94,8 @@
 
       .#{$base-prefix}tab {
         color: $tabs-default-color;
-        border-right: $border-width-base solid $tabs-default-color;
+        border-right: $border-width-base solid
+          $tabs-default-color;
 
         &:last-child {
           border-right: none;

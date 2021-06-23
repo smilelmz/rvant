@@ -371,8 +371,8 @@
       },
       {
         "name": "Tab 标签页",
-        "url": "",
-        "m_url": "",
+        "url": "/tab",
+        "m_url": "/tab/demo",
         "simulator": true
       },
       {
