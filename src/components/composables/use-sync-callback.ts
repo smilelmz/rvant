@@ -1,18 +1,25 @@
 import { useEffect, useState, useCallback } from 'react'
 
-export const useSyncCallback = (callback) => {
-  const [proxyState, setProxyState] = useState({ current: false })
+type noop = (...args: any[]) => any
 
-  const Func = useCallback(() => {
-    setProxyState({ current: true })
-  }, [proxyState])
+export function useSyncCallback<T extends noop>(callback: T) {
+  const [proxyState, setProxyState] = useState({ current: false })
+  const [params, setParams] = useState([])
+
+  const Func = useCallback(
+    (...args: any[]) => {
+      setProxyState({ current: true })
+      setParams(args)
+    },
+    [proxyState]
+  )
 
   useEffect(() => {
     if (proxyState.current === true) setProxyState({ current: false })
   }, [proxyState])
 
   useEffect(() => {
-    proxyState.current && callback()
+    proxyState.current && callback(...params)
   })
 
   return Func
