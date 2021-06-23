@@ -347,8 +347,8 @@
       },
       {
         "name": "IndexBar 索引栏",
-        "url": "",
-        "m_url": "",
+        "url": "/index-bar",
+        "m_url": "/index-bar/demo",
         "simulator": true
       },
       {

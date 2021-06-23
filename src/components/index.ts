@@ -47,6 +47,8 @@ import Swipe from './Swipe'
 import SwipeItem from './SwipeItem'
 import Tabs from './Tabs'
 import Tab from './Tab'
+import IndexBar from './IndexBar'
+import IndexAnchor from './IndexAnchor'
 
 import { LocaleProvider, useI18n } from './locale'
 
@@ -101,5 +103,7 @@ export {
   Swipe,
   SwipeItem,
   Tabs,
-  Tab
+  Tab,
+  IndexBar,
+  IndexAnchor
 }

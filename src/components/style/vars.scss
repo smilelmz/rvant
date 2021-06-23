@@ -24,6 +24,10 @@ $gradient-red: linear-gradient(to right, #ff6034, #ee0a24);
 $gradient-orange: linear-gradient(to right, #ffd01e, #ff8917);
 
 // Component Colors
+$primary-color: $blue;
+$success-color: $green;
+$danger-color: $red;
+$warning-color: $orange;
 $text-color: $gray-8;
 $active-color: $gray-2;
 $active-opacity: 0.7;
