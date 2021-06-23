@@ -3,11 +3,12 @@ import React, {
   MutableRefObject,
   TouchEvent,
   useEffect,
+  useImperativeHandle,
   useMemo,
   useRef,
   useState
 } from 'react'
-import { IndexBarProps } from './index.types'
+import { IndexBarHandler, IndexBarProps } from './index.types'
 import {
   createNamespace,
   getRootScrollTop,
@@ -40,7 +41,10 @@ const genAlphabet = () => {
 }
 
 const [bem] = createNamespace('index-bar')
-const IndexBar = (fieldProps: IndexBarProps) => {
+const IndexBar = (
+  fieldProps: IndexBarProps,
+  indexBarRef: React.Ref<IndexBarHandler>
+) => {
   const props: IndexBarProps = {
     style: {},
     className: '',
@@ -161,6 +165,10 @@ const IndexBar = (fieldProps: IndexBarProps) => {
     }
   })
 
+  useImperativeHandle(indexBarRef, () => ({
+    scrollTo
+  }))
+
   const scrollTo = (index: string) => {
     if (!index) {
       return
@@ -269,4 +277,4 @@ const IndexBar = (fieldProps: IndexBarProps) => {
     </IndexBarContext.Provider>
   )
 }
-export default React.memo(IndexBar)
+export default React.memo(React.forwardRef(IndexBar))

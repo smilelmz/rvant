@@ -17,3 +17,7 @@ export interface IndexBarProps {
 export interface IndexBarProvider {
   props: IndexBarProps
 }
+
+export interface IndexBarHandler {
+  scrollTo: (index: string) => void
+}
