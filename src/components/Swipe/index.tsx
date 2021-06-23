@@ -160,10 +160,10 @@ const Swipe = (fieldProps: SwipeProps, ref: React.Ref<SwipeHandler>) => {
       active: targetActive
     })
 
-    activeRef.current = targetActive
     if (emitChange && targetActive !== activeRef.current) {
       props.change && props.change(targetActive)
     }
+    activeRef.current = targetActive
   }
 
   const correctPosition = () => {
