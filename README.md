@@ -91,7 +91,7 @@ yarn generate pageName 1
 - [x] NavBar
 - [x] Pagination
 - [x] Sidebar
-- [ ] Tab
+- [x] Tab
 - [x] Tabbar
 - [x] TreeSelect
 

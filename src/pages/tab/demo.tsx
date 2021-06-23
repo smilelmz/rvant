@@ -39,10 +39,10 @@ const MatchByName = () => {
           内容 1
         </Tab>
         <Tab title={`标签 2`} name='b'>
-          内容 1
+          内容 2
         </Tab>
         <Tab title={`标签 3`} name='c'>
-          内容 1
+          内容 3
         </Tab>
       </Tabs>
     </DemoBlock>
