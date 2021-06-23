@@ -81,7 +81,7 @@ yarn generate pageName 1
 - [x] Skeleton
 - [x] Steps
 - [x] Sticky
-- [ ] Swipe
+- [x] Swipe
 - [x] Tag
 
 ### Navigation Components
