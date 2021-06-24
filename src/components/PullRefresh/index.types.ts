@@ -16,11 +16,11 @@ export interface PullRefreshProps {
   animationDuration?: number | string
   headHeight?: number | string
   children?: React.ReactNode | React.ReactNode[]
-  normal?: (v?: StatusType) => React.ReactNode | React.ReactNode[]
-  pulling?: (v?: StatusType) => React.ReactNode | React.ReactNode[]
-  loosing?: (v?: StatusType) => React.ReactNode | React.ReactNode[]
-  loading?: (v?: StatusType) => React.ReactNode | React.ReactNode[]
-  success?: (v?: StatusType) => React.ReactNode | React.ReactNode[]
+  normal?: (v: StatusType) => React.ReactNode | React.ReactNode[]
+  pulling?: (v: StatusType) => React.ReactNode | React.ReactNode[]
+  loosing?: (v: StatusType) => React.ReactNode | React.ReactNode[]
+  loading?: (v: StatusType) => React.ReactNode | React.ReactNode[]
+  success?: (v: StatusType) => React.ReactNode | React.ReactNode[]
   refresh?: VoidFunction
   change?: (v: boolean) => void
 }
