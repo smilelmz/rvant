@@ -15,7 +15,7 @@ const Loading: React.FC<LoadingProps> = ({
   className,
   type = 'circular',
   size,
-  color = '#c9c9c9',
+  color,
   vertical,
   textSize,
   textColor,
