@@ -297,17 +297,17 @@ const beforeChange = (name: number) => {
 
 ### Scss样式变量
 
-| 名称                            | 默认值                      | 描述 |
-| ------------------------------- | --------------------------- | ---- |
-| $tab-text-color                 | $gray-7                     | -    |
-| $tab-active-text-color          | $text-color                 | -    |
-| $tab-disabled-text-color        | $gray-5                     | -    |
-| $tab-font-size                  | $font-size-md               | -    |
-| $tab-line-height                | $line-height-md             | -    |
-| $tabs-default-color             | $red                        | -    |
-| $tabs-line-height               | 44px                        | -    |
-| $tabs-card-height               | 30px                        | -    |
-| $tabs-nav-background-color      | $white                      | -    |
-| $tabs-bottom-bar-width          | 40px                        | -    |
-| $tabs-bottom-bar-height         | 3px                         | -    |
-| $tabs-bottom-bar-color          | $tabs-default-color         | -    |
+| 名称                       | 默认值                | 描述 |
+| -------------------------- | --------------------- | ---- |
+| $tab-text-color            | `$gray-7`             | -    |
+| $tab-active-text-color     | `$text-color`         | -    |
+| $tab-disabled-text-color   | `$gray-5`             | -    |
+| $tab-font-size             | `$font-size-md`       | -    |
+| $tab-line-height           | `$line-height-md`     | -    |
+| $tabs-default-color        | `$red`                | -    |
+| $tabs-line-height          | `44px`                | -    |
+| $tabs-card-height          | `30px `               | -    |
+| $tabs-nav-background-color | `$white`              | -    |
+| $tabs-bottom-bar-width     | `40px`                | -    |
+| $tabs-bottom-bar-height    | `3px`                 | -    |
+| $tabs-bottom-bar-color     | `$tabs-default-color` | -    |

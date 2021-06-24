@@ -188,9 +188,9 @@ Use ref to get Swipe instance and call instance methods..
 
 | Name | Default Value | Description |
 | --- | --- | --- |
-| $swipe-indicator-size | _6px_ | - |
-| $swipe-indicator-margin | _12px_ | - |
-| $swipe-indicator-active-opacity | _1_ | - |
-| $swipe-indicator-inactive-opacity | _0.3_ | - |
-| $swipe-indicator-active-background-color | _#1989fa_ | - |
-| $swipe-indicator-inactive-background-color | _#ebedf0_ | - |
+| $swipe-indicator-size | `6px` | - |
+| $swipe-indicator-margin | `12px` | - |
+| $swipe-indicator-active-opacity | `1` | - |
+| $swipe-indicator-inactive-opacity | `0.3` | - |
+| $swipe-indicator-active-background-color | `#1989fa` | - |
+| $swipe-indicator-inactive-background-color | `#ebedf0` | - |
