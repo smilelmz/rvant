@@ -37,10 +37,14 @@ if (type === 0) {
     `Successfully created component under: ${componentDirectory.green}`
   )
 } else {
-  console.log(`Creating Demo Templates with name: ${componentName}`)
-  const demoDirectory = `./src/pages/${componentName}`
-  if (fs.existsSync(demoDirectory)) {
-    console.error(`Demo ${componentName} already exists.`.red)
+  console.log(
+    `Creating Demo Templates with name: ${componentName.toLocaleLowerCase()}`
+  )
+  const demoDirectory = `./src/pages/${componentName.toLocaleLowerCase()}`
+  if (fs.existsSync(demoDirectory.toLocaleLowerCase())) {
+    console.error(
+      `Demo ${componentName.toLocaleLowerCase()} already exists.`.red
+    )
     process.exit(1)
   }
   fs.mkdirSync(demoDirectory)
