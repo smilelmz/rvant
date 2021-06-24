@@ -211,8 +211,8 @@
       },
       {
         "name": "PullRefresh 下拉刷新",
-        "url": "",
-        "m_url": "",
+        "url": "/pull-refresh",
+        "m_url": "/pull-refresh/demo",
         "simulator": true
       },
       {
