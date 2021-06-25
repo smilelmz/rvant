@@ -74,7 +74,7 @@ yarn generate pageName 1
 - [x] Empty
 - [ ] ImagePreview
 - [ ] Lazyload
-- [ ] List
+- [x] List
 - [x] NoticeBar
 - [x] Popover
 - [x] Progress
