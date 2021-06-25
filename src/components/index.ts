@@ -50,6 +50,7 @@ import Tab from './Tab'
 import IndexBar from './IndexBar'
 import IndexAnchor from './IndexAnchor'
 import PullRefresh from './PullRefresh'
+import List from './List'
 
 import { LocaleProvider, useI18n } from './locale'
 
@@ -107,5 +108,6 @@ export {
   Tab,
   IndexBar,
   IndexAnchor,
-  PullRefresh
+  PullRefresh,
+  List
 }

@@ -1,7 +1,7 @@
 import React, { useContext, useMemo, useRef } from 'react'
 import { TabProps } from './index.types'
 import { createNamespace } from '../utils'
-import { TabsContext } from '../context'
+import { TabContext, TabsContext } from '../context'
 import { useWatch } from '../composables'
 
 const [bem] = createNamespace('tab')
@@ -45,21 +45,27 @@ const Tab = (fieldProps: TabProps, ref: React.Ref<HTMLDivElement>) => {
   const show = scrollspy || active
 
   if (animated || swipeable) {
-    return <div className={bem('pane')}>{children}</div>
+    return (
+      <TabContext.Provider value={{ active }}>
+        <div className={bem('pane')}>{children}</div>
+      </TabContext.Provider>
+    )
   }
 
   const shouldRender = inited.current || scrollspy || !lazyRender
   const Content = shouldRender ? children : null
 
   return (
-    <div
-      role='tabpanel'
-      style={{ ...style, display: !show ? 'none' : '' }}
-      className={`${bem('pane')} ${className || ''}`}
-      ref={ref}
-    >
-      {Content}
-    </div>
+    <TabContext.Provider value={{ active }}>
+      <div
+        role='tabpanel'
+        style={{ ...style, display: !show ? 'none' : '' }}
+        className={`${bem('pane')} ${className || ''}`}
+        ref={ref}
+      >
+        {Content}
+      </div>
+    </TabContext.Provider>
   )
 }
 export default React.memo(React.forwardRef(Tab))

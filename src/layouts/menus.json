@@ -282,8 +282,8 @@
       },
       {
         "name": "List 列表",
-        "url": "",
-        "m_url": "",
+        "url": "/list",
+        "m_url": "/list/demo",
         "simulator": true
       },
       {
