@@ -119,7 +119,7 @@ const PullRefresh = (fieldProps: PullRefreshProps) => {
   const checkPosition = (event: TouchEvent) => {
     reachTop.current = getScrollTop(scrollParent.current!) === 0
 
-    if (reachTop) {
+    if (reachTop.current) {
       setDuration(0)
       touch.start(event)
     }
@@ -135,14 +135,14 @@ const PullRefresh = (fieldProps: PullRefreshProps) => {
 
   const onTouchMove = (event: TouchEvent) => {
     if (isTouchable()) {
-      if (!reachTop) {
+      if (!reachTop.current) {
         checkPosition(event)
       }
 
       const { deltaY } = touch
       touch.move(event)
 
-      if (reachTop && deltaY.current >= 0 && touch.isVertical()) {
+      if (reachTop.current && deltaY.current >= 0 && touch.isVertical()) {
         preventDefault(event)
         setStatus(ease(deltaY.current))
       }
@@ -150,7 +150,7 @@ const PullRefresh = (fieldProps: PullRefreshProps) => {
   }
 
   const onTouchEnd = () => {
-    if (reachTop && touch.deltaY.current && isTouchable()) {
+    if (reachTop.current && touch.deltaY.current && isTouchable()) {
       setDuration(+props.animationDuration)
 
       if (prStatus === 'loosing') {
