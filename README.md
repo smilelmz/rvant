@@ -60,7 +60,7 @@ yarn generate pageName 1
 - [x] Loading
 - [ ] Notify
 - [x] Overlay
-- [ ] PullRefresh
+- [x] PullRefresh
 - [x] ShareSheet
 - [x] SwipeCell
 
