@@ -1,5 +1,11 @@
-import React, { MutableRefObject, useContext, useEffect, useRef } from 'react'
-import { ListProps } from './index.types'
+import React, {
+  MutableRefObject,
+  useContext,
+  useEffect,
+  useImperativeHandle,
+  useRef
+} from 'react'
+import { ListHandler, ListProps } from './index.types'
 import { createNamespace, isHidden } from '../utils'
 import { TabContext } from '../context'
 import {
@@ -13,7 +19,7 @@ import Loading from '../Loading'
 import { useI18n } from '../locale'
 
 const [bem, t] = createNamespace('list')
-const List = (fieldProps: ListProps) => {
+const List = (fieldProps: ListProps, ref: React.Ref<ListHandler>) => {
   const props: ListProps = {
     style: {},
     className: '',
@@ -126,6 +132,8 @@ const List = (fieldProps: ListProps) => {
 
   useEventListener('scroll', check, { target: scrollParent })
 
+  useImperativeHandle(ref, () => ({ check }))
+
   const Content = children
   const Placeholder = <div ref={placeholder} className={bem('placeholder')} />
   return (
@@ -145,4 +153,4 @@ const List = (fieldProps: ListProps) => {
   )
 }
 
-export default React.memo(List)
+export default React.memo(React.forwardRef(List))

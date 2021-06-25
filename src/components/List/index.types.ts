@@ -20,3 +20,7 @@ export interface ListProps {
   updateLoading?: (v: boolean) => void
   updateError?: (v: boolean) => void
 }
+
+export interface ListHandler {
+  check: VoidFunction
+}
