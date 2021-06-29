@@ -41,7 +41,7 @@ yarn generate pageName 1
 - [ ] DatetimePicker
 - [x] Field
 - [ ] Form
-- [ ] NumberKeyboard
+- [x] NumberKeyboard
 - [ ] PasswordInput
 - [ ] Picker
 - [x] Radio
