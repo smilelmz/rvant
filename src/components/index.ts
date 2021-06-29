@@ -51,6 +51,7 @@ import IndexBar from './IndexBar'
 import IndexAnchor from './IndexAnchor'
 import PullRefresh from './PullRefresh'
 import List from './List'
+import NumberKeyboard from './NumberKeyboard'
 
 import { LocaleProvider, useI18n } from './locale'
 
@@ -109,5 +110,6 @@ export {
   IndexBar,
   IndexAnchor,
   PullRefresh,
-  List
+  List,
+  NumberKeyboard
 }

@@ -110,8 +110,8 @@
       },
       {
         "name": "NumberKeyboard 数字键盘",
-        "url": "",
-        "m_url": "",
+        "url": "/number-keyboard",
+        "m_url": "/number-keyboard/demo",
         "simulator": true
       },
       {
