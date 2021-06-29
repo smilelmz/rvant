@@ -465,6 +465,7 @@ const Field = (fieldProps: FieldProps, ref: React.Ref<FieldHandle>) => {
         valueClass={bem('value')}
         titleClass={`${bem('label', labelAlign)} ${labelClass}`}
         arrowDirection={props.arrowDirection}
+        click={props.click}
       >
         <div className={bem('body')}>
           {renderInput()}
