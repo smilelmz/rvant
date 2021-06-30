@@ -1,4 +1,4 @@
-import React, { MouseEvent } from 'react'
+import React, { TouchEvent } from 'react'
 import { isDef, createNamespace, isElement } from '../utils'
 import { CellProps } from './index.types'
 import Icon from '../Icon'
@@ -114,7 +114,10 @@ const Cell: React.FC<CellProps> = ({
     style,
     role: clickable ? 'button' : undefined,
     tabIndex: clickable ? 0 : undefined,
-    onClick: (e: MouseEvent) => click && click(e)
+    onTouchStart: (e: TouchEvent) => {
+      e.nativeEvent.stopImmediatePropagation()
+      click && click(e)
+    }
   }
   if (url && CustomTag === 'a') {
     props.href = url

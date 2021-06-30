@@ -63,7 +63,7 @@ export type FieldCellProps = {
   titleClass?: string
   arrowDirection?: 'up' | 'down' | 'left' | 'right'
   clickable?: boolean
-  click?: EventFunction<MouseEvent>
+  click?: EventFunction<TouchEvent>
 }
 
 export type FieldSharedProps = {

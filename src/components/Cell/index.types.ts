@@ -1,4 +1,4 @@
-import { MouseEvent } from 'react'
+import { TouchEvent } from 'react'
 import { EventFunction } from '../type'
 
 export interface CellProps {
@@ -24,6 +24,6 @@ export interface CellProps {
   valueClass?: string
   labelClass?: string
   extra?: React.ReactNode
-  click?: EventFunction<MouseEvent>
+  click?: EventFunction<TouchEvent>
   children?: React.ReactNode | React.ReactNode[]
 }
