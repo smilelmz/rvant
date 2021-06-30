@@ -42,7 +42,7 @@ yarn generate pageName 1
 - [x] Field
 - [ ] Form
 - [x] NumberKeyboard
-- [ ] PasswordInput
+- [x] PasswordInput
 - [ ] Picker
 - [x] Radio
 - [x] Rate
