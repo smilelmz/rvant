@@ -241,7 +241,6 @@ const NumberKeyboard = (fieldProps: NumberKeyboardProps) => {
   useClickAway(
     () => {
       if (props.hideOnClickOutside) {
-        console.log('hideOnClickOutside')
         onClose()
       }
     },

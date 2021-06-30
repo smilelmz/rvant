@@ -116,8 +116,8 @@
       },
       {
         "name": "PasswordInput 密码输入框",
-        "url": "",
-        "m_url": "",
+        "url": "/password-input",
+        "m_url": "/password-input/demo",
         "simulator": true
       },
       {

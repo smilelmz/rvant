@@ -52,6 +52,7 @@ import IndexAnchor from './IndexAnchor'
 import PullRefresh from './PullRefresh'
 import List from './List'
 import NumberKeyboard from './NumberKeyboard'
+import PasswordInput from './PasswordInput'
 
 import { LocaleProvider, useI18n } from './locale'
 
@@ -111,5 +112,6 @@ export {
   IndexAnchor,
   PullRefresh,
   List,
-  NumberKeyboard
+  NumberKeyboard,
+  PasswordInput
 }
