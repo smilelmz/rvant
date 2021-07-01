@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { TabsContentProps } from './index.types'
 import { createNamespace } from '../utils'
 import { SwipeHandler } from '../Swipe/index.types'
@@ -14,7 +14,7 @@ const Tabs = (props: TabsContentProps) => {
   const onChange = (index: number) => {
     props.change && props.change(index)
   }
-  const renderChildren = useCallback(() => {
+  const renderChildren = () => {
     if (props.animated || props.swipeable) {
       return (
         <Swipe
@@ -31,11 +31,11 @@ const Tabs = (props: TabsContentProps) => {
       )
     }
     return children
-  }, [props.swipeable, props.duration])
+  }
 
   const swipeToCurrentTab = (index: number) => {
     const swipe = swipeRef.current
-    if (swipe && swipe.state.active !== index) {
+    if (index >= 0 && swipe && swipe.state.active !== index) {
       swipe.swipeTo(index, { immediate: !props.inited })
     }
   }
@@ -45,7 +45,6 @@ const Tabs = (props: TabsContentProps) => {
   useEffect(() => {
     swipeToCurrentTab(props.currentIndex)
   }, [])
-
   return (
     <div
       className={bem('content', {

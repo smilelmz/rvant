@@ -1,6 +1,5 @@
 import React, {
   CSSProperties,
-  useEffect,
   useImperativeHandle,
   useMemo,
   useRef,
@@ -153,7 +152,6 @@ const Tabs = (fieldProps: TabsProps, ref: React.Ref<TabsHandler>) => {
 
   const findAvailableTab = (index: number) => {
     const diff = index < state.currentIndex ? -1 : 1
-
     while (index >= 0 && index < children.length) {
       if (!children[index].props.disabled) {
         return index
@@ -330,11 +328,6 @@ const Tabs = (fieldProps: TabsProps, ref: React.Ref<TabsHandler>) => {
     scrollTo
   }))
 
-  useEffect(() => {
-    setCurrentIndexByName(props.active)
-    init()
-  }, [])
-
   useEventListener('scroll', onScroll, { target: scroller })
 
   useWindowSize({
@@ -354,6 +347,9 @@ const Tabs = (fieldProps: TabsProps, ref: React.Ref<TabsHandler>) => {
       setCurrentIndexByName(props.active)
       setLine()
       scrollIntoView(true)
+    } else {
+      setCurrentIndexByName(props.active)
+      init()
     }
   })
 

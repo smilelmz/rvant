@@ -63,29 +63,28 @@ const Swipe = (fieldProps: SwipeProps, ref: React.Ref<SwipeHandler>) => {
   const windowSize = useWindowSize()
   const visibility = usePageVisibility()
 
-  const count = itemRefs.current.length
-  const size = useMemo(() => state[props.vertical ? 'height' : 'width'], [
-    props.vertical,
-    state.width,
-    state.height
-  ])
-  const minOffset = useMemo(() => {
-    if (state.rect) {
-      const base = props.vertical ? state.rect.height : state.rect.width
-      return base - size * count
-    }
-    return 0
-  }, [props.vertical, state.rect])
-  const maxCount = Math.ceil(Math.abs(minOffset) / size)
-  const trackSize = count * size
-  const activeIndicator = (state.active + count) % count
+  const count = useRef(0)
+  count.current = itemRefs.current.length
+  const size = useRef(0)
+  size.current = state[props.vertical ? 'height' : 'width']
+  const minOffset = useRef(0)
+  minOffset.current = state.rect
+    ? (props.vertical ? state.rect.height : state.rect.width) -
+      size.current * count.current
+    : 0
+  const maxCount = useRef(0)
+  maxCount.current = size.current
+    ? Math.ceil(Math.abs(minOffset.current) / size.current)
+    : 0
+  const trackSize = count.current * size.current
+  const activeIndicator = (state.active + count.current) % count.current
   const trackStyle = useMemo(() => {
     const style: CSSProperties = {
       transitionDuration: `${swipingRef.current ? 0 : props.duration}ms`,
       transform: `translate${props.vertical ? 'Y' : 'X'}(${state.offset}px)`
     }
 
-    if (size) {
+    if (size.current) {
       const mainAxis = props.vertical ? 'height' : 'width'
       const crossAxis = props.vertical ? 'width' : 'height'
       style[mainAxis] = `${trackSize}px`
@@ -104,22 +103,22 @@ const Swipe = (fieldProps: SwipeProps, ref: React.Ref<SwipeHandler>) => {
   const getTargetActive = (pace: number) => {
     if (pace) {
       if (props.loop) {
-        return range(activeRef.current + pace, -1, count)
+        return range(activeRef.current + pace, -1, count.current)
       }
-      return range(activeRef.current + pace, 0, maxCount)
+      return range(activeRef.current + pace, 0, maxCount.current)
     }
     return activeRef.current
   }
 
   const getTargetOffset = (targetActive: number, offset = 0) => {
-    let currentPosition = targetActive * size
+    let currentPosition = targetActive * size.current
     if (!props.loop) {
-      currentPosition = Math.min(currentPosition, -minOffset)
+      currentPosition = Math.min(currentPosition, -minOffset.current)
     }
 
     let targetOffset = offset - currentPosition
     if (!props.loop) {
-      targetOffset = range(targetOffset, minOffset, 0)
+      targetOffset = range(targetOffset, minOffset.current, 0)
     }
 
     return targetOffset
@@ -134,7 +133,7 @@ const Swipe = (fieldProps: SwipeProps, ref: React.Ref<SwipeHandler>) => {
     offset?: number
     emitChange?: boolean
   }) => {
-    if (count <= 1) {
+    if (count.current <= 1) {
       return
     }
 
@@ -143,14 +142,16 @@ const Swipe = (fieldProps: SwipeProps, ref: React.Ref<SwipeHandler>) => {
 
     // auto move first and last swipe in loop mode
     if (props.loop) {
-      if (itemRefs.current[0] && targetOffset !== minOffset) {
-        const outRightBound = targetOffset < minOffset
+      if (itemRefs.current[0] && targetOffset !== minOffset.current) {
+        const outRightBound = targetOffset < minOffset.current
         itemRefs.current[0].setOffset(outRightBound ? trackSize : 0)
       }
 
-      if (itemRefs.current[count - 1] && targetOffset !== 0) {
+      if (itemRefs.current[count.current - 1] && targetOffset !== 0) {
         const outLeftBound = targetOffset > 0
-        itemRefs.current[count - 1].setOffset(outLeftBound ? -trackSize : 0)
+        itemRefs.current[count.current - 1].setOffset(
+          outLeftBound ? -trackSize : 0
+        )
       }
     }
 
@@ -169,9 +170,9 @@ const Swipe = (fieldProps: SwipeProps, ref: React.Ref<SwipeHandler>) => {
   const correctPosition = () => {
     swipingRef.current = true
     if (activeRef.current <= -1) {
-      move({ pace: count })
-    } else if (activeRef.current >= count) {
-      move({ pace: -count })
+      move({ pace: count.current })
+    } else if (activeRef.current >= count.current) {
+      move({ pace: -count.current })
     }
   }
 
@@ -209,7 +210,7 @@ const Swipe = (fieldProps: SwipeProps, ref: React.Ref<SwipeHandler>) => {
 
   const autoplay = () => {
     stopAutoplay()
-    if (props.autoplay > 0 && count > 1) {
+    if (props.autoplay > 0 && count.current > 1) {
       autoplayTimer.current = setTimeout(() => {
         next()
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -235,8 +236,8 @@ const Swipe = (fieldProps: SwipeProps, ref: React.Ref<SwipeHandler>) => {
       newState.height = +(props.height ?? rect.height)
     }
 
-    if (count) {
-      active = Math.min(count - 1, active)
+    if (count.current) {
+      active = Math.min(count.current - 1, active)
     }
 
     activeRef.current = active
@@ -284,7 +285,8 @@ const Swipe = (fieldProps: SwipeProps, ref: React.Ref<SwipeHandler>) => {
       touch.direction.current === (props.vertical ? 'vertical' : 'horizontal')
     const duration = Date.now() - touchStartTime.current
     const speed = delta / duration
-    const shouldSwipe = Math.abs(speed) > 0.25 || Math.abs(delta) > size / 2
+    const shouldSwipe =
+      Math.abs(speed) > 0.25 || Math.abs(delta) > size.current / 2
 
     if (shouldSwipe && isCorrectDirection) {
       const offset = props.vertical
@@ -296,7 +298,7 @@ const Swipe = (fieldProps: SwipeProps, ref: React.Ref<SwipeHandler>) => {
       if (props.loop) {
         pace = offset > 0 ? (delta > 0 ? -1 : 1) : 0
       } else {
-        pace = -Math[delta > 0 ? 'ceil' : 'floor'](delta / size)
+        pace = -Math[delta > 0 ? 'ceil' : 'floor'](delta / size.current)
       }
 
       move({
@@ -317,10 +319,10 @@ const Swipe = (fieldProps: SwipeProps, ref: React.Ref<SwipeHandler>) => {
 
     doubleRaf(() => {
       let targetIndex
-      if (props.loop && index === count) {
+      if (props.loop && index === count.current) {
         targetIndex = activeRef.current === 0 ? 0 : index
       } else {
-        targetIndex = index % count
+        targetIndex = index % count.current
       }
 
       if (options.immediate) {
@@ -357,10 +359,10 @@ const Swipe = (fieldProps: SwipeProps, ref: React.Ref<SwipeHandler>) => {
         active: activeIndicator
       })
     }
-    if (props.showIndicators && count > 1) {
+    if (props.showIndicators && count.current > 1) {
       return (
         <div className={bem('indicators', { vertical: props.vertical })}>
-          {Array(count)
+          {Array(count.current)
             .fill('')
             .map(renderDot)}
         </div>
@@ -377,8 +379,8 @@ const Swipe = (fieldProps: SwipeProps, ref: React.Ref<SwipeHandler>) => {
   }))
 
   useWatch(props.initialSwipe, (value) => initialize(+value))
-  useWatch(count, () => initialize(activeRef.current))
-  useWatch([count, props.autoplay], () => {
+  useWatch(count.current, () => initialize(activeRef.current))
+  useWatch([count.current, props.autoplay], () => {
     autoplay()
   })
   useWatch([windowSize.width.current, windowSize.height.current], resize)
@@ -400,9 +402,9 @@ const Swipe = (fieldProps: SwipeProps, ref: React.Ref<SwipeHandler>) => {
   return (
     <SwipeContext.Provider
       value={{
-        size,
+        size: size.current,
         props,
-        count,
+        count: count.current,
         activeIndicator
       }}
     >
