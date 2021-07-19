@@ -420,15 +420,12 @@ const Field = (fieldProps: FieldProps, ref: React.Ref<FieldHandle>) => {
     resetValidation
   }))
 
-  useWatch(
-    () => props.value,
-    () => {
-      updateValue(getModelValue())
-      resetValidation()
-      validateWithTrigger('onChange')
-      adjustTextareaSize()
-    }
-  )
+  useWatch(props.value, () => {
+    updateValue(getModelValue())
+    resetValidation()
+    validateWithTrigger('onChange')
+    adjustTextareaSize()
+  })
 
   useEffect(() => {
     updateValue(getModelValue(), props.formatTrigger)

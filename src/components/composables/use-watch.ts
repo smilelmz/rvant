@@ -1,4 +1,5 @@
 import { useRef, useEffect, useMemo } from 'react'
+import { useDeepEffect } from '.'
 
 type Callback<T> = (current: T | undefined, prev: T | undefined) => void
 type Config = {
@@ -37,6 +38,38 @@ export function useWatch<T>(
       prev.current = dep
     }
   }, effectArr)
+
+  return () => {
+    stop.current = true
+  }
+}
+
+export function useDeepWatch<T>(
+  dep: T,
+  callback: Callback<T>,
+  config: Config = { immediate: false }
+) {
+  const { immediate } = config
+  const curRef = useRef<T>()
+  const prev = useRef<T>()
+  const inited = useRef(false)
+  const stop = useRef(false)
+
+  useDeepEffect(() => {
+    const execute = () => callback(curRef.current, prev.current)
+    if (!stop.current) {
+      curRef.current = dep
+      if (!inited.current) {
+        inited.current = true
+        if (immediate) {
+          execute()
+        }
+      } else {
+        execute()
+      }
+      prev.current = dep
+    }
+  }, [dep])
 
   return () => {
     stop.current = true

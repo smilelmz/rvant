@@ -14,4 +14,5 @@ export * from './use-click-away'
 export * from './use-sync-callback'
 export * from './use-window-size'
 export * from './use-page-visibility'
+export * from './use-deep-effect'
 export { useEventListener }

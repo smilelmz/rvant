@@ -53,6 +53,7 @@ import PullRefresh from './PullRefresh'
 import List from './List'
 import NumberKeyboard from './NumberKeyboard'
 import PasswordInput from './PasswordInput'
+import Cascader from './Cascader'
 
 import { LocaleProvider, useI18n } from './locale'
 
@@ -113,5 +114,6 @@ export {
   PullRefresh,
   List,
   NumberKeyboard,
-  PasswordInput
+  PasswordInput,
+  Cascader
 }
