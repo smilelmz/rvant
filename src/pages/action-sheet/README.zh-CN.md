@@ -21,7 +21,7 @@ import { ActionSheet } from 'rvant';
 <ActionSheet
   show={show}
   actions={[{ name: '选项一' }, { name: '选项二' }, { name: '选项三' }]}
-  cancel={() => setShow(false)}
+  updateShow={(v) => setShow(v)}
   select={onSelect}
 />
 ```
@@ -43,7 +43,7 @@ const onSelect = (item: ActionSheetAction) => {
   show={show}
   closeOnClickAction
   actions={[{ name: '选项一' }, { name: '选项二' }, { name: '选项三' }]}
-  cancel={() => setShow(false)}
+  updateShow={(v) => setShow(v)}
   cancelText='Cancel'
 />
 ```
@@ -63,7 +63,7 @@ const onSelect = (item: ActionSheetAction) => {
   ]}
   cancelText='Cancel'
   description='描述信息'
-  cancel={() => setShow(false)}
+  updateShow={(v) => setShow(v)}
 />
 ```
 
@@ -80,7 +80,7 @@ const onSelect = (item: ActionSheetAction) => {
     { name: '禁用选项', disabled: true },
     { name: '加载选项', loading: true }
   ]}
-  cancel={() => setShow(false)}
+  updateShow={() => updateShow(v)}
   cancelText='Cancel'
 />
 ```
@@ -90,7 +90,7 @@ const onSelect = (item: ActionSheetAction) => {
 通过插槽可以自定义面板的展示内容，同时可以使用`title`属性展示标题栏
 
 ```html
-<ActionSheet show={show} title='标题' cancel={() => setShow(false)}>
+<ActionSheet show={show} title='标题' updateShow={(v) => updateShow(false)}>
   <div className='demo-action-sheet-content'>内容</div>
 </ActionSheet>
 

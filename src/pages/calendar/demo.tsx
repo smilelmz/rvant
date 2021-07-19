@@ -144,7 +144,7 @@ const CalendarDemo = () => {
   const calendarProps = {
     show,
     ...calendarSetting,
-    close: () => setShow(false),
+    updateShow: (v) => setShow(v),
     confirm: onConfirm
   }
   return (

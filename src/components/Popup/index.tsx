@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, {
+  MouseEvent,
   useEffect,
   useImperativeHandle,
   useMemo,
@@ -35,6 +36,7 @@ const Popup = (
     closeIcon = 'cross',
     closeIconPosition = 'top-right',
     closeOnPopstate = true,
+    iconPrefix,
     transition,
     transitionAppear = false,
     safeAreaInsetBottom = false,
@@ -44,11 +46,14 @@ const Popup = (
     click,
     close,
     opened,
-    closed
+    closed,
+    updateShow,
+    clickOverlay,
+    clickCloseIcon
   }: PopupProps,
   ref: React.Ref<PopupHandler>
 ) => {
-  let isOpen: boolean
+  const isOpen = useRef(false)
   const isCenter = position === 'center'
   const [pzIndex, setPzIndex] = useState<number>(globalZIndex)
   const popupRef = useRef<HTMLDivElement>(null)
@@ -70,12 +75,12 @@ const Popup = (
     return popupStyle
   }, [pzIndex, duration, position])
   const open = () => {
-    if (!isOpen) {
+    if (!isOpen.current) {
       if (zIndex !== undefined) {
         globalZIndex = +zIndex
       }
 
-      isOpen = true
+      isOpen.current = true
       setPzIndex(++globalZIndex)
     }
   }
@@ -85,24 +90,35 @@ const Popup = (
     { 'safe-area-inset-bottom': safeAreaInsetBottom }
   ])
   const closePopup = () => {
-    isOpen = false
-    close && close()
-    if (lockScroll) {
-      document.body.classList.remove(`${BASE_PREFIX}overflow-hidden`)
+    if (isOpen.current) {
+      isOpen.current = false
+      close && close()
+      updateShow && updateShow(false)
+      if (lockScroll) {
+        document.body.classList.remove(`${BASE_PREFIX}overflow-hidden`)
+      }
     }
   }
-  const cickOverlay = () => {
+  const onClickOverlay = (event: MouseEvent) => {
+    clickOverlay && clickOverlay(event)
     if (closeOnClickOverlay) {
       closePopup()
     }
   }
+
+  const onClickCloseIcon = (event: MouseEvent) => {
+    clickCloseIcon && clickCloseIcon(event)
+    closePopup()
+  }
+
   const renderCloseIcon = () => {
     if (closeable) {
       return (
         <Icon
           name={closeIcon}
           className={bem(`close-icon`, [{ [closeIconPosition]: true }])}
-          click={closePopup}
+          classPrefix={iconPrefix}
+          click={onClickCloseIcon}
         />
       )
     }
@@ -129,7 +145,7 @@ const Popup = (
           className={overlayClass}
           zIndex={pzIndex}
           customStyle={overlayStyle}
-          click={() => closeOnClickOverlay && cickOverlay()}
+          click={onClickOverlay}
           lockScroll={lockScroll}
         />
       )

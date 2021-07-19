@@ -67,6 +67,7 @@ export interface CalendarProps {
   closed?: VoidFunction
   unselect?: ValueFunction<Date>
   monthShow?: (date: Date, title: string) => void
+  updateShow?: (show: boolean) => void
 }
 
 export interface IHandles {

@@ -69,7 +69,8 @@ const Calendar = (
     opened,
     closed,
     unselect,
-    monthShow
+    monthShow,
+    updateShow
   }: CalendarProps,
   calendarRef: React.Ref<CalendarHandler>
 ) => {
@@ -422,6 +423,7 @@ const Calendar = (
         close={close}
         opened={opened}
         closed={closed}
+        updateShow={updateShow}
       >
         {renderCalendar()}
       </Popup>

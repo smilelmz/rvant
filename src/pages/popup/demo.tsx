@@ -21,7 +21,7 @@ const PopupDemo = () => {
         <Popup
           show={showBase}
           style={{ padding: '30px 50px' }}
-          close={() => setShowBase(false)}
+          updateShow={(v) => setShowBase(v)}
         >
           center
         </Popup>
@@ -92,7 +92,7 @@ const PopupDemo = () => {
           style={{ height: '30%' }}
           position='bottom'
           round
-          close={() => setShowRound(false)}
+          updateShow={(v) => setShowRound(v)}
         />
       </DemoBlock>
       <DemoBlock title='指定挂载节点' card>
@@ -105,7 +105,7 @@ const PopupDemo = () => {
           show={showGetContainer}
           style={{ padding: '30px 50px' }}
           teleport={true}
-          close={() => setShowGetContainer(false)}
+          updateShow={(v) => setShowGetContainer(v)}
         />
       </DemoBlock>
     </MobileLayout>

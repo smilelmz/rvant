@@ -39,7 +39,7 @@ const ActionSheetDemo = () => {
         show={cancel}
         closeOnClickAction
         actions={[{ name: '选项一' }, { name: '选项二' }, { name: '选项三' }]}
-        cancel={() => setCancel(false)}
+        updateShow={(v) => setCancel(v)}
         cancelText='取消'
       />
       <ActionSheet
@@ -52,7 +52,7 @@ const ActionSheetDemo = () => {
         ]}
         cancelText='取消'
         description='这是一段描述信息'
-        cancel={() => setDescription(false)}
+        updateShow={(v) => setDescription(v)}
       />
       <ActionSheet
         show={status}
@@ -62,10 +62,10 @@ const ActionSheetDemo = () => {
           { name: '这是一段描述信息', disabled: true },
           { loading: true }
         ]}
-        cancel={() => setStatus(false)}
+        updateShow={(v) => setStatus(v)}
         cancelText='取消'
       />
-      <ActionSheet show={title} title='标题' cancel={() => setTitle(false)}>
+      <ActionSheet show={title} title='标题' updateShow={(v) => setTitle(v)}>
         <div className='demo-action-sheet-content'>内容</div>
       </ActionSheet>
     </MobileLayout>

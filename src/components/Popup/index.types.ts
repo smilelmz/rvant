@@ -25,6 +25,7 @@ export interface PopupProps {
   closeIcon?: string
   closeIconPosition?: PopupCloseIconPosition
   closeOnPopstate?: boolean
+  iconPrefix?: string
   transition?: string
   transitionAppear?: boolean
   safeAreaInsetBottom?: boolean
@@ -36,6 +37,9 @@ export interface PopupProps {
   close?: VoidFunction
   opened?: VoidFunction
   closed?: VoidFunction
+  updateShow?: (show: boolean) => void
+  clickOverlay?: EventFunction<MouseEvent>
+  clickCloseIcon?: EventFunction<MouseEvent>
 }
 
 export interface PopupSharedProps {
@@ -50,6 +54,7 @@ export interface PopupSharedProps {
   closeOnClickOverlay?: boolean
   opened?: VoidFunction
   closed?: VoidFunction
+  updateShow?: (show: boolean) => void
 }
 
 export interface PopupHandler {

@@ -17,7 +17,7 @@ Use `actions` prop to set options of action-sheet.
 <ActionSheet
   show={show}
   actions={[{ name: 'Option 1' }, { name: 'Option 2' }, { name: 'Option 3' }]}
-  cancel={() => setShow(false)}
+  updateShow={(v) => setShow(v)}
   select={onSelect}
 />
 ```
@@ -37,7 +37,7 @@ const onSelect = (item: ActionSheetAction) => {
   show={show}
   closeOnClickAction
   actions={[{ name: 'Option 1' }, { name: 'Option 2' }, { name: 'Option 3' }]}
-  cancel={() => setShow(false)}
+  updateShow={(v) => setShow(v)}
   cancelText='Cancel'
 />
 ```
@@ -55,7 +55,7 @@ const onSelect = (item: ActionSheetAction) => {
   ]}
   cancelText='Cancel'
   description='Description'
-  cancel={() => setShow(false)}
+  updateShow={(v) => setShow(v)}
 />
 ```
 
@@ -70,7 +70,7 @@ const onSelect = (item: ActionSheetAction) => {
     { name: 'Disabled Option', disabled: true },
     { name: 'Loading Option', loading: true }
   ]}
-  cancel={() => setShow(false)}
+  updateShow={(v) => setShow(v)}
   cancelText='Cancel'
 />
 ```
@@ -78,7 +78,7 @@ const onSelect = (item: ActionSheetAction) => {
 ### Custom Panel
 
 ```html
-<ActionSheet show={show} title='Title' cancel={() => setShow(false)}>
+<ActionSheet show={show} title='Title' updateShow={(v) => setShow(v)}>
   <div className='demo-action-sheet-content'>Content</div>
 </ActionSheet>
 

@@ -32,10 +32,12 @@ const ActionSheet = ({
   select,
   cancel,
   opened,
-  closed
+  closed,
+  updateShow
 }: ActionSheetProps) => {
   const onCancel = () => {
     cancel && cancel()
+    updateShow && updateShow(false)
   }
   const renderHeader = () => {
     if (title) {
@@ -78,11 +80,17 @@ const ActionSheet = ({
     } = item
 
     const Content = loading ? (
-      <Loading className={bem('loading-icon')} />
+      <Loading key='loading' className={bem('loading-icon')} />
     ) : (
       [
-        <span className={bem('name')}>{name}</span>,
-        subname && <div className={bem('subname')}>{subname}</div>
+        <span key='main-name' className={bem('name')}>
+          {name}
+        </span>,
+        subname && (
+          <div key='sub-name' className={bem('subname')}>
+            {subname}
+          </div>
+        )
       ]
     )
 
@@ -96,7 +104,7 @@ const ActionSheet = ({
       }
 
       if (closeOnClickAction) {
-        cancel && cancel()
+        updateShow && updateShow(false)
       }
 
       select && select(item, index)
@@ -104,6 +112,7 @@ const ActionSheet = ({
 
     return (
       <button
+        key={`option_${index}`}
         type='button'
         style={{ color }}
         className={`${bem('item', { loading, disabled })} ${className}`}
@@ -143,7 +152,8 @@ const ActionSheet = ({
     closeOnPopstate,
     close: onCancel,
     closed,
-    opened
+    opened,
+    updateShow
   }
 
   return (
