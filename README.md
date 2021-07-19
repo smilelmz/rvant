@@ -36,7 +36,7 @@ yarn generate pageName 1
 ### Form Components
 
 - [x] Calendar
-- [ ] Cascader
+- [x] Cascader
 - [x] Checkbox
 - [ ] DatetimePicker
 - [x] Field
