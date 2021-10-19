@@ -6,7 +6,7 @@ import React, {
   useContext
 } from 'react'
 import { createNamespace, addUnit } from '../utils'
-import { CheckboxProps, CheckboxHandler } from './index.types'
+import { CheckboxProps, CheckboxHandler } from './types'
 import Icon from '../Icon'
 import { CheckboxGroupContext } from '../context'
 

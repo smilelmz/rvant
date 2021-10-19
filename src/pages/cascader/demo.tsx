@@ -8,7 +8,7 @@ import Field from '@/components/Field'
 import {
   CascaderEventParams,
   CascaderOption
-} from '@/components/Cascader/index.types'
+} from '@/components/Cascader/types'
 import { Popup } from '@/components'
 import { deepClone } from '@/components/utils'
 

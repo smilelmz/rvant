@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from '@testing-library/react'
 import NumberKeyboard from '.'
-import { NumberKeyboardProps } from './index.types'
+import { NumberKeyboardProps } from './types'
 
 describe('Test Component', () => {
   let props: NumberKeyboardProps

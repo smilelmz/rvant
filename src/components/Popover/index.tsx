@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from 'react'
-import { PopoverAction, PopoverProps } from './index.types'
+import { PopoverAction, PopoverProps } from './types'
 import { extend, BORDER_BOTTOM, createNamespace } from '../utils'
 import { Instance } from '@popperjs/core'
 import { createPopper } from '@popperjs/core/lib/popper-lite'
@@ -7,7 +7,7 @@ import offsetModifier from '@popperjs/core/lib/modifiers/offset'
 import Icon from '../Icon'
 import { useClickAway, useWatch } from '../composables'
 import Popup from '../Popup'
-import { PopupHandler } from '../Popup/index.types'
+import { PopupHandler } from '../Popup/types'
 
 const [bem] = createNamespace('popover')
 const Popover = ({

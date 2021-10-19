@@ -1,5 +1,5 @@
 import React from 'react'
-import { StepsProps } from './index.types'
+import { StepsProps } from './types'
 import { createNamespace } from '../utils'
 import { StepsContext } from '../context'
 

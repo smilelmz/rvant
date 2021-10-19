@@ -1,5 +1,5 @@
 import React, { useImperativeHandle, useMemo } from 'react'
-import { CountDownProps, CountDownHandler } from './index.types'
+import { CountDownProps, CountDownHandler } from './types'
 import { createNamespace } from '../utils'
 import { useCountDown, useWatch } from '../composables'
 import { parseFormat } from './utils'

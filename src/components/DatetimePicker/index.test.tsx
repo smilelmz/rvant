@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from '@testing-library/react'
 import DatetimePicker from '.'
-import { DatetimePickerProps } from './index.types'
+import { DatetimePickerProps } from './types'
 
 describe('Test Component', () => {
   let props: DatetimePickerProps

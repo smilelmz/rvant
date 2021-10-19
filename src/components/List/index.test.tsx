@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from '@testing-library/react'
 import List from '.'
-import { ListProps } from './index.types'
+import { ListProps } from './types'
 
 describe('Test Component', () => {
   let props: ListProps

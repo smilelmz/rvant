@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from '@testing-library/react'
 import Row from '.'
-import { RowProps } from './index.types'
+import { RowProps } from './types'
 
 describe('Test Component', () => {
   let props: RowProps

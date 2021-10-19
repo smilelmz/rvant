@@ -1,5 +1,5 @@
 import React, { useContext, useMemo, useRef } from 'react'
-import { TabProps } from './index.types'
+import { TabProps } from './types'
 import { createNamespace } from '../utils'
 import { TabContext, TabsContext } from '../context'
 import { useWatch } from '../composables'

@@ -1,7 +1,7 @@
 import React, { CSSProperties, useMemo } from 'react'
 import Badge from '../Badge'
 import { createNamespace, isDef } from '../utils'
-import { TabsTitleProps } from './index.types'
+import { TabsTitleProps } from './types'
 
 const [bem] = createNamespace('tab')
 const Tab = (props: TabsTitleProps, ref: React.Ref<HTMLDivElement>) => {

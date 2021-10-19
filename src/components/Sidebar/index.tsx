@@ -1,5 +1,5 @@
 import React from 'react'
-import { SidebarProps } from './index.types'
+import { SidebarProps } from './types'
 import { createNamespace } from '../utils'
 import { SidebarContext } from '../context'
 

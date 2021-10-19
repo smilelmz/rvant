@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from '@testing-library/react'
 import Image from '.'
-import { ImageProps } from './index.types'
+import { ImageProps } from './types'
 
 describe('Test Component', () => {
   let props: ImageProps

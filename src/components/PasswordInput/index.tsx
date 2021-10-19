@@ -1,5 +1,5 @@
 import React, { TouchEvent, useRef } from 'react'
-import { PasswordInputProps } from './index.types'
+import { PasswordInputProps } from './types'
 import {
   addUnit,
   BORDER_LEFT,

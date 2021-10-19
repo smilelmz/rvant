@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { StepProps } from './index.types'
+import { StepProps } from './types'
 import { BORDER, createNamespace, isElement } from '../utils'
 import Icon from '../Icon'
 import { StepsContext } from '../context'

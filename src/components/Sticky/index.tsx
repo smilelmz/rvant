@@ -6,7 +6,7 @@ import {
   getScrollTop,
   getZIndexStyle
 } from '../utils'
-import { StickyProps } from './index.types'
+import { StickyProps } from './types'
 import {
   getRect,
   useScrollParent,

@@ -1,5 +1,5 @@
 import React, { CSSProperties, MouseEvent, useRef } from 'react'
-import { NavBarProps } from './index.types'
+import { NavBarProps } from './types'
 import { BORDER_BOTTOM, createNamespace, getZIndexStyle } from '../utils'
 import { usePlaceholder } from '../composables'
 import { Icon } from '..'

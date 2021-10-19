@@ -1,5 +1,5 @@
 import React, { MouseEvent, useContext } from 'react'
-import { TabbarItemProps } from './index.types'
+import { TabbarItemProps } from './types'
 import { createNamespace } from '../utils'
 import { TabbarContext } from '../context'
 import { Icon } from '..'

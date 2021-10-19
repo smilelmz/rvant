@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react'
-import { BadgeProps } from './index.types'
-import { isDef, isNumeric, createNamespace } from '../utils'
+import { BadgeProps } from './types'
+import { isDef, isNumeric, createNamespace, addUnit } from '../utils'
 
 const [bem] = createNamespace('badge')
 const Badge: React.FC<BadgeProps> = ({
@@ -13,7 +13,6 @@ const Badge: React.FC<BadgeProps> = ({
   tag,
   content,
   children,
-
   showZero = true
 }: BadgeProps) => {
   const CustomTag = tag || 'div'
@@ -42,18 +41,18 @@ const Badge: React.FC<BadgeProps> = ({
       if (offset) {
         const [x, y] = offset
         if (children) {
-          badgeStyle.top = `${y}px`
-          badgeStyle.right = `${-x}px`
+          badgeStyle.top = addUnit(y)
+          badgeStyle.right = addUnit(x)
         } else {
-          badgeStyle.marginTop = `${y}px`
-          badgeStyle.marginLeft = `${x}px`
+          badgeStyle.marginTop = addUnit(y)
+          badgeStyle.marginLeft = addUnit(x)
         }
       }
 
       return (
         <div
           className={`${bem({ dot, fixed: !!children })}`}
-          style={badgeStyle}
+          style={{ ...badgeStyle, ...style }}
         >
           {renderContent()}
         </div>
@@ -64,7 +63,7 @@ const Badge: React.FC<BadgeProps> = ({
 
   if (children) {
     return (
-      <CustomTag className={`${bem('wrapper')} ${className}`} style={style}>
+      <CustomTag className={`${bem('wrapper')} ${className}`}>
         {children}
         {renderBadge()}
       </CustomTag>

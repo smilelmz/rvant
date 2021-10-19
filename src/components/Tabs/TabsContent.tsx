@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react'
-import { TabsContentProps } from './index.types'
+import { TabsContentProps } from './types'
 import { createNamespace } from '../utils'
-import { SwipeHandler } from '../Swipe/index.types'
+import { SwipeHandler } from '../Swipe/types'
 import Swipe from '../Swipe'
 import { useWatch } from '../composables'
 

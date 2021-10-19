@@ -5,7 +5,7 @@ import {
   FieldModeType,
   FieldRule,
   FieldType
-} from './index.types'
+} from './types'
 
 function isEmptyValue(value: unknown) {
   if (Array.isArray(value)) {

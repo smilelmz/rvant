@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from '@testing-library/react'
 import Overlay from '.'
-import { OverlayProps } from './index.types'
+import { OverlayProps } from './types'
 
 describe('Test Component', () => {
   let props: OverlayProps

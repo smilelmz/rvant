@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react'
-import { LoadingProps } from './index.types'
+import { LoadingProps } from './types'
 import { addUnit, createNamespace, getSizeStyle } from '../utils'
 
 const [bem] = createNamespace('loading')

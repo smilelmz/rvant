@@ -1,6 +1,6 @@
 import React from 'react'
 import { BORDER_TOP_BOTTOM, createNamespace } from '../utils'
-import { CellGroupProps } from './index.types'
+import { CellGroupProps } from './types'
 
 const [bem] = createNamespace('cell-group')
 const CellGroup: React.FC<CellGroupProps> = ({

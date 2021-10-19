@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from '@testing-library/react'
 import Badge from '.'
-import { BadgeProps } from './index.types'
+import { BadgeProps } from './types'
 
 describe('Test Component', () => {
   let props: BadgeProps

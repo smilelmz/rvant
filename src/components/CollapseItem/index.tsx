@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import React, { useContext, useImperativeHandle, useRef, useState } from 'react'
-import { CollapseItemHandler, CollapseItemProps } from './index.types'
+import { CollapseItemHandler, CollapseItemProps } from './types'
 import { createNamespace, doubleRaf, raf } from '../utils'
 import { CollapseContext } from '../context'
 import Cell from '../Cell'
@@ -90,7 +90,7 @@ const CollapseItem = (
 
   const renderTitle = () => {
     const { border, disabled, readonly } = props
-    const attrs = {
+    const attrs: Record<string, any> = {
       icon: props.icon,
       size: props.size,
       value: props.value,

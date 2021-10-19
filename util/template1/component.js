@@ -1,6 +1,6 @@
 module.exports = (componentName) => ({
   content: `import React from 'react'
-import { ${componentName}Props } from './index.types'
+import { ${componentName}Props } from './types'
 import { createNamespace } from '../utils'
 
 const [bem] = createNamespace('${componentName.toLowerCase()}')

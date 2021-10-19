@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from '@testing-library/react'
 import Sidebar from '.'
-import { SidebarProps } from './index.types'
+import { SidebarProps } from './types'
 
 describe('Test Component', () => {
   let props: SidebarProps

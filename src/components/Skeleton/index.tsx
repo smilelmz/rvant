@@ -1,5 +1,5 @@
 import React from 'react'
-import { SkeletonProps } from './index.types'
+import { SkeletonProps } from './types'
 import { createNamespace, addUnit, getSizeStyle } from '../utils'
 
 const [bem] = createNamespace('skeleton')

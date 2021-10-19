@@ -1,8 +1,6 @@
 module.exports = (componentName) => ({
-  content: `export interface ${componentName}Props {
-  style?: Record<string, string | number>
-  className?: string
-}
+  content: `export type ${componentName}Props = {
+} & Pick<React.HTMLAttributes<HTMLDivElement>, 'style' | 'className' | 'children'>
 `,
-  extension: `index.types.ts`
+  extension: `types.d.ts`
 })

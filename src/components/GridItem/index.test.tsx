@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from '@testing-library/react'
 import GridItem from '.'
-import { GridItemProps } from './index.types'
+import { GridItemProps } from './types'
 
 describe('Test Component', () => {
   let props: GridItemProps

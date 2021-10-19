@@ -1,5 +1,5 @@
 import React, { CSSProperties, useContext } from 'react'
-import { GridItemProps } from './index.types'
+import { GridItemProps } from './types'
 import { createNamespace, addUnit, BORDER } from '../utils'
 import Badge from '../Badge'
 import Icon from '../Icon'

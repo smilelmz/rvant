@@ -8,7 +8,7 @@ import React, {
   useRef,
   useState
 } from 'react'
-import { IndexBarHandler, IndexBarProps } from './index.types'
+import { IndexBarHandler, IndexBarProps } from './types'
 import {
   createNamespace,
   getRootScrollTop,
@@ -29,7 +29,7 @@ import {
   useWatch
 } from '../composables'
 import CreatePortal from '../CreatePortal'
-import { IndexAnchorHandler } from '../IndexAnchor/index.types'
+import { IndexAnchorHandler } from '../IndexAnchor/types'
 
 const genAlphabet = () => {
   const charCodeOfA = 'A'.charCodeAt(0)

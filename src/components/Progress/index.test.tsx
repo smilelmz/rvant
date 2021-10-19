@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from '@testing-library/react'
 import Progress from '.'
-import { ProgressProps } from './index.types'
+import { ProgressProps } from './types'
 
 describe('Test Component', () => {
   let props: ProgressProps

@@ -1,5 +1,5 @@
 import React from 'react'
-import { DividerProps } from './index.types'
+import { DividerProps } from './types'
 import { createNamespace } from '../utils'
 
 const [bem] = createNamespace('divider')

@@ -1,5 +1,5 @@
 import React from 'react'
-import { EmptyProps } from './index.types'
+import { EmptyProps } from './types'
 import { Network } from './Network'
 import { createNamespace, getSizeStyle } from '../utils'
 

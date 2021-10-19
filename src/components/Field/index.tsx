@@ -17,7 +17,7 @@ import {
   FieldRule,
   FieldValidateError,
   FieldValidateTrigger
-} from './index.types'
+} from './types'
 import {
   addUnit,
   createNamespace,

@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from '@testing-library/react'
 import IndexAnchor from '.'
-import { IndexAnchorProps } from './index.types'
+import { IndexAnchorProps } from './types'
 
 describe('Test Component', () => {
   let props: IndexAnchorProps

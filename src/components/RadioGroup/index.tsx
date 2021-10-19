@@ -1,6 +1,6 @@
 import React from 'react'
 import { createNamespace } from '../utils'
-import { RadioGroupProps } from './index.types'
+import { RadioGroupProps } from './types'
 
 const [bem] = createNamespace('radio-group')
 const RadioGroup: React.FC<RadioGroupProps> = ({

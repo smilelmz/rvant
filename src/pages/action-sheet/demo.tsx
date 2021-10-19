@@ -3,7 +3,7 @@ import { MobileLayout, DemoBlock } from '@/doc'
 import ActionSheet from '@/components/ActionSheet'
 import Cell from '@/components/Cell'
 import Toast from '@/components/Toast'
-import { ActionSheetAction } from '@/components/ActionSheet/index.types'
+import { ActionSheetAction } from '@/components/ActionSheet/types'
 import './index.scss'
 
 const ActionSheetDemo = () => {

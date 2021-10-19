@@ -1,5 +1,5 @@
 import React, { useRef } from 'react'
-import { TabbarProps } from './index.types'
+import { TabbarProps } from './types'
 import {
   BORDER_TOP_BOTTOM,
   callInterceptor,

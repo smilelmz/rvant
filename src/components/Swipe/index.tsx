@@ -7,12 +7,7 @@ import React, {
   useRef,
   useState
 } from 'react'
-import {
-  StateType,
-  SwipeHandler,
-  SwipeProps,
-  SwipeToOptions
-} from './index.types'
+import { StateType, SwipeHandler, SwipeProps, SwipeToOptions } from './types'
 import {
   createNamespace,
   doubleRaf,
@@ -28,7 +23,7 @@ import {
   useWindowSize
 } from '../composables'
 import { SwipeContext } from '../context'
-import { SwipeItemHandler } from '../SwipeItem/index.types'
+import { SwipeItemHandler } from '../SwipeItem/types'
 
 const [bem] = createNamespace('swipe')
 const Swipe = (fieldProps: SwipeProps, ref: React.Ref<SwipeHandler>) => {

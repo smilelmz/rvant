@@ -1,5 +1,5 @@
 import React from 'react'
-import { CollapseProps } from './index.types'
+import { CollapseProps } from './types'
 import { createNamespace } from '../utils'
 import { CollapseContext } from '../context'
 

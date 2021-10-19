@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from '@testing-library/react'
 import TreeSelect from '.'
-import { TreeSelectProps } from './index.types'
+import { TreeSelectProps } from './types'
 
 describe('Test Component', () => {
   let props: TreeSelectProps

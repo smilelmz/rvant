@@ -9,7 +9,7 @@
     object-fit: contain;
   }
 
-  &__info {
+  .#{$base-prefix}badge {
     position: absolute;
     top: 0;
     right: 0;

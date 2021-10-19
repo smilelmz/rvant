@@ -1,5 +1,5 @@
 import React from 'react'
-import { TreeSelectChild, TreeSelectProps } from './index.types'
+import { TreeSelectChild, TreeSelectProps } from './types'
 import { addUnit, createNamespace } from '../utils'
 import Icon from '../Icon'
 import SidebarItem from '../SidebarItem'

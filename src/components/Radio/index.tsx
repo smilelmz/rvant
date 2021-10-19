@@ -1,5 +1,5 @@
 import React from 'react'
-import { RadioProps } from './index.types'
+import { RadioProps } from './types'
 import { addUnit, createNamespace } from '../utils'
 import Icon from '../Icon'
 

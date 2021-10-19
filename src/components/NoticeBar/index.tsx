@@ -5,7 +5,7 @@ import React, {
   useRef,
   useState
 } from 'react'
-import { NoticeBarProps } from './index.types'
+import { NoticeBarProps } from './types'
 import { isDef, createNamespace, raf, doubleRaf } from '../utils'
 import Icon from '../Icon'
 import { getRect, useEventListener, useWatch } from '../composables'

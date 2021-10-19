@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from '@testing-library/react'
 import Popup from '.'
-import { PopupProps } from './index.types'
+import { PopupProps } from './types'
 
 describe('Test Component', () => {
   let props: PopupProps

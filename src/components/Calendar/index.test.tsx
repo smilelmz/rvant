@@ -1,21 +1,18 @@
 import React from 'react'
 import { render } from '@testing-library/react'
 import Calendar from '.'
-import { CalendarProps } from './index.types'
+import { CalendarProps } from './types'
 
 describe('Test Component', () => {
   let props: CalendarProps
 
   beforeEach(() => {
-    props = {
-      foo: 'bar'
-    }
+    props = {}
   })
 
   const renderComponent = () => render(<Calendar {...props} />)
 
   it('should render foo text correctly', () => {
-    props.foo = 'harvey was here'
     const { getByTestId } = renderComponent()
 
     const component = getByTestId('Calendar')

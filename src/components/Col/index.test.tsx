@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from '@testing-library/react'
 import Col from '.'
-import { ColProps } from './index.types'
+import { ColProps } from './types'
 
 describe('Test Component', () => {
   let props: ColProps

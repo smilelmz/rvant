@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from '@testing-library/react'
 import Loading from '.'
-import { LoadingProps } from './index.types'
+import { LoadingProps } from './types'
 
 describe('Test Component', () => {
   let props: LoadingProps

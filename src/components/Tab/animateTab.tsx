@@ -1,10 +1,10 @@
 import React, { useContext, useMemo } from 'react'
-import { TabProps } from './index.types'
+import { TabProps } from './types'
 import { createNamespace } from '../utils'
 import { TabsContext } from '../context'
 import { useWatch } from '../composables'
 import SwipeItem from '../SwipeItem'
-import { SwipeItemHandler } from '../SwipeItem/index.types'
+import { SwipeItemHandler } from '../SwipeItem/types'
 
 const [bem] = createNamespace('tab')
 const AnimateTab = (fieldProps: TabProps, ref: React.Ref<SwipeItemHandler>) => {

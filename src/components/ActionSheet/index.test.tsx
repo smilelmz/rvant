@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from '@testing-library/react'
 import ActionSheet from '.'
-import { ActionSheetProps } from './index.types'
+import { ActionSheetProps } from './types'
 
 describe('Test Component', () => {
   let props: ActionSheetProps

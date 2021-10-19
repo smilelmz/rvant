@@ -232,7 +232,7 @@ const TabDemo = () => {
   return (
     <MobileLayout title='Tab' className='demo-tab'>
       <BasicUsage />
-      <MatchByName />
+      {/* <MatchByName />
       <TabsScroll />
       <DisableTab />
       <BlockStyle />
@@ -242,7 +242,7 @@ const TabDemo = () => {
       <SwitchAnimation />
       <SwipeTab />
       <ScrollTabNav />
-      <BeforeChange />
+      <BeforeChange /> */}
       <div style={{ height: '80vh' }} />
     </MobileLayout>
   )

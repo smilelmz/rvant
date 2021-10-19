@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState, useImperativeHandle } from 'react'
-import { ProgressHandler, ProgressProps } from './index.types'
+import { ProgressHandler, ProgressProps } from './types'
 import { createNamespace, addUnit } from '../utils'
 import { useWatch } from '../composables'
 

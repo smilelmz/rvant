@@ -1,5 +1,5 @@
 import React, { CSSProperties, useMemo } from 'react'
-import { CircleProps } from './index.types'
+import { CircleProps } from './types'
 import {
   isObject,
   getSizeStyle,

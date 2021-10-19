@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from '@testing-library/react'
 import CheckboxGroup from '.'
-import { CheckboxGroupProps } from './index.types'
+import { CheckboxGroupProps } from './types'
 
 describe('Test Component', () => {
   let props: CheckboxGroupProps

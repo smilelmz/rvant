@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from '@testing-library/react'
 import Tag from '.'
-import { TagProps } from './index.types'
+import { TagProps } from './types'
 
 describe('Test Component', () => {
   let props: TagProps

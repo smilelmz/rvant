@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { MobileLayout, DemoBlock } from '@/doc'
 import Pagination from '@/components/Pagination'
 import { Icon } from '@/components'
-import { PageItem } from '@/components/Pagination/index.types'
+import { PageItem } from '@/components/Pagination/types'
 import './index.scss'
 
 const PaginationDemo = () => {

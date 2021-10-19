@@ -1,6 +1,6 @@
 import React, { TouchEvent } from 'react'
 import { isDef, createNamespace, isElement } from '../utils'
-import { CellProps } from './index.types'
+import { CellProps } from './types'
 import Icon from '../Icon'
 
 const [bem] = createNamespace('cell')

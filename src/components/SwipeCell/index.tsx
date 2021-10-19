@@ -10,7 +10,7 @@ import {
   SwipeCellProps,
   SwipeCellSide,
   SwiperCellHandle
-} from './index.types'
+} from './types'
 import {
   callInterceptor,
   createNamespace,

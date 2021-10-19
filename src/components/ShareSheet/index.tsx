@@ -1,5 +1,5 @@
 import React from 'react'
-import { ShareSheetOption, ShareSheetProps } from './index.types'
+import { ShareSheetOption, ShareSheetProps } from './types'
 import { createNamespace } from '../utils'
 import { useI18n } from '@/components/locale'
 import { Popup } from '..'

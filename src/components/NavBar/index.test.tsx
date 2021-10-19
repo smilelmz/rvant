@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from '@testing-library/react'
 import NavBar from '.'
-import { NavBarProps } from './index.types'
+import { NavBarProps } from './types'
 
 describe('Test Component', () => {
   let props: NavBarProps

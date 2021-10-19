@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from '@testing-library/react'
 import Rate from '.'
-import { RateProps } from './index.types'
+import { RateProps } from './types'
 
 describe('Test Component', () => {
   let props: RateProps

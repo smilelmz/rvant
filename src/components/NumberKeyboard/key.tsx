@@ -1,5 +1,5 @@
 import React, { TouchEvent, useRef } from 'react'
-import { NumberKeyboardKeyProps } from './index.types'
+import { NumberKeyboardKeyProps } from './types'
 import { createNamespace } from '../utils'
 import { useTouch } from '../composables'
 import Loading from '../Loading'

@@ -1,5 +1,5 @@
 import React from 'react'
-import { FormProps } from './index.types'
+import { FormProps } from './types'
 import { createNamespace } from '../utils'
 
 const [bem] = createNamespace('form')

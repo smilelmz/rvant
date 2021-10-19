@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from '@testing-library/react'
 import Cell from '.'
-import { CellProps } from './index.types'
+import { CellProps } from './types'
 
 describe('Test Component', () => {
   let props: CellProps

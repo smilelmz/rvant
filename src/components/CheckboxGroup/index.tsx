@@ -3,10 +3,10 @@ import {
   CheckboxGroupProps,
   CheckboxGroupToggleAllOptions,
   CheckboxGroupHandle
-} from './index.types'
+} from './types'
 import { createNamespace } from '../utils'
 import { useRefs } from '../composables'
-import { CheckboxHandler } from '../Checkbox/index.types'
+import { CheckboxHandler } from '../Checkbox/types'
 import { CheckboxGroupContext } from '../context'
 
 const [bem] = createNamespace('checkbox-group')

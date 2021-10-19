@@ -1,6 +1,6 @@
 import React, { MouseEvent, useMemo } from 'react'
 import { createNamespace } from '../utils'
-import { RowProps, RowSpaces } from './index.types'
+import { RowProps, RowSpaces } from './types'
 
 const [bem] = createNamespace('row')
 const Row: React.FC<RowProps> = ({

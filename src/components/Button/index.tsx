@@ -1,6 +1,6 @@
 import React, { MouseEvent, useMemo } from 'react'
 import { createNamespace, BORDER_SURROUND, WHITE } from '../utils'
-import { ButtonProps } from './index.types'
+import { ButtonProps } from './types'
 
 import Icon from '../Icon'
 import Loading from '../Loading'

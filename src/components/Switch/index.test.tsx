@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from '@testing-library/react'
 import Switch from '.'
-import { SwitchProps } from './index.types'
+import { SwitchProps } from './types'
 
 describe('Test Component', () => {
   let props: SwitchProps

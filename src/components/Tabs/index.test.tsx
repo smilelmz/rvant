@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from '@testing-library/react'
 import Tabs from '.'
-import { TabsProps } from './index.types'
+import { TabsProps } from './types'
 
 describe('Test Component', () => {
   let props: TabsProps

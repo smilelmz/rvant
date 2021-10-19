@@ -1,4 +1,4 @@
 {
   "typescript.tsdk": "node_modules/typescript/lib",
-  "editor.fontSize": 16
+  "editor.fontSize": 18
 }

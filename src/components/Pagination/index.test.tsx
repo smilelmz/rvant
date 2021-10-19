@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from '@testing-library/react'
 import Pagination from '.'
-import { PaginationProps } from './index.types'
+import { PaginationProps } from './types'
 
 describe('Test Component', () => {
   let props: PaginationProps

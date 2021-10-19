@@ -1,5 +1,5 @@
 import React, { MouseEvent, TouchEvent } from 'react'
-import { IconProps } from './index.types'
+import { IconProps } from './types'
 import { addUnit, createNamespace } from '../utils'
 import Badge from '../Badge'
 
@@ -31,6 +31,7 @@ const Icon: React.FC<IconProps> = ({
     fontSize: addUnit(size),
     ...style
   }
+
   return (
     <CustomTag
       className={classNames}

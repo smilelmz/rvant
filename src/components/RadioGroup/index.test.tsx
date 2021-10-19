@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from '@testing-library/react'
 import RadioGroup from '.'
-import { RadioGroupProps } from './index.types'
+import { RadioGroupProps } from './types'
 
 describe('Test Component', () => {
   let props: RadioGroupProps

@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from '@testing-library/react'
 import CellGroup from '.'
-import { CellGroupProps } from './index.types'
+import { CellGroupProps } from './types'
 
 describe('Test Component', () => {
   let props: CellGroupProps

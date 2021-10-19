@@ -1,6 +1,6 @@
 import React, { CSSProperties, MouseEvent } from 'react'
 import CSSTransition from 'react-transition-group/CSSTransition'
-import { TagProps } from './index.types'
+import { TagProps } from './types'
 import { createNamespace, BASE_PREFIX } from '../utils'
 import Icon from '../Icon'
 import { EventFunction } from '../type'

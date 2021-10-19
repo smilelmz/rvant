@@ -1,5 +1,5 @@
 import React, { MouseEvent, useContext } from 'react'
-import { SidebarItemProps } from './index.types'
+import { SidebarItemProps } from './types'
 import { createNamespace } from '../utils'
 import { SidebarContext } from '../context'
 import Badge from '../Badge'

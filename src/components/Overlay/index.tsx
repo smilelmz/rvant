@@ -1,6 +1,6 @@
 import React, { CSSProperties, MouseEvent } from 'react'
 import CSSTransition from 'react-transition-group/CSSTransition'
-import { OverlayProps } from './index.types'
+import { OverlayProps } from './types'
 import {
   isDef,
   noop,
@@ -17,7 +17,7 @@ const Overlay: React.FC<OverlayProps> = ({
   zIndex = 2000,
   duration = 0.3,
   className = '',
-  customStyle = {},
+  style = {},
   lockScroll = true,
   click
 }) => {
@@ -34,9 +34,9 @@ const Overlay: React.FC<OverlayProps> = ({
     click && click(e)
   }
   const renderOverlay = () => {
-    const style: CSSProperties = {
+    const customStyle: CSSProperties = {
       ...getZIndexStyle(zIndex),
-      ...customStyle
+      ...style
     }
 
     if (isDef(duration)) {
@@ -45,7 +45,7 @@ const Overlay: React.FC<OverlayProps> = ({
     return (
       <div
         className={`${bem()} ${className}`}
-        style={style}
+        style={customStyle}
         onClick={onClick}
         onTouchMove={lockScroll ? preventTouchMove : noop}
       >

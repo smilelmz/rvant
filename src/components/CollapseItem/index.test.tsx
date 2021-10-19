@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from '@testing-library/react'
 import CollapseItem from '.'
-import { CollapseItemProps } from './index.types'
+import { CollapseItemProps } from './types'
 
 describe('Test Component', () => {
   let props: CollapseItemProps

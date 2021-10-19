@@ -1,4 +1,4 @@
 import { createContext } from 'react'
-import { TabbarProvide } from '../Tabbar/index.types'
+import { TabbarProvide } from '../Tabbar/types'
 
 export const TabbarContext = createContext<Partial<TabbarProvide>>({})

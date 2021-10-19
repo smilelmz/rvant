@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from '@testing-library/react'
 import ShareSheet from '.'
-import { ShareSheetProps } from './index.types'
+import { ShareSheetProps } from './types'
 
 describe('Test Component', () => {
   let props: ShareSheetProps

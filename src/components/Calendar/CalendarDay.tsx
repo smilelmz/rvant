@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { CSSProperties, useMemo } from 'react'
 import { ValueFunction } from '@/components/type'
-import { DayItem } from './index.types'
+import { DayItem } from './types'
 import { bem } from './utils'
 
 interface IProps {

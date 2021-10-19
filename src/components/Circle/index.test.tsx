@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from '@testing-library/react'
 import Circle from '.'
-import { CircleProps } from './index.types'
+import { CircleProps } from './types'
 
 describe('Test Component', () => {
   let props: CircleProps

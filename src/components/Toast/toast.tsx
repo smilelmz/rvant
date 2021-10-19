@@ -1,6 +1,6 @@
 /* eslint-disable react/no-danger */
 import React from 'react'
-import { ToastProps } from './index.types'
+import { ToastProps } from './types'
 import { isDef, createNamespace } from '../utils'
 import Icon from '../Icon'
 import Loading from '../Loading'

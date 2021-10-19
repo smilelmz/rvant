@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { MobileLayout, DemoBlock } from '@/doc'
 import Cell from '@/components/Cell'
 import ShareSheet from '@/components/ShareSheet'
-import { ShareSheetOption } from '@/components/ShareSheet/index.types'
+import { ShareSheetOption } from '@/components/ShareSheet/types'
 import { Toast } from '@/components'
 import './index.scss'
 

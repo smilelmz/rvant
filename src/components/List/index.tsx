@@ -5,7 +5,7 @@ import React, {
   useImperativeHandle,
   useRef
 } from 'react'
-import { ListHandler, ListProps } from './index.types'
+import { ListHandler, ListProps } from './types'
 import { createNamespace, isHidden } from '../utils'
 import { TabContext } from '../context'
 import {

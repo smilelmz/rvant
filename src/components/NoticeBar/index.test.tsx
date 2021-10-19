@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from '@testing-library/react'
 import NoticeBar from '.'
-import { NoticeBarProps } from './index.types'
+import { NoticeBarProps } from './types'
 
 describe('Test Component', () => {
   let props: NoticeBarProps

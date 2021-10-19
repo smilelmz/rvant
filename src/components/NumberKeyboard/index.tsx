@@ -1,5 +1,5 @@
 import React, { useMemo, useRef } from 'react'
-import { KeyConfig, NumberKeyboardProps, KeyType } from './index.types'
+import { KeyConfig, NumberKeyboardProps, KeyType } from './types'
 import {
   createNamespace,
   getZIndexStyle,

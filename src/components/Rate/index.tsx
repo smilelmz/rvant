@@ -1,6 +1,6 @@
 /* eslint-disable no-useless-return */
 import React, { MouseEvent, TouchEvent, useMemo, useRef } from 'react'
-import { RateProps } from './index.types'
+import { RateProps } from './types'
 import { addUnit, preventDefault, createNamespace } from '../utils'
 import { useTouch, useRefs } from '../composables'
 import Icon from '../Icon'

@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from '@testing-library/react'
 import Field from '.'
-import { FieldProps } from './index.types'
+import { FieldProps } from './types'
 
 describe('Test Component', () => {
   let props: FieldProps

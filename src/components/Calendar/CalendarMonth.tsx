@@ -13,7 +13,7 @@ import {
 } from './utils'
 
 import { useHeight } from '../composables'
-import { DayItem, DayType, CalendarType, IHandles } from './index.types'
+import { DayItem, DayType, CalendarType, IHandles } from './types'
 import CalendarDay from './CalendarDay'
 import useToggle from '../composables/use-toggle'
 

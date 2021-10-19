@@ -1,5 +1,5 @@
 import { createContext, useContext } from 'react'
-import { FieldContextProps } from '../Field/index.types'
+import { FieldContextProps } from '../Field/types'
 
 export const FieldContext = createContext<Partial<FieldContextProps>>(null)
 

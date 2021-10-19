@@ -1,5 +1,5 @@
 import React from 'react'
-import { SwitchProps } from './index.types'
+import { SwitchProps } from './types'
 import { createNamespace, addUnit } from '../utils'
 import Loading from '../Loading'
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from '@testing-library/react'
 import Sticky from '.'
-import { StickyProps } from './index.types'
+import { StickyProps } from './types'
 
 describe('Test Component', () => {
   let props: StickyProps

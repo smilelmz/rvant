@@ -12,12 +12,7 @@ import {
   compareMonth,
   getDayByOffset
 } from './utils'
-import {
-  DayItem,
-  CalendarProps,
-  IHandles,
-  CalendarHandler
-} from './index.types'
+import { DayItem, CalendarProps, IHandles, CalendarHandler } from './types'
 import Popup from '../Popup'
 import Button from '../Button'
 import Toast from '../Toast'

@@ -1,5 +1,5 @@
 import React from 'react'
-import { ActionSheetAction, ActionSheetProps } from './index.types'
+import { ActionSheetAction, ActionSheetProps } from './types'
 import { createNamespace } from '../utils'
 import Icon from '../Icon'
 import Loading from '../Loading'

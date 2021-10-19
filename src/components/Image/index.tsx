@@ -2,7 +2,7 @@ import React, { MouseEvent, useEffect, useMemo, useState } from 'react'
 import LazyLoad from 'react-lazyload'
 import { isDef, addUnit, createNamespace } from '../utils'
 import Icon from '../Icon'
-import { ImageProps } from './index.types'
+import { ImageProps } from './types'
 
 const [bem] = createNamespace('image')
 const Image: React.FC<ImageProps> = ({

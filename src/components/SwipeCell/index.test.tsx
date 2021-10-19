@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from '@testing-library/react'
 import SwipeCell from '.'
-import { SwipeCellProps } from './index.types'
+import { SwipeCellProps } from './types'
 
 describe('Test Component', () => {
   let props: SwipeCellProps

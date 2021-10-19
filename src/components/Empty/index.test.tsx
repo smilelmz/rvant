@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from '@testing-library/react'
 import Empty from '.'
-import { EmptyProps } from './index.types'
+import { EmptyProps } from './types'
 
 describe('Test Component', () => {
   let props: EmptyProps

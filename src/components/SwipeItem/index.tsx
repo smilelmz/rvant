@@ -8,7 +8,7 @@ import React, {
   useRef,
   useState
 } from 'react'
-import { SwipeItemHandler, SwipeItemProps } from './index.types'
+import { SwipeItemHandler, SwipeItemProps } from './types'
 import { createNamespace } from '../utils'
 import { SwipeContext } from '../context'
 

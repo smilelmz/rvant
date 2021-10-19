@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from '@testing-library/react'
 import Cascader from '.'
-import { CascaderProps } from './index.types'
+import { CascaderProps } from './types'
 
 describe('Test Component', () => {
   let props: CascaderProps

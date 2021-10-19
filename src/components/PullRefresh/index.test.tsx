@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from '@testing-library/react'
 import PullRefresh from '.'
-import { PullRefreshProps } from './index.types'
+import { PullRefreshProps } from './types'
 
 describe('Test Component', () => {
   let props: PullRefreshProps

@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from '@testing-library/react'
 import Divider from '.'
-import { DividerProps } from './index.types'
+import { DividerProps } from './types'
 
 describe('Test Component', () => {
   let props: DividerProps

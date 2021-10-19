@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from '@testing-library/react'
 import Icon from '.'
-import { IconProps } from './index.types'
+import { IconProps } from './types'
 
 describe('Test Component', () => {
   let props: IconProps

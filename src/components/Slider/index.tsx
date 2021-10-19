@@ -1,5 +1,5 @@
 import React, { MouseEvent, TouchEvent, useMemo, useRef, useState } from 'react'
-import { SliderProps, SliderValue } from './index.types'
+import { SliderProps, SliderValue } from './types'
 import {
   createNamespace,
   addUnit,
@@ -81,7 +81,7 @@ const Slider = ({
       background: activeColor,
       transition: dragStatus ? 'none' : undefined
     }
-  }, [vertical, activeColor])
+  }, [vertical, activeColor, modelValue])
 
   const format = (value: number) => {
     value = Math.max(+min, Math.min(value, +max))

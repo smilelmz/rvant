@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from '@testing-library/react'
 import Form from '.'
-import { FormProps } from './index.types'
+import { FormProps } from './types'
 
 describe('Test Component', () => {
   let props: FormProps

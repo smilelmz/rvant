@@ -2,7 +2,7 @@ import React, { useRef } from 'react'
 import { MobileLayout, DemoBlock } from '@/doc'
 import { Button, Swipe, SwipeItem, Toast } from '@/components'
 import './index.scss'
-import { SwipeHandler } from '@/components/Swipe/index.types'
+import { SwipeHandler } from '@/components/Swipe/types'
 
 const images = [
   'https://img.yzcdn.cn/vant/apple-1.jpg',

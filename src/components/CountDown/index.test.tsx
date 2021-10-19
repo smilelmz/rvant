@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from '@testing-library/react'
 import CountDown from '.'
-import { CountDownProps } from './index.types'
+import { CountDownProps } from './types'
 
 describe('Test Component', () => {
   let props: CountDownProps

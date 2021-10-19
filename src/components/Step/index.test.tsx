@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from '@testing-library/react'
 import Step from '.'
-import { StepProps } from './index.types'
+import { StepProps } from './types'
 
 describe('Test Component', () => {
   let props: StepProps

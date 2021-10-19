@@ -8,7 +8,7 @@ import React, {
   useState
 } from 'react'
 import CSSTransition from 'react-transition-group/CSSTransition'
-import { PopupProps, PopupHandler } from './index.types'
+import { PopupProps, PopupHandler } from './types'
 import { isDef, isBoolean, createNamespace, BASE_PREFIX } from '../utils'
 import Icon from '../Icon'
 import Overlay from '../Overlay'
@@ -144,7 +144,7 @@ const Popup = (
           duration={0.3}
           className={overlayClass}
           zIndex={pzIndex}
-          customStyle={overlayStyle}
+          style={overlayStyle}
           click={onClickOverlay}
           lockScroll={lockScroll}
         />

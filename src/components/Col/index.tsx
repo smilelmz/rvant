@@ -1,6 +1,6 @@
 import React, { MouseEvent, useMemo } from 'react'
 import { createNamespace } from '../utils'
-import { ColProps } from './index.types'
+import { ColProps } from './types'
 
 const [bem] = createNamespace('col')
 const Col: React.FC<ColProps> = ({

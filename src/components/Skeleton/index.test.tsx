@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from '@testing-library/react'
 import Skeleton from '.'
-import { SkeletonProps } from './index.types'
+import { SkeletonProps } from './types'
 
 describe('Test Component', () => {
   let props: SkeletonProps

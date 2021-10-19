@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react'
-import { PageItem, PaginationProps } from './index.types'
+import { PageItem, PaginationProps } from './types'
 import { BORDER, createNamespace } from '../utils'
 import { useWatch } from '../composables'
 import { useI18n } from '..'

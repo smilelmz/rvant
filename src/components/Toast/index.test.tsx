@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from '@testing-library/react'
 import Toast from '.'
-import { ToastProps } from './index.types'
+import { ToastProps } from './types'
 
 describe('Test Component', () => {
   let props: ToastProps

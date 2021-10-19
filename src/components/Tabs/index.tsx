@@ -1,11 +1,12 @@
 import React, {
   CSSProperties,
+  useEffect,
   useImperativeHandle,
   useMemo,
   useRef,
   useState
 } from 'react'
-import { TabsHandler, TabsProps, TabsState } from './index.types'
+import { TabsHandler, TabsProps, TabsState } from './types'
 import {
   addUnit,
   BORDER_TOP_BOTTOM,
@@ -347,9 +348,6 @@ const Tabs = (fieldProps: TabsProps, ref: React.Ref<TabsHandler>) => {
       setCurrentIndexByName(props.active)
       setLine()
       scrollIntoView(true)
-    } else {
-      setCurrentIndexByName(props.active)
-      init()
     }
   })
 
@@ -362,6 +360,11 @@ const Tabs = (fieldProps: TabsProps, ref: React.Ref<TabsHandler>) => {
       setRootScrollTop(Math.ceil(getElementTop(root.current!) - offsetTopPx))
     }
   })
+
+  useEffect(() => {
+    setCurrentIndexByName(props.active)
+    init()
+  }, [])
 
   return (
     <TabsContext.Provider

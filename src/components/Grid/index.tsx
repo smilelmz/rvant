@@ -1,5 +1,5 @@
 import React from 'react'
-import { GridProps } from './index.types'
+import { GridProps } from './types'
 import { createNamespace, addUnit } from '../utils'
 import { GridContext } from '../context'
 

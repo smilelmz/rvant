@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { MobileLayout, DemoBlock } from '@/doc'
 import Slider from '@/components/Slider'
 import Toast from '@/components/Toast'
-import { SliderValue } from '@/components/Slider/index.types'
+import { SliderValue } from '@/components/Slider/types'
 import './index.scss'
 
 const SliderDemo = () => {

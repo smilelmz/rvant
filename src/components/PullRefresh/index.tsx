@@ -1,5 +1,5 @@
 import React, { TouchEvent, useRef, useState } from 'react'
-import { PullRefreshProps, PullRefreshStatus } from './index.types'
+import { PullRefreshProps, PullRefreshStatus } from './types'
 import { createNamespace, getScrollTop, preventDefault } from '../utils'
 import {
   useScrollParent,

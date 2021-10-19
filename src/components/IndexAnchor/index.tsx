@@ -5,11 +5,7 @@ import React, {
   useRef,
   useState
 } from 'react'
-import {
-  IndexAnchorHandler,
-  IndexAnchorProps,
-  IndexAnchorState
-} from './index.types'
+import { IndexAnchorHandler, IndexAnchorProps, IndexAnchorState } from './types'
 import {
   BORDER_BOTTOM,
   createNamespace,

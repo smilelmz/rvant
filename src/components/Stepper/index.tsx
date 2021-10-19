@@ -6,7 +6,7 @@ import React, {
   useRef,
   useState
 } from 'react'
-import { StepperProps } from './index.types'
+import { StepperProps } from './types'
 import {
   isNaN,
   isDef,

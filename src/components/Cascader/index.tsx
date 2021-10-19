@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { CascaderOption, CascaderProps, CascaderTab } from './index.types'
+import { CascaderOption, CascaderProps, CascaderTab } from './types'
 import { createNamespace, extend } from '../utils'
 import Icon from '../Icon'
 import Tab from '../Tab'

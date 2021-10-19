@@ -1,6 +1,6 @@
 import React, { useRef } from 'react'
 import { MobileLayout, DemoBlock } from '@/doc'
-import { CountDownHandler } from '@/components/CountDown/index.types'
+import { CountDownHandler } from '@/components/CountDown/types'
 import CountDown from '@/components/CountDown'
 import Toast from '@/components/Toast'
 import Button from '@/components/Button'

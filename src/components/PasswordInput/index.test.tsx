@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from '@testing-library/react'
 import PasswordInput from '.'
-import { PasswordInputProps } from './index.types'
+import { PasswordInputProps } from './types'
 
 describe('Test Component', () => {
   let props: PasswordInputProps
