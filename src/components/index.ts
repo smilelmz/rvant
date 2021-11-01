@@ -54,6 +54,7 @@ import List from './List'
 import NumberKeyboard from './NumberKeyboard'
 import PasswordInput from './PasswordInput'
 import Cascader from './Cascader'
+import Notify, { VanNotify } from './Notify'
 
 import { LocaleProvider, useI18n } from './locale'
 
@@ -115,5 +116,7 @@ export {
   List,
   NumberKeyboard,
   PasswordInput,
-  Cascader
+  Cascader,
+  Notify,
+  VanNotify
 }

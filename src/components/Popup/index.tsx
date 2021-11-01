@@ -141,7 +141,7 @@ const Popup = (
       return (
         <Overlay
           show={show}
-          duration={0.3}
+          duration={duration}
           className={overlayClass}
           zIndex={pzIndex}
           style={overlayStyle}

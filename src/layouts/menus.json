@@ -205,8 +205,8 @@
       },
       {
         "name": "Notify 消息通知",
-        "url": "",
-        "m_url": "",
+        "url": "/notify",
+        "m_url": "/notify/demo",
         "simulator": true
       },
       {
